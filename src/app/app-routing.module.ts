@@ -13,6 +13,11 @@ const routes: Routes = [
     path: 'home',
     component: LayoutComponent,
     loadChildren: './pages/public/home/home.module#HomeModule'
+  },
+  {
+    path: 'reports/:id',
+    component: LayoutComponent,
+    loadChildren: './pages/public/report/report.module#ReportModule'
   }
 ];
 

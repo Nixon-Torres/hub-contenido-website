@@ -10,3 +10,13 @@ app-side-bar {
 .information_content .information_left_first .information_details h6 {
 	text-transform: uppercase;
 }
+
+.information_left_first {
+	outline: 0 !important;
+	cursor: pointer;
+}
+
+.clickable-section {
+	outline: 0 !important;
+	cursor: pointer;
+}

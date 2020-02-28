@@ -37,17 +37,19 @@ export class RemarkableAreaComponent implements OnInit {
     }).subscribe((res) => {
       this.reports = res.body;
 
-      this.reports = this.reports.map(e => {
-        e.files = e.files.filter(j => j.key === 'outstandingimage');
-        e.image = e.files && e.files.length ? e.files[0] : null;
+      this.reports = this.reports
+          .filter(e => e.files && e.files.length && e.files.find(k => k.key.toLowerCase() === 'outstandingimage'))
+          .map(e => {
+            e.files = e.files.filter(j => j.key.toLowerCase() === 'outstandingimage');
+            e.image = e.files && e.files.length ? e.files[0] : null;
 
-        if (e.section && e.section.types && e.section.types.length) {
-          e.type = e.section.types.find(k => k.key === e.sectionTypeKey);
-        } else {
-          e.type = null;
-        }
-        return e;
-      });
+            if (e.section && e.section.types && e.section.types.length) {
+              e.type = e.section.types.find(k => k.key === e.sectionTypeKey);
+            } else {
+              e.type = null;
+            }
+            return e;
+          });
 
       this.headerReport = this.reports.find(e => e.outstandingArea === 'header');
       this.area1Report = this.reports.find(e => e.outstandingArea === 'area1');

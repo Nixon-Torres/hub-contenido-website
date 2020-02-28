@@ -33,6 +33,22 @@ export class HttpService {
     }).pipe(catchError(this.handleError));
   }
 
+  public getHTML(input: Request): Observable<HttpResponse<Response>> {
+    let params = new URLSearchParams();
+    for (let key in input.data) {
+      if (input.data.hasOwnProperty(key)) {
+        params.set(key, input.data[key]);
+      }
+    }
+    let encodeData = input.data ? this.encodeURIObj(input.data) : '';
+    let headers = this.headers();
+    return this.http.get<Response>(`${this._URL_API}${input.path}${(input.encode ? `?filter=${encodeData}` : encodeData)}`, {
+      observe: 'response',
+      headers: headers,
+      responseType: 'text'
+    }).pipe(catchError(this.handleError));
+  }
+
   public post(input: Request): Observable<HttpResponse<Response>> {
     let headers = this.headers();
     return this.http.post<Response>(this._URL_API + input.path, input.data, {
