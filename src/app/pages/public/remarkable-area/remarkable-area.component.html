@@ -4,14 +4,14 @@
 			<div class="content">
 				<div class="information_left_first">
 					<div class="information_image">
-						<img src="assets/images/banner_img.png" alt="">
+						<img [src]="assetBase + headerReport?.image.clientPath" alt="">
 						<p class="label">CONTENIDO DESTACADO</p>
 					</div>
 					<div class="information_details">
-						<h6>INFORME PREAPERTURA DE MERCADOS</h6>
-						<h4>La tasa de cambio se mantiene entre $3.300 y $3.500</h4>
+						<h6>{{headerReport?.type?.value}}</h6>
+						<h4>{{headerReport?.name}}</h4>
 						<p>El gerente del Banco de la Republica indico que se siente comodo con una tasa de cambio entre $3.300 y $3.500 y que una devaluacion de entre 15% a 20% era manejable.</p>
-						<p class="date">1 julio 2020</p>
+						<p class="date">{{headerReport?.updatedAt | date:'d MMMM y'}}</p>
 					</div>
 				</div>
 				<div class="information_left_second_content">
@@ -23,52 +23,52 @@
 							<div class="col-sm-6">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
-										<img src="assets/images/a1.png" alt="">
+										<img [src]="assetBase + area1Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>MERCADOS INTERNACIONALES</h6>
-										<h4>Consejo del Gobierno Banco Central Europeo continuara con su programa</h4>
+										<h6>{{area1Report?.type?.value}}</h6>
+										<h4>{{area1Report?.name}}</h4>
 										<p>EI Consejo decidio mantener sin cambios...sus tasas de politica monetaria y confirmo su</p>
-										<p class="date">1 julio 2020</p>
+										<p class="date">{{area1Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
-										<img src="assets/images/a2.png" alt="">
+										<img [src]="assetBase + area2Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>INDUSTRIA Y COMERCIO</h6>
-										<h4>Mejoran las ventas de comercio alpor menor</h4>
+										<h6>{{area2Report?.type?.value}}</h6>
+										<h4>{{area2Report?.name}}</h4>
 										<p>Las ventas reales del del comercio al por menor...en mayo aceleraron su dinamica</p>
-										<p class="date">1 julio 2020</p>
+										<p class="date">{{area2Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
-										<img src="assets/images/f_video.png" alt="">
+										<img [src]="assetBase + area3Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>CORREDORES DAVIVIENDA</h6>
-										<h4>siga estas recomendaciones para invertir en junio</h4>
-										<!-- <p>El gerente del Banco de la Republica indico que se siente comodo con una tasa de cambio entre $3.300 y $3.500 y que una devaluacion de entre 15% a 20% era manejable.</p> -->
-										<p class="date">1 julio 2020</p>
+										<h6>{{area3Report?.type?.value}}</h6>
+										<h4>{{area3Report?.name}}</h4>
+										<p>El gerente del Banco de la Republica indico que se siente comodo con una tasa de cambio entre $3.300 y $3.500 y que una devaluacion de entre 15% a 20% era manejable.</p>
+										<p class="date">{{area3Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
-										<img src="assets/images/banner_img.png" alt="">
+										<img [src]="assetBase + area4Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>INDUSTRIA Y COMERCIO</h6>
-										<h4>Mejoran las ventas de comercio alpor menor</h4>
+										<h6>{{area4Report?.type?.value}}</h6>
+										<h4>{{area4Report?.name}}</h4>
 										<p>Las ventas reales del del comercio al por menor...en mayo aceleraron su dinamica</p>
-										<p class="date">1 julio 2020</p>
+										<p class="date">{{area4Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
 							</div>
