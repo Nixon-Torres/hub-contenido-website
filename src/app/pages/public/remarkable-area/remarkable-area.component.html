@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="content">
-				<div class="information_left_first">
+				<div class="information_left_first" *ngIf="headerReport">
 					<div class="information_image">
 						<img [src]="assetBase + headerReport?.image.clientPath" alt="">
 						<p class="label">CONTENIDO DESTACADO</p>
@@ -16,11 +16,11 @@
 				</div>
 				<div class="information_left_second_content">
 					<div class="information_left_second_head">
-						<h4>INFORMS DESTACADOS</h4>
+						<h4>INFORMES DESTACADOS</h4>
 					</div>
 					<div class="informs_under_content">
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-6" *ngIf="area1Report">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
 										<img [src]="assetBase + area1Report?.image.clientPath" alt="">
@@ -33,7 +33,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-6" *ngIf="area2Report">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
 										<img [src]="assetBase + area2Report?.image.clientPath" alt="">
@@ -46,7 +46,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-6" *ngIf="area3Report">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
 										<img [src]="assetBase + area3Report?.image.clientPath" alt="">
@@ -59,7 +59,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-6" *ngIf="area4Report">
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
 										<img [src]="assetBase + area4Report?.image.clientPath" alt="">
