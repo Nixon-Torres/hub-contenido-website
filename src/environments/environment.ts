@@ -4,11 +4,12 @@
 
 export const environment = {
   production: false,
-  // URL_API:  'http://192.168.1.123:3000/api/',
-  // URL_SOCKET:  'http://localhost:3000',
+  // URL_API:  'https://stg-hub.qdata.io/',
+  // URL_SOCKET:  'https://stg-hub.qdata.io/',
+  DRAFT_KEY: '5e068d1cb81d1c5f29b62977',
+  // STORAGE_FILES: 'https://stg-hub.qdata.io/public/assets/'
   URL_API:  'http://localhost:3000/',
   URL_SOCKET:  'http://localhost:3000/',
-  DRAFT_KEY: '5e068d1cb81d1c5f29b62977',
   STORAGE_FILES: 'http://localhost:3000/public/assets/'
 };
 

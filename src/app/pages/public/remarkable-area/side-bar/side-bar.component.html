@@ -2,25 +2,25 @@
 	<div class="information_content_sidebar">
 		<div class="information_sidebar_first_content">
 			<div class="isfc_left">
-				<h4>De liquidez y oportunidades</h4>
-				<p>informe especializado donde puede conocer...</p>
-				<a href="#">Descargue aca el libro</a>
+				<h4>{{banner1?.title}}</h4>
+				<p>{{banner1?.description}}</p>
+				<a target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
 			</div>
-			<div class="isfc_right">
-				<img src="assets/images/books.png" alt="">
+			<div class="isfc_right" *ngIf="banner1 && banner1.files && banner1.files.length">
+				<img src="{{STORAGE_URL}}{{banner1.files[0].clientPath}}" alt="">
 			</div>
 		</div>
 		<div class="information_sidebar_first_content">
 			<div class="isfc_left full_width">
-				<h4>Informe anual de mercados</h4>
-				<p>orem ipsum dolor sit amet,consectetur adeipiscing elit,sed do eiusmod tempor</p>
-				<a href="#">Ver informe</a>
+				<h4>{{banner2?.title}}</h4>
+				<p>{{banner2?.description}}</p>
+				<a target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
 			</div>
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#tab-1">Ultimos informes</a></li>
-				<li class=""><a href="#tab-2">mas leidos</a></li>
+				<li [ngClass]="{'active' : selectedTab === 'tab1'}"><a (click)="changeTab(1)">&Uacute;ltimos informes</a></li>
+				<li [ngClass]="{'active' : selectedTab === 'tab2'}"><a (click)="changeTab(2)">M&aacute;s le&iacute;dos</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="tab-1" class="tab-pane active">
@@ -35,72 +35,14 @@
 						</div>
 					</div>
 					<hr>
-					<div class="information_tab_pen">
-						<a href="#">PERSPECTIVAS MACROECONOMICAS</a>
-						<h4>Aumenta el precio del petroleo por coyuntura politica</h4>
-						<p>15 agosto 2019</p>
-					</div>
-					<hr>
-					<div class="information_sidebar_first_content">
-						<div class="isfc_left">
-							<p>Acceda aqui al informe</p>
-							<h4>diario de mercados</h4>
-							<a href="#">ver ahora</a>
+					<div *ngFor="let report of reports">
+						<div class="information_tab_pen" [routerLink]="['/reports', report.id]">
+							<a style="text-transform: uppercase" href="#">{{report?.type?.value}}</a>
+							<h4>{{report?.name}}</h4>
+							<p>{{report?.updatedAt | date:'d MMMM y'}}</p>
 						</div>
-						<div class="isfc_right">
-							<img src="assets/images/tablet.png" alt="">
-						</div>
+						<hr>
 					</div>
-					<hr>
-					<div class="information_tab_pen">
-						<a href="#">PERSPECTIVAS MACROECONOMICAS</a>
-						<h4>Aumenta el precio del petroleo por coyuntura politica</h4>
-						<p>15 agosto 2019</p>
-					</div>
-					<hr>
-					<div class="information_tab_pen">
-						<a href="#">PERSPECTIVAS MACROECONOMICAS</a>
-						<h4>Aumenta el precio del petroleo por coyuntura politica</h4>
-						<p>15 agosto 2019</p>
-					</div>
-					<hr>
-				</div>
-				<div id="tab-2" class="tab-pane">
-					<div class="information_sidebar_first_content">
-						<div class="isfc_left">
-							<p>Acceda aqui al informe</p>
-							<h4>diario de mercados</h4>
-							<a href="#">ver ahora</a>
-						</div>
-						<div class="isfc_right">
-							<img src="assets/images/tablet.png" alt="">
-						</div>
-					</div>
-					<hr>
-					<div class="information_tab_pen">
-						<a href="#">PERSPECTIVAS MACROECONOMICAS</a>
-						<h4>Aumenta el precio del petroleo por coyuntura politica</h4>
-						<p>15 agosto 2019</p>
-					</div>
-					<hr>
-					<div class="information_tab_pen">
-						<a href="#">PERSPECTIVAS MACROECONOMICAS</a>
-						<h4>Aumenta el precio del petroleo por coyuntura politica</h4>
-						<p>15 agosto 2019</p>
-					</div>
-					<hr>
-					<div class="information_tab_pen">
-						<a href="#">PERSPECTIVAS MACROECONOMICAS</a>
-						<h4>Aumenta el precio del petroleo por coyuntura politica</h4>
-						<p>15 agosto 2019</p>
-					</div>
-					<hr>
-					<div class="information_tab_pen">
-						<a href="#">PERSPECTIVAS MACROECONOMICAS</a>
-						<h4>Aumenta el precio del petroleo por coyuntura politica</h4>
-						<p>15 agosto 2019</p>
-					</div>
-					<hr>
 				</div>
 			</div>
 		</div>

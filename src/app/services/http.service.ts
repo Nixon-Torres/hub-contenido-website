@@ -42,10 +42,15 @@ export class HttpService {
     }
     let encodeData = input.data ? this.encodeURIObj(input.data) : '';
     let headers = this.headers();
-    return this.http.get<Response>(`${this._URL_API}${input.path}${(input.encode ? `?filter=${encodeData}` : encodeData)}`, {
-      observe: 'response',
+    const options = {
+      observe: 'response' as 'body',
       headers: headers,
-      responseType: 'text'
+      responseType: 'text' as 'json'
+    };
+    return this.http.get<HttpResponse<Response>>(`${this._URL_API}${input.path}${(input.encode ? `?filter=${encodeData}` : encodeData)}`, {
+      observe: 'response' as 'body',
+      headers: headers,
+      responseType: 'text' as 'json'
     }).pipe(catchError(this.handleError));
   }
 

@@ -27,7 +27,7 @@ export class RemarkableAreaComponent implements OnInit {
       where: {
         outstanding: true
       },
-      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'sectionTypeKey', 'updatedAt'],
+      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'sectionTypeKey', 'updatedAt', 'smartContent'],
       include: ['files', 'section']
     };
     this.http.get({
