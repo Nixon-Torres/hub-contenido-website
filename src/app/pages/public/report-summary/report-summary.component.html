@@ -16,7 +16,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="para_left_content">
-								<div class="para_left_first">
+								<div *ngIf="headerReport" class="para_left_first">
 									<h4>{{headerReport?.name}}</h4>
 									<p>{{headerReport?.updatedAt | date:'d MMMM y'}}</p>
 									<p class="para_desc">
@@ -32,7 +32,7 @@
 						<div class="col-sm-6">
 							<div class="row">
 								<div class="col-sm-6">
-									<div class="tab_sub_division_part" [routerLink]="['/reports', area1Report?.id]">
+									<div *ngIf="area1Report" class="tab_sub_division_part" [routerLink]="['/reports', area1Report?.id]">
 										<p class="red_text">ACCIONES</p>
 										<h4>{{area1Report?.name}}</h4>
 										<p>{{area1Report?.smartContent}}</p>
@@ -40,7 +40,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<div class="tab_sub_division_part" [routerLink]="['/reports', area2Report?.id]">
+									<div *ngIf="area2Report" class="tab_sub_division_part" [routerLink]="['/reports', area2Report?.id]">
 										<p class="red_text">ACCIONES</p>
 										<h4>{{area2Report?.name}}</h4>
 										<p>{{area2Report?.smartContent}}</p>
@@ -48,7 +48,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<div class="tab_sub_division_part" [routerLink]="['/reports', area3Report?.id]">
+									<div *ngIf="area3Report" class="tab_sub_division_part" [routerLink]="['/reports', area3Report?.id]">
 										<p class="red_text">ACCIONES</p>
 										<h4>{{area3Report?.name}}</h4>
 										<p>{{area3Report?.smartContent}}</p>
@@ -56,7 +56,7 @@
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<div class="tab_sub_division_part" [routerLink]="['/reports', area4Report?.id]">
+									<div *ngIf="area4Report" class="tab_sub_division_part" [routerLink]="['/reports', area4Report?.id]">
 										<p class="red_text">ACCIONES</p>
 										<h4>{{area4Report?.name}}</h4>
 										<p>{{area4Report?.smartContent}}</p>
@@ -128,8 +128,8 @@
 		</div>
 		<div class="para_bottom_btn">
 			<div class="button_inner">
-				<a href="#" class="empresas">Lr a empreses <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-				<a href="#" class="acciones">lr a Acciones <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+				<a href="#" class="empresas">Ir a empresas <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+				<a href="#" class="acciones">Ir a Acciones <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 			</div>
 		</div>
 	</div>
