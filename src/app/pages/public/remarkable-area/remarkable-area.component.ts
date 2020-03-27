@@ -22,13 +22,22 @@ export class RemarkableAreaComponent implements OnInit {
     this.loadOutstanding();
   }
 
+  getCategory(reportType) {
+    return reportType.mainCategory && reportType.mainCategory.length ? reportType.mainCategory[0].description : '';
+  }
+
   private loadOutstanding() {
     const filter = {
       where: {
         outstanding: true
       },
-      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'sectionTypeKey', 'publishedAt', 'smartContent'],
-      include: ['files', 'section']
+      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      include: ['files', 'section', {
+        relation: 'reportType',
+        scope: {
+          include: ['mainCategory', 'subCategory']
+        }
+      }]
     };
     this.http.get({
       path: `public/reports/`,

@@ -8,7 +8,7 @@
 						<p class="label">CONTENIDO DESTACADO</p>
 					</div>
 					<div class="information_details">
-						<h6>{{headerReport?.type?.value}}</h6>
+						<h6>{{getCategory(headerReport?.reportType)}}</h6>
 						<h4>{{headerReport?.name}}</h4>
 						<p>{{headerReport?.smartContent}}</p>
 						<p class="date">{{headerReport?.publishedAt | date:'d MMMM y'}}</p>
