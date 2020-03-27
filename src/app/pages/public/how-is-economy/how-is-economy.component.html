@@ -68,7 +68,7 @@
         <div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
           <div class="row">
             <div class="col-sm-3" *ngFor="let report of randomReports">
-              <div class="tab_sub_division_part">
+              <div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
                 <p class="red_text">ACCIONES</p>
                 <h4>{{report?.name}}</h4>
                 <p>{{report?.smartContent}}</p>
