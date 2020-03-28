@@ -21,8 +21,7 @@ export class ReportSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.loadOutstanding();
-    this.loadDivisasReports();
-    this.loadRentaReports();
+    this.loadReportTypes();;
   }
 
   getCategory(reportType) {
@@ -30,13 +29,44 @@ export class ReportSummaryComponent implements OnInit {
       reportType.mainCategory[0].description : '';
   }
 
-  private loadDivisasReports() {
+  private loadReportTypes() {
     const filter = {
       where: {
-        // reportTypeId: ''
+        code: {inq: ['RENTAFIJA', 'DIVISAS']}
+      },
+      include: ['childrenSubReportTypes'],
+      order: 'updatedAt DESC',
+      limit: 8
+    };
+    this.http.get({
+      path: `public/categories/`,
+      data: filter,
+      encode: true
+    }).subscribe((res) => {
+      const data = res.body as any;
+      const divisas = data.find(e => e.code === 'DIVISAS');
+      const renta = data.find(e => e.code === 'RENTAFIJA');
+
+      if (divisas && divisas.childrenSubReportTypes && divisas.childrenSubReportTypes.length) {
+        const ids = divisas.childrenSubReportTypes.map(e => e.id);
+        this.loadDivisasReports(ids);
+      }
+
+      if (renta && renta.childrenSubReportTypes && renta.childrenSubReportTypes.length) {
+        const ids = renta.childrenSubReportTypes.map(e => e.id);
+        this.loadRentaReports(ids);
+      }
+    });
+  }
+
+  private loadDivisasReports(reportTypeIds) {
+    debugger
+    const filter = {
+      where: {
+        reportTypeId: {inq: reportTypeIds}
       },
       fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
-      include: ['files', 'section', {
+      include: [{
         relation: 'reportType',
         scope: {
           include: ['mainCategory', 'subCategory']
@@ -54,13 +84,13 @@ export class ReportSummaryComponent implements OnInit {
     });
   }
 
-  private loadRentaReports() {
+  private loadRentaReports(reportTypeIds) {
     const filter = {
       where: {
-        // reportTypeId: ''
+        reportTypeId: {inq: reportTypeIds}
       },
       fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
-      include: ['files', 'section', {
+      include: [{
         relation: 'reportType',
         scope: {
           include: ['mainCategory', 'subCategory']
