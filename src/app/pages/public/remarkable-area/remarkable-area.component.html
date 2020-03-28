@@ -26,7 +26,7 @@
 										<img [src]="assetBase + area1Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>{{area1Report?.type?.value}}</h6>
+										<h6>{{getCategory(area1Report?.reportType)}}</h6>
 										<h4>{{area1Report?.name}}</h4>
 										<p>{{area1Report?.smartContent}}</p>
 										<p class="date">{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
@@ -39,7 +39,7 @@
 										<img [src]="assetBase + area2Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>{{area2Report?.type?.value}}</h6>
+										<h6>{{getCategory(area2Report?.reportType)}}</h6>
 										<h4>{{area2Report?.name}}</h4>
 										<p>{{area2Report?.smartContent}}</p>
 										<p class="date">{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
@@ -52,7 +52,7 @@
 										<img [src]="assetBase + area3Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>{{area3Report?.type?.value}}</h6>
+										<h6>{{getCategory(area3Report?.reportType)}}</h6>
 										<h4>{{area3Report?.name}}</h4>
 										<p>{{area3Report?.smartContent}}</p>
 										<p class="date">{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
@@ -65,7 +65,7 @@
 										<img [src]="assetBase + area4Report?.image.clientPath" alt="">
 									</div>
 									<div class="information_details">
-										<h6>{{area4Report?.type?.value}}</h6>
+										<h6>{{getCategory(area4Report?.reportType)}}</h6>
 										<h4>{{area4Report?.name}}</h4>
 										<p>{{area4Report?.smartContent}}</p>
 										<p class="date">{{area4Report?.publishedAt | date:'d MMMM y'}}</p>

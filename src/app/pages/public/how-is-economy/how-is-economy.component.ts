@@ -23,13 +23,24 @@ export class HowIsEconomyComponent implements OnInit {
     this.getRandomReports();
   }
 
+  getCategory(reportType) {
+    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : '';
+  }
+
   public getRandomReports() {
     this.http.get({
       path: 'public/reports/',
       data: {
         order: 'publishedAt DESC',
         limit: 8,
-        fields: ['id', 'name', 'sectionId', 'sectionTypeKey', 'publishedAt', 'smartContent'],
+        fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+        include: [{
+          relation: 'reportType',
+          scope: {
+            include: ['mainCategory', 'subCategory']
+          }
+        }]
       },
       encode: true
     }).subscribe((response: any) => {
@@ -44,8 +55,13 @@ export class HowIsEconomyComponent implements OnInit {
       where: {
         howseconomy: true
       },
-      fields: ['id', 'name', 'howseconomyArea', 'sectionId', 'sectionTypeKey', 'publishedAt', 'smartContent'],
-      include: ['files', 'section'],
+      fields: ['id', 'name', 'howseconomyArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      include: ['files', 'section', {
+        relation: 'reportType',
+        scope: {
+          include: ['mainCategory', 'subCategory']
+        }
+      }],
       order: 'updatedAt DESC'
     };
     this.http.get({

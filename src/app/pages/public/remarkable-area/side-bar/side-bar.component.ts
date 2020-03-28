@@ -10,6 +10,7 @@ import {environment} from '../../../../../environments/environment';
 export class SideBarComponent implements OnInit {
 
   public STORAGE_URL = environment.URL_API;
+  public dailyReport: any;
   public reports: any;
   public contents: any;
   public selectedTab = 'tab2';
@@ -22,6 +23,50 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
     this.loadReports(1);
     this.loadContents();
+    this.getDailyType();
+  }
+
+  getCategory(reportType) {
+    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : '';
+  }
+
+  getDailyType() {
+    const code = 'DIARIOACCIONES';
+
+    this.http.get({
+      path: `public/reports_type/`,
+      data: {
+        where: {
+          code
+        }
+      },
+      encode: true
+    }).subscribe((res) => {
+      const data = res.body as any;
+      if (data.length) {
+        this.getDailyReport(data[0].id);
+      }
+    });
+  }
+
+  getDailyReport(reportTypeId: string) {
+    this.http.get({
+      path: `public/reports/`,
+      data: {
+        where: {
+          reportTypeId
+        },
+        order: 'publishedAt DESC',
+        limit: 1
+      },
+      encode: true
+    }).subscribe((res) => {
+      const data = res.body as any;
+      if (data.length) {
+        this.dailyReport = data[0];
+      }
+    });
   }
 
   changeTab(idx) {
@@ -34,9 +79,14 @@ export class SideBarComponent implements OnInit {
       where: {
         outstanding: true
       },
-      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'sectionTypeKey', 'updatedAt', 'smartContent'],
-      include: ['files', 'section'],
-      order: `updatedAt ${idx === 1 ? 'DESC' : 'ASC'}`,
+      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      include: ['files', 'section', {
+        relation: 'reportType',
+        scope: {
+          include: ['mainCategory', 'subCategory']
+        }
+      }],
+      order: `publishedAt ${idx === 1 ? 'DESC' : 'ASC'}`,
       limit: 3
     };
     this.http.get({

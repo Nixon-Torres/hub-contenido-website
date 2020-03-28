@@ -31,7 +31,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div *ngIf="area1Report" class="tab_sub_division_part" [routerLink]="['/reports', area1Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.name}}</h4>
 										<p>{{area1Report?.smartContent}}</p>
 										<p>{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
@@ -39,7 +39,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div *ngIf="area2Report" class="tab_sub_division_part" [routerLink]="['/reports', area2Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.name}}</h4>
 										<p>{{area2Report?.smartContent}}</p>
 										<p>{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
@@ -47,7 +47,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div *ngIf="area3Report" class="tab_sub_division_part" [routerLink]="['/reports', area3Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.name}}</h4>
 										<p>{{area3Report?.smartContent}}</p>
 										<p>{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
@@ -55,7 +55,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div *ngIf="area4Report" class="tab_sub_division_part" [routerLink]="['/reports', area4Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.name}}</h4>
 										<p>{{area4Report?.smartContent}}</p>
 										<p>{{area4Report?.publishedAt | date:'d MMMM y'}}</p>
@@ -69,7 +69,7 @@
           <div class="row">
             <div class="col-sm-3" *ngFor="let report of randomReports">
               <div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
-                <p class="red_text">ACCIONES</p>
+                <p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
                 <h4>{{report?.name}}</h4>
                 <p>{{report?.smartContent}}</p>
                 <p>{{report?.publishedAt | date:'d MMMM y'}}</p>

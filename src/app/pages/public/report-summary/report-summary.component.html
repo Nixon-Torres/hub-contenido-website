@@ -7,12 +7,12 @@
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li class="activeone"><a href="#tab-3">Acciones</a></li>
-				<li class=""><a href="#tab-4">Divisas</a></li>
-				<li class=""><a href="#tab-4">Renta fija</a></li>
+				<li [ngClass]="{activeone: tab === 'tab1'}"><a (click)="tab = 'tab1'">Acciones</a></li>
+				<li [ngClass]="{activeone: tab === 'tab2'}"><a (click)="tab = 'tab2'">Divisas</a></li>
+				<li [ngClass]="{activeone: tab === 'tab3'}"><a (click)="tab = 'tab3'">Renta fija</a></li>
 			</ul>
 			<div class="tab-content">
-				<div id="tab-3" class="tab-pane activeone">
+				<div id="tab-3" class="tab-pane activeone" *ngIf="tab === 'tab1'">
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="para_left_content">
@@ -33,7 +33,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div *ngIf="area1Report" class="tab_sub_division_part" [routerLink]="['/reports', area1Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.name}}</h4>
 										<p>{{area1Report?.smartContent}}</p>
 										<p>{{area1Report?.updatedAt | date:'d MMMM y'}}</p>
@@ -41,7 +41,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div *ngIf="area2Report" class="tab_sub_division_part" [routerLink]="['/reports', area2Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.name}}</h4>
 										<p>{{area2Report?.smartContent}}</p>
 										<p>{{area2Report?.updatedAt | date:'d MMMM y'}}</p>
@@ -49,7 +49,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div *ngIf="area3Report" class="tab_sub_division_part" [routerLink]="['/reports', area3Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.name}}</h4>
 										<p>{{area3Report?.smartContent}}</p>
 										<p>{{area3Report?.updatedAt | date:'d MMMM y'}}</p>
@@ -57,7 +57,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div *ngIf="area4Report" class="tab_sub_division_part" [routerLink]="['/reports', area4Report?.id]">
-										<p class="red_text">ACCIONES</p>
+										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.name}}</h4>
 										<p>{{area4Report?.smartContent}}</p>
 										<p>{{area4Report?.updatedAt | date:'d MMMM y'}}</p>
@@ -67,63 +67,30 @@
 						</div>
 					</div>
 				</div>
-				<div id="tab-4" class="tab-pane">
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="para_left_content">
-								<div class="para_left_first">
-									<h4>Inversionostas optaran por tomar utilidades luego de la rapida</h4>
-									<p>1julio 2020</p>
-									<p class="para_desc">
-										nuestra expectativa para ;a economia colombiana apunta a una tasa de crecimiento de 3.2% en 2019,favoreciendo por la mejor dinamica del consumo y la inversion,lo que se podra traducir en mejor desempeno de los sectores finacieros y el comercio.No obstamte,Ios datos de PMI Davivienda e indicadores de confianza Davivienda muestran senales mixtas en enero,lo que podria anticipar que la recuperacion sigue a un ritmo moderado
-									</p>
-									<p class="para_nuvo">NUEVO</p>
-									<div class="conocer_btn">
-										<a href="#">Conocer a detalle el informe <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="tab_sub_division_part">
-										<p class="red_text">ACCONES</p>
-										<h4>Lo ultimo sobre el comprotamiento del</h4>
-										<p>is simply dummy text of the...</p>
-										<p>1 julio 2020</p>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="tab_sub_division_part">
-										<p class="red_text">ACCONES</p>
-										<h4>Lo ultimo sobre el comprotamiento del</h4>
-										<p>is simply dummy text of the...</p>
-										<p>1 julio 2020</p>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="tab_sub_division_part">
-										<p class="red_text">ACCONES</p>
-										<h4>Lo ultimo sobre el comprotamiento del</h4>
-										<p>is simply dummy text of the...</p>
-										<p>1 julio 2020</p>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="tab_sub_division_part">
-										<p class="red_text">ACCONES</p>
-										<h4>Lo ultimo sobre el comprotamiento del</h4>
-										<p>is simply dummy text of the...</p>
-										<p>1 julio 2020</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="tab-5" class="tab-pane">
-				</div>
+        <div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
+          <div class="row">
+            <div class="col-sm-3" *ngFor="let report of divisasReports">
+              <div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
+                <p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
+                <h4>{{report?.name}}</h4>
+                <p>{{report?.smartContent}}</p>
+                <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane activetwo" *ngIf="tab === 'tab3'">
+          <div class="row">
+            <div class="col-sm-3" *ngFor="let report of rentaReports">
+              <div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
+                <p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
+                <h4>{{report?.name}}</h4>
+                <p>{{report?.smartContent}}</p>
+                <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 			</div>
 		</div>
 		<div class="para_bottom_btn">

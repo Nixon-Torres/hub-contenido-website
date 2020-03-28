@@ -7,7 +7,10 @@ import {HttpService} from '../../../services/http.service';
   styleUrls: ['./report-summary.component.scss']
 })
 export class ReportSummaryComponent implements OnInit {
+  public tab = 'tab1';
   public reports: any;
+  public divisasReports: any = [];
+  public rentaReports: any = [];
   public headerReport: any;
   public area1Report: any;
   public area2Report: any;
@@ -18,6 +21,61 @@ export class ReportSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.loadOutstanding();
+    this.loadDivisasReports();
+    this.loadRentaReports();
+  }
+
+  getCategory(reportType) {
+    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : '';
+  }
+
+  private loadDivisasReports() {
+    const filter = {
+      where: {
+        // reportTypeId: ''
+      },
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      include: ['files', 'section', {
+        relation: 'reportType',
+        scope: {
+          include: ['mainCategory', 'subCategory']
+        }
+      }],
+      order: 'updatedAt DESC',
+      limit: 8
+    };
+    this.http.get({
+      path: `public/reports/`,
+      data: filter,
+      encode: true
+    }).subscribe((res) => {
+      this.divisasReports = res.body;
+    });
+  }
+
+  private loadRentaReports() {
+    const filter = {
+      where: {
+        // reportTypeId: ''
+      },
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      include: ['files', 'section', {
+        relation: 'reportType',
+        scope: {
+          include: ['mainCategory', 'subCategory']
+        }
+      }],
+      order: 'updatedAt DESC',
+      limit: 8
+    };
+    this.http.get({
+      path: `public/reports/`,
+      data: filter,
+      encode: true
+    }).subscribe((res) => {
+      this.rentaReports = res.body;
+    });
   }
 
   private loadOutstanding() {
@@ -25,8 +83,13 @@ export class ReportSummaryComponent implements OnInit {
       where: {
         strategy: true
       },
-      fields: ['id', 'name', 'strategyArea', 'sectionId', 'sectionTypeKey', 'updatedAt', 'smartContent'],
-      include: ['files', 'section'],
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      include: ['files', 'section', {
+        relation: 'reportType',
+        scope: {
+          include: ['mainCategory', 'subCategory']
+        }
+      }],
       order: 'updatedAt DESC'
     };
     this.http.get({

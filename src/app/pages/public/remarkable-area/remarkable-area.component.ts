@@ -23,7 +23,8 @@ export class RemarkableAreaComponent implements OnInit {
   }
 
   getCategory(reportType) {
-    return reportType.mainCategory && reportType.mainCategory.length ? reportType.mainCategory[0].description : '';
+    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : '';
   }
 
   private loadOutstanding() {
