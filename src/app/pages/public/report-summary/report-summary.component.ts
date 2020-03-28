@@ -60,7 +60,6 @@ export class ReportSummaryComponent implements OnInit {
   }
 
   private loadDivisasReports(reportTypeIds) {
-    debugger
     const filter = {
       where: {
         reportTypeId: {inq: reportTypeIds}

@@ -13,7 +13,7 @@ export class SideBarComponent implements OnInit {
   public dailyReport: any;
   public reports: any;
   public contents: any;
-  public selectedTab = 'tab2';
+  public selectedTab = 'tab1';
 
   public banner1: any;
   public banner2: any;
@@ -77,16 +77,15 @@ export class SideBarComponent implements OnInit {
   private loadReports(idx) {
     const filter = {
       where: {
-        outstanding: true
       },
-      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {
           include: ['mainCategory', 'subCategory']
         }
       }],
-      order: `publishedAt ${idx === 1 ? 'DESC' : 'ASC'}`,
+      order: idx === 1 ? 'publishedAt DESC' : 'reads DESC',
       limit: 3
     };
     this.http.get({
