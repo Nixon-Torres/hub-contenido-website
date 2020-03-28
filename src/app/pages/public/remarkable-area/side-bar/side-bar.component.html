@@ -39,7 +39,7 @@
 						<div class="information_tab_pen" [routerLink]="['/reports', report.id]">
 							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
 							<h4>{{report?.name}}</h4>
-							<p>{{report?.updatedAt | date:'d MMMM y'}}</p>
+							<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 						</div>
 						<hr>
 					</div>
