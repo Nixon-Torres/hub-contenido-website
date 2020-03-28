@@ -14081,3 +14081,43 @@ max-width: 100% !important;
     margin-left: 15px;
   }
 }
+
+
+.header_menu {
+  .container {
+    padding: 0;
+    .menu_item{
+      ul {
+        li {
+          display: flex !important;
+          align-items: center;
+          justify-content: space-between;
+          width: 12.5%;
+          &:nth-child(4) {
+            width: 15.5%;
+          }
+          &:last-child {
+            padding: 24px 22px;
+            width: auto;
+            a {
+              padding-right: 0;
+            }
+          }
+          a{
+            max-width: none;
+            padding-right: 24px;
+          }
+          i {
+            font-size: 12px;
+          }
+          button {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
