@@ -8,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TopMenuComponent implements OnInit {
+    public subMenuVisible = false;
+    public currentMenuOption: number;
     constructor() {}
 
     ngOnInit() {
     }
+
+  mouseEnter(idx?: number) {
+    this.subMenuVisible = true;
+    this.currentMenuOption = idx;
+  }
+
+  mouseLeave() {
+    this.subMenuVisible = false;
+  }
 }

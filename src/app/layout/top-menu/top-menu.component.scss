@@ -1667,6 +1667,10 @@ ul.nav.nav-tabs li.activetwo a {
 
 /* -------------------categorias page code start ------------- */
 
+.category-menu-visible {
+  display: inline !important;
+}
+
 .header_menu .menu_item ul li {
   display: flex;
   justify-content: space-between;
