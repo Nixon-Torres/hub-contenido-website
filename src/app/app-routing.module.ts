@@ -38,6 +38,16 @@ const routes: Routes = [
     path: 'indicators',
     component: LayoutComponent,
     loadChildren: './pages/public/ifx/ifx.module#IfxModule'
+  },
+  {
+    path: 'multimedia',
+    component: LayoutComponent,
+    loadChildren: './pages/public/multimedia/multimedia.module#MultimediaModule'
+  },
+  {
+    path: 'multimedia/:id',
+    component: LayoutComponent,
+    loadChildren: './pages/public/multimedia-detail/multimedia-detail.module#MultimediaDetailModule'
   }
 ];
 
