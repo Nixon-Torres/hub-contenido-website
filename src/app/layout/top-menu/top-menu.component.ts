@@ -191,4 +191,13 @@ export class TopMenuComponent implements OnInit {
     const cat = this.categories.find(e => e.code === this.menuOptions[idx - 1].code);
     return cat ? cat.id : null;
   }
+
+  getCategoryLink(option?: number) {
+    const id = this.getCategoryId(option);
+    if (id !== null) {
+      return ['/categories', id];
+    }
+
+    return ['/categories'];
+  }
 }

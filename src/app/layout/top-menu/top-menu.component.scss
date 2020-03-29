@@ -14141,3 +14141,46 @@ max-width: 100% !important;
 .investment-list {
   min-height: 205px;
 }
+
+.ifx-indicators-iframe {
+  height: 50px;
+
+  .content {
+    background: #F4F4F4;
+    height: 100%;
+
+    iframe {
+      width: 91%;
+      height: 35px;
+      border: 0px;
+      margin-top: 5px;
+      margin-left: -57px;
+    }
+
+    .indictor_btn {
+      width: 12%;
+      float: right;
+      margin-top: 8px;
+      text-align: right;
+      margin-right: 15px;
+
+      button {
+        background-color: #ffffff;
+        border: 1px solid #e8162e;
+        max-width: 133px;
+        color: #e8162e;
+        font-size: 14px;
+        font-weight: 500;
+        height: 33px;
+        border-radius: 5px;
+        font-family: Helvetica;
+        width: 100%;
+
+        i {
+          margin-left: 8px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+}
