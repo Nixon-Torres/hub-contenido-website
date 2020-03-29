@@ -540,7 +540,7 @@
 
 .header_menu .menu_item ul li {
   display: inline-block;
-  width: 12.5%;
+  width: 11.7%;
   vertical-align: middle;
   text-align: left;
   line-height: 15px;
@@ -548,7 +548,7 @@
 
 .header_menu .menu_item ul li a {
   color: #000;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -1667,30 +1667,6 @@ ul.nav.nav-tabs li.activetwo a {
 
 /* -------------------categorias page code start ------------- */
 
-.category-menu-visible {
-  display: inline !important;
-}
-
-.header_menu .menu_item ul li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: unset;
-  flex-shrink: 0;
-
-  a {
-    font-size: 10px;
-    font-weight: 400;
-    color: #5F5F5F;
-    max-width: 80px;
-  }
-
-  i {
-    position: unset;
-    color: #5F5F5F;
-  }
-}
-
 .header_menu .menu_item ul li a::before {
   display: none;
 }
@@ -1749,8 +1725,9 @@ ul.nav.nav-tabs li.activetwo a {
   border-bottom: 2px solid #E8162E;
 }
 
-.header_menu .menu_item ul li:hover {
+.header_menu .menu_item ul li.active {
   background-color: white;
+  border-bottom: 2px solid #ccc;
 }
 
 .menu_item li.add-padd {
@@ -1774,7 +1751,7 @@ ul.nav.nav-tabs li.activetwo a {
   right: 27px;
 }
 
-.header_menu .menu_item ul li.active a {
+.header_menu .menu_item ul li:hover a {
   color: #E8162E !important;
 }
 
@@ -2095,7 +2072,7 @@ label#page {
   background-color: #F4F4F4;
   display: none;
   position: absolute;
-  top: 0;
+  top: -5px;
   left: 0;
   z-index: 1;
   margin-top: 66px;
@@ -9071,8 +9048,6 @@ select option {
 @media screen and (max-width: 1024px) {
   .header_menu .container {
     max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
   }
   .Acciones .container {
     padding: 0px 169px 0 15px;
@@ -14082,17 +14057,47 @@ max-width: 100% !important;
   }
 }
 
+.category-menu-visible {
+  display: inline !important;
+}
+
+.categorias-hide-menu {
+  position: absolute;
+  top: -5px;
+}
+
+.header_menu .menu_item ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: unset;
+  flex-shrink: 0;
+
+  a {
+    font-size: 12px;
+    font-weight: 400;
+    color: #5F5F5F;
+  }
+
+  i {
+    position: unset;
+    color: #5F5F5F;
+  }
+}
 
 .header_menu {
   .container {
-    padding: 0;
     .menu_item{
       ul {
         li {
           display: flex !important;
           align-items: center;
           justify-content: space-between;
-          width: 12.5%;
+          width: 12%;
+          height: 60px;
+          &:nth-child(2) {
+            width: 14%;
+          }
           &:nth-child(4) {
             width: 15.5%;
           }
@@ -14103,7 +14108,7 @@ max-width: 100% !important;
               padding-right: 0;
             }
           }
-          a{
+          a {
             max-width: none;
             padding-right: 24px;
           }
@@ -14120,4 +14125,19 @@ max-width: 100% !important;
       }
     }
   }
+}
+
+.todo-analisis {
+  h3 {
+    cursor: pointer;
+  }
+}
+
+.investment-group-section-title {
+    font-size: 18px;
+    margin-bottom: -5px;
+}
+
+.investment-list {
+  min-height: 205px;
 }
