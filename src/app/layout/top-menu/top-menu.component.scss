@@ -553,7 +553,7 @@
   font-weight: 600;
   text-decoration: none;
   position: relative;
-  font-family: HelveticaNeue;
+  font-family: helvetica;
   letter-spacing: 1px;
 }
 
@@ -1727,7 +1727,8 @@ ul.nav.nav-tabs li.activetwo a {
 
 .header_menu .menu_item ul li.active {
   background-color: white;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 3px solid #ccc;
+  border-right: solid 3px #E8162E;
 }
 
 .menu_item li.add-padd {
@@ -2064,6 +2065,9 @@ label#page {
 
 .header_menu {
   position: relative;
+  .container{
+    padding-right: 13px;
+  }
 }
 
 .categorias-hide-menu {
