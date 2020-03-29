@@ -14090,6 +14090,7 @@ max-width: 100% !important;
     .menu_item{
       ul {
         li {
+          cursor: pointer;
           display: flex !important;
           align-items: center;
           justify-content: space-between;

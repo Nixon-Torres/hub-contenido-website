@@ -86,7 +86,7 @@ export class SideBarComponent implements OnInit {
         }
       }],
       order: idx === 1 ? 'publishedAt DESC' : 'reads DESC',
-      limit: 3
+      limit: 6
     };
     this.http.get({
       path: `public/reports/`,

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {map} from 'rxjs/operators';
 import {forkJoin, Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-top-menu',
@@ -62,7 +63,10 @@ export class TopMenuComponent implements OnInit {
     items: []
   }];
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private router: Router) {
+    router.events.subscribe((val) => {
+      this.mouseLeave();
+    });
   }
 
   ngOnInit() {
@@ -198,6 +202,6 @@ export class TopMenuComponent implements OnInit {
       return ['/categories', id];
     }
 
-    return ['/categories'];
+    return ['/categories', option];
   }
 }
