@@ -23,8 +23,8 @@
         <li (mouseenter)="mouseEnter(7)" (mouseleave)="mouseLeave()" class="set-padd set-caret-7"><a
           [routerLink]="getCategoryLink(7)">¿En qué<br> invertir?&nbsp;</a><i
           class="fas fa-caret-down"></i></li>
-        <li (mouseenter)="mouseEnter(8)" (mouseleave)="mouseLeave()" class="add-padd set-caret-8 right-border-no"><a
-          href="#">Multimedia</a></li>
+        <li class="add-padd set-caret-8 right-border-no"><a
+          [routerLink]="['/multimedia']">Multimedia</a></li>
       </ul>
     </div>
   </div>
@@ -94,7 +94,7 @@
   <div class="content">
     <iframe src="https://widgetsdataifx.blob.core.windows.net/corredores/ticker" scrolling="no"></iframe>
     <div class="indictor_btn">
-      <button type="">
+      <button [routerLink]="['/indicators']">
         Ver indicadores
         <i class="fa fa-angle-right" aria-hidden="true"></i>
       </button>
