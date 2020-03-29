@@ -154,7 +154,7 @@
 .header .header_section .header_right .suscribe_btn button {
   width: 150px;
   height: 40px;
-  background-color: #cc0119;
+  background-color: #595959;
   border: 2px solid #ffffff;
   border-radius: 5px;
   color: #ffffff;
@@ -817,16 +817,20 @@ footer.main_footer .footer_first .footer-links ul li:before {
 }
 
 .information_sidebar_tabs ul.nav.nav-tabs li {
-  width: 140px;
+  width: 150px;
   text-align: center;
 }
 
 .information_sidebar_tabs ul.nav.nav-tabs li a {
   color: #7c7b7b;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
   padding: 15px 0px;
   text-decoration: none;
+  font-family: Helvetica_Neu_Bold;
+  @media only screen and (max-width: 1024px){
+		font-size: 17px;
+	}
 }
 
 .information_sidebar_tabs ul.nav.nav-tabs li.active {
@@ -842,6 +846,12 @@ footer.main_footer .footer_first .footer-links ul li:before {
   border: 1px dashed #dadada;
   margin-top: 1.5rem;
   margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1024px){
+  .information_tab_pen{
+    padding-left: 10px;
+  }
 }
 
 .information_tab_pen a {
@@ -5961,7 +5971,7 @@ body {
 
 .information_content .information_left_first .information_details p {
   position: relative;
-  font: 15px/21px Helvetica;
+  font: 14px/21px Helvetica;
   font-weight: 500;
 }
 
@@ -6021,7 +6031,7 @@ body {
 }
 
 .information_content_sidebar .information_sidebar_first_content .isfc_right {
-  width: 35%;
+  width: 36%;
 }
 
 .information_sidebar_media-contant {
