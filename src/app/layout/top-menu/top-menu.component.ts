@@ -182,4 +182,13 @@ export class TopMenuComponent implements OnInit {
   mouseLeave() {
     this.subMenuVisible = false;
   }
+
+  getCategoryId(option?: number) {
+    const idx = option ? option : this.currentMenuOption;
+    if (!this.categories) {
+      return null;
+    }
+    const cat = this.categories.find(e => e.code === this.menuOptions[idx - 1].code);
+    return cat ? cat.id : null;
+  }
 }

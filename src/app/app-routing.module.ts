@@ -18,6 +18,26 @@ const routes: Routes = [
     path: 'reports/:id',
     component: LayoutComponent,
     loadChildren: './pages/public/report/report.module#ReportModule'
+  },
+  {
+    path: 'categories/:id',
+    component: LayoutComponent,
+    loadChildren: './pages/public/categories/categories.module#CategoriesModule'
+  },
+  {
+    path: 'categories/:id/type/:typeid',
+    component: LayoutComponent,
+    loadChildren: './pages/public/categories/categories.module#CategoriesModule'
+  },
+  {
+    path: 'book',
+    component: LayoutComponent,
+    loadChildren: './pages/public/book/book.module#BookModule'
+  },
+  {
+    path: 'indicators',
+    component: LayoutComponent,
+    loadChildren: './pages/public/ifx/ifx.module#IfxModule'
   }
 ];
 

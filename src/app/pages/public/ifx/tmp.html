@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
+  <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/vendors/jquery.min.js"></script>
+  <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://www.insightindia.com/mcss/icon-font.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="src/es/sass/style.css">
+  <script src="src/es/js/vanilla.js"></script>
+
+</head>
+
+<body class="Destacado page_seven dos_columnas presentacion">
+<header class="header">
+  <div class="container">
+    <div class="header_section">
+      <div class="mobile_menu">
+        <div class="menu_icon">
+          <span style="cursor:pointer" onclick="openNav()"><img src="src/es/images/menu.png" alt=""></br>Menu</span>
+        </div>
+        <div id="mySidenav" class="sidenav categorias-new-menu">
+          <div class="close-button-event">
+            <a href="javascript:void(0)" class="close-button" onclick="closeNav()">&times;</a>
+            <img src="src/es/images/categorias-mob-logo.jpg" class="img-fluid" alt="">
+            <p>Cerra</p>
+          </div>
+          <div class="mobile-search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="¿Que está buscando?" class="search-inner">
+          </div>
+
+          <div class="subscribe-button">
+            <button class="btn subscribe-btn" type="button"><i class="fas fa-envelope"></i>Suscríbase</button>
+          </div>
+          <div class="categorisa-menu-item">
+            <ul>
+              <li class="menu-item"><span>Estar actualizado<i class="fas fa-chevron-down"></span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                  <li>Celsia</li>
+                  <li>CEMEX</li>
+                  <li>Conconcreto</li>
+                  <li>Davivienda</li>
+                  <li>Ecopetrol</li>
+                  <li>El Cóndor</li>
+                  <li>GEB</li>
+                  <li>Grupo Argos</li>
+                  <li>Grupo Aval</li>
+                  <li>Grupo Éxito</li>
+                  <li>Grupo Nutresa</li>
+                  <li>Grupo Sura</li>
+                  <li>ISA</li>
+                  <li>Mineros</li>
+                  <li>PEI</li>
+                  <li>Promigas</li>
+                  <li>Terpel</li>
+                </ul>
+              </li>
+              <li class="menu-item"><span>Macroeconomía<i class="fas fa-chevron-down"></span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                  <li>Celsia</li>
+                  <li>CEMEX</li>
+                  <li>Conconcreto</li>
+                  <li>Davivienda</li>
+                  <li>Ecopetrol</li>
+                  <li>El Cóndor</li>
+                  <li>GEB</li>
+                  <li>Grupo Argos</li>
+                  <li>Grupo Aval</li>
+                  <li>Grupo Éxito</li>
+                  <li>Grupo Nutresa</li>
+                  <li>Grupo Sura</li>
+                  <li>ISA</li>
+                  <li>Mineros</li>
+                  <li>PEI</li>
+                  <li>Promigas</li>
+                  <li>Terpel</li>
+                </ul>
+              </li>
+              <li class="menu-item"><span>Nuestros indicadores<i class="fas fa-chevron-down"></span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                </ul>
+              </li>
+              <li class="menu-item"><span>Economías Centroamericanas<i class="fas fa-chevron-down"></span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                </ul>
+              </li>
+              <li class="menu-item"><span>Tendencias sectoriales<i class="fas fa-chevron-down"></span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                </ul>
+              </li>
+              <li class="menu-item"><span>Análisis de compañías<i class="fas fa-chevron-down"></span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                </ul>
+              </li>
+              <li class="menu-item"><span>¿En qué invertir?<i class="fas fa-chevron-down"></span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                </ul>
+              </li>
+              <li class="menu-item"><span>Multimedia</span></i>
+                <ul style="display: none;">
+                  <li class="menu-title">Ver todos los Análisis de compañias</li>
+                  <li>Avianca Holdings</li>
+                  <li>Bancolombia</li>
+                  <li>Banco de Bogotá</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="header_left">
+        <div class="site_logo">
+          <img src="src/es/images/Header-logo.png" alt="">
+        </div>
+
+      </div>
+      <div class="header_right">
+        <div class="header_search">
+          <input type="text" name="" placeholder="Busque por:informe,categoria,autor,fecha">
+          <button type=""><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        <div class="suscribe_btn">
+          <button type="">Suscríbase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="header_menu">
+  <div class="container">
+    <div class="menu_item">
+      <ul>
+        <li class="set-padd set-caret-1"><a href="#">Estar<br>actualizado</a><i class="fas fa-caret-down"></i></li>
+        <li class="add-padd set-caret-2"><a href="#">Macroeconomía</a><i class="fas fa-caret-down"></i></li>
+        <li class="set-caret-3 set-padd"><a href="#">Nuestros indicadores</a><i class="fas fa-caret-down"></i></li>
+        <li class="set-caret-4 set-padd"><a href="#">Economías Centroamericanas</a><i class="fas fa-caret-down"></i></li>
+        <li class="set-caret-5 set-padd"><a href="#">Tendencias sectoriales</a><i class="fas fa-caret-down"></i></li>
+        <li class="set-caret-6 set-padd" id="inner-menu-detail"><button type="button" data-toggle="modal" data-target="#myModal-search"><a href="#">Análisis de compañías</a><i
+          class="fas fa-caret-down"></i></button></li>
+        <li class="set-padd set-caret-7"><a href="#">¿En qué<br> invertir? </a><i class="fas fa-caret-down"></i></li>
+        <li class="add-padd set-caret-8 right-border-no"><a href="#">Multimedia</a></li>
+
+
+      </ul>
+    </div>
+  </div>
+  <div class="categorias-hide-menu">
+    <div class="container">
+      <div class="hide-menu-contant">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="hide-left-menu">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  <div class="hide-left-1">
+                    <ul>
+                      <li>Avianca Holdings</li>
+                      <li>Bancolombias</li>
+                      <li>Banco de Bogotá</li>
+                      <li>Celsia</li>
+                      <li>CEMEX</li>
+                      <li>Conconcreto</li>
+                      <li>Davivienda</li>
+                      <li>Empresa nueva 2</li>
+                      <li>Empresa nueva 5</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <div class="hide-left-2">
+                    <ul>
+                      <li>Ecopetrol</li>
+                      <li>El Cóndor</li>
+                      <li>GEB</li>
+                      <li>Grupo Argos</li>
+                      <li>Grupo Aval</li>
+                      <li>Grupo Éxito</li>
+                      <li>Grupo Nutresa</li>
+                      <li>Empresa nueva 3</li>
+                      <li>Empresa nueva 6</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <div class="hide-left-3">
+                    <ul>
+                      <li>Grupo Sura</li>
+                      <li>ISA</li>
+                      <li>Mineros</li>
+                      <li>PEI</li>
+                      <li>Promigas</li>
+                      <li>Terpel</li>
+                      <li>Empresa nueva 1</li>
+                      <li>Empresa nueva 4</li>
+                      <li>Empresa nueva 7</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="todo-analisis">
+                <h3>Ver todo Análisis de compañias</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="hide-right-menu">
+              <div class="hide-right-menu-head">
+                <h3>Contenido Destacado</h3>
+              </div>
+
+              <div class="hide-right-menu-contant">
+                <h3>Sector petróleo</h3>
+                <h4>Lo último sobre el comprotamiento del petróleo</h4>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </h5>
+                <p>1 Julio 2020</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="indicator">
+  <div class="container">
+    <div class="indicator_highlight">
+      <ul>
+        <div class="stop_btn">
+          <button type=""><i class="fa fa-pause-circle" aria-hidden="true"></i>Debener</button>
+        </div>
+        <li><a href=""><b>PEI </b>10.191.477.72 <span class="higher">0.03%</span></a></li>
+        <li><a href=""><b>MXNUSD </b>0,05 <span class="higher">0.13%</span></a></li>
+        <li><a href=""><b>GOLD </b>1.405.70USD <span class="higher">1.18%</span></a></li>
+        <li><a href=""><b>WTI </b>56.81USD <span class="lower">-3.86%</span></a></li>
+        <li><a href=""><b>EURUSD </b>1.13 <span class="higher">0.06%</span></a></li>
+        <li><a href=""><b>DATAIFX </b>3.215.36 <span class="higher">0.</span></a></li>
+        <div class="indictor_btn">
+          <button type="">Ver indica<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="page_direction">
+  <div class="container">
+    <ul>
+      <li class="back_page"><a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i>Atras </a></li>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Pagina</a></li>
+      <li><a href="#">Pagina tres</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="monitor-de-marcado">
+  <div class="container">
+    <div class="monitor-head">
+      <h3>Monitor de Mercado</h3>
+      <p>Ponemos a su disposición datos en línea e históricos de los principales indicadores económicos y financieros locales e internacionales, que le permitirán estar actualizado rápidamente</p>
+    </div>
+  </div>
+</div>
+
+<div class="Acciones">
+  <div class="container">
+    <div class="Acciones-header">
+      <h3>Acciones</h3>
+    </div>
+    <div class="Acciones-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>INSTRUMENTO<i class="fas fa-caret-down"></i></th>
+          <th>HORA<i class="fas fa-caret-down"></i></th>
+          <th>VALOR<i class="fas fa-caret-down"></i></th>
+          <th>%CAMBIO<i class="fas fa-caret-down"></i></th>
+          <th>CAMBIO<i class="fas fa-caret-down"></i></th>
+          <th>TOTAL NEG.<i class="fas fa-caret-down"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><i class="fas fa-plus"></i>ECOPETRO</td>
+          <td>14:09:56</td>
+          <td class="pad-l">$3.255,00</td>
+          <td class="padd c-red">-0,61%</td>
+          <td class="padd c-red">$-20,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>CPFBCOLOM</td>
+          <td>14:10:11</td>
+          <td class="pad-l">45.660,00</td>
+          <td class="padd c-green">1,02%</td>
+          <td class="padd c-green">$460,00</td>
+          <td class="f-left">$18.486.731.960,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">$32.420,00</td>
+          <td class="padd c-green">0,68%</td>
+          <td class="padd c-green">$220,00</td>
+          <td class="f-left">$9.568.522.800.00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>BCOLOMBIA</td>
+          <td>14:02:34</td>
+          <td class="pad-l">$43.360,00</td>
+          <td class="padd c-green">0,14%</td>
+          <td class="padd c-green">$60,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFDAVVNDA</td>
+          <td>13:56:49</td>
+          <td class="pad-l">$43.360,00</td>
+          <td class="padd c-blue">0,14%</td>
+          <td class="padd c-blue">$60,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFDAVVNDA</td>
+          <td>13:56:49</td>
+          <td class="pad-l">$43.360,00</td>
+          <td class="padd c-blue">0,14%</td>
+          <td class="padd c-blue">$60,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFBCOLOM</td>
+          <td>14:10:11</td>
+          <td class="pad-l">45.660,00</td>
+          <td class="padd c-green">1,02%</td>
+          <td class="padd c-green">$460,00</td>
+          <td class="f-left">$18.486.731.960,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>ECOPETRO</td>
+          <td>14:09:56</td>
+          <td class="pad-l">$3.255,00</td>
+          <td class="padd c-red">-0,61%</td>
+          <td class="padd c-red">$-20,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>ECOPETRO</td>
+          <td>14:09:56</td>
+          <td class="pad-l">$3.255,00</td>
+          <td class="padd c-red">-0,61%</td>
+          <td class="padd c-red">$-20,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFBCOLOM</td>
+          <td>14:10:11</td>
+          <td class="pad-l">45.660,00</td>
+          <td class="padd c-green">1,02%</td>
+          <td class="padd c-green">$460,00</td>
+          <td class="f-left">$18.486.731.960,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFBCOLOM</td>
+          <td>14:10:11</td>
+          <td class="pad-l">45.660,00</td>
+          <td class="padd c-green">1,02%</td>
+          <td class="padd c-green">$460,00</td>
+          <td class="f-left">$18.486.731.960,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>ECOPETRO</td>
+          <td>14:09:56</td>
+          <td class="pad-l">$3.255,00</td>
+          <td class="padd c-red">-0,61%</td>
+          <td class="padd c-red">$-20,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFBCOLOM</td>
+          <td>14:10:11</td>
+          <td class="pad-l">45.660,00</td>
+          <td class="padd c-green">1,02%</td>
+          <td class="padd c-green">$460,00</td>
+          <td class="f-left">$18.486.731.960,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>ECOPETRO</td>
+          <td>14:09:56</td>
+          <td class="pad-l">$3.255,00</td>
+          <td class="padd c-red">-0,61%</td>
+          <td class="padd c-red">$-20,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFDAVVNDA</td>
+          <td>13:56:49</td>
+          <td class="pad-l">$43.360,00</td>
+          <td class="padd c-blue">0,14%</td>
+          <td class="padd c-blue">$60,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>ECOPETRO</td>
+          <td>14:09:56</td>
+          <td class="pad-l">$3.255,00</td>
+          <td class="padd c-red">-0,61%</td>
+          <td class="padd c-red">$-20,00</td>
+          <td class="f-left">$19.058.249825,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFBCOLOM</td>
+          <td>14:10:11</td>
+          <td class="pad-l">45.660,00</td>
+          <td class="padd c-green">1,02%</td>
+          <td class="padd c-green">$460,00</td>
+          <td class="f-left">$18.486.731.960,00</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-plus"></i>PFBCOLOM</td>
+          <td>14:10:11</td>
+          <td class="pad-l">45.660,00</td>
+          <td class="padd c-green">1,02%</td>
+          <td class="padd c-green">$460,00</td>
+          <td class="f-left">$18.486.731.960,00</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="Acciones-simple-text">
+      <p>Fuente BVC. La información tiene 20 minutos de retraso.</p>
+    </div>
+  </div>
+</div>
+<div class="Monedas">
+  <div class="container">
+    <div class="Monedas-header">
+      <h3>Monedas</h3>
+    </div>
+    <div class="Monedas-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>INSTRUMENTO<i class="fas fa-caret-down"></i></th>
+          <th>HORA<i class="fas fa-caret-down"></i></th>
+          <th>VALOR<i class="fas fa-caret-down"></i></th>
+          <th>%CAMBIO<i class="fas fa-caret-down"></i></th>
+          <th>CAMBIO<i class="fas fa-caret-down"></i></th>
+          <th>CIERRE ANT.<i class="fas fa-caret-down"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>DOLAR SPOT</td>
+          <td>09:39:00</td>
+          <td class="pad-l">3.327,2980</td>
+          <td class="padd c-red">-0,03%</td>
+          <td class="padd c-red">-1,16</td>
+          <td class="f-left">3.328,4550</td>
+        </tr>
+        <tr>
+          <td>EURUSD</td>
+          <td>09:10:10</td>
+          <td class="pad-l">1,1113</td>
+          <td class="padd c-red">-0,02%</td>
+          <td class="padd c-red">-0,00</td>
+          <td class="f-left">1,1114</td>
+        </tr>
+        <tr>
+          <td>EURUGHJ</td>
+          <td>10:15:10</td>
+          <td class="pad-l">5,1013</td>
+          <td class="padd c-red">-0,01%</td>
+          <td class="padd c-red">-0,00</td>
+          <td class="f-left">1,1156</td>
+        </tr>
+        <tr>
+          <td>EURUSD</td>
+          <td>09:10:10</td>
+          <td class="pad-l">1,1113</td>
+          <td class="padd c-green">-0,02%</td>
+          <td class="padd c-green">-0,00</td>
+          <td class="f-left">1,1114</td>
+        </tr>
+        <tr>
+          <td>EURUSD</td>
+          <td>09:10:10</td>
+          <td class="pad-l">1,1113</td>
+          <td class="padd c-green">-0,02%</td>
+          <td class="padd c-green">-0,00</td>
+          <td class="f-left">1,1114</td>
+        </tr>
+        <tr>
+          <td>EURUGHJ</td>
+          <td>10:15:10</td>
+          <td class="pad-l">5,1013</td>
+          <td class="padd c-red">-0,01%</td>
+          <td class="padd c-red">-0,00</td>
+          <td class="f-left">1,1156</td>
+        </tr>
+        <tr>
+          <td>EURUGHJ</td>
+          <td>10:15:10</td>
+          <td class="pad-l">5,1013</td>
+          <td class="padd c-red">-0,01%</td>
+          <td class="padd c-red">-0,00</td>
+          <td class="f-left">1,1156</td>
+        </tr>
+        <tr>
+          <td>EURUGHJ</td>
+          <td>10:15:10</td>
+          <td class="pad-l">5,1013</td>
+          <td class="padd c-red">-0,01%</td>
+          <td class="padd c-red">-0,00</td>
+          <td class="f-left">1,1156</td>
+        </tr>
+        <tr>
+          <td>EURUSD</td>
+          <td>09:10:10</td>
+          <td class="pad-l">1,1113</td>
+          <td class="padd c-green">-0,02%</td>
+          <td class="padd c-green">-0,00</td>
+          <td class="f-left">1,1114</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="Monedas-simple-text">
+      <p>Fuente BVC. La información tiene 20 minutos de retraso.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="Indices-y-commodities">
+  <div class="container">
+    <div class="Indices-y-commodities-header">
+      <h3>Índices y commodities</h3>
+    </div>
+    <div class="Indices-y-commodities-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>INSTRUMENTO<i class="fas fa-caret-down"></i></th>
+          <th>HORA<i class="fas fa-caret-down"></i></th>
+          <th>VALOR<i class="fas fa-caret-down"></i></th>
+          <th>%CAMBIO<i class="fas fa-caret-down"></i></th>
+          <th>CAMBIO<i class="fas fa-caret-down"></i></th>
+          <th>CIERRE ANT.<i class="fas fa-caret-down"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>BANREP</td>
+          <td>N/A</td>
+          <td class="pad-l">4,25%</td>
+          <td class="padd c-blue">0,00%</td>
+          <td class="padd c-blue">0,00</td>
+          <td class="f-left">4,25</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-red">-0,87%</td>
+          <td class="padd c-red">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-red">-0,87%</td>
+          <td class="padd c-red">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-red">-0,87%</td>
+          <td class="padd c-red">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-red">-0,87%</td>
+          <td class="padd c-red">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-red">-0,87%</td>
+          <td class="padd c-red">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-red">-0,87%</td>
+          <td class="padd c-red">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-red">-0,87%</td>
+          <td class="padd c-red">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-blue">-0,87%</td>
+          <td class="padd c-blue">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>ICAP</td>
+          <td>13:39:39</td>
+          <td class="pad-l">1.559,74</td>
+          <td class="padd c-blue">-0,87%</td>
+          <td class="padd c-blue">-14,10</td>
+          <td class="f-left">1,613,84</td>
+        </tr>
+        <tr>
+          <td>GRPOSURA</td>
+          <td>14:02:33</td>
+          <td class="pad-l">USD 61,00</td>
+          <td class="padd c-green">0,11%</td>
+          <td class="padd c-green">0,07</td>
+          <td class="f-left">60,97</td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="Indices-y-commodities-simple-text">
+      <p>Fuente BVC. La información tiene 20 minutos de retraso.</p>
+    </div>
+  </div>
+</div>
+
+<div class="monitor-de-marcado-Recomendados">
+  <div class="container">
+    <h2>Artículos Relacionados</h2>
+    <div class="nir-inline-video">
+      <div class="row">
+        <div class="col-md-4 col-sm-12 right-border-ifx">
+          <img src="src/es/images/single_blog_img.png" class="img-fluid">
+          <div class="nir-inline-video-contant">
+            <h5>Nombre de la categoría del informe</h5>
+            <h3>Lorem ipsum dolor sit amet</h3><br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <button type="button" class="btn nir-inline-video-btn">Leer más</button>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 right-border-ifx">
+          <img src="src/es/images/second_single_blog_img.png" class="img-fluid">
+          <div class="nir-inline-video-contant">
+            <h5>Nombre de la categoría del informe</h5>
+            <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <button type="button" class="btn nir-inline-video-btn">Leer más</button>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 monitor-full-img">
+          <img src="src/es/images/third_single_blog_img.png" class="img-fluid">
+          <div class="nir-inline-video-contant">
+            <h5>Nombre de la categoría del informe</h5>
+            <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <button type="button" class="btn nir-inline-video-btn">Leer más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<footer class="main_footer">
+
+  <div class="footer_first">
+    <div class="footer_verticle_line">
+      <div class="footer_verticle_image">
+        <img src="src/es/images/Untitled2.png" alt="">
+      </div>
+      <div class="footer_verticle_text">
+        <p>supritendent financiera</p>
+        <p>De Colombia</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="footer-links">
+            <ul>
+              <li><a href="#">Actualizate</a></li>
+              <li><a href="#">informes especiallizados</a></li>
+              <li><a href="#">Nuestros indicadores</a></li>
+              <li><a href="#">Centroamerica</a></li>
+              <li><a href="#">Sectores productivos</a></li>
+              <li><a href="#">Empresarial</a></li>
+              <li><a href="#">Invertir en...</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-no_bullet">
+            <ul>
+              <li><a href="#">Multimedia</a></li>
+              <li><a href="#">Conócenos</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="footer_right_content">
+            <div class="main_footer_right">
+              <div class="row">
+                <div class="col-sm-6 border-down">
+                  <div class="footer-links">
+                    <h4>Portales Davivienda y Filiales</h4>
+                    <ul>
+                      <li><a href="#">Banco Davivienda</a></li>
+                      <li><a href="#">Davivienda Corredores</a></li>
+                      <li><a href="#">Fiduciaria Davivienda</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="footer-links">
+                    <h4>Sitios de interes</h4>
+                    <ul>
+                      <li><a href="#">Autorregulador del Mercado de valores de Colombia</a> </li>
+                      <li><a href="#">Bolsa de Volores de Colombia</a></li>
+                      <li><a href="#">Superintendencia Financiera de Colombia</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer_sociaal_link">
+            <div class="row">
+              <div class="col-sm-5 f-left">
+                <div class="social_icon_left">
+                  <p>Siganos en</p>
+                  <ul>
+                    <li><i class="fab fa-twitter"></i></li>
+                    <li><i class="fab fa-linkedin"></i></li>
+                    <li><i class="fab fa-youtube"></i></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="footer_image_link">
+                  <img src="src/es/images/Untitled.png" alt="">
+
+                </div>
+              </div>
+              <div class="col-sm-4 no-right-border padd-0">
+                <div class="footer_image_link">
+                  <img src="src/es/images/last_f_logo.png" alt="">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="footer_second">
+    <p>Bonco Davivienda S.A. todos los derechos reservados 2020</p>
+  </div>
+
+</footer>
+
+
+<script>
+  $('.bottom_blog .owl-carousel').owlCarousel({
+    loop: true,
+    margin: 40,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      }
+    }
+  })
+</script>
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "320px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
+<script>
+  // Main/Product image slider for product page
+  $('#detail .main-img-slider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: true,
+    arrows: true,
+    fade: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 300,
+    lazyLoad: 'ondemand',
+    asNavFor: '.thumb-nav',
+    prevArrow: '',
+    nextArrow: '',
+    responsive: 'true'
+  });
+  // Thumbnail/alternates slider for product page
+  $('.thumb-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    infinite: true,
+    centerPadding: '0px',
+    asNavFor: '.main-img-slider',
+    dots: false,
+    centerMode: false,
+    draggable: true,
+    speed: 200,
+    focusOnSelect: true,
+    prevArrow: '<div class="slick-prev"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sr-only sr-only-focusable">Previous</span></div>',
+    nextArrow: '<div class="slick-next"><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="sr-only sr-only-focusable">Next</span></div>'
+  });
+
+
+
+
+  //keeps thumbnails active when changing main image, via mouse/touch drag/swipe $('.main-img-slider').on('afterChange', function(event, slick, currentSlide, nextSlide) { //remove all active class $('.thumb-nav .slick-slide').removeClass('slick-current');
+  //set active class for current slide $('.thumb-nav .slick-slide:not(.slick-cloned)').eq(currentSlide).addClass('slick-current'); });
+</script>
+<script>
+  $(".menu-item").click(function() {
+    $(this).children("ul").slideToggle();
+    $(this).toggleClass('animate');
+    $(this).siblings().children("ul").hide();
+  })
+</script>
+<script>
+  $(document).ready(function() {
+
+    $("#inner-menu-detail").click(function() {
+
+      $(".categorias-hide-menu").toggle();
+      $(this).toggleClass('active');
+    });
+  });
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
