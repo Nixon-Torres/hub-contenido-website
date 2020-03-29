@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 
 import localeCo from '@angular/common/locales/es-CO';
 
@@ -20,7 +21,8 @@ registerLocaleData(localeCo, 'es-CO');
     AppComponent,
     LayoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TopMenuComponent
   ],
   imports: [
     BrowserModule,
