@@ -204,4 +204,14 @@ export class TopMenuComponent implements OnInit {
 
     return ['/categories', option];
   }
+
+  getCategoryReportTypeLink(report: any) {
+    const id = this.getCategoryId();
+
+    if (report.code === 'ELLIBRO') {
+      return ['/book'];
+    }
+    const rsp = ['/categories', id, 'type', report.id];
+    return rsp;
+  }
 }

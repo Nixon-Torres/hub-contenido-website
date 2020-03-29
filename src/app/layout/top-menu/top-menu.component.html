@@ -58,8 +58,8 @@
                      *ngFor="let items of itemGroups | slice:0:totalGroups">
                   <div class="hide-left-1">
                     <ul>
-                      <li *ngFor="let item of items"
-                          [routerLink]="['/categories', getCategoryId(null), 'type', item.id]">{{item.name}}</li>
+                      <li class="submenu-link" *ngFor="let item of items"
+                          [routerLink]="getCategoryReportTypeLink(item)">{{item.name}}</li>
                     </ul>
                   </div>
                 </div>
@@ -76,7 +76,7 @@
                   <hr>
                   <div class="hide-left-1">
                     <ul class="investment-list">
-                      <li *ngFor="let item of gp.items">{{item.name}}</li>
+                      <li class="submenu-link" *ngFor="let item of gp.items" [routerLink]="getCategoryReportTypeLink(item)">{{item.name}}</li>
                     </ul>
                   </div>
 
