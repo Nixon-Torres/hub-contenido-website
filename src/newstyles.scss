@@ -287,6 +287,12 @@
   border-bottom: 1px solid #CECECE;
 }
 
+.header_menu{
+  .container{
+    padding-right: 12px;
+  }
+}
+
 .header_menu .menu_item ul {
   margin: 0;
   padding: 0;
@@ -553,7 +559,7 @@
   font-weight: 600;
   text-decoration: none;
   position: relative;
-  font-family: HelveticaNeue;
+  font-family: helvetica;
   letter-spacing: 1px;
 }
 
@@ -627,6 +633,9 @@
   height: 30px;
   border-radius: 5px;
   font-family: Helvetica;
+  @media only screen and (max-width: 768px){
+    font-size: 11px;
+  }
 }
 
 .indicator .indicator_highlight ul .indictor_btn button i {
@@ -15670,3 +15679,17 @@ max-width: 100% !important;
   }
 }
 
+.ifx-indicators-iframe{
+  .content{
+    .indictor_btn{
+      @media only screen and (max-width: 768px){
+        width: 20%;
+      }
+      button{
+        @media only screen and (max-width: 768px){
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
