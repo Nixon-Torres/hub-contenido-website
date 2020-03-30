@@ -24,112 +24,70 @@
       <div class="analisis-text">
         <div class="container">
           <div class="analisis-inner-text">
-            <h3>Análisis de compañias</h3>
-            <p>Acceda a las recomendaciones, precios objetivo, estimaciones, análisis de resultados financieros, y toda
-              la información relevante sobre las compañías que hacen parte de nuestro universo de cobertura.
-            </p>
+            <h3>{{category?.description}}</h3>
+            <p>{{category?.fullDescription}}</p>
           </div>
         </div>
       </div>
       <div class="analisis-information">
         <div class="container">
           <div class="row">
-            <div class="col-md-3 col-sm-12 analisis-menu">
+            <div class="col-md-3 col-sm-12 analisis-menu" *ngIf="category?.code !== 'ENQUINVERTIR'">
               <ul>
-                <a href="#">
-                  <li>Avianca Holdings</li>
+                <a (click)="setReportType(item)" *ngFor="let item of reportTypes">
+                  <li [ngClass]="{'active': isMenuActive(item)}">{{item.name}}</li>
                 </a>
-                <a href="#">
-                  <li>Bancolombia</li>
-                </a>
-                <a href="#">
-                  <li>Banco de Bogotá</li>
-                </a>
-                <a href="#">
-                  <li>Celsia</li>
-                </a>
-                <a href="#">
-                  <li>CEMEX</li>
-                </a>
-                <a href="#">
-                  <li>Conconcreto</li>
-                </a>
-                <a href="#">
-                  <li>Davivienda</li>
-                </a>
-                <a href="#">
-                  <li>Ecopetrol</li>
-                </a>
-                <a href="#">
-                  <li>El Cóndor</li>
-                </a>
-                <a href="#">
-                  <li>GEB</li>
-                </a>
-                <a href="#">
-                  <li>Grupo Argos</li>
-                </a>
-                <a href="#">
-                  <li>Grupo Aval</li>
-                </a>
-                <a href="#">
-                  <li>Grupo Éxito</li>
-                </a>
-                <a href="#">
-                  <li>Grupo Nutresa</li>
-                </a>
-                <a href="#">
-                  <li>Grupo Sura</li>
-                </a>
-                <a href="#">
-                  <li>ISA</li>
-                </a>
-                <a href="#">
-                  <li>Mineros</li>
-                </a>
-                <a href="#">
-                  <li>PEI</li>
-                </a>
-                <a href="#">
-                  <li>Promigas</li>
-                </a>
-                <a href="#">
-                  <li>Terpel</li>
-                </a>
-
               </ul>
+            </div>
+            <div class="col-md-3 col-sm-12 analisis-menu" *ngIf="category?.code === 'ENQUINVERTIR'">
+              <div class="enquinvertir-menu" *ngFor="let group of investmentGroups">
+                <span class="title">{{group.name}}</span>
+                <ul>
+                  <a href="#" *ngFor="let item of group.reportTypes">
+                    <li>{{item.name}}</li>
+                  </a>
+                </ul>
+              </div>
             </div>
 
             <div class="col-md-9 col-sm-12 analisis-contant">
               <div class="contant-1">
-                <h3>Informes avianca holdings</h3>
+                <h3>Informes {{getSubCategoryName()}}</h3>
                 <div class="row">
                   <div class="col-md-6 col-sm-12 select-list-hide">
                     <form>
-                      <div class="form-group">
-                        <label for="sel1" class="categorias-select-list">Filtro
+                      <div *ngIf="category?.code === 'ANLISISDECOMPAAS'">
+                        <label class="categorias-select-list">Filtro
                           :</label>
-                        <select class="form-control" id="sel1" placeholder="Seleccione por tipo de informe"
-                                name="sellist1">
-                          <option>Actualización de cobertura</option>
-                          <option>Resultados financieros</option>
-                          <option>Informes especiales</option>
-                          <option>Alertas de mercado</option>
-                        </select>
+                        <ng-select [items]="companyTypesSelect" [searchable]="false"
+                                   [clearable]="false"
+                                   placeholder="Seleccione por tipo de informe"
+                                   [multiple]="false" bindLabel="description" bindValue="id" class="company-type-select"
+                                    (change)="setCompanyReportType($event)"></ng-select>
                       </div>
                     </form>
                   </div>
                   <div class="col-md-6 col-sm-12 full-width">
                     <div class="date-picker-categorias">
-                      <label for="sel1" class="categorias-date-label">Filtre fecha
+                      <label class="categorias-date-label">Filtre fecha
                         :</label>
                       <div class="date-picker-1">
-                        <input type="text" class="form-control cotegorias-date-1 date-picker-cate" placeholder="Desde">
-                        <span><i class="far fa-calendar-alt"></i></span>
+                        <mat-form-field class="date-picker-category">
+                          <mat-label>Fecha Inicial</mat-label>
+                          <input matInput [matDatepicker]="dateStart"
+                                 (dateChange)="setStartDate($event)">
+                          <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+                          <mat-datepicker #dateStart></mat-datepicker>
+                        </mat-form-field>
                       </div>
-                      <div class="date-picker-2">
-                        <input type="text" class="form-control cotegorias-date-2 date-picker-cate" placeholder="Hasta">
-                        <span><i class="far fa-calendar-alt"></i></span>
+                      <div class="date-picker-1">
+                        <mat-form-field class="date-picker-category">
+                          <mat-label>Fecha Final</mat-label>
+                          <input matInput [matDatepicker]="dateEnd"
+                                 (dateChange)="setEndDate($event)">
+                          <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
+                          <mat-datepicker #dateEnd></mat-datepicker>
+                        </mat-form-field>
                       </div>
                     </div>
                   </div>
@@ -137,141 +95,47 @@
               </div>
 
 
-              <div class="contant gray-back">
-                <div class="detail ">
-
-                  <h3>Avianca Holdings</h3>
-                  <h4>Consejo del Gobierno Banco Central Europeo continuará con su programa
+              <div class="contant gray-back" *ngFor="let report of reports">
+                <div class="detail">
+                  <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
+                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]">{{report?.name}}
                   </h4>
-                  <p>El Consejo decidió mantener sin cambio sus tasas de política monetaria y confirmó su intención de
-                    continuar su programa de compras de activos a un ritmo de €30,000 millones de euros mensuales.
+                  <p>{{report?.smartContent}}
                   </p>
-                  <p class="small ">1 Julio 2020</p>
-
-
-                  <a href="# ">
+                  <p class="small ">{{report?.publishedAt | date:'d MMMM y'}}</p>
+                  <a *ngIf="isANewReport(report)">
                     <button class="btn contant-btn ">Informe nuevo</button>
                   </a>
-                </div>
-              </div>
-
-              <div class="contant ">
-                <div class="detail ">
-
-                  <h3>Avianca Holdings - Actualización de cobertura</h3>
-                  <h4>Consejo del Gobierno Banco Central Europeo continuará con su programa
-                  </h4>
-                  <p>El Consejo decidió mantener sin cambio sus tasas de política monetaria y confirmó su intención de
-                    continuar su programa de compras de activos a un ritmo de €30,000 millones de euros mensuales.
-                  </p>
-                  <p class="small ">1 Julio 2020</p>
-
-                  <a href="# ">
-                    <button class="btn contant-btn ">Informe nuevo</button>
-                  </a>
-                </div>
-
-              </div>
-
-              <div class="contant gray-back">
-                <div class="detail ">
-
-                  <h3>Avianca Holdings - Actualización de cobertura</h3>
-                  <h4>Mejoran las ventas de comercio al por menor</h4>
-                  <p>Las ventas reales del comercio al por menor... en mayo aceleraron su dinámica significativamente
-                    aunque siguen mostrando una leve desaceleración frente al año pasado.</p>
-                  <p class="small ">1 Julio 2020</p>
-
-
-                  <a href="# ">
-                    <button class="btn contant-btn ">Informe nuevo</button>
-                  </a>
-                </div>
-              </div>
-
-              <div class="contant decrease-padd">
-                <div class="detail ">
-
-                  <h3>Avianca Holdings</h3>
-                  <h4>Consejo del Gobierno Banco Central Europeo continuará con su programa
-                  </h4>
-                  <p>El Consejo decidió mantener sin cambio sus tasas de política monetaria y confirmó su intención de
-                    continuar su programa de compras de activos a un ritmo de €30,000 millones de euros mensuales.
-                  </p>
-                  <p class="small ">1 Julio 2020</p>
-
-                </div>
-              </div>
-
-              <div class="contant gray-back decrease-padd">
-                <div class="detail ">
-
-                  <h3>Avianca Holdings - Informes especiales</h3>
-                  <h4>Mejoran las ventas de comercio al por menor</h4>
-                  <p>Las ventas reales del comercio al por menor... en mayo aceleraron su dinámica significativamente
-                    aunque siguen mostrando una leve desaceleración frente al año pasado.
-                  </p>
-                  <p class="small ">1 Julio 2020</p>
-                </div>
-
-              </div>
-
-              <div class="contant decrease-padd">
-                <div class="detail ">
-                  <h3>Avianca Holdings - Informes especiales</h3>
-                  <h4>Mejoran las ventas de comercio al por menor</h4>
-                  <p>Las ventas reales del comercio al por menor... en mayo aceleraron su dinámica significativamente
-                    aunque siguen mostrando una leve desaceleración frente al año pasado.</p>
-                  <p class="small ">1 Julio 2020</p>
                 </div>
               </div>
             </div>
 
             <div class="mobile-pagination">
               <div class="mob-set-div">
-                <a class="mob-button " href="# ">Siguiente</a>
+                <a class="mob-button" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
+                <a class="mob-button" *ngIf="currentPage < totalPages" (click)="nextPage()">Siguiente</a>
                 <p>1/19</p>
               </div>
             </div>
 
             <div class="contant-pagination ">
               <div class="contant-page-set">
-                <a class="underline " href="# ">Siguiente</a>
+                <a *ngIf="currentPage > 1" class="underline float-left" (click)="previousPage()">Anterior</a>
+                <a *ngIf="currentPage < totalPages" class="underline " (click)="nextPage()">Siguiente</a>
                 <div class="dropdown ">
                   <label for="page " id="page ">Página</label>
                   <div class="dropdown">
-                    <a class="btn  btn-pagination dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      1
-                    </a>
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-                      <a class="dropdown-item " href="# ">1</a>
-                      <a class="dropdown-item " href="# ">2</a>
-                      <a class="dropdown-item " href="# ">3</a>
-                      <a class="dropdown-item " href="# ">4</a>
-                      <a class="dropdown-item " href="# ">5</a>
-                      <a class="dropdown-item " href="# ">6</a>
-                      <a class="dropdown-item " href="# ">7</a>
-                      <a class="dropdown-item " href="# ">8</a>
-                      <a class="dropdown-item " href="# ">9</a>
-                      <a class="dropdown-item " href="# ">10</a>
-                      <a class="dropdown-item " href="# ">11</a>
-                      <a class="dropdown-item " href="# ">12</a>
-                      <a class="dropdown-item " href="# ">13</a>
-                      <a class="dropdown-item " href="# ">14</a>
-                      <a class="dropdown-item " href="# ">15</a>
-                      <a class="dropdown-item " href="# ">16</a>
-                      <a class="dropdown-item " href="# ">17</a>
-                      <a class="dropdown-item " href="# ">18</a>
-                      <a class="dropdown-item " href="# ">19</a>
-                    </div>
+                    <ng-select [items]="pagesItems" [searchable]="false"
+                               [clearable]="false"
+                               (change)="pageChanged($event)"
+                               [(ngModel)]="currentPage"
+                               [multiple]="false" class="page-select"></ng-select>
                   </div>
 
 
                 </div>
-                <label for="page " id="page">de 19</label>
+                <label for="page " id="page">de {{totalPages}}</label>
               </div>
             </div>
           </div>

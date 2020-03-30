@@ -11,6 +11,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { TopMenuComponent } from './layout/top-menu/top-menu.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 import localeCo from '@angular/common/locales/es-CO';
 
@@ -28,7 +30,9 @@ registerLocaleData(localeCo, 'es-CO');
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSelectModule,
+    FormsModule
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'es-CO' } ],
   bootstrap: [AppComponent]

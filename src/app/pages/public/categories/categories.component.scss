@@ -13,3 +13,83 @@
 .investment-list {
   min-height: 205px;
 }
+
+.enquinvertir-menu {
+  .title {
+    font-size: 14px;
+    font-weight: normal;
+    padding-left: 10px;
+    color: #454545;
+  }
+}
+
+.ng-select.page-select {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 55px;
+}
+
+.ng-select.page-select .ng-select-container  {
+  min-height: 0px;
+  border-radius: 0;
+}
+
+.ng-select.company-type-select {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 260px;
+  float: left;
+
+  .ng-option-label {
+    font-size: 12px;
+  }
+}
+
+.ng-select.company-type-select ::ng-deep span,
+.ng-select.company-type-select ::ng-deep .ng-placeholder {
+    font-size: 12px;
+}
+
+.categorias-select-list {
+  float: left;
+}
+
+.reportTitle {
+  cursor: pointer;
+}
+
+.analisis-menu li.active {
+  border-right: 1px solid #E8162E;
+  color: #E8162E;
+}
+
+.date-picker-category {
+  width: 130px;
+
+}
+
+.date-picker-1 input {
+  padding: 0 0 0 5px;
+}
+
+.mat-form-field-appearance-legacy ::ng-deep .mat-form-field-underline {
+  display: none
+}
+
+.date-picker-category ::ng-deep .mat-form-field-flex {
+  border: 1px solid #ccc;
+}
+
+.date-picker-category ::ng-deep .mat-form-field-label-wrapper {
+  left: 4px;
+  top: -10px;
+  color: #A5ABB1 !important;
+}
+
+.mat-form-field.mat-focused ::ng-deep .mat-form-field-label {
+  color: #A5ABB1 !important;
+}
+
+.contant-1 {
+  padding-bottom: 0px;
+}
