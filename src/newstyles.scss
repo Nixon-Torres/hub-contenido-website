@@ -6989,6 +6989,9 @@ p.informe_heading_desc {
   border-top: 1px solid #D9D9D9;
   border-bottom: 1px solid #D9D9D9;
   background-color: #FAFAFA;
+  iframe{
+    margin: 0;
+  }
 }
 
 .Acciones-table .table thead th {
@@ -7106,6 +7109,9 @@ p.informe_heading_desc {
   border-top: 1px solid #D9D9D9;
   border-bottom: 1px solid #D9D9D9;
   background-color: white;
+  iframe{
+    margin: 0;
+  }
 }
 
 .Monedas-table .table thead th {
@@ -7221,6 +7227,9 @@ p.informe_heading_desc {
   border-top: 1px solid #D9D9D9;
   border-bottom: 1px solid #D9D9D9;
   background-color: #FAFAFA;
+  iframe{
+    margin: 0;
+  }
 }
 
 .Indices-y-commodities-table .table thead th {
@@ -15737,5 +15746,11 @@ max-width: 100% !important;
   }
   .slider_blog{
     margin-bottom: 7%;
+  }
+}
+
+.leftContainer2{
+  .boxInfo{
+    width: 160px !important;
   }
 }
