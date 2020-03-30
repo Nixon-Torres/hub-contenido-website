@@ -727,6 +727,9 @@ footer.main_footer .footer_first .footer-links ul li:before {
   font-size: 16px;
   color: #ffffff;
   font-family: Helvetica_Neu_Bold;
+  @media only screen and (max-width: 768px){
+    max-width: 60%;
+  }
 }
 
 .main_footer_right {
@@ -843,7 +846,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
   text-decoration: none;
   font-family: Helvetica_Neu_Bold;
   @media only screen and (max-width: 1024px){
-		font-size: 17px;
+		font-size: 15px;
 	}
 }
 
@@ -5955,7 +5958,7 @@ p.emines_instru {
 }
 
 body {
-  font-family: HelveticaNeueMed;
+  font-family: helvetica;
 }
 
 .information_content {
@@ -6419,6 +6422,7 @@ p.informe_heading_desc {
   font-size: 23px;
   line-height: 23px;
   text-align: left;
+  font-weight: bold;
 }
 
 .multimedia p {
@@ -6445,6 +6449,7 @@ p.informe_heading_desc {
   line-height: 23px;
   text-align: left;
   padding: 30px 20px;
+  font-weight: bold;
 }
 
 .Recomendados-header {
@@ -6653,6 +6658,7 @@ p.informe_heading_desc {
   background-color: #fff;
   border-bottom: 2px solid #E8162E;
   border-radius: 0;
+  font-weight: bold;
 }
 
 .nav-tabs .nav-item.show .nav-link,
@@ -6693,6 +6699,7 @@ p.informe_heading_desc {
   font-size: 15px;
   line-height: 21px;
   border: 1px solid #E8162E;
+  font-weight: bold;
 }
 
 .tab-botton .tab-btn-red .fas.fa-chevron-down {
@@ -8317,6 +8324,7 @@ button.owl-next {
   background-color: #EF161A;
   padding: 15px 50px;
   border-radius: 5px;
+  font-weight: bold;
 }
 
 .libro-button .fas.fa-chevron-right {
@@ -8353,7 +8361,7 @@ button.owl-next {
   font-weight: bold;
   padding-left: 8px;
   border-left: 2px solid #EF161A;
-  padding-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .sec-2_colombia-1-contant p {
@@ -8431,7 +8439,7 @@ button.owl-next {
   width: 100%;
   float: left;
   border-top: 2px solid #EF161A;
-  padding: 55px 28px 70px 45px;
+  padding: 55px 28px 54px 45px;
   box-shadow: 0px 4px 15px -6px rgba(0, 0, 0, 1);
   position: relative;
   overflow: hidden;
@@ -8584,7 +8592,8 @@ button.owl-next {
 .section-4 {
   width: 100%;
   float: left;
-  padding: 100px 0;
+  padding: 50px 0;
+  margin: 70px 0;
   background-color: #F8F8F8;
 }
 
@@ -8907,6 +8916,9 @@ button.owl-next {
 
 .ediciones-midcont li:nth-child(2) {
   margin: 0 78px;
+  @media only screen and (max-width: 1024px){
+    margin: 0;
+  }
 }
 
 .ediciones-midcont li img {
@@ -12859,7 +12871,7 @@ max-width: 100% !important;
   .Recomandados-tab {
     width: 100%;
     float: left;
-    padding: 20px 0;
+    padding: 40px 0;
   }
 
   .nav-tabs {
@@ -15715,6 +15727,10 @@ max-width: 100% !important;
   }
 }
 
+.ecopetrol_img{
+  width: 80%;
+}
+
 .ifx-indicators-iframe{
   .content{
     .indictor_btn{
@@ -15735,6 +15751,9 @@ max-width: 100% !important;
   .analisis-contant{
     padding-left: 40px;
   }
+  .ecopetrol_img{
+    width: 100%;
+  }
 }
 
 .multimedia_img{
@@ -15749,14 +15768,14 @@ max-width: 100% !important;
   }
 }
 
-.leftContainer2{
-  .boxInfo{
-    width: 160px !important;
+@media only screen and (max-width: 768px){
+  .main_footer_right .col-sm-6, .footer_first .col-sm-4{
+    padding-left: 25%;
   }
-}
-#left{
-  display: none !important;
-}
-#right{
-  display: none !important;
+
+  .nir_content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
