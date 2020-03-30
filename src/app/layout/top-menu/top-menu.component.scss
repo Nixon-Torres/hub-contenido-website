@@ -14068,6 +14068,7 @@ max-width: 100% !important;
 .categorias-hide-menu {
   position: absolute;
   top: -5px;
+  z-index: 9;
 }
 
 .header_menu .menu_item ul li {
