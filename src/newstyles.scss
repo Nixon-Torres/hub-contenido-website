@@ -622,7 +622,12 @@
   color: #6edb70;
   padding-left: 1px;
 }
-
+.indicator .indicator_highlight ul .indictor_btn{
+ @media only screen and (max-width: 768px){
+  width: 23% !important;
+  margin-right: 0 !important;
+ }
+}
 .indicator .indicator_highlight ul .indictor_btn button {
   background-color: #ffffff;
   border: 1px solid #e8162e;
@@ -634,7 +639,7 @@
   border-radius: 5px;
   font-family: Helvetica;
   @media only screen and (max-width: 768px){
-    font-size: 11px;
+    font-size: 11px !important;
   }
 }
 
@@ -1680,7 +1685,7 @@ ul.nav.nav-tabs li.activetwo a {
 }
 
 .banner_image img {
-  width: 1088px;
+  width: 1110px;
   height: 130px;
 }
 
@@ -1710,6 +1715,9 @@ ul.nav.nav-tabs li.activetwo a {
   color: #818181 !important;
   font-size: 14px !important;
   line-height: 42px !important;
+  @media only screen and (max-width: 768px){
+    margin-left: 6em;
+  }
 }
 
 .mobile-pagination a.mob-button {
@@ -1720,6 +1728,9 @@ ul.nav.nav-tabs li.activetwo a {
   line-height: 21px;
   text-decoration: underline;
   padding-top: 11px !important;
+  @media only screen and (max-width: 768px){
+    margin-right: 15px;
+  }
 }
 
 .mobile-pagination a.mob-button:hover {
@@ -1800,6 +1811,7 @@ ul.nav.nav-tabs li.activetwo a {
   font-weight: bold;
   color: #E8162E;
   line-height: 23px;
+  font-family: helvetica;
 }
 
 .analisis-inner-text p {
@@ -1808,6 +1820,18 @@ ul.nav.nav-tabs li.activetwo a {
   letter-spacing: 0;
   color: #505050;
   padding: 20px 0;
+  font-size: 14px;
+  font-family: helvetica;
+  @media only screen and (max-width: 768px){
+    padding-left: 10px;
+    &::before{
+      content: '';
+      border: solid 1px #e8162e;
+      position: relative;
+      right: 10px;
+      padding-bottom: 15px;
+    }
+  }
 }
 
 .analisis-information {
@@ -1835,6 +1859,7 @@ ul.nav.nav-tabs li.activetwo a {
   text-align: left;
   margin-bottom: 5px;
   text-decoration: none;
+  font-family: helvetica;
 }
 
 .analisis-menu li:hover {
@@ -1921,6 +1946,7 @@ ul.nav.nav-tabs li.activetwo a {
   text-align: left;
   padding: 10px 5px 0 0;
   float: left;
+  font-family: helvetica;
 }
 
 .informe_under_content {
@@ -1951,6 +1977,7 @@ label.categorias-select-list {
   color: #505050;
   text-align: left;
   padding: 10px 5px 0 0;
+  font-family: helvetica;
 }
 
 .contant-1 {
@@ -1963,7 +1990,7 @@ label.categorias-select-list {
   text-transform: uppercase;
   color: #454545;
   font-size: 16px;
-  font-family: Helvetica Neue;
+  font-family: Helvetica;
   font-weight: bold;
   margin-bottom: 25px;
 }
@@ -1985,7 +2012,8 @@ label.categorias-select-list {
   line-height: 21px;
   color: #E8162E;
   text-align: left;
-  font-weight: bold
+  font-weight: bold;
+  font-family: helvetica;
 }
 
 .contant h4 {
@@ -1994,6 +2022,7 @@ label.categorias-select-list {
   color: #454545;
   text-align: left;
   font-weight: bold;
+  font-family: helvetica;
 }
 
 .page_direction a:hover {
@@ -2011,6 +2040,7 @@ label.categorias-select-list {
   text-align: left;
   margin-bottom: 8px;
   padding: 0;
+  font-family: helvetica;
 }
 
 .analisis-contant .contant p.small {
@@ -11924,6 +11954,7 @@ max-width: 100% !important;
 
   .contant-1 h3 {
     font-size: 14px !important;
+    font-weight: 900;
   }
 
   .analisis-text {
@@ -11957,7 +11988,7 @@ max-width: 100% !important;
   .contant button {
     position: absolute;
     top: 20px;
-    right: 0;
+    right: 20px;
   }
 
   .select-list-hide {
@@ -15679,13 +15710,32 @@ max-width: 100% !important;
   .content{
     .indictor_btn{
       @media only screen and (max-width: 768px){
-        width: 20%;
+        width: 23% !important;
+        margin-right: 0 !important;
       }
       button{
         @media only screen and (max-width: 768px){
-          font-size: 11px;
+          font-size: 11px !important;
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .analisis-contant{
+    padding-left: 40px;
+  }
+}
+
+.multimedia_img{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  @media only screen and (max-width: 768px){
+    justify-content: center;
+  }
+  .slider_blog{
+    margin-bottom: 7%;
   }
 }
