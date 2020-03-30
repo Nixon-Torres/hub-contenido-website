@@ -108,14 +108,18 @@
   </div>
 </div>
 
-<div class="container ifx-indicators-iframe">
-  <div class="content">
-    <iframe src="https://widgetsdataifx.blob.core.windows.net/corredores/ticker" scrolling="no"></iframe>
-    <div class="indictor_btn">
-      <button [routerLink]="['/indicators']">
-        Ver indicadores
-        <i class="fa fa-angle-right" aria-hidden="true"></i>
-      </button>
+<div class="iframe_container">
+  <div class="container ifx-indicators-iframe">
+    <div class="content">
+      <iframe class="top_iframe" src="https://widgetsdataifx.blob.core.windows.net/corredores/ticker" scrolling="no"></iframe>
+      <div class="indictor_btn">
+        <button [routerLink]="['/indicators']">
+          Ver indicadores
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
+<div class="header_space">&nbsp;</div>
