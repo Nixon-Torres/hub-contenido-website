@@ -20,4 +20,19 @@ iframe {
   height: 400px;
   border: 0px;
   margin-top: -150px;
+
+  #page{
+    .arrow-left, .arrow-right{
+      display: none !important;
+    }
+    .scrollable.default-skin{
+      display: none !important;
+    }
+  }
+
+  .leftContainer2{
+    .boxInfo{
+      width: 160px !important;
+    }
+  }
 }
