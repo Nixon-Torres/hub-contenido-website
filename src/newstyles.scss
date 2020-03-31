@@ -298,6 +298,9 @@
 
 .footer-links {
   padding-top: 0px;
+  @media only screen and (max-width: 768px){
+    padding-left: 25%;
+  }
 }
 
 .header_search button.btn-primary {
@@ -6488,7 +6491,7 @@ p.informe_heading_desc {
   position: absolute;
   bottom: 30%;
   left: 38%;
-  z-index: 999;
+  z-index: 2;
   font-size: 13px;
 }
 
@@ -6501,7 +6504,7 @@ p.informe_heading_desc {
   text-transform: uppercase;
   font-size: 13px;
   position: absolute;
-  z-index: 99;
+  z-index: 5;
   text-align: center;
   line-height: 29px;
   padding: 0 10px;
@@ -6537,7 +6540,7 @@ p.informe_heading_desc {
   position: absolute;
   top: 60%;
   left: 38%;
-  z-index: 999;
+  z-index: 2;
   font-size: 10px;
 }
 
@@ -6550,7 +6553,7 @@ p.informe_heading_desc {
   text-transform: uppercase;
   font-size: 10px;
   position: absolute;
-  z-index: 99;
+  z-index: 2;
   text-align: center;
   line-height: 22px;
   padding: 0 10px;
@@ -9820,7 +9823,7 @@ select option {
 max-width: 100% !important;
 } */
   .date-picker-1 {
-    width: 29%;
+    width: 47%;
     margin: 0 5px 0 0 0;
   }
 
@@ -9851,6 +9854,7 @@ max-width: 100% !important;
 
   .categorias-date-label {
     font-size: 13px;
+    width: 100%;
   }
 
   .border-down {
@@ -10587,7 +10591,7 @@ max-width: 100% !important;
   }
 
   .date-picker-1 {
-    width: 29%;
+    width: 47%;
     margin: 0 5px 0 0;
   }
 
@@ -11955,7 +11959,7 @@ max-width: 100% !important;
   }
 
   .date-picker-1 {
-    width: 29%;
+    width: 47%;
     margin: 0 5px 0 0;
   }
 
@@ -12291,7 +12295,7 @@ max-width: 100% !important;
   }
 
   .main_footer_right {
-    width: 90%;
+    width: 100%;
   }
 
   .footer_first .col-sm-4 {
@@ -12481,7 +12485,7 @@ max-width: 100% !important;
   }
 
   .main_footer_right {
-    width: 90%;
+    width: 100%;
   }
 
   .footer_first .col-sm-4 {
@@ -13093,7 +13097,7 @@ max-width: 100% !important;
   }
 
   .date-picker-1 {
-    width: 29%;
+    width: 47%;
     margin: 0 5px 0 0;
   }
 
@@ -13594,7 +13598,7 @@ max-width: 100% !important;
   }
 
   .main_footer_right {
-    width: 90%;
+    width: 100%;
   }
 
   .footer_first .col-sm-4 {
@@ -13784,7 +13788,7 @@ max-width: 100% !important;
   }
 
   .main_footer_right {
-    width: 90%;
+    width: 100%;
   }
 
   .footer_first .col-sm-4 {
@@ -14586,7 +14590,7 @@ max-width: 100% !important;
   }
 
   .main_footer_right {
-    width: 90%;
+    width: 100%;
   }
 
   .footer_first .col-sm-4 {
@@ -14767,7 +14771,7 @@ max-width: 100% !important;
   }
 
   .main_footer_right {
-    width: 90%;
+    width: 100%;
   }
 
   .footer_first .col-sm-4 {
@@ -15015,7 +15019,7 @@ max-width: 100% !important;
   }
 
   .date-picker-1 {
-    width: 29%;
+    width: 47%;
     margin: 0 5px 0 0;
   }
 
@@ -15531,7 +15535,7 @@ max-width: 100% !important;
   }
 
   .main_footer_right {
-    width: 90%;
+    width: 100%;
   }
 
   .footer_first .col-sm-4 {
@@ -15728,8 +15732,8 @@ max-width: 100% !important;
 
 .iframe_container{
   position: fixed;
-  top: 8em;
-  z-index: 9;
+  top: 8.1em;
+  z-index: 8;
   width: 100%;
   @media only screen and (max-width: 1000px){
     display: none;
@@ -15784,7 +15788,7 @@ max-width: 100% !important;
 
 @media only screen and (max-width: 768px){
   .analisis-contant{
-    padding-left: 40px;
+    padding-left: 27px;
   }
   .ecopetrol_img{
     width: 100%;
