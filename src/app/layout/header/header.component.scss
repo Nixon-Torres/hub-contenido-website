@@ -1,4 +1,98 @@
-
 .site_logo {
   cursor: pointer;
+}
+
+
+/* Accordion styles */
+.accordion_menu{
+  padding: 0;
+}
+.tabs {
+  overflow: hidden;
+}
+.tab {
+  width: 100%;
+  color: #505050;
+  overflow: hidden;
+  border-bottom: solid 1px #a9a9a9;
+  &-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #ffffff;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-size: 15px;
+    /* Icon */
+    &::after {
+      content: "\276F";
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      transition: all 0.35s;
+      transform: rotateZ(270deg);
+    }
+  }
+  &-content {
+    max-height: 0;
+   /*  padding: 0 1em; */
+    color: #8c8c8c;
+    background: #dddddd;
+    transition: all 0.35s;
+  }
+  &-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: red;
+    cursor: pointer;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  // :checked
+  input:checked {
+    + .tab-label {
+      background: #f2f2f2;
+      &::after {
+        transform: rotate(90deg);
+      }
+    }
+    ~ .tab-content {
+      max-height: 100vh;
+      /* padding: 1em; */
+    }
+  }
+
+  .tab_sub {
+    border: none;
+    .tab-label{
+      background-color: transparent;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    input:checked {
+      + .tab-label {
+        background: transparent;
+        &::after {
+          transform: rotate(90deg);
+        }
+      }
+    }
+    .acordion_subtitle{
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+      color: #818181;
+      .title{
+        font-size: 13px;
+        background-color: #f2f2f2;
+      }
+    }
+  }
 }

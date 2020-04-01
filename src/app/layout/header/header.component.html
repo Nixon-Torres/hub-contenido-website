@@ -8,17 +8,85 @@
 				<span class="open_menu" onclick="openNav()">&#9776;</span>
 
 				<div id="mySidenav" class="sidenav">
-					  <span class="closebtn" onclick="closeNav()">&times;</span>
-					  <a href="#">About</a>
-					  <a href="#">Services</a>
-					  <a href="#">Clients</a>
-					  <a href="#">Contact</a>
+					<span class="closebtn" onclick="closeNav()">&times;</span>
+
+					<div class="col accordion_menu">
+						<div class="tabs">
+							<div class="tab">
+								<input type="checkbox" id="chck1">
+								<label class="tab-label" for="chck1">Estar actualizado</label>
+								<div class="tab-content">
+									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+								</div>
+							</div>
+							<!--  -->
+							<div class="tab">
+								<input type="checkbox" id="chck2">
+								<label class="tab-label" for="chck2">Macroeconomía</label>
+								<div class="tab-content">
+									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+								</div>
+							</div>
+							<!--  -->
+							<div class="tab">
+								<input type="checkbox" id="chck3">
+								<label class="tab-label" for="chck3">Nuestros indicadores</label>
+								<div class="tab-content">
+									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+								</div>
+							</div>
+							<!--  -->
+							<div class="tab">
+								<input type="checkbox" id="chck4">
+								<label class="tab-label" for="chck4">Economias Centroamericanas</label>
+								<div class="tab-content">
+									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+								</div>
+							</div>
+							<!--  -->
+							<div class="tab">
+								<input type="checkbox" id="chck5">
+								<label class="tab-label" for="chck5">Tendencias sectoriales</label>
+								<div class="tab-content">
+									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+								</div>
+							</div>
+							<!--  -->
+							<div class="tab">
+								<input type="checkbox" id="chck6">
+								<label class="tab-label" for="chck6">Análisis de compañias</label>
+								<div class="tab-content">
+
+									<div class="tab tab_sub">
+										<p class="acordion_subtitle ">Ver todos los Análisis de compañias</p>
+										<input type="checkbox" id="sub1" name="sub">
+										<label class="tab-label" for="sub1">Avianca Holdings</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle">Ver todo Avianca Holdings </a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!--  -->
+							<div class="tab">
+								<input type="checkbox" id="chck7">
+								<label class="tab-label" for="chck7">¿En qué invertir?</label>
+								<div class="tab-content">
+									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+								</div>
+							</div>
+						</div>
 					</div>
+
+
+				</div>
 			</div>
 			<div class="header_left">
 				<div class="site_logo" [routerLink]="'/home'">
 					<img src="./assets/images/logo-vision.png" alt="">
-				</div><!-- 
+				</div>
+				<!-- 
 				<div class="logo_after">
 					<img src="./assets/images/logo_after.png" alt="">
 				</div> -->
