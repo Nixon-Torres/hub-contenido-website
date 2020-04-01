@@ -69,20 +69,19 @@
                   </div>
                   <div class="col-md-6 col-sm-12 full-width">
                     <div class="date-picker-categorias">
-                      <label class="categorias-date-label">Filtre fecha
-                        :</label>
+                      <label class="categorias-date-label">Filtre fecha</label>
                       <div class="date-picker-1">
                         <mat-form-field class="date-picker-category">
-                          <mat-label>Fecha Inicial</mat-label>
+                          <mat-label class="date_filter">Desde</mat-label>
                           <input matInput [matDatepicker]="dateStart"
                                  (dateChange)="setStartDate($event)">
-                          <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+                          <mat-datepicker-toggle matSuffix [for]="dateStart" placeholder="Hola"></mat-datepicker-toggle>
                           <mat-datepicker #dateStart></mat-datepicker>
                         </mat-form-field>
                       </div>
                       <div class="date-picker-1">
                         <mat-form-field class="date-picker-category">
-                          <mat-label>Fecha Final</mat-label>
+                          <mat-label class="date_filter">Hasta</mat-label>
                           <input matInput [matDatepicker]="dateEnd"
                                  (dateChange)="setEndDate($event)">
                           <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>

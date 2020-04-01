@@ -69,7 +69,7 @@
 }
 
 .date-picker-1 input {
-  padding: 0 0 0 5px;
+  padding: 0 0 7px 5px;
 }
 
 .mat-form-field-appearance-legacy ::ng-deep .mat-form-field-underline {
@@ -77,7 +77,13 @@
 }
 
 .date-picker-category ::ng-deep .mat-form-field-flex {
-  border: 1px solid #ccc;
+  border: 1px solid #A5ABB1;
+  align-items: center;
+  height: 35px;
+    .mat-form-field-infix{
+      padding: 10px 0;
+      font-size: 12px;
+    }
 }
 
 .date-picker-category ::ng-deep .mat-form-field-label-wrapper {
@@ -92,4 +98,8 @@
 
 .contant-1 {
   padding-bottom: 0px;
+}
+
+.date_filter{
+  color: #A5ABB1;
 }
