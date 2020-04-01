@@ -81,6 +81,18 @@
       width: 60%;
     }
   }
+
+  .sub_figure{
+    height: 0px;
+    width: 0px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 0px solid transparent;
+    border-bottom: 13px solid #E3E3E3;
+    position: absolute;
+    top: 60px;
+    left: 15px;
+  }
 }
 .tab {
   width: 100%;
@@ -109,7 +121,7 @@
   }
   &-content {
     max-height: 0;
-   /*  padding: 0 1em; */
+    height: 100%;
     color: #8c8c8c;
     background: #dddddd;
     transition: all 0.35s;
@@ -173,6 +185,40 @@
         font-weight: normal;
         padding-left: 29%;
         text-align: left;
+      }
+    }
+  }
+
+  .accordion_tab_sub{
+    background-color: #f2f2f2;
+    .min_text{
+      background-color: #d6d6d6;
+      font-size: 13px;
+      padding: 5px 0% 5px 25%;
+      color: #818181;
+      margin: 0;
+      font-weight: 500;
+    }
+    .max_text{
+      font-size: 14px;
+      color: #818181;
+      font-weight: bold;
+      padding-left: 28%;
+    }
+    .ac_links{
+      font-size: 14px;
+      color: #818181;
+      padding-left: 28%;
+      border-bottom: solid 1px #e4e0e08f;
+    }
+
+    &.macroeconomía{
+      .min_text{
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .ac_links{
+        padding-left: 25%;
       }
     }
   }
