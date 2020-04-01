@@ -8,15 +8,33 @@
 				<span class="open_menu" onclick="openNav()">&#9776;</span>
 
 				<div id="mySidenav" class="sidenav">
-					<span class="closebtn" onclick="closeNav()">&times;</span>
-
+					<div>
+						<span class="closebtn" onclick="closeNav()">&times;</span>
+						<p onclick="closeNav()" class="close_text">Cerrar</p>
+					</div>
 					<div class="col accordion_menu">
 						<div class="tabs">
+							<div class="header_left acc_header">
+								<div class="site_logo" [routerLink]="'/home'">
+									<img src="/assets/images/logo-vision-menu.png" alt="">
+								</div>
+							</div>
+							<div class="header_right search_menu">
+								<div class="header_search">
+									<input type="text" name="" placeholder="¿Que está buscando?">
+									<button type=""><i class="fa fa-search" aria-hidden="true"></i></button>
+								</div>
+							</div>
+							<div class="acc_subscribe">
+								<img src="/assets/images/Suscríbase.png" alt="">
+								<p>Suscríbase</p>
+							</div>
+							<!--  -->
 							<div class="tab">
 								<input type="checkbox" id="chck1">
 								<label class="tab-label" for="chck1">Estar actualizado</label>
 								<div class="tab-content">
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+									<a href="#" class="acordion_subtitle ac_links">Lorem</a>
 								</div>
 							</div>
 							<!--  -->
@@ -24,7 +42,7 @@
 								<input type="checkbox" id="chck2">
 								<label class="tab-label" for="chck2">Macroeconomía</label>
 								<div class="tab-content">
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+									<a href="#" class="acordion_subtitle ac_links">Lorem</a>
 								</div>
 							</div>
 							<!--  -->
@@ -32,7 +50,7 @@
 								<input type="checkbox" id="chck3">
 								<label class="tab-label" for="chck3">Nuestros indicadores</label>
 								<div class="tab-content">
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+									<a href="#" class="acordion_subtitle ac_links">Lorem</a>
 								</div>
 							</div>
 							<!--  -->
@@ -40,7 +58,7 @@
 								<input type="checkbox" id="chck4">
 								<label class="tab-label" for="chck4">Economias Centroamericanas</label>
 								<div class="tab-content">
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+									<a href="#" class="acordion_subtitle ac_links">Lorem</a>
 								</div>
 							</div>
 							<!--  -->
@@ -48,7 +66,7 @@
 								<input type="checkbox" id="chck5">
 								<label class="tab-label" for="chck5">Tendencias sectoriales</label>
 								<div class="tab-content">
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+									<a href="#" class="acordion_subtitle ac_links">Lorem</a>
 								</div>
 							</div>
 							<!--  -->
@@ -56,13 +74,190 @@
 								<input type="checkbox" id="chck6">
 								<label class="tab-label" for="chck6">Análisis de compañias</label>
 								<div class="tab-content">
-
+									<!-- Sub Menu -->
 									<div class="tab tab_sub">
-										<p class="acordion_subtitle ">Ver todos los Análisis de compañias</p>
-										<input type="checkbox" id="sub1" name="sub">
-										<label class="tab-label" for="sub1">Avianca Holdings</label>
+										<a href="#" class="acordion_subtitle ac_title">Ver todos los Análisis de
+											compañias</a>
+										<input type="checkbox" id="companySub1" name="sub">
+										<label class="tab-label" for="companySub1">Avianca Holdings</label>
 										<div class="tab-content">
 											<a href="#" class="acordion_subtitle">Ver todo Avianca Holdings </a>
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+											<a href="#" class="acordion_subtitle ac_links">Resultados financieros</a>
+											<a href="#" class="acordion_subtitle ac_links">Informes especiales</a>
+											<a href="#" class="acordion_subtitle ac_links">Alertas de mercado</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub2" name="sub">
+										<label class="tab-label" for="companySub2">Bancolombia</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub3" name="sub">
+										<label class="tab-label" for="companySub3">Banco de Bogotá</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub4" name="sub">
+										<label class="tab-label" for="companySub4">Celsia</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub5" name="sub">
+										<label class="tab-label" for="companySub5">CEMEX</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub6" name="sub">
+										<label class="tab-label" for="companySub6">Conconcreto</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub7" name="sub">
+										<label class="tab-label" for="companySub7">Davivienda</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub8" name="sub">
+										<label class="tab-label" for="companySub8">Ecopetrol</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub9" name="sub">
+										<label class="tab-label" for="companySub9">El Cóndor</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub10" name="sub">
+										<label class="tab-label" for="companySub10">GEB</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub11" name="sub">
+										<label class="tab-label" for="companySub11">Grupo Argos</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub12" name="sub">
+										<label class="tab-label" for="companySub12">Grupo Aval</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub13" name="sub">
+										<label class="tab-label" for="companySub13">Grupo Éxito</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub14" name="sub">
+										<label class="tab-label" for="companySub14">Grupo Nutresa</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub15" name="sub">
+										<label class="tab-label" for="companySub15">Grupo Sura</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub16" name="sub">
+										<label class="tab-label" for="companySub16">ISA</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub17" name="sub">
+										<label class="tab-label" for="companySub17">Mineros</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub18" name="sub">
+										<label class="tab-label" for="companySub18">PEI</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub19" name="sub">
+										<label class="tab-label" for="companySub19">Promigas</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
+										</div>
+									</div>
+									<!-- Sub Menu -->
+									<div class="tab tab_sub">
+										<input type="checkbox" id="companySub20" name="sub">
+										<label class="tab-label" for="companySub20">Terpel</label>
+										<div class="tab-content">
+											<a href="#" class="acordion_subtitle ac_links">Actualización de
+												cobertura</a>
 										</div>
 									</div>
 
@@ -73,8 +268,12 @@
 								<input type="checkbox" id="chck7">
 								<label class="tab-label" for="chck7">¿En qué invertir?</label>
 								<div class="tab-content">
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
+									<a href="#" class="acordion_subtitle ac_links">Lorem</a>
 								</div>
+							</div>
+							<!--  -->
+							<div class="acc_multimedia">
+								<a [routerLink]="['/multimedia']">Multimedia</a>
 							</div>
 						</div>
 					</div>
