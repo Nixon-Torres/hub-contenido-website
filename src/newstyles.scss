@@ -149,10 +149,11 @@
   margin-left: auto;
   display: flex;
   display: -webkit-box;
+  width: 100%;
 }
 
 .header .header_section .header_right .suscribe_btn button {
-  width: 150px;
+  width: 166px;
   height: 40px;
   background-color: #595959;
   border: 2px solid #ffffff;
@@ -164,8 +165,8 @@
 
 .header .header_section .header_right .header_search {
   position: relative;
-  width: 500px;
-  margin-right: 70px;
+  width: 480px;
+  margin-right: 41px;
 }
 
 .search-bar-btn .fa.fa-search {
