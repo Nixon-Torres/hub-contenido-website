@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.onLoadReports();
-    this.onLoadMultimedia();
+
   }
 
   onLoadReports() {
@@ -38,10 +38,11 @@ export class HeaderComponent implements OnInit {
       encode: true
     }).subscribe((resp: any) => {
       this.reportsList = resp.body;
+      this.onLoadMultimedia(this.reportsList);
     });
   }
 
-  onLoadMultimedia() {
+  onLoadMultimedia(list) {
     this.http.get({
       path: 'public/contents',
       data: {
@@ -51,7 +52,9 @@ export class HeaderComponent implements OnInit {
         }
       },
       encode: true
-    }).subscribe((resp: any) => { });
+    }).subscribe((resp: any) => {
+
+    });
   }
 
   redirectSelection(event) {
