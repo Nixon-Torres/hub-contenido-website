@@ -23,7 +23,13 @@
 			</div>
 			<div class="header_right">
 				<div class="header_search">
-					<input type="text" name="" placeholder="Busque por:informe,categoria,autor,fecha">
+					<ng-select [items]="reportsList"
+							   [minTermLength]="3"
+							   [searchFn]="customSearchFn"
+							   placeholder="Busque por:informe,categoria,autor,fecha"
+							   bindLabel="name"
+							   bindValue="id"
+							   (change)="redirectSelection($event)"></ng-select>
 					<button type=""><i class="fa fa-search" aria-hidden="true"></i></button>
 				</div>
 				<div class="suscribe_btn">
