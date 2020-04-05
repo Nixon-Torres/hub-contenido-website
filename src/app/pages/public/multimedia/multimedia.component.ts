@@ -64,8 +64,7 @@ export class MultimediaComponent implements OnInit {
     const filter = {
       where: {
         key: 'multimedia',
-        outstanding: true,
-        outstandingHome: false
+        outstanding: true
       },
       include: ['files'],
       order: 'createdAt DESC'

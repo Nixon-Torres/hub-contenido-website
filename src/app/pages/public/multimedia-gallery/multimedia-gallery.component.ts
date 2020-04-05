@@ -33,6 +33,9 @@ export class MultimediaGalleryComponent implements OnInit {
   }
 
   isNewContent(content: any) {
+    if (!content) {
+      return false;
+    }
     const diff = moment().diff(content.createdAt, 'hours');
     return diff < 24;
   }
@@ -43,6 +46,9 @@ export class MultimediaGalleryComponent implements OnInit {
   }
 
   public getThumbSource(content) {
+    if (!content) {
+      return false;
+    }
     const thumb = content.files && content.files.length ? content.files.find(e => e.key === 'thumbnail') : null;
     if (thumb) {
       return this.STORAGE_URL + thumb.clientPath;
@@ -66,9 +72,9 @@ export class MultimediaGalleryComponent implements OnInit {
     }).subscribe((res) => {
       this.contents = res.body;
 
-      this.item1 = this.contents.find(e => e.outstandingArea === 'area1');
-      this.item2 = this.contents.find(e => e.outstandingArea === 'area2');
-      this.item3 = this.contents.find(e => e.outstandingArea === 'area3');
+      this.item1 = this.contents.find(e => e.outstandingHomeArea === 'area1');
+      this.item2 = this.contents.find(e => e.outstandingHomeArea === 'area2');
+      this.item3 = this.contents.find(e => e.outstandingHomeArea === 'area3');
     });
   }
 

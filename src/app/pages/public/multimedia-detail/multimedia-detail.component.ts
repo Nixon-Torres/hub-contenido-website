@@ -89,7 +89,7 @@ export class MultimediaDetailComponent implements OnInit {
       url = new URL(this.content.params.url);
       if (url && url.search) {
         this.videoId = this.getUrlParameter(url, 'v');
-        url = `http://www.youtube.com/embed/${this.videoId}?enablejsapi=1`;
+        url = `https://www.youtube.com/embed/${this.videoId}?enablejsapi=1`;
       }
     }
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
