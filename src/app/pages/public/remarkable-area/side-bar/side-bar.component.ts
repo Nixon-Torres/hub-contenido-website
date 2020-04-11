@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../../../services/http.service';
 import {environment} from '../../../../../environments/environment';
+import * as moment from 'moment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -18,7 +20,7 @@ export class SideBarComponent implements OnInit {
   public banner1: any;
   public banner2: any;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private router: Router) { }
 
   ngOnInit() {
     this.loadReports(1);
@@ -78,7 +80,7 @@ export class SideBarComponent implements OnInit {
     const filter = {
       where: {
       },
-      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'reads'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {
@@ -104,6 +106,70 @@ export class SideBarComponent implements OnInit {
             }
             return e;
           });
+
+      this.loadMultimedia(idx);
+    });
+  }
+
+  go(item) {
+    const type =  item && item.multimediaType ? item.multimediaType.name : '';
+
+    if (type.toLowerCase() === 'webinar') {
+      return window.open(item.params.url, '_blank');
+    }
+    this.router.navigate(['/multimedia', item ? item.id : 'none']);
+  }
+
+  public getType(content) {
+    const type =  content && content.multimediaType ? content.multimediaType.name : '';
+    return type.toUpperCase();
+  }
+
+  public getThumbSource(content) {
+    if (!content) {
+      return false;
+    }
+    const thumb = content.files && content.files.length ? content.files.find(e => e.key === 'thumbnail') : null;
+    if (thumb) {
+      return this.STORAGE_URL + thumb.clientPath;
+    }
+    return 'assets/images/play_btn.png';
+  }
+
+  private loadMultimedia(idx: number) {
+    const filter = {
+      where: {
+        key: 'multimedia'
+      },
+      include: ['files'],
+      order: idx === 1 ? 'updatedAt DESC' : 'reads DESC',
+      limit: 6
+    };
+    this.http.get({
+      path: `public/contents/`,
+      data: filter,
+      encode: true
+    }).subscribe((res) => {
+      let multimedia: any = res.body;
+      multimedia = multimedia.map(e => {
+        return {
+          ...e,
+          name: e.title,
+          publishedAt: e.updatedAt,
+          multimedia: true
+        };
+      });
+
+      this.reports = this.reports.concat(multimedia)
+        .sort((a: any, b: any) => {
+          if (idx === 2) {
+            return a.reads > b.reads ? -1 : a.reads < b.reads ? 1 : 0;
+          }
+          const fdate: any = moment(a.publishedAt);
+          const sdate: any = moment(b.publishedAt);
+          const diff: number = sdate.diff(fdate);
+          return  diff > 0 ? 1 : diff < 0 ? -1 : 0;
+        }).slice(0, 5);
     });
   }
 

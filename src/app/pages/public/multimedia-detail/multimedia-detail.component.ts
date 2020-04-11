@@ -29,6 +29,13 @@ export class MultimediaDetailComponent implements OnInit {
     });
   }
 
+  viewContent(contentId: string) {
+    this.http.get({
+      path: `public/contents/${contentId}/view`
+    }).subscribe((res) => {
+    });
+  }
+
   loadContent(contentId: string) {
     const filter = {
       where: {
@@ -41,6 +48,7 @@ export class MultimediaDetailComponent implements OnInit {
       data: filter,
       encode: true
     }).subscribe((res) => {
+      this.viewContent(contentId);
       this.content = res.body[0];
       this.type = this.content && this.content.multimediaType ? this.content.multimediaType.name : null;
 

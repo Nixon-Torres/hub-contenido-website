@@ -36,11 +36,21 @@
 					</div>
 					<hr>
 					<div *ngFor="let report of reports">
-						<div class="information_tab_pen" [routerLink]="['/reports', report.id]">
+						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]">
 							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
 							<h4>{{report?.name}}</h4>
 							<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 						</div>
+            <div *ngIf="report.multimedia" class="information_tab_pen multimedia-cont" (click)="go(report)">
+              <div class="left">
+                <a style="text-transform: uppercase">MULTIMEDIA</a>
+                <h4>{{report?.name}}</h4>
+                <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+              </div>
+              <div class="right">
+                <img [src]="getThumbSource(report)" alt="">
+              </div>
+            </div>
 						<hr>
 					</div>
 				</div>
