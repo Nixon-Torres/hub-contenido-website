@@ -6,7 +6,8 @@
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li [ngClass]="{activeone: tab === 'tab1'}"><a (click)="tab = 'tab1'">Econom&iacute;a Colombiana</a></li>
+				<li [ngClass]="{activeone: tab === 'tab1'}" class="economy"><a (click)="tab = 'tab1'">Econom&iacute;a
+						Colombiana</a></li>
 				<li [ngClass]="{activeone: tab === 'tab2'}"><a (click)="tab = 'tab2'">Sectores</a></li>
 			</ul>
 			<div class="tab-content">
@@ -22,7 +23,8 @@
 									</p>
 									<p class="para_nuvo">NUEVO</p>
 									<div class="conocer_btn">
-										<a [routerLink]="['/reports', headerReport?.id]">Conocer a detalle el informe <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<a [routerLink]="['/reports', headerReport?.id]">Conocer a detalle el informe <i
+												class="fa fa-angle-right" aria-hidden="true"></i></a>
 									</div>
 								</div>
 							</div>
@@ -30,7 +32,8 @@
 						<div class="col-sm-6">
 							<div class="row">
 								<div class="col-sm-6">
-									<div *ngIf="area1Report" class="tab_sub_division_part" [routerLink]="['/reports', area1Report?.id]">
+									<div *ngIf="area1Report" class="tab_sub_division_part"
+										[routerLink]="['/reports', area1Report?.id]">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.name}}</h4>
 										<p>{{area1Report?.smartContent}}</p>
@@ -38,7 +41,8 @@
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<div *ngIf="area2Report" class="tab_sub_division_part" [routerLink]="['/reports', area2Report?.id]">
+									<div *ngIf="area2Report" class="tab_sub_division_part"
+										[routerLink]="['/reports', area2Report?.id]">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.name}}</h4>
 										<p>{{area2Report?.smartContent}}</p>
@@ -46,7 +50,8 @@
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<div *ngIf="area3Report" class="tab_sub_division_part" [routerLink]="['/reports', area3Report?.id]">
+									<div *ngIf="area3Report" class="tab_sub_division_part"
+										[routerLink]="['/reports', area3Report?.id]">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.name}}</h4>
 										<p>{{area3Report?.smartContent}}</p>
@@ -54,7 +59,8 @@
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<div *ngIf="area4Report" class="tab_sub_division_part" [routerLink]="['/reports', area4Report?.id]">
+									<div *ngIf="area4Report" class="tab_sub_division_part"
+										[routerLink]="['/reports', area4Report?.id]">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.name}}</h4>
 										<p>{{area4Report?.smartContent}}</p>
@@ -64,24 +70,31 @@
 							</div>
 						</div>
 					</div>
+					<div class="para_bottom_btn">
+						<div class="button_inner">
+							<a href="#" class="empresas">Conocer más sobre economia colombiana <i
+									class="fa fa-angle-right" aria-hidden="true"></i></a>
+						</div>
+					</div>
 				</div>
-        <div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
-          <div class="row">
-            <div class="col-sm-3" *ngFor="let report of randomReports">
-              <div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
-                <p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
-                <h4>{{report?.name}}</h4>
-                <p>{{report?.smartContent}}</p>
-                <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-			</div>
-		</div>
-		<div class="para_bottom_btn">
-			<div class="button_inner">
-				<a href="#" class="empresas">Conocer m&aacute;s informes de sectores <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+				<div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
+					<div class="row">
+						<div class="col-sm-3" *ngFor="let report of randomReports">
+							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
+								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
+								<h4>{{report?.name}}</h4>
+								<p>{{report?.smartContent}}</p>
+								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="para_bottom_btn">
+						<div class="button_inner">
+							<a href="#" class="empresas">Conocer m&aacute;s informes de sectores <i
+									class="fa fa-angle-right" aria-hidden="true"></i></a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

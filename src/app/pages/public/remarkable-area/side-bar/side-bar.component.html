@@ -26,15 +26,14 @@
 				<div id="tab-1" class="tab-pane active">
 					<div class="information_sidebar_first_content" *ngIf="dailyReport">
 						<div class="isfc_left">
-							<p>Acceda aqui al informe</p>
-							<h4>diario de mercados</h4>
+							<!-- <p>Acceda aqui al informe</p> -->
+							<h4>así cierran los mercados</h4>
 							<a [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
 						</div>
 						<div class="isfc_right">
 							<img src="assets/images/tablet.png" alt="">
 						</div>
 					</div>
-					<hr>
 					<div *ngFor="let report of reports">
 						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]">
 							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
