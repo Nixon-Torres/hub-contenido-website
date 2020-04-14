@@ -4,3 +4,9 @@
     height: auto;
   }
 }
+
+.information_sidebar_tabs ul.nav.nav-tabs li{
+  &.economy{
+    margin-left: 0;
+  }
+}
