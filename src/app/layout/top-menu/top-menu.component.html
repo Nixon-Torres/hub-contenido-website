@@ -88,17 +88,17 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-sm-12">
+          <div class="col-md-6 col-sm-12" *ngIf="currentReport">
             <div class="hide-right-menu">
               <div class="hide-right-menu-head">
                 <h3>Contenido Destacado</h3>
               </div>
 
               <div class="hide-right-menu-contant">
-                <h3>Sector petróleo</h3>
-                <h4>Lo último sobre el comprotamiento del petróleo</h4>
-                <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </h5>
-                <p>1 Julio 2020</p>
+                <h3>{{getCategoryName(currentReport?.reportType)}}</h3>
+                <h4>{{currentReport.name}}</h4>
+                <h5>{{currentReport.smartContent}} </h5>
+                <p>{{currentReport.publishedAt | date:'d MMMM y'}}</p>
               </div>
             </div>
           </div>

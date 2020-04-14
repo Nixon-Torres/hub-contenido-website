@@ -849,6 +849,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
   padding: 15px 0px;
   text-decoration: none;
   font-family: Helvetica_Neu_Bold;
+  cursor: pointer;
   @media only screen and (max-width: 1024px){
 		font-size: 15px;
 	}
@@ -867,6 +868,34 @@ footer.main_footer .footer_first .footer-links ul li:before {
   border: 1px dashed #dadada;
   margin-top: 1.5rem;
   margin-bottom: 0;
+}
+
+.information_tab_pen {
+  a, h4, p, img {
+    cursor: pointer;
+  }
+}
+
+.information_tab_pen.multimedia-cont {
+  padding-left: 0px;
+  display: inline-block;
+  margin-bottom: -1.5rem;
+
+  .left {
+    float: left;
+    width: 65%;
+    padding-right: 5px;
+  }
+
+  .right {
+    max-width: 35%;
+    float: left;
+    padding-top: 6px;
+
+    img {
+      width: 100%;
+    }
+  }
 }
 
 @media only screen and (max-width: 1024px){
@@ -1191,6 +1220,7 @@ ul.nav.nav-tabs li.activetwo a {
   min-width: 100%;
   min-height: 175px;
   max-height: 175px;
+  max-width: 330px;
 }
 
 .slider_part .slider_content .owl-theme .owl-nav button.owl-prev {
@@ -15801,7 +15831,7 @@ max-width: 100% !important;
   }
 }
 
-.multimedia_img{
+.multimedia_img {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

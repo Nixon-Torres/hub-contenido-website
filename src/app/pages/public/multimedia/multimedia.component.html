@@ -11,70 +11,66 @@
       <h3>Recomendados</h3>
     </div>
     <div class="Recomendados-header">
-      <div class="row">
+      <div class="row" *ngIf="header" [routerLink]="['/multimedia', header.id]">
         <div class="col-md-6 col-sm-12">
           <div class="Recomendados-inner-image">
-            <span class="overlaycategory">Video</span>
+            <span class="overlaycategory">{{getType(header)}}</span>
             <i class="fas fa-play-circle"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
-            <img src="../../../../assets/images/Captura de pantalla 2019-08-14 a la(s) 4.53.10 p.m..png" alt="" class="img-fluid">
+            <img [src]="getThumbSource(header)" alt="" class="img-fluid">
           </div>
         </div>
         <div class="col-md-6 col-sm-12 Recomendados-inner-text">
           <h4>Corredores Davivienda</h4>
-          <h2>Tenga en cuenta los cambios tributarios después de aprobada</h2>
-          <h6>1 Julio 2020</h6>
-          <p>Aquí podrá acceder a las cápsulas en las que nuestro equipo de trabajo le presenta lo más relevante en temas económicos, financieros y recomendaciones de inversión</p>
+          <h2>{{header?.title}}</h2>
+          <h6>{{header?.createdAt | date:'d MMMM y'}}</h6>
+          <p>{{header?.description}}</p>
         </div>
-
       </div>
     </div>
 
     <div class="Recomandados-inline-video">
       <div class="row">
-        <div class="col-md-4 col-sm-4 inline-video">
-
+        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item1" [routerLink]="['/multimedia', item1.id]">
           <div class="vidimg">
-            <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-            <span class="overlaycategory">Video</span>
+            <img [src]="getThumbSource(item1)" alt="" class="img-fluid">
+            <span class="overlaycategory">{{getType(item1)}}</span>
             <i class="fas fa-play-circle"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
           </div>
 
           <h4>Corredores Davivienda</h4>
-          <h2>Bienvenido a Homebroker</h2>
-          <h6>1 Julio 2020</h6>
-
+          <h2>{{item1.title}}</h2>
+          <h6>{{item1?.description}}</h6>
         </div>
-        <div class="col-md-4 col-sm-4 inline-video">
-
+        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item2" [routerLink]="['/multimedia', item2.id]">
           <div class="vidimg">
-            <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-            <span class="overlaycategory">Podcast</span>
+            <img [src]="getThumbSource(item2)" alt="" class="img-fluid">
+            <span class="overlaycategory">{{getType(item2)}}</span>
             <i class="fas fa-podcast"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
           </div>
 
           <h4>Corredores Davivienda</h4>
-          <h2>Bienvenido a Homebroker</h2>
-          <h6>1 Julio 2020</h6>
+          <h2>{{item2.title}}</h2>
+          <h6>{{item2?.description}}</h6>
         </div>
-        <div class="col-md-4 col-sm-4 inline-video">
+        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item3" [routerLink]="['/multimedia', item3.id]">
 
           <div class="vidimg">
-            <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-            <span class="overlaycategory">Video</span>
+            <img [src]="getThumbSource(item3)" alt="" class="img-fluid">
+            <span class="overlaycategory">{{getType(item3)}}</span>
             <i class="fas fa-play-circle"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
           </div>
 
           <h4>Corredores Davivienda</h4>
-          <h2>Bienvenido a Homebroker</h2>
-          <h6>1 Julio 2020</h6>
+          <h2>{{item3.title}}</h2>
+          <h6>{{item3?.description}}</h6>
         </div>
 
       </div>
@@ -86,14 +82,14 @@
   <div class="container">
     <div class="row">
       <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#home">Videos (28)</a>
+        <li class="nav-item" (click)="setTab(1)">
+          <a class="nav-link" [ngClass]="{'active': currentTab === 1}">Videos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#menu1">Podcast</a>
+        <li class="nav-item" (click)="setTab(2)">
+          <a class="nav-link" [ngClass]="{'active': currentTab === 2}">Podcast</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#menu2">Webinar</a>
+        <li class="nav-item" (click)="setTab(3)">
+          <a class="nav-link" [ngClass]="{'active': currentTab === 3}" >Webinar</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -102,246 +98,25 @@
             <p>Aquí podrá acceder a las cápsulas en las que nuestro equipo de trabajo le presenta lo más relevante en temas económicos, financieros y recomendaciones de inversión.</p>
             <div class="Recomandados-inline-video">
               <div class="row">
-                <div class="col-md-4 col-sm-4 inline-video">
+                <div class="col-md-4 col-sm-4 inline-video" *ngFor="let item of contents">
 
                   <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
+                    <img [src]="getThumbSource(item)" alt="" class="img-fluid">
+                    <span class="overlaycategory">{{getType(item)}}</span>
                     <i class="fas fa-play-circle"></i>
                     <span class="overlaytitle">Reproducir</span>
                     <div class="overlay-image-header"></div>
                   </div>
 
                   <h4>Corredores Davivienda</h4>
-                  <h2>Bienvenido a Homebroker</h2>
-                  <h6>1 Julio 2020</h6>
+                  <h2>{{item?.title}}</h2>
+                  <h6>{{item?.createdAt | date:'d MMMM y'}}</h6>
 
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-play-circle"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Tenga en cuenta los cambios tributarios después de aprobada</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-play-circle"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Siga estas recomendaciones para invertir en junio</h2>
-                  <h6>1 Julio 2020</h6>
                 </div>
               </div>
             </div>
-            <div class="Recomandados-inline-video">
-              <div class="row">
-                <div class="col-md-4 col-sm-4 inline-video">
-
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-play-circle"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Bienvenido a Homebroker</h2>
-                  <h6>1 Julio 2020</h6>
-
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-play-circle"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Tenga en cuenta los cambios tributarios después de aprobada</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-play-circle"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Siga estas recomendaciones para invertir en junio</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-              </div>
-            </div>
-
             <div class="tab-botton">
-              <button type="button" class="btn tab-btn-red">Cargar más<span><i class="fas fa-chevron-down"></i></span></button>
-            </div>
-          </div>
-        </div>
-        <div id="menu1" class="container tab-pane fade">
-          <div class="Recomandados-tab-contant">
-            <p>Aquí podrá acceder a las cápsulas en las que nuestro equipo de trabajo le presenta lo más relevante en temas económicos, financieros y recomendaciones de inversión.</p>
-            <div class="Recomandados-inline-video">
-              <div class="row">
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-podcast"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Bienvenido a Homebroker</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-podcast"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Tenga en cuenta los cambios tributarios después de aprobada</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-podcast"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Siga estas recomendaciones para invertir en junio</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-              </div>
-            </div>
-            <div class="Recomandados-inline-video">
-              <div class="row">
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-podcast"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Bienvenido a Homebroker</h2>
-                  <h6>1 Julio 2020</h6>
-
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-podcast"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Siga estas recomendaciones para invertir en junio</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <div class="vidimg">
-                    <img src="../../../../assets/images/Imagen 14@2x.png" alt="" class="img-fluid">
-                    <span class="overlaycategory">Video</span>
-                    <i class="fas fa-podcast"></i>
-                    <span class="overlaytitle">Reproducir</span>
-                    <div class="overlay-image-header"></div>
-                  </div>
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Siga estas recomendaciones para invertir en junio</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="tab-botton">
-              <button type="button" class="btn tab-btn-red">Cargar más<span><i class="fas fa-chevron-down"></i></span></button>
-            </div>
-          </div>
-        </div>
-        <div id="menu2" class="container tab-pane fade">
-          <div class="Recomandados-tab-contant">
-            <p>Aquí podrá acceder a las cápsulas en las que nuestro equipo de trabajo le presenta lo más relevante en temas económicos, financieros y recomendaciones de inversión.</p>
-            <div class="Recomandados-inline-video">
-              <div class="row">
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <img src="../../../../assets/images/tab-inline-image-1.png" alt="" class="img-fluid">
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Bienvenido a Homebroker</h2>
-                  <h6>1 Julio 2020</h6>
-
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <img src="../../../../assets/images/inline-image-2.png" alt="" class="img-fluid">
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Tenga en cuenta los cambios tributarios después de aprobada</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <img src="../../../../assets/images/inline-image-3.png" alt="" class="img-fluid">
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Siga estas recomendaciones para invertir en junio</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-              </div>
-            </div>
-            <div class="Recomandados-inline-video">
-              <div class="row">
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <img src="../../../../assets/images/tab-inline-image-1.png" alt="" class="img-fluid">
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Bienvenido a Homebroker</h2>
-                  <h6>1 Julio 2020</h6>
-
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <img src="../../../../assets/images/inline-image-2.png" alt="" class="img-fluid">
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Tenga en cuenta los cambios tributarios después de aprobada</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-                <div class="col-md-4 col-sm-4 inline-video">
-                  <img src="../../../../assets/images/inline-image-3.png" alt="" class="img-fluid">
-                  <h4>Corredores Davivienda</h4>
-                  <h2>Siga estas recomendaciones para invertir en junio</h2>
-                  <h6>1 Julio 2020</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="tab-botton">
-              <button type="button" class="btn tab-btn-red">Cargar más<span><i class="fas fa-chevron-down"></i></span></button>
+              <button type="button" class="btn tab-btn-red" (click)="loadMultimedia()">Cargar más<span><i class="fas fa-chevron-down"></i></span></button>
             </div>
           </div>
         </div>

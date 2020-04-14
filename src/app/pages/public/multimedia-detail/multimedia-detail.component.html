@@ -12,13 +12,26 @@
 <div class="Nuestros-indicadores">
   <div class="container">
     <div class="Nuestros-indicadores-video">
-      <img src="../../../../assets/images/Nuestros-indicadores-image-1.png" class="img-fluid">
+      <div *ngIf="type === 'Video'">
+        <iframe id="player" type="text/html" width="640" height="390"
+                [src]="getVideoUrl()"
+                frameborder="0"></iframe>
+      </div>
+      <div *ngIf="type === 'Podcast'">
+        <audio controls>
+          <source [src]="getPodcastUrl()" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div *ngIf="type === 'Webinar'">
+        <a [href]="getWebinarUrl()" target="_blank">Ir al webinar</a>
+      </div>
     </div>
     <div class="Nuestros-indicadores-contant">
       <h4>Corredores Davivienda</h4>
-      <h2>Tenga en cuenta los cambios tributarios después de aprobada</h2>
-      <h6>1 Julio 2020</h6>
-      <p>Aquí podrá acceder a las cápsulas en las que nuestro equipo de trabajo le presenta lo más relevante en temas económicos, financieros y recomendaciones de inversión</p>
+      <h2>{{content?.title}}</h2>
+      <h6>{{content?.createdAt | date:'d MMMM y'}}</h6>
+      <p>{{content?.description}}</p>
     </div>
   </div>
   <div class="Nuestros-indicadores-socoal-media">
@@ -43,32 +56,13 @@
     <h2>Recomendados</h2>
     <div class="nir-inline-video">
       <div class="row">
-        <div class="col-md-4 col-sm-4 nir_content">
+        <div class="col-md-4 col-sm-4 nir_content" *ngFor="let report of relateds">
           <img src="../../../../assets/images/nir-video-1.png" class="img-fluid">
           <div class="nir-inline-video-contant">
-            <h5>Nombre de la categoría del informe</h5>
-            <h3>Lorem ipsum dolor sit amet</h3><br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <button type="button" class="btn nir-inline-video-btn">Leer más</button>
-          </div>
-        </div>
-
-        <div class="col-md-4 col-sm-4 nir_content">
-          <img src="../../../../assets/images/nir-video-2.png" class="img-fluid">
-          <div class="nir-inline-video-contant">
-            <h5>Nombre de la categoría del informe</h5>
-            <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <button type="button" class="btn nir-inline-video-btn">Leer más</button>
-          </div>
-        </div>
-
-        <div class="col-md-4 col-sm-4 full-image nir_content">
-          <img src="../../../../assets/images/nir-video-3.png" class="img-fluid">
-          <div class="nir-inline-video-contant">
-            <h5>Corredores Davivienda</h5>
-            <h3>Siga estas recomendaciones para invertir en junio</h3>
-            <p>1 Julio 2020
+            <h5>{{getCategory(report?.reportType)}}</h5>
+            <h3>{{report?.name}}</h3><br>
+            <p>{{report?.smartContent}}</p>
+            <button type="button" class="btn nir-inline-video-btn" [routerLink]="['/reports', report?.id]">Leer más</button>
           </div>
         </div>
       </div>

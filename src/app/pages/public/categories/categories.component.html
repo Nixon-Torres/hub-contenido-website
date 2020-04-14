@@ -13,7 +13,7 @@
   <div class="preapertura">
     <div class="container">
       <div class="banner_image">
-        <img src="../../../../assets/images/Imagen 3.png" class="img-fluid" alt="">
+        <img [src]="getBannerImg()" class="img-fluid" alt="">
       </div>
     </div>
   </div>
@@ -93,7 +93,6 @@
                 </div>
               </div>
 
-
               <div class="contant gray-back" *ngFor="let report of reports">
                 <div class="detail">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
@@ -127,7 +126,7 @@
 
                     <ng-select [items]="pagesItems" [searchable]="false"
                                [clearable]="false"
-                               (change)="pageChanged($event)"
+                               (change)="pageChanged()"
                                [(ngModel)]="currentPage"
                                [multiple]="false" class="page-select"></ng-select>
                   </div>

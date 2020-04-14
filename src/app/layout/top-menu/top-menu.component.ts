@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 export class TopMenuComponent implements OnInit {
   public subMenuVisible = false;
   public currentMenuOption: number;
+  public currentCategory: any;
+  public currentReport: any;
   public ready = false;
 
   private menuOptions = [{
@@ -45,6 +47,7 @@ export class TopMenuComponent implements OnInit {
 
   public companies: any;
   public categories: any;
+  public reports: any;
   public reportTypes: any;
 
   public totalGroups;
@@ -86,6 +89,17 @@ export class TopMenuComponent implements OnInit {
     if (idx !== null) {
       const oldIdx = this.currentMenuOption;
       this.currentMenuOption = idx;
+
+      const code = this.menuOptions[idx - 1].code;
+      const category = this.categories.find(e => e.code === code);
+      this.currentCategory = category;
+      this.currentReport = null;
+
+      if (this.reports) {
+        this.currentReport = this.reports.find(e => this.currentCategory.mainReportId &&
+          e.id === this.currentCategory.mainReportId);
+      }
+
       if (oldIdx !== this.currentMenuOption) {
         this.distributeItems(false);
       }
@@ -133,9 +147,42 @@ export class TopMenuComponent implements OnInit {
     }).pipe(
       map((res) => {
         this.categories = res.body;
+        this.getReports();
         return res;
       })
     );
+  }
+
+  public getCategoryName(reportType) {
+    const subCategory = reportType.subCategory && reportType.subCategory.length ? reportType.subCategory[0] : null;
+    if (subCategory) {
+      return subCategory.description;
+    }
+    const category = reportType.mainCategory && reportType.mainCategory.length ? reportType.mainCategory[0] : null;
+    return category ? category.description : '';
+  }
+
+  private getReports() {
+    this.http.get({
+      path: `public/reports/`,
+      data: {
+        where: {
+          id: {
+            inq: this.categories.filter(e => e.mainReportId).map(e => e.mainReportId)
+          }
+        },
+        fields: ['id', 'name', 'smartContent', 'reportTypeId', 'publishedAt'],
+        include: [{
+          relation: 'reportType',
+          scope: {
+            include: ['mainCategory', 'subCategory']
+          }
+        }]
+      },
+      encode: true
+    }).subscribe((res) => {
+      this.reports = res.body;
+    });
   }
 
   private getCompanies(): Observable<any> {

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import * as moment from 'moment';
+import {environment} from '../../../../environments/environment';
 
 @Component({
     selector: 'app-categories',
@@ -22,6 +23,8 @@ export class CategoriesComponent implements OnInit {
   public totalPages: number;
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
+
+  public assetBase: string = environment.URL_API;
 
   public idateStart: any;
   public idateEnd: any;
@@ -59,6 +62,16 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
+  getBannerImg() {
+    const defaultBanner = '../../../../assets/images/Imagen 3.png';
+    if (!this.category || (this.category && !this.category.files)) {
+      return defaultBanner;
+    }
+
+    const file = this.category.files.find(e => e.key === 'categoryBanner');
+    return file ? this.assetBase + file.clientPath : defaultBanner;
+  }
+
   getCategory() {
     this.http.get({
       path: `public/categories/`,
@@ -66,7 +79,7 @@ export class CategoriesComponent implements OnInit {
         where: {
           id: this.categoryId
         },
-        include: ['children', {
+        include: ['children', 'files', {
           relation: 'childrenMainReportTypes',
           scope: {
             include: ['subCategory']
@@ -76,7 +89,12 @@ export class CategoriesComponent implements OnInit {
       },
       encode: true
     }).subscribe((response: any) => {
-      this.category = response.body[0]
+      this.category = response.body[0];
+
+      if (this.category.code === 'ANLISISDECOMPAAS') {
+        this.companyId = this.reportTypeId;
+        this.reportTypeId = null;
+      }
 
       if (this.reportTypeId) {
         this.reportType = this.category.childrenMainReportTypes.find(e => e.id === this.reportTypeId);

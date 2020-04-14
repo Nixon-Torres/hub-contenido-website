@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, Sanitizer, ViewEncapsulation} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../../environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-report',
@@ -14,7 +15,8 @@ export class ReportComponent implements OnInit {
     public report: any;
     public reportId: string;
 
-    constructor(private http: HttpService, private activatedRoute: ActivatedRoute) {
+    constructor(private http: HttpService, private activatedRoute: ActivatedRoute,
+                private sanitizer: DomSanitizer) {
     }
 
     ngOnInit() {
@@ -39,7 +41,7 @@ export class ReportComponent implements OnInit {
             encode: true
         }).subscribe((res) => {
             const html = (res.body as unknown as string).replace(/\/public\/reports\//g, environment.URL_API + 'public/reports/');
-            this.myhtml = html;
+            this.myhtml = this.sanitizer.bypassSecurityTrustHtml(html);
         });
     }
 }
