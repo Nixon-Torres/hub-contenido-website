@@ -19,7 +19,7 @@
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li class="economy" [ngClass]="{'active' : selectedTab === 'tab1'}"><a (click)="changeTab(1)">&Uacute;ltimos informes</a></li>
+				<li class="last_inf" [ngClass]="{'active' : selectedTab === 'tab1'}"><a (click)="changeTab(1)">&Uacute;ltimos informes</a></li>
 				<li [ngClass]="{'active' : selectedTab === 'tab2'}"><a (click)="changeTab(2)">M&aacute;s le&iacute;dos</a></li>
 			</ul>
 			<div class="tab-content">
@@ -27,7 +27,7 @@
 					<div class="information_sidebar_first_content" *ngIf="dailyReport">
 						<div class="isfc_left">
 							<!-- <p>Acceda aqui al informe</p> -->
-							<h4>así cierran los mercados</h4>
+							<h4>Así cierran los mercados</h4>
 							<a [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
 						</div>
 						<div class="isfc_right">
