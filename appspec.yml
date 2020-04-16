@@ -7,7 +7,7 @@ hooks:
   AfterInstall:
     - location: scripts/copy_application_files
       timeout: 300
-      runas: root
+      runas: ubuntu
   ApplicationStart:
     - location: scripts/restart_service
       timeout: 300
