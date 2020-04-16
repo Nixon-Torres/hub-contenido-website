@@ -1,0 +1,2 @@
+#!/bin/bash
+cp -R /tmp/hub-contenidos-website/dist/hub-contenidos-front/* /home/ubuntu/hub-contenidos-publicwebsite/
