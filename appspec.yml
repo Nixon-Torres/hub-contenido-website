@@ -4,10 +4,11 @@ files:
   - source: /
     destination: /tmp/hub-contenidos-website
 hooks:
-  ApplicationStart:
+  AfterInstall:
     - location: scripts/copy_application_files
       timeout: 300
       runas: root
+  ApplicationStart:
     - location: scripts/restart_service
       timeout: 300
       runas: ubuntu
