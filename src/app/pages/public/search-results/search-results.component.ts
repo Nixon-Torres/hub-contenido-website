@@ -3,13 +3,14 @@ import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
+import {Location} from '@angular/common';
 
 @Component({
-    selector: 'app-categories',
-    templateUrl: './categories.component.html',
-    styleUrls: ['./categories.component.scss']
+    selector: 'app-search-results',
+    templateUrl: './search-results.component.html',
+    styleUrls: ['./search-results.component.scss']
 })
-export class CategoriesComponent implements OnInit {
+export class SearchResultsComponent implements OnInit {
   private categoryId: string;
   private reportTypeId: string;
   private companyId: string;
@@ -29,6 +30,8 @@ export class CategoriesComponent implements OnInit {
   public idateStart: any;
   public idateEnd: any;
 
+  public searchText: string;
+
   public investmentGroups = [{
     name: 'Renta Fija',
     code: 'RENTAFIJA',
@@ -43,22 +46,13 @@ export class CategoriesComponent implements OnInit {
     reportTypes: []
   }];
 
-  constructor(private http: HttpService, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private location: Location) {
   }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params: any) => {
-      if (params.get('id')) {
-        this.categoryId = params.get('id');
-      }
-
-      if (params.get('typeid')) {
-        this.reportTypeId = params.get('typeid');
-      }
-
-      if (this.categoryId) {
-        this.getCategory();
-      }
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      this.searchText = params.s;
+      this.getReports();
     });
   }
 
@@ -146,34 +140,12 @@ export class CategoriesComponent implements OnInit {
   }
 
   getWhere() {
-    let where: any = {};
-
-    if (this.reportTypeId) {
-      where.reportTypeId = this.reportTypeId;
-    } else {
-      where.reportTypeId = {inq: this.category.childrenMainReportTypes.map(e => e.id)};
-    }
-
-    if (this.category.code === 'ANLISISDECOMPAAS' && this.companyId) {
-      where.companyId = this.companyId;
-    }
-
-    if (this.idateStart || this.idateEnd) {
-      const conds = [where];
-
-      if (this.idateStart) {
-        const start = moment(this.idateStart).add(5, 'hours').toDate();
-        conds.push({publishedAt: {gte: start}});
-      }
-
-      if (this.idateEnd) {
-        const end = moment(this.idateStart).add(5, 'hours').toDate();
-        conds.push({publishedAt: {lte: end}});
-      }
-
-      where = {and: conds};
-    }
+    const where: any = {name: {like: this.searchText, options: 'i'}};
     return where;
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   getReportCount() {
@@ -235,7 +207,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReportSubCategoryName(reportType: any) {
-    const name = reportType.description;
+    const name = reportType ? reportType.description : '';
     return name;
   }
 

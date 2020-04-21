@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public reportsList: Array<any>;
-
+  public searchText: string;
 
   constructor(
       private http: HttpService,
@@ -74,5 +74,9 @@ export class HeaderComponent implements OnInit {
         item[author].name.toLowerCase().indexOf(term) > -1 ||
         dateString.indexOf(term) > -1 ||
         item.reportType.mainCategory.find(e => e.description.toLowerCase().indexOf(term) > -1);
+  }
+
+  searchEvent() {
+    this.router.navigate(['/search'], { queryParams: { s: this.searchText } });
   }
 }

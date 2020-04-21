@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: './pages/public/report/report.module#ReportModule'
   },
   {
+    path: 'search',
+    component: LayoutComponent,
+    loadChildren: './pages/public/search-results/search-results.module#SearchResultsModule'
+  },
+  {
     path: 'categories/:id',
     component: LayoutComponent,
     loadChildren: './pages/public/categories/categories.module#CategoriesModule'

@@ -1,0 +1,161 @@
+.analisis-information {
+  margin-top: 100px;
+}
+
+.found-title {
+  p {
+    font-size: 20px;
+    color: #505050;
+    opacity: 0.8;
+
+    .text {
+      font-weight: bold;
+      opacity: 1;
+      font-style: italic;
+    }
+  }
+}
+
+.contant-page-set {
+  padding-left: 0px;
+}
+
+.contant.back-button {
+  height: 120px;
+  padding: 0px;
+
+  .btn-container {
+    width: 220px;
+    margin: 50px auto 0;
+  }
+
+  button {
+    position: inherit;
+    background-color: #ffffff;
+    border: 1px solid #e8162e;
+    max-width: 133px;
+    color: #e8162e;
+    font-size: 14px;
+    font-weight: 500;
+    height: 33px;
+    border-radius: 5px;
+    font-family: Helvetica;
+    width: 100%;
+  }
+}
+
+.contant.item {
+  padding-right: 0px;
+  border-bottom: 0px;
+
+  .detail {
+    width: 60%;
+    margin: 0 auto;
+    border-bottom: 1px solid #E7EAF1;
+  }
+}
+
+.todo-analisis {
+  h3 {
+    cursor: pointer;
+  }
+}
+
+.investment-group-section-title {
+  font-size: 18px;
+  margin-bottom: -5px;
+}
+
+.investment-list {
+  min-height: 205px;
+}
+
+.enquinvertir-menu {
+  .title {
+    font-size: 14px;
+    font-weight: normal;
+    padding-left: 10px;
+    color: #454545;
+  }
+}
+
+.ng-select.page-select {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 55px;
+}
+
+.ng-select.page-select .ng-select-container  {
+  min-height: 0px;
+  border-radius: 0;
+}
+
+.ng-select.company-type-select {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 260px;
+  float: left;
+
+  .ng-option-label {
+    font-size: 12px;
+  }
+}
+
+.ng-select.company-type-select ::ng-deep span,
+.ng-select.company-type-select ::ng-deep .ng-placeholder {
+    font-size: 12px;
+}
+
+.categorias-select-list {
+  float: left;
+}
+
+.reportTitle {
+  cursor: pointer;
+}
+
+.analisis-menu li.active {
+  border-right: 1px solid #E8162E;
+  color: #E8162E;
+}
+
+.date-picker-category {
+  width: 130px;
+
+}
+
+.date-picker-1 input {
+  padding: 0 0 7px 5px;
+}
+
+.mat-form-field-appearance-legacy ::ng-deep .mat-form-field-underline {
+  display: none
+}
+
+.date-picker-category ::ng-deep .mat-form-field-flex {
+  border: 1px solid #A5ABB1;
+  align-items: center;
+  height: 35px;
+    .mat-form-field-infix{
+      padding: 10px 0;
+      font-size: 12px;
+    }
+}
+
+.date-picker-category ::ng-deep .mat-form-field-label-wrapper {
+  left: 4px;
+  top: -10px;
+  color: #A5ABB1 !important;
+}
+
+.mat-form-field.mat-focused ::ng-deep .mat-form-field-label {
+  color: #A5ABB1 !important;
+}
+
+.contant-1 {
+  padding-bottom: 0px;
+}
+
+.date_filter{
+  color: #A5ABB1;
+}
