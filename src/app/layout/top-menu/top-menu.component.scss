@@ -14154,6 +14154,7 @@ max-width: 100% !important;
   .content {
     background: #F4F4F4;
     height: 87%;
+    width: 100.9%;
 
     iframe {
       width: 91%;
@@ -14187,6 +14188,19 @@ max-width: 100% !important;
           margin-top: 2px;
         }
       }
+    }
+  }
+}
+
+.menu_icon{
+  width: 13% !important;
+  figure{
+    margin: 0;
+    margin-left: -7px;
+    padding-right: 8px;
+    img{
+    width: 30px;
+    height: auto;
     }
   }
 }
