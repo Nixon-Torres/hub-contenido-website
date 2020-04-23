@@ -33,6 +33,12 @@ body {
 
 .header_left {
   width: 38%;
+  @media (max-width: 1200px){
+    width: 28.2%;
+  }
+  @media (max-width: 1125px){
+    width: 37%;
+  }
 }
 
 .header .header_section .header_left .site_logo img {

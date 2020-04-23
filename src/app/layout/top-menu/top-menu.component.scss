@@ -14155,6 +14155,9 @@ max-width: 100% !important;
     background: #F4F4F4;
     height: 87%;
     width: 100.9%;
+    @media (max-width: 1200px){
+      width: 103%;
+    }
 
     iframe {
       width: 91%;
