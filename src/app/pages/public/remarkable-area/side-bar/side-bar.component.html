@@ -47,7 +47,10 @@
                 <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
               </div>
               <div class="right">
-                <img [src]="getThumbSource(report)" alt="">
+                <div class="img-container">
+                  <img class="thumb" [src]="getThumbSource(report)" alt="">
+                  <div class="play_button"><img alt="" src="assets/images/play_btn.png"></div>
+                </div>
               </div>
             </div>
 						<hr>
