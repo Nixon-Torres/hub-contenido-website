@@ -236,11 +236,22 @@ h2{
     display: block;
 }
 
+.person-portfolio {
+    width: 100%;
+    justify-content: center;
+}
+
 .person-portfolio .img-block img{
     border-radius: 50%;
 }
 .person-portfolio .pf-descrition{
     margin-left: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 44%;
+}
+.person-portfolio .pf-descrition .name, .quote{
+    width: 100%;
 }
 
 .person-portfolio .pf-descrition p{
@@ -557,11 +568,22 @@ p.left-arrow-paragraph::before{
 
     .person-portfolio{
         flex-direction: column;
-        align-items: flex-start !important;
+        align-items: center;
     }
     .person-portfolio .pf-descrition{
         margin-left: 0;
         margin-top: 20px;
+    }
+
+    @media (max-width: 700px){
+        .person-portfolio {
+            width: 100%;
+            justify-content: start;
+        }
+        .person-portfolio{
+            flex-direction: initial;
+            align-items: initial;
+        }
     }
 
     .company-legaltxt{

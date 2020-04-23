@@ -14082,6 +14082,7 @@ max-width: 100% !important;
     font-size: 14px;
     font-weight: 400;
     color: #5F5F5F;
+    letter-spacing: 0;
   }
 
   i {
@@ -14154,7 +14155,7 @@ max-width: 100% !important;
   .content {
     background: #F4F4F4;
     height: 87%;
-    width: 100.9%;
+    width: 100%;
     @media (max-width: 1200px){
       width: 103%;
     }
