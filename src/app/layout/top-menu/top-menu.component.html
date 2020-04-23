@@ -13,9 +13,12 @@
             routerLinkActive="active">
           <a>Macroeconomía</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(3)" (mouseleave)="mouseLeave()" class="set-caret-3 set-padd"
+        <li (mouseenter)="mouseEnter(3)" (mouseleave)="mouseLeave()" class="set-caret-3 set-padd menu_icon"
             [routerLink]="getCategoryLink(3)"
             routerLinkActive="active">
+            <figure>
+              <img src="/assets/images/menu-icon.png" alt="">
+            </figure>
           <a>Nuestros <br/> indicadores</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(4)" (mouseleave)="mouseLeave()" class="set-caret-4 set-padd"
