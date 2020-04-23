@@ -6641,7 +6641,14 @@ p.informe_heading_desc {
 
 .inline-video img {
   width: 100%;
-  min-height: 181px;
+  height: 181px;
+}
+
+.slider_part .slider_content .slider_blog .slider_blog_img > img {
+  min-width: 330px;
+  min-height: 175px;
+  height: 175px;
+  width: 330px;
 }
 
 .inline-video {
