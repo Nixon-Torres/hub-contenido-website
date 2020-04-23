@@ -43,7 +43,7 @@
               <div class="enquinvertir-menu" *ngFor="let group of investmentGroups">
                 <span class="title">{{group.name}}</span>
                 <ul>
-                  <a href="#" *ngFor="let item of group.reportTypes">
+                  <a (click)="setReportType(item)" *ngFor="let item of group.reportTypes">
                     <li>{{item.name}}</li>
                   </a>
                 </ul>

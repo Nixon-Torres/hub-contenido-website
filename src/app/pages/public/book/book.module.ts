@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BookComponent} from './book.component';
 import {Routes, RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -14,10 +15,11 @@ const routes: Routes = [
   declarations: [BookComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule
   ],
-  entryComponents: [
-  ]
+  entryComponents: []
 })
 export class BookModule {
 }

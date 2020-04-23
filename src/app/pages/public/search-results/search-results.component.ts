@@ -152,8 +152,8 @@ export class SearchResultsComponent implements OnInit {
     const where = this.getWhere();
 
     this.http.get({
-      path: `public/reports/count`,
-      data: where,
+      path: `public/search/count`,
+      data: {where},
       encode: true
     }).subscribe((response: any) => {
       this.totalCount = response.body.count;
@@ -170,7 +170,7 @@ export class SearchResultsComponent implements OnInit {
     const skip = (this.currentPage - 1) * this.ITEMS_PER_PAGE;
 
     this.http.get({
-      path: `public/reports/`,
+      path: `public/search/`,
       data: {
         where,
         fields: ['id', 'name', 'smartContent', 'publishedAt', 'reportTypeId'],
