@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  URL_API:  'https://testhub.qdata.io/api/',
-  URL_SOCKET:  'https://testhub.qdata.io/',
+  URL_API:  'https://testhub.qdata.io/public/',
+  URL_SOCKET:  'https://testhub.qdata.io/public/',
   STORAGE_FILES: 'https://testhub.qdata.io/public/assets/',
   DRAFT_KEY: '5e068d1cb81d1c5f29b62977',
   // URL_API:  'http://localhost:3000/',
