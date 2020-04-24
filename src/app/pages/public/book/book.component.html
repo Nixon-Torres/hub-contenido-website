@@ -1,18 +1,20 @@
-<div class="section-1">
+<div class="section-1" id="subscribe">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-sm-12">
         <div class="el-libro">
           <div class="el-libro-contant">
-            <h3>El libro 2020</h3>
-            <h4>¿Qué impulsará el crecimiento de la economía colombiana en 2020?</h4>
+            <h3>{{data?.title}}</h3>
+            <!-- <h4>¿Qué impulsará el crecimiento de la economía colombiana en 2020?</h4>
             <h4> ¿Aún cuenta el COLCAP con espacio de valorización? </h4>
             <h4>¿Cuales son las mejores opciones de inversión en acciones locales?</h4>
             <p>Descargue El Libro 2020: <span class="libro-red"> Colombia con fuerza propia</span> y cuente con un
-              panorama completo para tomar las mejores decisiones de inversión</p>
+              panorama completo para tomar las mejores decisiones de inversión</p>-->
+            <div *ngIf="data?.header" [innerHtml]="data.header"></div>
           </div>
           <div class="libro-image">
-            <img src="../../../../assets/images/libro-image.png" alt="" class="img-fluid">
+            <img src="../../../../assets/images/libro-image.png" alt="" class="img-fluid" *ngIf="!data?.image">
+            <img [src]="data.image.assetUrl" alt="" class="img-fluid" *ngIf="data?.image">
           </div>
         </div>
       </div>
@@ -135,14 +137,16 @@
         <div class="col-md-6 col-sm-12">
           <div class="colombia-2">
             <div class="sec-2_colombia-1-contant">
-              <h4>Colombia toma la delantera en un entorno con fuertes vientos en contra</h4>
+              <!-- <h4>Colombia toma la delantera en un entorno con fuertes vientos en contra</h4>
               <p>¡la economía de Colombia ha despegado! El incremento del consumo interno y la inversión privada
                 constituyen el motor para que la economía colombiana se destaque, y usted no puede perderse este
                 momento.</p>
               <p><b>Colombia con fuerza propia</b> es una herramienta para contextualizar sobre el panorama de la
-                economía colombiana y el mercado de acciones local.</p>
+                economía colombiana y el mercado de acciones local.</p> -->
+
+              <div *ngIf="data?.second" [innerHtml]="data.second"></div>
               <div class="sec-2-colombia-botton">
-                <button type="button" class="btn sec-2-colombia-btn">Descargar El Libro<i
+                <button type="button" class="btn sec-2-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i
                   class="fas fa-chevron-right"></i></button>
               </div>
             </div>
@@ -157,10 +161,11 @@
   <div class="container">
     <div class="sec-3-estimamos">
       <div class="estimamos-head">
-        <h4>“Estimamos que el crecimiento de 2020 va a ser muy similar al que esperemos se dé en 2019 (3.2%)...”</h4>
+        <!--<h4>“Estimamos que el crecimiento de 2020 va a ser muy similar al que esperemos se dé en 2019 (3.2%)...”</h4>
         <p><b>‘De liquidez y oportunidades’</b> contiene nuestra visión macroeconómica de Colombia para 2020. lo
           invitamos a que la consulte.
-        </p>
+        </p>-->
+        <div *ngIf="data?.third" [innerHtml]="data.third"></div>
       </div>
       <div class="estimamos-row-contant">
         <div class="row">
@@ -169,12 +174,14 @@
             <div class="estimamos-box-1">
               <div class="estimampius-big-box-1">
                 <i class="fas fa-angle-up"></i>
-                <h3>Factores que propician el crecimiento</h3>
+                <!-- <h3>Factores que propician el crecimiento</h3>
                 <ul>
                   <li>Actividades relacionada con la construcción de edificaciones</li>
                   <li>Buen crecimiento del consumo de los hogares</li>
                   <li>Continuación buen desempeño de obras civiles</li>
                 </ul>
+                -->
+                <div *ngIf="data?.fourth" [innerHtml]="data.fourth"></div>
               </div>
             </div>
           </div>
@@ -182,13 +189,15 @@
             <div class="estimamos-box-2">
               <div class="estimampius-big-box-2">
                 <i class="fas fa-angle-down"></i>
-                <h3>Factores que limitan el crecimiento</h3>
+                <!--<h3>Factores que limitan el crecimiento</h3>
                 <ul>
                   <li>Incertidumbre global en máximos históricos</li>
                   <li>El crecimiento económico de los socios comerciales de Colombia</li>
                   <li>Cumplimiento de las metas fiscales en 2020</li>
                   <li>Efecto de la devaluación sobre bienes importados</li>
-                </ul>
+                </ul>-->
+
+                <div *ngIf="data?.fifth" [innerHtml]="data.fifth"></div>
               </div>
             </div>
           </div>
@@ -196,7 +205,7 @@
             <p>Puede conocer nuestra proyecciones<br> 2019 - 2020
               <span class="sec-3-red">aquí.</span>
             </p>
-            <button type="button" class="btn sec-3-colombia-btn">Descargar El Libro<i class="fas fa-chevron-right"></i>
+            <button type="button" class="btn sec-3-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
             </button>
           </div>
         </div>
@@ -207,52 +216,53 @@
   <div class="section-4">
     <div class="container">
       <div class="calcap">
-        <div class="calcap-head">
-          <h3><b>COLCAP:</b> ¿Aún hay espacio para que en el 2020 el comportamiento sea positivo?</h3>
-        </div>
-        <div class="calcap-contant-1">
-          <p>Aunque el potencial de las acciones locales se ha reducido, el desajuste entre el precio de mercado y el
-            valor justo a nivel fundamental del grueso de las acciones se mantiene:</p>
-          <ul>
-            <li>La economía colombiana mantendrá una senda de crecimiento superior al 3% y continuará destacándose
-              frente a sus pares en Latinoamérica. Esto, pese a que el potencial de las acciones locales se ha reducido.
-            </li>
-            <li><b>COLCAP</b> seguirá por encima de dos dígitos, y la expansión del ROE continuará, no obstante,
-              factores como los bajos volúmenes de negociación y la incertidumbre por factores externos.
-            </li>
-          </ul>
+<!--        <div class="calcap-head">-->
+<!--          <h3><b>COLCAP:</b> ¿Aún hay espacio para que en el 2020 el comportamiento sea positivo?</h3>-->
+<!--        </div>-->
+<!--        <div class="calcap-contant-1">-->
+<!--          <p>Aunque el potencial de las acciones locales se ha reducido, el desajuste entre el precio de mercado y el-->
+<!--            valor justo a nivel fundamental del grueso de las acciones se mantiene:</p>-->
+<!--          <ul>-->
+<!--            <li>La economía colombiana mantendrá una senda de crecimiento superior al 3% y continuará destacándose-->
+<!--              frente a sus pares en Latinoamérica. Esto, pese a que el potencial de las acciones locales se ha reducido.-->
+<!--            </li>-->
+<!--            <li><b>COLCAP</b> seguirá por encima de dos dígitos, y la expansión del ROE continuará, no obstante,-->
+<!--              factores como los bajos volúmenes de negociación y la incertidumbre por factores externos.-->
+<!--            </li>-->
+<!--          </ul>-->
 
-        </div>
-        <div class="calcap-contant-2">
-          <p>Estas son otras factores que propician el crecimiento del COLCAP</p>
-          <ul>
-            <li>Colombia, la economía de mayor crecimiento de América Latina.</li>
-            <li>Para 2019 y 2020, estimamos crecimientos en utilidades del 15.1% y 13.0%, respectivamente, lo cual
-              resultaría en expansiones adicionales en rentabilidad.
-            </li>
-            <li>COLCAP alcanzaría un máximo histórico en retorno por dividendos en 2020 siendo el más alto entre pares
-              comparables.
-            </li>
-          </ul>
+<!--        </div>-->
+<!--        <div class="calcap-contant-2">-->
+<!--          <p>Estas son otras factores que propician el crecimiento del COLCAP</p>-->
+<!--          <ul>-->
+<!--            <li>Colombia, la economía de mayor crecimiento de América Latina.</li>-->
+<!--            <li>Para 2019 y 2020, estimamos crecimientos en utilidades del 15.1% y 13.0%, respectivamente, lo cual-->
+<!--              resultaría en expansiones adicionales en rentabilidad.-->
+<!--            </li>-->
+<!--            <li>COLCAP alcanzaría un máximo histórico en retorno por dividendos en 2020 siendo el más alto entre pares-->
+<!--              comparables.-->
+<!--            </li>-->
+<!--          </ul>-->
 
-        </div>
+<!--        </div>-->
+        <div *ngIf="data?.sixth" [innerHtml]="data.sixth"></div>
 
-        <div class="calcap-graph">
-          <div class="row">
-            <div class="col-md-4 col-sm-4">
-              <div class="graph-contant-1">
-                <p>Retorno por dividendo del<br> COLCAP frente a sus pares<br> 2020E</p>
-              </div>
-            </div>
-            <div class="col-md-7 col-sm-7">
-              <div class="graph-contant-2">
-                <img src="../../../../assets/images/calcap-graph.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-        </div>
+<!--        <div class="calcap-graph">-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-4 col-sm-4">-->
+<!--              <div class="graph-contant-1">-->
+<!--                <p>Retorno por dividendo del<br> COLCAP frente a sus pares<br> 2020E</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-7 col-sm-7">-->
+<!--              <div class="graph-contant-2">-->
+<!--                <img src="../../../../assets/images/calcap-graph.jpg" alt="" class="img-fluid">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="calcap-graph-button">
-          <button type="button" class="btn calcap-graph-btn">Descargar El Libro<i class="fas fa-chevron-right"></i>
+          <button type="button" class="btn calcap-graph-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
           </button>
         </div>
       </div>
@@ -262,17 +272,19 @@
   <div class="section-5">
     <div class="container">
       <div class="atencion">
-        <div class="atencion-head">
-          <h3>¡Atención! Esta información es sumamente valiosa.</h3>
-        </div>
-        <div class="atention-contant">
-          <p>Conozca nuestros <b>TOP PICKS</b> en acciones colombianas; aquellas compañías en las que nuestro equipo,
-            luego de un riguroso análisis, considera que presentan las mejores oportunidades de inversión.</p>
-          <p>Descargue Colombia con fuerza propia</p>
-        </div>
+<!--        <div class="atencion-head">-->
+<!--          <h3>¡Atención! Esta información es sumamente valiosa.</h3>-->
+<!--        </div>-->
+<!--        <div class="atention-contant">-->
+<!--          <p>Conozca nuestros <b>TOP PICKS</b> en acciones colombianas; aquellas compañías en las que nuestro equipo,-->
+<!--            luego de un riguroso análisis, considera que presentan las mejores oportunidades de inversión.</p>-->
+<!--          <p>Descargue Colombia con fuerza propia</p>-->
+<!--        </div>-->
+        <div *ngIf="data?.seventh" [innerHtml]="data.seventh"></div>
       </div>
 
       <div class="atencion-table">
+        <div *ngIf="data?.atencionTable" [innerHtml]="data.atencionTable"></div>
         <table class="table">
           <thead>
           <tr>
@@ -330,7 +342,7 @@
       </div>
     </div>
     <div class="sec-5-table-button">
-      <button type="button" class="btn sec-5-table-btn">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
+      <button type="button" class="btn sec-5-table-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </div>

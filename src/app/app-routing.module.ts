@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, ExtraOptions} from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 
@@ -56,8 +56,13 @@ const routes: Routes = [
   }
 ];
 
+const routerOptions: ExtraOptions = {
+  useHash: false,
+  anchorScrolling: 'enabled',
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

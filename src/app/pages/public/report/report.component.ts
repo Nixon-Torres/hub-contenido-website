@@ -60,7 +60,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
             data: filter,
             encode: true
         }).subscribe((res) => {
-            const html = (res.body as unknown as string).replace(/\/public\/reports\//g, environment.URL_API + 'public/reports/');
+            const html = (res.body as unknown as string); // .replace(/\/public\/reports\//g, environment.URL_API + 'public/reports/');
             this.myhtml = this.sanitizer.bypassSecurityTrustHtml(html);
         });
     }
