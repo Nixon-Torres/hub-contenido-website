@@ -15,6 +15,10 @@ export class BookComponent implements OnInit {
   public content: any;
   public data: any;
   public STORAGE_URL = environment.URL_API;
+  public maxBooks = 3;
+
+  public booksContent: any;
+  public books: any;
 
   constructor(private http: HttpService) {
     this.subscribeGroup = new FormGroup({
@@ -30,6 +34,59 @@ export class BookComponent implements OnInit {
 
   ngOnInit() {
     this.getContent();
+    this.getBooksContent();
+  }
+
+  getBooksContent() {
+    this.http.get({
+      path: 'public/contents/',
+      data: {
+        where: {
+          key: 'thebookVersionsKey'
+        },
+        include: ['files']
+      },
+      encode: true
+    }).subscribe((res) => {
+      if (res && res.body && (res.body as any).length) {
+        this.booksContent = res.body[0];
+        this.books = this.booksContent.books;
+
+        this.books = this.books.map((book) => {
+          const blocks = this.booksContent.blocks.filter(e => e.bookId === book.id);
+          const title = blocks.find(e => e.id && e.id.indexOf('title') > -1);
+          const year = blocks.find(e => e.id && e.id.indexOf('year') > -1);
+          const pdf = this.booksContent.files.find(e => e.key === 'blockImage-book-' + book.id);
+          const thumbnail = this.booksContent.files.find(e => e.key === 'blockImage-thumbnail-' + book.id);
+
+          if (thumbnail) {
+            thumbnail.assetUrl = this.STORAGE_URL + thumbnail.clientPath;
+          }
+
+          if (pdf) {
+            pdf.assetUrl = this.STORAGE_URL + pdf.clientPath;
+          }
+
+          book.title = title.content;
+          book.year = year.content;
+          book.pdf = pdf;
+          book.thumbnail = thumbnail;
+          return book;
+        }).sort((a, b) => {
+          if (!a || !b) {
+            return 0;
+          }
+
+          if (parseInt(a.year, 10) >  parseInt(b.year, 10)) {
+            return -1;
+          } else if (parseInt(a.year, 10) < parseInt(b.year, 10)) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+      }
+    });
   }
 
   getContent() {

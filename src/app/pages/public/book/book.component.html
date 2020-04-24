@@ -285,60 +285,6 @@
 
       <div class="atencion-table">
         <div *ngIf="data?.atencionTable" [innerHtml]="data.atencionTable"></div>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th><img class="ecopetrol_img" src="../../../../assets/images/sec-5-table-1.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-2.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-3.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-4.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-5.png" alt=""></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td class="gray-bg">Sector</td>
-            <td>Petróleo y Gas</td>
-            <td>Utilities</td>
-            <td>Utilities</td>
-            <td>Utilities</td>
-            <td>Contrucción</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Peso sugerido en Portafolio</td>
-            <td>30%</td>
-            <td>30%</td>
-            <td>15%</td>
-            <td>15%</td>
-            <td>10%</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Dividen Yleld*</td>
-            <td>7.1%</td>
-            <td>6.3%</td>
-            <td>4.5%</td>
-            <td>1.8%</td>
-            <td>4.0%</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Precio Objetivo 2020FA</td>
-            <td>3,600</td>
-            <td>2,650</td>
-            <td>5,350</td>
-            <td>44,500</td>
-            <td>2,660</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Potencial de valoración*</td>
-            <td class="red-bg">6.0%</td>
-            <td class="brown-bg">15.2%</td>
-            <td class="light-brown-bg">22.1%</td>
-            <td class="smock-white-bg">34.8%</td>
-            <td class="cyan-bg">95.6%</td>
-          </tr>
-          </tbody>
-        </table>
       </div>
     </div>
     <div class="sec-5-table-button">
@@ -358,28 +304,19 @@
         <div class="collapse show" id="collapsebooks" style="">
           <div class="ediciones-midcont">
             <ul>
-              <li>
-                <img src="../../../../assets/images/bookImagen1.png" alt="">
-                <p>De Liquidez y Oportunidades <br><strong>2018</strong></p>
-                <a href="#">Descargar ahora <i class="fas fa-chevron-right"></i></a>
-              </li>
-              <li>
-                <img src="../../../../assets/images/bookImagen2.png" alt="">
-                <p>De Liquidez y Oportunidades <br><strong>2018</strong></p>
-                <a href="#">Descargar ahora <i class="fas fa-chevron-right"></i></a>
-              </li>
-              <li>
-                <img src="../../../../assets/images/bookImage3.png" alt="">
-                <p>De Liquidez y Oportunidades <br><strong>2018</strong></p>
-                <a href="#">Descargar ahora <i class="fas fa-chevron-right"></i></a>
+              <li *ngFor="let book of books | slice:0 : maxBooks">
+                <img class="bookThumb" src="../../../../assets/images/bookImagen1.png" alt="" *ngIf="!book?.thumbnail?.assetUrl">
+                <img class="bookThumb" [src]="book?.thumbnail?.assetUrl" alt="" *ngIf="book?.thumbnail?.assetUrl">
+                <p>{{book.title}} <br><strong>{{book.year}}</strong></p>
+                <a *ngIf="book?.pdf?.assetUrl" [href]="book.pdf.assetUrl" target="_blank">Descargar ahora <i class="fas fa-ch evron-right"></i></a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="ediciones-btn">
+        <div class="ediciones-btn" *ngIf="maxBooks === 3">
           <button type="button" class="btn ediciones-red-btn" data-toggle="collapse" data-target="#collapsebooks"
-                  aria-expanded="true" aria-controls="collapseExample"> Ver ediciones anteriores<i
+                  aria-expanded="true" aria-controls="collapseExample" (click)="maxBooks = 20"> Ver ediciones anteriores<i
             class="fas fa-chevron-down"></i></button>
         </div>
       </div>
