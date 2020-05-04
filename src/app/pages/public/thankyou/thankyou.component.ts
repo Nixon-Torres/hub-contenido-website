@@ -2,14 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  selector: 'app-thankyou',
+  templateUrl: './thankyou.component.html',
+  styleUrls: ['./thankyou.component.scss']
 })
-export class BookComponent implements OnInit {
+export class ThankyouComponent implements OnInit {
   public subscriber: any = {};
   public subscribeGroup: FormGroup;
   public submitted = false;
@@ -25,7 +24,7 @@ export class BookComponent implements OnInit {
     link: ['/categories', '5e7fc9a5dc4b4a6c6629517e']
   }];
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(private http: HttpService) {
     this.subscribeGroup = new FormGroup({
       name: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -136,7 +135,6 @@ export class BookComponent implements OnInit {
         subscriber: this.subscriber
       }
     }).subscribe((res) => {
-      this.router.navigate(['/thankyou']);
     });
   }
 }

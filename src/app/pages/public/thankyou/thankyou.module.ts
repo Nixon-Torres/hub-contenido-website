@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {BookComponent} from './book.component';
+import {ThankyouComponent} from './thankyou.component';
 import {Routes, RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
@@ -8,12 +8,12 @@ import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
 const routes: Routes = [
   {
     path: '',
-    component: BookComponent
+    component: ThankyouComponent
   }
 ];
 
 @NgModule({
-  declarations: [BookComponent],
+  declarations: [ThankyouComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -23,5 +23,5 @@ const routes: Routes = [
     ],
   entryComponents: []
 })
-export class BookModule {
+export class ThankyouModule {
 }

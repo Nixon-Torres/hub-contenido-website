@@ -2,12 +2,17 @@ import { NgModule } from '@angular/core';
 import {Routes, RouterModule, ExtraOptions} from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
+import {ThankyouComponent} from './pages/public/thankyou/thankyou.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'thankyou',
+    component: ThankyouComponent
   },
   {
     path: 'home',

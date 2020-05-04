@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MultimediaDetailComponent} from './multimedia-detail.component';
 import {Routes, RouterModule} from '@angular/router';
+import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
 
 const routes: Routes = [
   {
@@ -12,10 +13,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MultimediaDetailComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        BreadcrumbModule
+    ],
   entryComponents: [
   ]
 })

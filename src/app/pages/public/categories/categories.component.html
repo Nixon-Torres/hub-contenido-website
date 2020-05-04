@@ -1,14 +1,6 @@
 <div style="display: block">
-  <div class="page_direction">
-    <div class="container">
-      <ul>
-        <li class="back_page"><a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i>Volver </a></li>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Pagina dos</a></li>
-        <li><a href="#">Pagina tres</a></li>
-      </ul>
-    </div>
-  </div>
+
+  <app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
 
   <div class="preapertura">
     <div class="container">
@@ -54,7 +46,7 @@
               <div class="contant-1">
                 <h3>Informes {{getSubCategoryName()}}</h3>
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 select-list-hide">
+                  <div class="col-md-6 col-sm-12 select-list">
                     <form>
                       <div *ngIf="category?.code === 'ANLISISDECOMPAAS'">
                         <label class="categorias-select-list">Filtro

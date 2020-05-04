@@ -1,3 +1,5 @@
+<app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
+
 <div class="multimedia">
   <div class="container">
     <h2>Multimedia</h2>
@@ -100,7 +102,7 @@
               <div class="row">
                 <div class="col-md-4 col-sm-4 inline-video" *ngFor="let item of contents">
 
-                  <div class="vidimg">
+                  <div class="vidimg" [routerLink]="['/multimedia', item.id]">
                     <img [src]="getThumbSource(item)" alt="" class="img-fluid">
                     <span class="overlaycategory">{{getType(item)}}</span>
                     <i class="fas fa-play-circle"></i>

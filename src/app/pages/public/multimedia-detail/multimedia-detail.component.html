@@ -1,13 +1,4 @@
-<div class="page_direction">
-  <div class="container">
-    <ul>
-      <li class="back_page"><a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i>Atras </a></li>
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#">Pagina</a></li>
-      <li><a href="#">Pagina tres</a></li>
-    </ul>
-  </div>
-</div>
+<app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
 
 <div class="Nuestros-indicadores">
   <div class="container">
@@ -18,10 +9,14 @@
                 frameborder="0"></iframe>
       </div>
       <div *ngIf="type === 'Podcast'">
-        <audio controls>
-          <source [src]="getPodcastUrl()" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
+        <div *ngIf="!isIframe">
+          <audio controls autoplay>
+            <source [src]="getPodcastUrl()" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div *ngIf="isIframe" [innerHTML]="getPodcastHtml()">
+        </div>
       </div>
       <div *ngIf="type === 'Webinar'">
         <a [href]="getWebinarUrl()" target="_blank">Ir al webinar</a>

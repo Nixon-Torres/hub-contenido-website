@@ -24,6 +24,8 @@ export class CategoriesComponent implements OnInit {
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
 
+  public breadcrumbItems: Array<any> = [];
+
   public assetBase: string = environment.URL_API;
 
   public idateStart: any;
@@ -125,6 +127,7 @@ export class CategoriesComponent implements OnInit {
         }
 
         this.getReports();
+        this.updateBreadcrumbItems();
       } else {
         this.companyTypesSelect = this.category.childrenMainReportTypes;
         this.getCompanies();
@@ -137,6 +140,7 @@ export class CategoriesComponent implements OnInit {
       path: `public/companies/`,
     }).subscribe((response: any) => {
       this.reportTypes = response.body;
+      this.updateBreadcrumbItems();
       this.getReports();
     });
   }
@@ -226,8 +230,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   getSubCategoryName() {
-    if (this.companyId) {
-      return this.reportTypes.find(e => e.id === this.companyId).name;
+    if (this.companyId && this.reportTypes) {
+      const company = this.reportTypes.find(e => e.id === this.companyId);
+      return company ? company.name : '';
     } else if (this.reportType) {
       return this.reportType.description;
     }
@@ -254,7 +259,34 @@ export class CategoriesComponent implements OnInit {
       this.reportType = reportType;
       this.reportTypeId = reportType.id;
     }
+    this.updateBreadcrumbItems();
     this.getReports();
+  }
+
+  updateBreadcrumbItems() {
+    this.breadcrumbItems = [{
+      label: this.category.description,
+      link: ['/categories', this.categoryId]
+    }];
+
+    if (this.reportType) {
+      this.breadcrumbItems.push({
+        label: this.reportType.description,
+        link: ['/categories', this.categoryId, 'type', this.reportTypeId]
+      });
+    }
+
+    if (this.companyId) {
+      const company = this.reportTypes.find(e => e.id === this.companyId);
+
+      if (!company) {
+        return;
+      }
+      this.breadcrumbItems.push({
+        label: company.name,
+        link: ['/categories', this.categoryId, 'type', this.companyId]
+      });
+    }
   }
 
   pageChanged() {

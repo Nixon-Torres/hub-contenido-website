@@ -5,6 +5,7 @@ import {environment} from '../../../../environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as $ from 'jquery';
 import 'bootstrap';
+import {main} from '@angular/compiler-cli/src/main';
 
 @Component({
     selector: 'app-report',
@@ -16,6 +17,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
     public myhtml: any;
     public report: any;
     public reportId: string;
+    public breadcrumbItems: Array<any> = [];
 
     constructor(private http: HttpService, private activatedRoute: ActivatedRoute,
                 private sanitizer: DomSanitizer) {
@@ -26,6 +28,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
             // Load report for edit, but if is a new report load basic data from URI
             if (params.get('id')) {
                 this.reportId = params.get('id');
+                this.getReport(this.reportId);
                 this.loadReport(this.reportId);
             }
         });
@@ -47,6 +50,51 @@ export class ReportComponent implements OnInit, AfterViewInit {
           this.copyToClipboard(window.location);
         });
       }, 1000);
+    }
+
+    getReport(reportId: string) {
+      const filter = {
+        where: {
+          id: reportId
+        },
+        fields: ['reportTypeId'],
+        include: [{
+          relation: 'reportType',
+          scope: {
+            include: ['mainCategory', 'subCategory']
+          }
+        }]
+      };
+      this.http.get({
+        path: `public/reports/`,
+        data: filter,
+        encode: true
+      }).subscribe((res) => {
+        if (res.body && (res.body as any).length) {
+          this.report = res.body[0];
+
+          if (!this.report.reportType) {
+            return;
+          }
+
+          const mainCategory = this.report.reportType.mainCategory;
+          const reportType = this.report.reportType;
+
+          if (mainCategory && mainCategory.length) {
+            this.breadcrumbItems = [{
+              label: mainCategory[0].description,
+              link: ['/categories', mainCategory[0].id]
+            }];
+
+            if (reportType) {
+              this.breadcrumbItems.push({
+                label: reportType.description,
+                link: ['/categories', mainCategory[0].id, 'type', reportType.id]
+              });
+            }
+          }
+        }
+      });
     }
 
   loadReport(reportId: string) {

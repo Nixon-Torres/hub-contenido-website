@@ -14,6 +14,11 @@ export class MultimediaDetailComponent implements OnInit {
   public videoId: string;
   public type: string;
   public relateds: any;
+  public isIframe = false;
+  public breadcrumbItems: Array<any> = [{
+    label: 'Multimedia',
+    link: ['/multimedia']
+  }];
 
   constructor(private http: HttpService,
               private activatedRoute: ActivatedRoute,
@@ -56,6 +61,7 @@ export class MultimediaDetailComponent implements OnInit {
         this.getVideoUrl();
       }
 
+      this.isIframe = this.content.params.url.indexOf('<iframe') > -1;
       this.getRelated();
     });
   }
@@ -106,6 +112,13 @@ export class MultimediaDetailComponent implements OnInit {
   getPodcastUrl() {
     if (this.content && this.content.params && this.content.params.url && this.type === 'Podcast') {
       return this.sanitizer.bypassSecurityTrustResourceUrl(this.content.params.url);
+    }
+    return null;
+  }
+
+  getPodcastHtml() {
+    if (this.content && this.content.params && this.content.params.url && this.type === 'Podcast') {
+      return this.sanitizer.bypassSecurityTrustHtml(this.content.params.url);
     }
     return null;
   }

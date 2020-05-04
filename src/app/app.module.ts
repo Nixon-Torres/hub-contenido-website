@@ -11,6 +11,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { TopMenuComponent } from './layout/top-menu/top-menu.component';
+import { ThankyouComponent } from './pages/public/thankyou/thankyou.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 
@@ -24,7 +25,8 @@ registerLocaleData(localeCo, 'es-CO');
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    ThankyouComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,9 @@ registerLocaleData(localeCo, 'es-CO');
     NgSelectModule,
     FormsModule
   ],
-  providers: [ { provide: LOCALE_ID, useValue: 'es-CO' } ],
+  providers: [{provide: LOCALE_ID, useValue: 'es-CO'}],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
