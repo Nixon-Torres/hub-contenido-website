@@ -10,6 +10,10 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
+  public numPages = 0;
+  public currentPdfPage = 1;
+  public bookPreviewPdfSrc = '';
+
   public subscriber: any = {};
   public subscribeGroup: FormGroup;
   public submitted = false;
@@ -119,8 +123,16 @@ export class BookComponent implements OnInit {
             this.data[e.id] = image;
           }
         });
+        
+        if (this.data.pdfPreviewSrc) {
+          this.bookPreviewPdfSrc = this.data.pdfPreviewSrc.assetUrl;
+        }
       }
     });
+  }
+
+  callBackFn(pdf: any) {
+    this.numPages = pdf.numPages;
   }
 
   subscribe() {

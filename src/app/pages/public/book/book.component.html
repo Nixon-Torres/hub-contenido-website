@@ -128,8 +128,20 @@
 
         <div class="col-md-6 col-sm-12">
           <div class="colombia-1">
-            <div class="sec-2_colombia-1-contant">
-              <img src="../../../../assets/images/libro-sec-2.jpg" alt="" class="img-fluid">
+            <div class="sec-2_colombia-1-contant" *ngIf="bookPreviewPdfSrc">
+              <pdf-viewer [src]="bookPreviewPdfSrc"
+                          [(page)]="currentPdfPage"
+                          [render-text]="true"
+                          [autoresize]="true"
+                          [fit-to-page]="true"
+                          [show-all]="false"
+                          (after-load-complete)="callBackFn($event)"
+                          style="display: block;"
+              ></pdf-viewer>
+              <div class="pdf-pagination">
+                <span class="pager" (click)="currentPdfPage > 1 ? currentPdfPage = currentPdfPage - 1 : currentPdfPage = 1"><</span> {{currentPdfPage}} de {{numPages}}
+                <span class="pager" (click)="currentPdfPage < numPages ? currentPdfPage = currentPdfPage + 1 : currentPdfPage = numPages">></span>
+              </div>
               <div class="bookoverlay">
                 <span class="btnpreview"><i class="fas fa-eye"></i>Ver preview</span>
               </div>

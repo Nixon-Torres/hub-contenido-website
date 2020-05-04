@@ -4,6 +4,7 @@ import {BookComponent} from './book.component';
 import {Routes, RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         FormsModule,
         ReactiveFormsModule,
-        BreadcrumbModule
+        BreadcrumbModule,
+        PdfViewerModule
     ],
   entryComponents: []
 })

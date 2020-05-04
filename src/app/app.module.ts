@@ -14,6 +14,7 @@ import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 import { ThankyouComponent } from './pages/public/thankyou/thankyou.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import localeCo from '@angular/common/locales/es-CO';
 
@@ -34,7 +35,8 @@ registerLocaleData(localeCo, 'es-CO');
     BrowserAnimationsModule,
     HttpClientModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    PdfViewerModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-CO'}],
   exports: [
