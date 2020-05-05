@@ -15893,6 +15893,9 @@ max-width: 100% !important;
     strong{
       font-weight: bold;
     }
+    @media (max-width: 1024px){
+      padding: 0 0px 0 12px;
+    }
   }
 
   p{
@@ -15922,6 +15925,15 @@ max-width: 100% !important;
       }
     }
   }
+
+  .image{
+    img{
+      @media (max-width: 1024px){
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
 }
 
 .section-5{
@@ -15938,6 +15950,10 @@ max-width: 100% !important;
       margin-bottom: 30px;
       strong{
         font-weight: bold;
+      }
+      @media (max-width: 1024px){
+        width: 100%;
+        padding: 0 0px 0 12px;
       }
     }
     p{
