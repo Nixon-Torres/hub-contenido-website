@@ -8403,6 +8403,10 @@ button.owl-next {
   padding-left: 8px;
   border-left: 2px solid #EF161A;
   margin-bottom: 15px;
+
+  strong{
+    font-weight: bold;
+  }
 }
 
 .sec-2_colombia-1-contant p {
@@ -8466,6 +8470,10 @@ button.owl-next {
   font-weight: bold;
   padding-left: 8px;
   border-left: 2px solid #EF161A;
+
+  strong{
+    font-weight: bold;
+  }
 }
 
 .estimamos-head p {
@@ -8484,6 +8492,7 @@ button.owl-next {
   box-shadow: 0px 4px 15px -6px rgba(0, 0, 0, 1);
   position: relative;
   overflow: hidden;
+  min-height: 23em;
 }
 
 .estimampius-big-box-1 .fas.fa-angle-up {
@@ -8503,6 +8512,7 @@ button.owl-next {
   box-shadow: 0px 4px 15px -6px rgba(0, 0, 0, 1);
   position: relative;
   overflow: hidden;
+  min-height: 23em;
 }
 
 .estimampius-big-box-2 .fas.fa-angle-down {
@@ -8521,6 +8531,9 @@ button.owl-next {
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 30px;
+  strong{
+    font-weight: bold;
+  }
 }
 
 .estimamos-box-2 h3 {
@@ -8530,6 +8543,9 @@ button.owl-next {
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 30px;
+  strong{
+    font-weight: bold;
+  }
 }
 
 .estimamos-box-1 ul {
@@ -15856,5 +15872,139 @@ max-width: 100% !important;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+.el-libro-contant p{
+  strong{
+    color: #E8162E;
+  }
+}
+
+.calcap{
+  h3{
+    font-size: 23px;
+    line-height: 26px;
+    color: #505050;
+    text-align: left;
+    border-left: 3px solid #EF161A;
+    padding: 0 205px 0 12px;
+    margin-bottom: 40px;
+    strong{
+      font-weight: bold;
+    }
+  }
+
+  p{
+    font-size: 14px;
+    line-height: 21px;
+    color: #505050;
+    text-align: left;
+    margin-bottom: 25px;
+  }
+
+  ul{
+    width: 85%;
+    list-style-type: none;
+    li{
+      list-style: none;
+      font-size: 14px;
+      line-height: 21px;
+      color: #505050;
+      padding-bottom: 10px;
+      &::before{
+        content: "•";
+        color: red;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
+    }
+  }
+}
+
+.section-5{
+  .atencion{
+    h3{
+      font-size: 23px;
+      line-height: 26px;
+      color: #505050;
+      text-align: left;
+      border-left: 3px solid #EF161A;
+      font-weight: bold;
+      padding: 0 205px 0 12px;
+      width: 70%;
+      margin-bottom: 30px;
+      strong{
+        font-weight: bold;
+      }
+    }
+    p{
+      width: 85%;
+    }
+  }
+
+  .atencion-table{
+    table{
+      thead{
+        th{
+          &:nth-child(2){
+            figure{
+              img{
+                width: 80%;
+              }
+            }
+          }
+        }
+      }
+      tr{
+        td{
+          &:first-child{
+            background-color: #EBEBEB;
+            margin-right: 2px;
+            text-align: left;
+            border-top: 5px solid white;
+            border-right: 5px solid white;
+            font-size: 14px;
+            color: #505050;
+          }
+        }
+        &:last-child{
+          td{
+            &:nth-child(2){
+              background-color: #EF161A;
+              color: white;
+              border-top: 3px solid white;
+              border-right: 5px solid white;
+            }
+            &:nth-child(3){
+              background-color: #585858;
+              color: white;
+              border-top: 3px solid white;
+              border-right: 5px solid white;
+            }
+            &:nth-child(4){
+              background-color: #888888;
+              color: white;
+              border-top: 3px solid white;
+              border-right: 5px solid white;
+            }
+            &:nth-child(5){
+              background-color: #EBEBEB;
+              color: #505050;
+              border-top: 3px solid white;
+              border-right: 5px solid white;
+            }
+            &:nth-child(6){
+              background-color: #385550;
+              color: white;
+              border-top: 3px solid white;
+              border-right: 5px solid white;
+            }
+          }
+        }
+      }
+    }
   }
 }
