@@ -123,7 +123,7 @@ export class BookComponent implements OnInit {
             this.data[e.id] = image;
           }
         });
-        
+
         if (this.data.pdfPreviewSrc) {
           this.bookPreviewPdfSrc = this.data.pdfPreviewSrc.assetUrl;
         }

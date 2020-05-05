@@ -14,16 +14,16 @@
 				<div class="col-sm-4">
 					<div class="footer-links">
 						<ul>
-							<li><a href="#">Actualizate</a></li>
-							<li><a href="#">informes especiallizados</a></li>
-							<li><a href="#">Nuestros indicadores</a></li>
-							<li><a href="#">Centroamerica</a></li>
-							<li><a href="#">Sectores productivos</a></li>
-							<li><a href="#">Empresarial</a></li>
-							<li><a href="#">Invertir en...</a></li>
-							<li><a href="#">Multimedia</a></li>
-							<li><a href="#">Conozcanos</a></li>
-						</ul>
+              <li *ngIf="data && data['link-actualizate']"><a [href]="data['link-actualizate']" [target]="getTarget(data['link-actualizate'])">{{data['title-actualizate']}}</a></li>
+              <li *ngIf="data && data['link-informes-especializados']"><a [href]="data['link-informes-especializados']" [target]="getTarget(data['link-informes-especializados'])">{{data['title-informes-especializados']}}</a></li>
+              <li *ngIf="data && data['link-nuestros-indicadores']"><a [href]="data['link-nuestros-indicadores']" [target]="getTarget(data['link-nuestros-indicadores'])">{{data['title-nuestros-indicadores']}}</a></li>
+              <li *ngIf="data && data['link-centro-america']"><a [href]="data['link-centro-america']" [target]="getTarget(data['link-centro-america'])">{{data['title-centro-america']}}</a></li>
+              <li *ngIf="data && data['link-sectores-productivos']"><a [href]="data['link-sectores-productivos']" [target]="getTarget(data['link-sectores-productivos'])">{{data['title-sectores-productivos']}}</a></li>
+              <li *ngIf="data && data['link-empresarial']"><a [href]="data['link-empresarial']" [target]="getTarget(data['link-empresarial'])">{{data['title-empresarial']}}</a></li>
+              <li *ngIf="data && data['link-invertir']"><a [href]="data['link-invertir']" [target]="getTarget(data['link-invertir'])">{{data['title-invertir']}}</a></li>
+              <li *ngIf="data && data['link-multimedia']"><a [href]="data['link-multimedia']" [target]="getTarget(data['link-multimedia'])">{{data['title-multimedia']}}</a></li>
+              <li *ngIf="data && data['link-conozcanos']"><a [href]="data['link-conozcanos']" [target]="getTarget(data['link-conozcanos'])">{{data['title-conozcanos']}}</a></li>
+            </ul>
 					</div>
 				</div>
 				<div class="col-sm-8">
@@ -34,9 +34,15 @@
 									<div class="footer-links">
 										<h4>Portales Davivienda y Filiales</h4>
 										<ul>
+                      <!--
 											<li><a href="https://www.davivienda.com/wps/portal/personas/nuevo" target="_blank">Banco Davivienda</a></li>
 											<li><a href="https://www.daviviendacorredores.com/" target="_blank">Davivienda Corredores</a></li>
 											<li><a href="https://fidudavivienda.davivienda.com/wps/portal/fidudavivienda/inicio/" target="_blank">Fiduciaria Davivienda</a></li>
+											-->
+
+                      <li *ngIf="data && data['link-portales-banco']"><a [href]="data['link-portales-banco']" [target]="getTarget(data['link-portales-banco'])">{{data['title-portales-banco']}}</a></li>
+                      <li *ngIf="data && data['link-portales-corredores']"><a [href]="data['link-portales-corredores']" [target]="getTarget(data['link-portales-corredores'])">{{data['title-portales-corredores']}}</a></li>
+                      <li *ngIf="data && data['link-portales-fiduciaria']"><a [href]="data['link-portales-fiduciaria']" [target]="getTarget(data['link-portales-fiduciaria'])">{{data['title-portales-fiduciaria']}}</a></li>
 										</ul>
 									</div>
 								</div>
@@ -44,9 +50,15 @@
 									<div class="footer-links">
 										<h4>Sitios de interes</h4>
 										<ul>
+											<!--
 											<li><a href="https://www.amvcolombia.org.co/" target="_blank">Autorregulador del Mercado de valores de Colombia</a></li>
 											<li><a href="https://www.bvc.com.co/nueva/" target="_blank">Bolsa de Volores de Colombia</a></li>
 											<li><a href="https://www.superfinanciera.gov.co/jsp/index.jsf" target="_blank">Superintendencia Financiera de Colombia</a></li>
+											-->
+
+                      <li *ngIf="data && data['link-sitios-autoregulador']"><a [href]="data['link-sitios-autoregulador']" [target]="getTarget(data['link-sitios-autoregulador'])">{{data['title-sitios-autoregulador']}}</a></li>
+                      <li *ngIf="data && data['link-sitios-bolsa']"><a [href]="data['link-sitios-bolsa']" [target]="getTarget(data['link-sitios-bolsa'])">{{data['title-sitios-bolsa']}}</a></li>
+                      <li *ngIf="data && data['link-sitios-superintendencia']"><a [href]="data['link-sitios-superintendencia']" [target]="getTarget(data['link-sitios-superintendencia'])">{{data['title-sitios-superintendencia']}}</a></li>
 										</ul>
 									</div>
 								</div>
@@ -55,19 +67,32 @@
 					</div>
 					 <div class="footer_sociaal_link">
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="col-sm-5">
 									<div class="social_icon_left">
 										<p>Siganos en:</p>
 										<ul>
-											<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
-											<li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li>
-											<li><i class="fa fa-youtube-play" aria-hidden="true"></i></li>
+											<li *ngIf="data && data['link-twitter']">
+                        <a [href]="data['link-twitter']" target="_blank">
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li *ngIf="data && data['link-linkedin']">
+                        <a [href]="data['link-linkedin']" target="_blank">
+                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li *ngIf="data && data['link-youtube']">
+                        <a [href]="data['link-youtube']" target="_blank">
+                          <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                        </a>
+                      </li>
 										</ul>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-7">
 									<div class="footer_image_link">
-										<img src="assets/images/Untitled.png" alt="">
+                    <img [src]="data.logo1.assetUrl" alt="" class="img-fluid" *ngIf="data?.logo1" style="width: 130px">
+                    <img [src]="data.logo2.assetUrl" alt="" class="img-fluid" *ngIf="data?.logo2" style="width: 190px">
 									</div>
 								</div>
 							</div>
