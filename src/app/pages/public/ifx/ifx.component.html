@@ -76,7 +76,7 @@
           <img src="../../../../assets/images/single_blog_img.png" class="img-fluid">
           <div class="nir-inline-video-contant">
             <h5>{{getCategory(report?.reportType)}}</h5>
-            <h3>{{report?.name}}</h3><br>
+            <h3>{{report?.rTitle | striphtml}}</h3><br>
             <p>{{report?.smartContent}}</p>
             <button type="button" class="btn nir-inline-video-btn" [routerLink]="['/reports', report?.id]">Leer más</button>
           </div>

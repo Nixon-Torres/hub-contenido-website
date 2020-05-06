@@ -32,7 +32,7 @@ export class RemarkableAreaComponent implements OnInit {
       where: {
         outstanding: true
       },
-      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      fields: ['id', 'name', 'outstandingArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {

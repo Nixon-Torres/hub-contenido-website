@@ -205,7 +205,7 @@ export class CategoriesComponent implements OnInit {
       path: `public/reports/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
         include: [{
           relation: 'reportType',
           scope: {

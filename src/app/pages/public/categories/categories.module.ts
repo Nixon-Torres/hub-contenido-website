@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
+import {PipesModule} from '../../../pipes.module';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
         MatNativeDateModule,
         MatDatepickerModule,
         BreadcrumbModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        PipesModule
     ],
   entryComponents: [
   ]

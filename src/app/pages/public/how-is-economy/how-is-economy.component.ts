@@ -34,7 +34,7 @@ export class HowIsEconomyComponent implements OnInit {
       data: {
         order: 'publishedAt DESC',
         limit: 8,
-        fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+        fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -55,7 +55,7 @@ export class HowIsEconomyComponent implements OnInit {
       where: {
         howseconomy: true
       },
-      fields: ['id', 'name', 'howseconomyArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      fields: ['id', 'name', 'howseconomyArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {

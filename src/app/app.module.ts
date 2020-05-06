@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import localeCo from '@angular/common/locales/es-CO';
+import {HomeModule} from './pages/public/home/home.module';
+import {PipesModule} from './pipes.module';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -36,7 +38,9 @@ registerLocaleData(localeCo, 'es-CO');
     HttpClientModule,
     NgSelectModule,
     FormsModule,
-    PdfViewerModule
+    PdfViewerModule,
+    HomeModule,
+    PipesModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-CO'}],
   exports: [

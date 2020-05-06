@@ -62,7 +62,7 @@
                   <div class="hide-left-1">
                     <ul>
                       <li class="submenu-link" *ngFor="let item of items"
-                          [routerLink]="getCategoryReportTypeLink(item)">{{item.name}}</li>
+                          [routerLink]="getCategoryReportTypeLink(item)">{{item?.name}}</li>
                     </ul>
                   </div>
                 </div>
@@ -99,9 +99,9 @@
 
               <div class="hide-right-menu-contant">
                 <h3>{{getCategoryName(currentReport?.reportType)}}</h3>
-                <h4>{{currentReport.name}}</h4>
-                <h5>{{currentReport.smartContent}} </h5>
-                <p>{{currentReport.publishedAt | date:'d MMMM y'}}</p>
+                <h4>{{currentReport?.rTitle | striphtml}}</h4>
+                <h5>{{currentReport?.smartContent}} </h5>
+                <p>{{currentReport?.publishedAt | date:'d MMMM y'}}</p>
               </div>
             </div>
           </div>

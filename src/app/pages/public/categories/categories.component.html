@@ -88,7 +88,7 @@
               <div class="contant gray-back" *ngFor="let report of reports">
                 <div class="detail">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
-                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]">{{report?.name}}
+                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]">{{report?.rTitle | striphtml}}
                   </h4>
                   <p>{{report?.smartContent}}
                   </p>

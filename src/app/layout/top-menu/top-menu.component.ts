@@ -171,7 +171,7 @@ export class TopMenuComponent implements OnInit {
             inq: this.categories.filter(e => e.mainReportId).map(e => e.mainReportId)
           }
         },
-        fields: ['id', 'name', 'smartContent', 'reportTypeId', 'publishedAt'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'reportTypeId', 'publishedAt'],
         include: [{
           relation: 'reportType',
           scope: {

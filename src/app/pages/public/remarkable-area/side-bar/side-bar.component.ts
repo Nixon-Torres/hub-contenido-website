@@ -80,7 +80,7 @@ export class SideBarComponent implements OnInit {
     const filter = {
       where: {
       },
-      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'reads'],
+      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle', 'reads'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {
@@ -154,7 +154,7 @@ export class SideBarComponent implements OnInit {
       multimedia = multimedia.map(e => {
         return {
           ...e,
-          name: e.title,
+          rTitle: e.title,
           publishedAt: e.updatedAt,
           multimedia: true
         };

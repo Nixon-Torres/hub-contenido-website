@@ -64,7 +64,7 @@ export class ReportSummaryComponent implements OnInit {
       where: {
         reportTypeId: {inq: reportTypeIds}
       },
-      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent', 'rTitle'],
       include: [{
         relation: 'reportType',
         scope: {
@@ -88,7 +88,7 @@ export class ReportSummaryComponent implements OnInit {
       where: {
         reportTypeId: {inq: reportTypeIds}
       },
-      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent', 'rTitle'],
       include: [{
         relation: 'reportType',
         scope: {
@@ -112,7 +112,7 @@ export class ReportSummaryComponent implements OnInit {
       where: {
         strategy: true
       },
-      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent', 'rTitle'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {

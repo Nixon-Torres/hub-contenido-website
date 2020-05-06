@@ -9,8 +9,8 @@
 					</div>
 					<div class="information_details">
 						<h6>{{getCategory(headerReport?.reportType)}}</h6>
-						<h4>{{headerReport?.name}}</h4>
-						<p>{{headerReport?.smartContent}}</p>
+						<h4>{{headerReport?.rTitle | striphtml}}</h4>
+						<p>{{headerReport?.smartContent | truncate: 150: true}}</p>
 						<p class="date">{{headerReport?.publishedAt | date:'d MMMM y'}}</p>
 					</div>
 				</div>
@@ -27,8 +27,8 @@
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area1Report?.reportType)}}</h6>
-										<h4>{{area1Report?.name}}</h4>
-										<p>{{area1Report?.smartContent}}</p>
+										<h4>{{area1Report?.rTitle | striphtml}}</h4>
+										<p>aaa{{area1Report?.smartContent | truncate: 140: true}}</p>
 										<p class="date">{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -40,8 +40,8 @@
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area2Report?.reportType)}}</h6>
-										<h4>{{area2Report?.name}}</h4>
-										<p>{{area2Report?.smartContent}}</p>
+										<h4>{{area2Report?.rTitle | striphtml}}</h4>
+										<p>{{area2Report?.smartContent | truncate: 150: true}}</p>
 										<p class="date">{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -53,8 +53,8 @@
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area3Report?.reportType)}}</h6>
-										<h4>{{area3Report?.name}}</h4>
-										<p>{{area3Report?.smartContent}}</p>
+										<h4>{{area3Report?.rTitle | striphtml}}</h4>
+										<p>{{area3Report?.smartContent | truncate: 150: true}}</p>
 										<p class="date">{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -66,8 +66,8 @@
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area4Report?.reportType)}}</h6>
-										<h4>{{area4Report?.name}}</h4>
-										<p>{{area4Report?.smartContent}}</p>
+										<h4>{{area4Report?.rTitle | striphtml}}</h4>
+										<p>{{area4Report?.smartContent | truncate: 150: true}}</p>
 										<p class="date">{{area4Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>

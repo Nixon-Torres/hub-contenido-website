@@ -173,7 +173,7 @@ export class SearchResultsComponent implements OnInit {
       path: `public/search/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
         include: [{
           relation: 'reportType',
           scope: {
