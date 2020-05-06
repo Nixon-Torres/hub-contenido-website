@@ -58,7 +58,7 @@
               </div>
               <div class="libro-select-list-1">
                 <select [(ngModel)]="subscriber.sector" formControlName="sector">
-                  <option value="1">¿En qué sector económico usted trabaja?</option>
+                  <option value="1" [selected]="1">¿En qué sector económico usted trabaja?</option>
                   <option value="2">Sector 1</option>
                   <option value="3">Sector 2</option>
                   <option value="4">Sector 3</option>
@@ -73,7 +73,7 @@
               </div>
               <div class="libro-select-list-2">
                 <select [(ngModel)]="subscriber.knowledge" formControlName="knowledge">
-                  <option value="">¿Cual es su nivel de conocimiento en finanzas y economía?</option>
+                  <option value="1" [selected]="1">¿Cual es su nivel de conocimiento en finanzas y economía?</option>
                   <option value="LOW">Bajo</option>
                   <option value="MEDIUM">Medio</option>
                   <option value="HIGH">Alto</option>
