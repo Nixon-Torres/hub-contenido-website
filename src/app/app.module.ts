@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +19,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import localeCo from '@angular/common/locales/es-CO';
 import {HomeModule} from './pages/public/home/home.module';
 import {PipesModule} from './pipes.module';
+
+import '../../pdf-viewer';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -45,6 +47,7 @@ registerLocaleData(localeCo, 'es-CO');
   providers: [{provide: LOCALE_ID, useValue: 'es-CO'}],
   exports: [
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

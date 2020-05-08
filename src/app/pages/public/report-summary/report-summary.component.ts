@@ -25,8 +25,9 @@ export class ReportSummaryComponent implements OnInit {
   }
 
   getCategory(reportType) {
-    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
-      reportType.mainCategory[0].description : '';
+    return reportType.description;
+    /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : ''; */
   }
 
   private loadReportTypes() {
