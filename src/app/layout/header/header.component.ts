@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {Router} from '@angular/router';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
       private http: HttpService,
-      private router: Router
+      private router: Router,
+      private gtmService: GoogleTagManagerService
   ) { }
 
   ngOnInit() {

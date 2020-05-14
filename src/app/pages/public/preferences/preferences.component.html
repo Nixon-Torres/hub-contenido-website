@@ -1,0 +1,500 @@
+<header class="header header_container">
+  <div class="container">
+    <div class="header_section">
+      <div class="header_left">
+        <div class="site_logo" [routerLink]="'/home'">
+          <img src="./assets/images/logo-vision.svg" alt="">
+        </div>
+        <!--
+        <div class="logo_after">
+          <img src="./assets/images/logo_after.png" alt="">
+        </div> -->
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="regresar-section">
+  <div class="container">
+    <p class="link-back" [routerLink]="['/home']"><i class="fas fa-arrow-left"></i>Regresar</p>
+  </div>
+</div>
+
+<div class="regresar-text">
+  <div class="container">
+    <div class="regresar-text-head">
+      <h3>¡Bievenido!</h3>
+      <h4>Aquí puede realizar la personalización de los informes que quiere recibir.</h4>
+      <p>Haga clic en la categoría que prefiera y elija los informes que quiere en su bandeja de entrada.</p>
+    </div>
+  </div>
+</div>
+
+<div class="email-menu">
+  <div class="container">
+    <mat-tab-group (selectedTabChange)="changeCategory($event)" [(selectedIndex)]="selectedIdx">
+      <mat-tab [label]="category.description" *ngFor="let category of mainCategories">
+        <div *ngIf="category.code !== 'ENQUINVERTIR'" class="tab__wrapper">
+          <div class="row">
+            <div class="col-md-9 col-sm-12 menu-text">
+              <div class="menu-text-inner">
+                <p>Entérese de las más recientes noticias para que empiece el día bien informado. Además, revise el estado de las acciones, el cierre de mercados y lo que se espera de la semana en materia financiera. Encuentre también informes
+                  sobre la bitácora mercados de capitales, las nuevas emisiones y la estrategia anual.
+                </p>
+                <div class="row">
+                  <div class="col-md-6 col-sm-12 box-margin1" *ngFor="let type of selectedCategory?.childrenMainReportTypes">
+                    <div class="menu-text-box-1">
+                      <form>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
+                          <label class="custom-control-label" for="customCheck1"> <h4>{{type.description}} </h4>
+                            <p>Periodicidad: Diaria</p></label>
+                          <a href="#"><span><i class="fas fa-info-circle"></i></span></a>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="selection-info">
+                <div class="row">
+                  <div class="col-md-7 col-sm-12 right-flow">
+                    <p>Puede seleccionar todos los informes de esta categoria</p>
+                  </div>
+                  <div class="col-md-5 col-sm-12 right-flow">
+                    <form>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck8" name="example8">
+                        <label class="custom-control-label" for="customCheck8">selecionar Informes</label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="red-button">
+                <a (click)="previousCategory()" class="left" *ngIf="selectedIdx > 0">
+                  <button type="button" class="btn btn-red">
+                    <span><i class="fas fa-chevron-left"></i></span>
+                    Categoria anterior</button>
+                </a>
+                <a (click)="nextCategory()" class="right" *ngIf="selectedIdx < (mainCategories.length - 1)">
+                  <button type="button" class="btn btn-red">
+                    Siguiente categoria<span><i class="fas fa-chevron-right"></i></span>
+                  </button>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-12 menu-box ">
+              <div class="menu-border-box ">
+                <div class="menu-box-head ">
+                  <h3>Resumen selección</h3>
+                </div>
+                <div class="menu-box-inner ">
+                  <h3>Estar actualizado</h3>
+
+                  <h4>Lo que indica el mercado <a href="# "><span><i class="fas fa-trash-alt "></i></span></a></h4>
+                  <p>Recibirá <strong>2</strong> correos al mes</p>
+
+                  <h4>Presentación semanal <a href="# "><span><i class="fas fa-trash-alt "></i></span></a></h4>
+                  <p>Recibirá <strong>4</strong> correos al mes</p>
+
+                </div>
+
+                <div class="box-bottom-text">
+                  <p>Se está suscribiendo a <span class="red">2</span> informes y recibirá aproximadamente <span class="red">25</span> correos al mes</p>
+                  <a href="#"><button type="button" class="btn box-bottom-btn">Activar suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div *ngIf="category.code === 'ENQUINVERTIR'" class="menu-contant">
+          <div class="row">
+            <div class="col-md-9 col-sm-12 menu-text">
+              <div class="col-md-12 col-sm-12">
+                <div class="menu-text-inner regresar-menu-text">
+                  <p>Descubra informes completos con un análisis detallado de los activos más apropiados para invertir. Le entregamos toda la información para que elija entre bonos, acciones o monedas.
+                  </p>
+                  <div class="col-md-5 col-sm-12 pl-0 pr-0 regresar_checkbox">
+                    <form>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" name="regresarcheck">
+                        <label class="custom-control-label" for="customCheck">Selecionar todos los
+                          informes</label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="regresar-contant">
+                <div class="regresar-Acciones">
+                  <div class="col-md-12 col-sm-12">
+                    <h3>Acciones</h3>
+                    <div class="regresar-Acciones-contant">
+                      <div class="col-md-7 col-sm-12 pl-0 pr-0">
+                        <form>
+                          <div class="custom-control custom-checkbox regresar-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="regresar-Accionescheck" name="example-1">
+                            <label class="custom-control-label" for="regresar-Accionescheck">
+                              <ul>
+                                <li>. Actualización de cobertura</li>
+                                <li>· Estrategia mensual</li>
+                                <li>· Reporte de resultados trimestrales</li>
+                                <li>· Informes especiales</li>
+                                <li>· Información relevante</li>
+                                <li>· Rebalanceo de índices</li>
+                                <li>· Previa de resultados trimestrales</li>
+                                <li>· Participantes de mercado</li>
+                                <li>· Entre otros</li>
+                                <li class="edit-item"><a href="#"><u><i class="fas fa-edit"></i>Quitar uno o más
+                                  informes</u></a></li>
+                              </ul>
+                            </label>
+
+                            <button type="button" class="info-btn" data-toggle="modal" data-target="#myModal">
+                              <a href="#"><span><i class="fas fa-info-circle"></i></span></a>
+                            </button>
+                            <div class="modal" id="myModal">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="container-fluid">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                      <h4 class="title-text">Editar preferencias de acciones
+                                      </h4>
+                                      <p class="right-flow">Cerrar</p>
+                                      <button type="button" class="close" data-dismiss="modal">×</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+
+                                      <h4>Aquí podrá retirar elementos del grupo seleccionado
+                                      </h4>
+                                      <div class="modal-body-contant">
+                                        <div class="body-header">
+                                          <h5 class="body-left">Nombre</h5>
+                                          <h5 class="body-right">Periodicidad</h5>
+                                        </div>
+                                        <div class="regresar-popup-chechbox">
+                                          <ul>
+                                            <li>
+
+                                              <div class="custom-control custom-checkbox regresar-popup-1">
+                                                <input type="checkbox" class="custom-control-input" id="modal-customCheck1" name="modalexample1">
+                                                <label class="custom-control-label" for="modal-customCheck1">
+                                                  <div class="modal-checkbox-text">
+                                                    <h4 class="body-left">
+                                                      Actualización
+                                                      de
+                                                      coberturas
+                                                    </h4>
+                                                    <p class="body-right">
+                                                      Quincenal
+                                                    </p>
+                                                  </div>
+                                                </label>
+                                              </div>
+                                            </li>
+
+                                          </ul>
+
+                                          <ul>
+                                            <li>
+                                              <form>
+                                                <div class="custom-control custom-checkbox regresar-popup-1">
+                                                  <input type="checkbox" class="custom-control-input" id="modal-customCheck2" name="modalexample2">
+                                                  <label class="custom-control-label" for="modal-customCheck2">
+                                                    <div class="modal-checkbox-text">
+                                                      <h4 class="body-left">
+                                                        Estrategia
+                                                        mensual
+                                                      </h4>
+                                                      <p class="body-right">
+                                                        Semanal
+                                                      </p>
+                                                    </div>
+                                                  </label>
+                                                </div>
+                                              </form>
+                                            </li>
+                                          </ul>
+
+                                          <ul>
+                                            <li>
+                                              <form>
+                                                <div class="custom-control custom-checkbox regresar-popup-1">
+                                                  <input type="checkbox" class="custom-control-input" id="modal-customCheck3" name="modalexample3">
+                                                  <label class="custom-control-label" for="modal-customCheck3">
+                                                    <div class="modal-checkbox-text">
+                                                      <h4 class="body-left">
+                                                        Reporte de
+                                                        resultados
+                                                        trimestrales
+                                                      </h4>
+                                                      <p class="body-right">
+                                                        Anual
+                                                      </p>
+                                                    </div>
+                                                  </label>
+                                                </div>
+                                              </form>
+                                            </li>
+                                          </ul>
+
+                                          <ul>
+                                            <li>
+                                              <form>
+                                                <div class="custom-control custom-checkbox regresar-popup-1">
+                                                  <input type="checkbox" class="custom-control-input" id="modal-customCheck4" name="modalexample4">
+                                                  <label class="custom-control-label" for="modal-customCheck4">
+                                                    <div class="modal-checkbox-text">
+                                                      <h4 class="body-left">
+                                                        Informes
+                                                        especiales
+                                                      </h4>
+                                                      <p class="body-right">
+                                                        Diario
+                                                      </p>
+                                                    </div>
+                                                  </label>
+                                                </div>
+                                              </form>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                      <div class="regresar-popup-btn">
+                                        <button type="button" class="btn reg-popup-redbtn reg-left-btn">Cancelar</button>
+                                        <button type="button" class="btn reg-popup-brownbtn reg-right-btn">Aplicar</button>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div></form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="regresar-Acciones Bonos">
+                <div class="col-md-12 col-sm-12">
+                  <h3>Bonos</h3>
+                  <div class="regresar-Acciones-contant Bonos">
+                    <div class="col-md-7 col-sm-12 pl-0 pr-0">
+                      <form>
+                        <div class="custom-control custom-checkbox regresar-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="regresar-Bonoscheck" name="example-2">
+                          <label class="custom-control-label" for="regresar-Bonoscheck">
+                            <ul>
+                              <li>· Estrategia del mes</li>
+                              <li>· Tenedores de TES</li>
+                              <li>· Guia de crédito corporativo</li>
+                              <li>· Valor justo de los TES</li>
+                              <li>· Informes especiales</li>
+                              <li class="edit-item"><a href="#"><u><i class="fas fa-edit"></i>Quitar uno o más
+                                informes</u></a></li>
+                            </ul>
+                          </label>
+                          <button type="button" class="info-btn" data-toggle="modal" data-target="#myModal">
+                            <a href="#"><span><i class="fas fa-info-circle"></i></span></a>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="regresar-Acciones Bonos">
+                <div class="col-md-12 col-sm-12">
+                  <h3>Divisas</h3>
+                  <div class="regresar-Acciones-contant Divisas">
+                    <div class="col-md-7 col-sm-12 pl-0 pr-0">
+                      <form>
+                        <div class="custom-control custom-checkbox regresar-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="regresar-Divisascheck" name="example-3">
+                          <label class="custom-control-label" for="regresar-Divisascheck">
+                            <ul>
+                              <li>· Estrategia mensual</li>
+                              <li>· Informes especiales</li>
+                              <li class="edit-item"><a href="#"><u><i class="fas fa-edit"></i>Quitar uno o más
+                                informes</u></a></li>
+                            </ul>
+                          </label>
+                          <button type="button" class="info-btn" data-toggle="modal" data-target="#myModal">
+                            <a href="#"><span><i class="fas fa-info-circle"></i></span></a>
+                          </button>
+
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="regresar-btn">
+                <div class="red-button">
+                  <a (click)="previousCategory()" class="left" *ngIf="selectedIdx > 0">
+                    <button type="button" class="btn btn-red">
+                      <span><i class="fas fa-chevron-left"></i></span>
+                      Categoria anterior</button>
+                  </a>
+                  <a (click)="nextCategory()" class="right" *ngIf="selectedIdx < (mainCategories.length - 1)">
+                    <button type="button" class="btn btn-red">
+                      Siguiente categoria<span><i class="fas fa-chevron-right"></i></span>
+                    </button>
+                  </a>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="modal-header">
+                          <p class="right-flow">Cerrar</p>
+                          <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="popup-head-contant">
+                          <h3>Para actualizar sus preferencias, por favor necesitamos validar
+                            <b>su dirección de correo electrónico,</b> a continuación.</h3>
+                        </div>
+
+                        <div class="libro-electrónico">
+                          <input type="text" name="" placeholder="Correo electronico">
+                        </div>
+
+                        <div class="regresar-popup-button">
+                          <button type="button" class="btn popup-red-btn">Validar</button>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-md-3 col-sm-12 menu-box ">
+              <div class="menu-border-box ">
+                <div class="menu-box-head ">
+                  <h3>Resumen selección</h3>
+                </div>
+                <div class="menu-box-inner regresar-menu-text-inner ">
+                  <h3>Estar actualizado</h3>
+
+                  <h4>Lo que indica el mercado <a href="# "><span><i class="fas fa-trash-alt "></i></span></a>
+                  </h4>
+                  <p>Recibirá <strong>2</strong> correos al mes</p>
+
+                  <h4>Presentación semanal <a href="# "><span><i class="fas fa-trash-alt "></i></span></a>
+                  </h4>
+                  <p>Recibirá <strong>4</strong> correos al mes</p>
+
+                  <h3>¿En qué invertir?</h3>
+
+                  <h4>Acciones <a href="# "><span><i class="fas fa-trash-alt "></i></span></a></h4>
+                  <p>Recibirá <strong>2</strong> correos al mes</p>
+
+                  <h4>Bonos <a href="# "><span><i class="fas fa-trash-alt "></i></span></a></h4>
+                  <p>Recibirá <strong>2</strong> correos al mes</p>
+
+                  <h4>Divisas <a href="# "><span><i class="fas fa-trash-alt "></i></span></a></h4>
+                  <p>Recibirá <strong>4</strong> correos al mes</p>
+
+                </div>
+                <div class="regresar-box-bottom-text">
+                  <p>Usted recibirá <span class="red">un total de 5 informes</span></p>
+                  <a href="#"><button type="button" class="btn box-bottom-btn" data-toggle="modal" data-target="#exampleModal-2" aria-hidden="true">Activar mi
+                    suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <div class="modal-header">
+                            <p class="right-flow">Cerrar</p>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                          </div>
+                          <div class="popup-head-contant">
+                            <h3>¡Su selección personalizada está casi lista! Complete los siguientes datos y activaremos su suscripción.</h3>
+                          </div>
+                          <div class="regresar-box-popup-inner">
+                            <div class="libro-Nombre">
+                              <input type="text" name="" placeholder="Nambre">
+                            </div>
+
+                            <div class="libro-Apellido">
+                              <input type="text" name="" placeholder="Apellido">
+                            </div>
+
+                            <div class="libro-electrónico">
+                              <input type="text" name="" placeholder="Correo electronico">
+                            </div>
+                            <div class="libro-text-1">
+                              <p>¿Cómo calificaría sus conocimientos<br> en finanzas y economía?<a href="#"><i class="fas fa-caret-down"></i></a></p>
+                            </div>
+
+                            <div class="regresar-hide-box">
+                              <div class="popup-search-box-1">
+                                <h3>Bajo</h3>
+                                <h4>Desea aprender los conceptos más básicos de economía y finanzas y después profundizar en ellos.</h4>
+                              </div>
+                              <div class="popup-search-box-2">
+                                <h3>Intermedio</h3>
+                                <h4>Le son familiares conceptos básicos de economía y finanzas, pero quiere aprender temas más especializados.</h4>
+                              </div>
+                              <div class="popup-search-box-3">
+                                <h3>Avanzado</h3>
+                                <h4>Utiliza a diario conceptos especializados de economía y finanzas.</h4>
+                              </div>
+                            </div>
+
+
+
+                            <div class="libro-checkbox">
+                              <form>
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="libro-customCheck-1" name="libro-1">
+                                  <label class="custom-control-label" for="libro-customCheck-1">Acepto términos y
+                                    condiciones</label>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+
+                          <div class="regresar-box-popup-button">
+                            <button type="button" class="btn regresar-box-popup-inner-red-btn">Enviar mis
+                              datos</button>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

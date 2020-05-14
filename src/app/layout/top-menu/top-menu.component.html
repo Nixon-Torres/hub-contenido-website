@@ -1,19 +1,19 @@
 <div class="header_menu">
   <div class="container">
     <div class="menu_item">
-      <ul *ngIf="ready">
-        <li (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave()"
+      <ul *ngIf="ready" (mouseleave)="mouseLeave()">
+        <li (mouseenter)="mouseEnter(1)" (click)="go('Estar actualizado')"
             class="set-padd set-caret-1" [routerLink]="getCategoryLink(1)"
             routerLinkActive="active">
           <a>Estar<br>actualizado</a>
           <i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave()"
+        <li (mouseenter)="mouseEnter(2)"
             class="add-padd set-caret-2" [routerLink]="getCategoryLink(2)"
             routerLinkActive="active">
           <a>Macroeconomía</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(3)" (mouseleave)="mouseLeave()" class="set-caret-3 set-padd menu_icon"
+        <li (mouseenter)="mouseEnter(3)" class="set-caret-3 set-padd menu_icon"
             [routerLink]="getCategoryLink(3)"
             routerLinkActive="active">
             <figure>
@@ -21,23 +21,23 @@
             </figure>
           <a>Nuestros <br/> indicadores</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(4)" (mouseleave)="mouseLeave()" class="set-caret-4 set-padd"
+        <li (mouseenter)="mouseEnter(4)" class="set-caret-4 set-padd"
             [routerLink]="getCategoryLink(4)"
             routerLinkActive="active">
           <a>Economías <br/>Centroamericanas</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(5)" (mouseleave)="mouseLeave()" class="set-caret-5 set-padd"
+        <li (mouseenter)="mouseEnter(5)" class="set-caret-5 set-padd"
             [routerLink]="getCategoryLink(5)"
             routerLinkActive="active">
           <a>Tendencias <br/>sectoriales</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(6)" (mouseleave)="mouseLeave()" class="set-caret-6 set-padd"
+        <li (mouseenter)="mouseEnter(6)" class="set-caret-6 set-padd"
             [routerLink]="getCategoryLink(6)"
             routerLinkActive="active"
             id="inner-menu-detail">
           <a>Análisis de<br>compañías</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(7)" (mouseleave)="mouseLeave()" class="set-padd set-caret-7"
+        <li (mouseenter)="mouseEnter(7)" class="set-padd set-caret-7"
             [routerLink]="getCategoryLink(7)"
             routerLinkActive="active">
           <a>¿En qué<br> invertir?&nbsp;</a><i class="fas fa-caret-down"></i>
@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="categorias-hide-menu" [ngClass]="{'category-menu-visible': subMenuVisible}"
-       (mouseenter)="mouseEnter(null)" (mouseleave)="mouseLeave()">
+       (mouseenter)="mouseEnterAfterSeconds(null)" (mouseleave)="mouseLeave()">
     <div class="container">
       <div class="hide-menu-contant">
         <div class="row">
@@ -97,7 +97,7 @@
                 <h3>Contenido Destacado</h3>
               </div>
 
-              <div class="hide-right-menu-contant">
+              <div class="hide-right-menu-contant" [routerLink]="['/reports', currentReport?.id]">
                 <h3>{{getCategoryName(currentReport?.reportType)}}</h3>
                 <h4>{{currentReport?.rTitle | striphtml}}</h4>
                 <h5>{{currentReport?.smartContent}} </h5>

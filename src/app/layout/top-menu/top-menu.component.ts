@@ -3,6 +3,7 @@ import {HttpService} from '../../services/http.service';
 import {map} from 'rxjs/operators';
 import {forkJoin, Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-top-menu',
@@ -66,7 +67,9 @@ export class TopMenuComponent implements OnInit {
     items: []
   }];
 
-  constructor(private http: HttpService, private router: Router) {
+  public menuTimer: any;
+
+  constructor(private http: HttpService, private router: Router, private gtmService: GoogleTagManagerService) {
     router.events.subscribe((val) => {
       this.mouseLeave();
     });
@@ -79,7 +82,31 @@ export class TopMenuComponent implements OnInit {
     });
   }
 
+  go(eventName) {
+    console.log(eventName);
+
+    const gtmTag = {
+      event: eventName,
+      clickUrl: window.location.href
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
+
   mouseEnter(idx?: number) {
+    if (!this.ready) {
+      return;
+    }
+
+    if (this.subMenuVisible) {
+      return this.mouseEnterAfterSeconds(idx);
+    }
+
+    this.menuTimer = setTimeout(() => {
+      this.mouseEnterAfterSeconds(idx);
+    }, 500);
+  }
+
+  mouseEnterAfterSeconds(idx?: number) {
     if (!this.ready) {
       return;
     }
@@ -232,6 +259,10 @@ export class TopMenuComponent implements OnInit {
 
   mouseLeave() {
     this.subMenuVisible = false;
+
+    if (this.menuTimer) {
+      window.clearTimeout(this.menuTimer);
+    }
   }
 
   getCategoryId(option?: number) {

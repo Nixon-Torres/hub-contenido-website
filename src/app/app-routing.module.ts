@@ -3,12 +3,17 @@ import {Routes, RouterModule, ExtraOptions} from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 import {ThankyouComponent} from './pages/public/thankyou/thankyou.component';
+import {PreferencesComponent} from './pages/public/preferences/preferences.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'preferences',
+    component: PreferencesComponent
   },
   {
     path: 'thankyou',

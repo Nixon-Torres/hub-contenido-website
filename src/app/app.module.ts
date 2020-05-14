@@ -21,6 +21,7 @@ import {HomeModule} from './pages/public/home/home.module';
 import {PipesModule} from './pipes.module';
 
 import '../../pdf-viewer';
+import {PreferencesModule} from './pages/public/preferences/preferences.module';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -42,9 +43,12 @@ registerLocaleData(localeCo, 'es-CO');
     FormsModule,
     PdfViewerModule,
     HomeModule,
+    PreferencesModule,
     PipesModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es-CO'}],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es-CO'},
+    {provide: 'googleTagManagerId', useValue: 'GTM-KD77KT3'}],
   exports: [
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
