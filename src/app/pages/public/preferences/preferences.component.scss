@@ -2131,6 +2131,15 @@ p.right-flow {
   .custom-checkbox .custom-control-label::before{
     border-color: #707070;
   }
+  .select_reports{
+    margin-top: 30px;
+    margin-left: 0;
+    .custom-checkbox{
+      width: 312.5px;
+      height: 42px;
+      border-radius: 5px;
+    }
+  }
 }
 
 .email_legal{
