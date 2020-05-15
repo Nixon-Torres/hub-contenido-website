@@ -22,6 +22,7 @@ import {PipesModule} from './pipes.module';
 
 import '../../pdf-viewer';
 import {PreferencesModule} from './pages/public/preferences/preferences.module';
+import {MatDialogModule} from '@angular/material';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -44,7 +45,8 @@ registerLocaleData(localeCo, 'es-CO');
     PdfViewerModule,
     HomeModule,
     PreferencesModule,
-    PipesModule
+    PipesModule,
+    MatDialogModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-CO'},

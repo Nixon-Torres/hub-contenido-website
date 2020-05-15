@@ -55,6 +55,11 @@ const routes: Routes = [
     loadChildren: './pages/public/ifx/ifx.module#IfxModule'
   },
   {
+    path: 'confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
     path: 'multimedia',
     component: LayoutComponent,
     loadChildren: './pages/public/multimedia/multimedia.module#MultimediaModule'

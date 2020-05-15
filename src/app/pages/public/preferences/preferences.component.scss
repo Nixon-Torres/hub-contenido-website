@@ -130,6 +130,7 @@
 .menu-text-box-1 .custom-checkbox {
   width: 100%;
   float: left;
+  border-radius: 5px;
 }
 
 .menu-text-box-1 .custom-checkbox h4 {
@@ -164,8 +165,9 @@
 }
 
 .menu-text-box-1 .custom-checkbox {
-  border: 0.5px solid #676666;
+  border: 0.5px solid #6766668c;
   margin: 30px 0 0;
+  min-height: 60px;
 }
 
 .box-margin1 {
@@ -377,7 +379,7 @@
   line-height: 17px;
   text-align: center;
   color: #676666;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .box-bottom-text span.red {
@@ -391,7 +393,7 @@
   background-color: #EF161A;
   font-size: 15px;
   line-height: 21px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .box-bottom-btn:hover {
@@ -468,7 +470,6 @@ footer {
   text-align: left;
   color: #EF161A;
   font-weight: bold;
-  margin: 0;
 }
 
 .regresar-text-head h4 {
@@ -576,8 +577,9 @@ footer {
 
 .regresar-Acciones .custom-control-label::before {
   position: absolute;
-  top: 120px;
-  left: -38px;
+  top: 50%;
+  left: -18px;
+  transform: translate(-18px, -50%);
   display: block;
   width: 1rem;
   height: 1rem;
@@ -740,7 +742,7 @@ footer {
   text-align: left;
 }
 
-.regresar-btn .libro-electrÃ³nico {
+.regresar-btn .libro-electrÃƒÂ³nico {
   width: 100%;
   float: left;
   padding: 30px;
@@ -757,7 +759,7 @@ footer {
   border-color: transparent transparent #dee2e6 transparent;
 }
 
-.regresar-btn .libro-electrÃ³nico input:focus {
+.regresar-btn .libro-electrÃƒÂ³nico input:focus {
   outline: none;
 }
 
@@ -810,7 +812,7 @@ footer {
   padding: 10px 0;
 }
 
-.regresar-box-bottom-text .libro-electrÃ³nico {
+.regresar-box-bottom-text .libro-electrÃƒÂ³nico {
   width: 100%;
   float: left;
   padding: 10px 0;
@@ -2089,9 +2091,9 @@ p.right-flow {
 }
 
 ::ng-deep
-  .mat-ink-bar {
-    background-color: #EF161A !important;
-  }
+.mat-ink-bar {
+  background-color: #EF161A !important;
+}
 
 ::ng-deep.mat-tab-label .mat-tab-label-content {
   flex-wrap: wrap !important;
@@ -2106,3 +2108,41 @@ p.right-flow {
 ::ng-deep.mat-tab-body-content {
   overflow: hidden;
 }
+
+
+.all_info{
+  border: 0.5px solid #6766668c;
+  margin: 30px 0 0;
+  width: 312.5px;
+  height: 42px;
+  padding: 8px 40px;
+  border-radius: 5px;
+  label{
+    padding-left: 13px;
+    color: #505050;
+    font-weight: 500;
+    &::before{
+      border-radius: 0px;
+    }
+  }
+}
+
+.email-menu{
+  .custom-checkbox .custom-control-label::before{
+    border-color: #707070;
+  }
+}
+
+.email_legal{
+  background: #1A1A1A;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  p{
+    color: #ffffff;
+    margin: 0;
+    font-size: 0.75em;
+    font-family: Helvetica;
+  }
+}
+

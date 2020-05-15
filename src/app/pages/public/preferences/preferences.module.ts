@@ -5,6 +5,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
 import {PipesModule} from '../../../pipes.module';
 import {MatTabsModule} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -20,7 +21,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     BreadcrumbModule,
     PipesModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
   ]
