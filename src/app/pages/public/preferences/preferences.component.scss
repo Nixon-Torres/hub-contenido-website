@@ -180,10 +180,11 @@
 
 .menu-text-box-1 .custom-control-label::after {
   position: absolute;
-  top: 20px;
-  left: -1.5rem;
+  top: 36%;
+  left: -1.7em;
   display: block;
-  width: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
   content: "";
   background: no-repeat 50%/50% 50%;
@@ -566,11 +567,11 @@ footer {
 
 .regresar-Acciones .custom-control-label::after {
   position: absolute;
-  top: 120px;
-  left: -48px;
+  top: 40%;
+  left: -2.5em;
   display: block;
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   content: "";
   background: no-repeat 50%/50% 50%;
 }
