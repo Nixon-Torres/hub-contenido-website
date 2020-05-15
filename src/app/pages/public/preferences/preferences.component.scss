@@ -165,7 +165,7 @@
 }
 
 .menu-text-box-1 .custom-checkbox {
-  border: 0.5px solid #6766668c;
+  border: 0.5px solid #676666;
   margin: 30px 0 0;
   min-height: 60px;
 }
@@ -2130,6 +2130,15 @@ p.right-flow {
 .email-menu{
   .custom-checkbox .custom-control-label::before{
     border-color: #707070;
+  }
+  .select_reports{
+    margin-top: 30px;
+    margin-left: 0;
+    .custom-checkbox{
+      width: 312.5px;
+      height: 45px;
+      border-radius: 5px;
+    }
   }
 }
 
