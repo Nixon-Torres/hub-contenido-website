@@ -13,7 +13,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 import { ThankyouComponent } from './pages/public/thankyou/thankyou.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import localeCo from '@angular/common/locales/es-CO';
@@ -22,7 +22,10 @@ import {PipesModule} from './pipes.module';
 
 import '../../pdf-viewer';
 import {PreferencesModule} from './pages/public/preferences/preferences.module';
-import {MatDialogModule} from '@angular/material';
+import {MatDialogModule, MatDividerModule} from '@angular/material';
+import {SubscribeDialogComponent} from './pages/public/subscribe-dialog/subscribe-dialog.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -33,7 +36,8 @@ registerLocaleData(localeCo, 'es-CO');
     HeaderComponent,
     FooterComponent,
     TopMenuComponent,
-    ThankyouComponent
+    ThankyouComponent,
+    SubscribeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,12 +50,17 @@ registerLocaleData(localeCo, 'es-CO');
     HomeModule,
     PreferencesModule,
     PipesModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDividerModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-CO'},
     {provide: 'googleTagManagerId', useValue: 'GTM-KD77KT3'}],
   exports: [
+    SubscribeDialogComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

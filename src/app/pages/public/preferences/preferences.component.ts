@@ -134,12 +134,13 @@ export class PreferencesComponent implements OnInit {
     this.selectedCategory = this.mainCategories[this.selectedIdx];
   }
 
-  public open(categoryId: string): void {
+  public openSubscriptionModal(): void {
     this.dialog.open(SubscribeDialogComponent, {
-      width: '602px',
+      width: '350px',
       data: {
-        categoryId
-      }
+      },
+      panelClass: 'custom-modalbox',
+      autoFocus: false
     });
   }
 

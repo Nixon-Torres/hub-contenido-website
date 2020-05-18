@@ -6,6 +6,7 @@ import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
 import {PipesModule} from '../../../pipes.module';
 import {MatTabsModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SubscribeDialogComponent} from '../subscribe-dialog/subscribe-dialog.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
   entryComponents: [
+    SubscribeDialogComponent
   ]
 })
 export class PreferencesModule {
