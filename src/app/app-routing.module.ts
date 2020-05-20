@@ -25,6 +25,36 @@ const routes: Routes = [
     loadChildren: './pages/public/home/home.module#HomeModule'
   },
   {
+    path: 'edit_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'edit_completed_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'sub2factor_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'subscribe_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'unsubscribe_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'unsubscribe_completed_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
     path: 'reports/:id',
     component: LayoutComponent,
     loadChildren: './pages/public/report/report.module#ReportModule'

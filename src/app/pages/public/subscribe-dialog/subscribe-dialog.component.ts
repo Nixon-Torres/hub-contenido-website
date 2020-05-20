@@ -2,6 +2,8 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {HttpService} from '../../../services/http.service';
+import {DataService} from '../../../data.service';
 
 @Component({
   selector: 'app-subscribe-dialog',
@@ -15,6 +17,8 @@ export class SubscribeDialogComponent {
   public title: string;
   public description: string;
   public source: string;
+
+  public quincenal = false;
 
   public options: any = [{
     title: 'Bajo',
@@ -33,8 +37,12 @@ export class SubscribeDialogComponent {
   public currentOption = '';
 
   constructor(
+    private http: HttpService,
+    private dataService: DataService,
     public dialogRef: MatDialogRef<SubscribeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+
+    this.quincenal = data.quincenal;
 
     this.subscribeGroup = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -50,7 +58,30 @@ export class SubscribeDialogComponent {
     this.currentOption = option ? option.title : '';
   }
 
+  public subscribeQuincenal() {
+    this.dataService.subscriptionData = {
+      subscriber: this.subscriber,
+      subscriptions: []
+    };
+    this.http.post({
+      path: 'public/subscribe',
+      data: {
+        subscriber: this.subscriber,
+        subscriptions: [
+          {
+            type: 'QUINCENAL'
+          }]
+      }
+    }).subscribe((res) => {
+      this.dialogRef.close({subscriber: this.subscriber});
+    });
+  }
+
   public subscribe() {
+    if (this.quincenal) {
+      return this.subscribeQuincenal();
+    }
+    this.dialogRef.close({subscriber: this.subscriber});
   }
 
   onNoClick(): void {

@@ -227,3 +227,53 @@
     }
   }
 }
+
+.suscribe_btn {
+  position: relative;
+
+  button {
+    outline: none;
+  }
+
+  .arrow-up {
+    position: absolute;
+    top: -8px;
+    right: 14px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid white;
+  }
+
+  .subscribe_menu {
+    background: white;
+    position: absolute;
+    z-index: 1000;
+    top: 60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 450px;
+    right: 0;
+    -webkit-box-shadow: 2px 4px 3px 0px rgba(206,206,206,1);
+    -moz-box-shadow: 2px 4px 3px 0px rgba(206,206,206,1);
+    box-shadow: 2px 4px 3px 0px rgba(206,206,206,1);
+
+    .subscribe_item {
+      padding: 15px 15px 12px;
+      cursor: pointer;
+
+      h4 {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      p {
+        color: #818181;
+        font-size: 12px;
+        font-style: italic;
+        margin-bottom: 0px
+      }
+    }
+  }
+}

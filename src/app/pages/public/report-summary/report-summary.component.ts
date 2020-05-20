@@ -21,11 +21,11 @@ export class ReportSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.loadOutstanding();
-    this.loadReportTypes();;
+    this.loadReportTypes();
   }
 
   getCategory(reportType) {
-    return reportType.description;
+    return reportType ? reportType.description : '';
     /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
       reportType.mainCategory[0].description : ''; */
   }

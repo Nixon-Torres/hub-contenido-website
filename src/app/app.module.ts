@@ -26,6 +26,7 @@ import {MatDialogModule, MatDividerModule} from '@angular/material';
 import {SubscribeDialogComponent} from './pages/public/subscribe-dialog/subscribe-dialog.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {EditPreferencesDialogComponent} from './pages/public/edit-preferences-dialog/edit-preferences-dialog.component';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -37,7 +38,8 @@ registerLocaleData(localeCo, 'es-CO');
     FooterComponent,
     TopMenuComponent,
     ThankyouComponent,
-    SubscribeDialogComponent
+    SubscribeDialogComponent,
+    EditPreferencesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +58,15 @@ registerLocaleData(localeCo, 'es-CO');
     ReactiveFormsModule,
     MatDividerModule
   ],
+  entryComponents: [
+    EditPreferencesDialogComponent
+  ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-CO'},
     {provide: 'googleTagManagerId', useValue: 'GTM-KD77KT3'}],
   exports: [
-    SubscribeDialogComponent
+    SubscribeDialogComponent,
+    EditPreferencesDialogComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

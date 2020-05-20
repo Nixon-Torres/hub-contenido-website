@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {environment} from '../../../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {SubscribeDialogComponent} from '../subscribe-dialog/subscribe-dialog.component';
 import {MatDialog} from '@angular/material';
+import {ActivatedRoute, Router} from '@angular/router';
+import {DataService} from '../../../data.service';
 
 @Component({
   selector: 'app-preferences',
@@ -18,6 +18,9 @@ export class PreferencesComponent implements OnInit {
     label: 'Preferencias',
     link: ['/preferences']
   }];
+
+  private accessToken: string;
+  public subscriptions: any;
 
   public STORAGE_URL = environment.URL_API;
   public mainCategories;
@@ -31,7 +34,8 @@ export class PreferencesComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private http: HttpService, private sanitizer: DomSanitizer, private fb: FormBuilder, private dialog: MatDialog) {
+  constructor(private http: HttpService, private sanitizer: DomSanitizer, private fb: FormBuilder, private dialog: MatDialog,
+              private router: Router, private dataService: DataService, private activatedRoute: ActivatedRoute) {
     this.form = this.fb.group({
       reportTypes: new FormArray([])
     });
@@ -134,13 +138,63 @@ export class PreferencesComponent implements OnInit {
     this.selectedCategory = this.mainCategories[this.selectedIdx];
   }
 
+  public editPreferences() {
+    const selected = this.getCheckboxesSelected();
+    const reportTypes = this.reportTypes.filter(e => selected.indexOf(e.id) > -1);
+    this.dataService.subscriptionData = {
+      subscriptions: reportTypes
+    };
+
+    this.http.put({
+      path: 'public/subscriptions?access_token=' + this.accessToken,
+      data: {
+        subscriptions: selected.map(e => {
+          return {
+            type: 'REPORTTYPE',
+            reportTypeId: e
+          };
+        })
+      },
+      encode: true
+    }).subscribe((res) => {
+      this.router.navigate(['edit_completed_confirmation']);
+    });
+  }
+
   public openSubscriptionModal(): void {
-    this.dialog.open(SubscribeDialogComponent, {
+    if (this.accessToken) {
+      return this.editPreferences();
+    }
+
+    const dialogRef = this.dialog.open(SubscribeDialogComponent, {
       width: '350px',
       data: {
       },
       panelClass: 'custom-modalbox',
       autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      const selected = this.getCheckboxesSelected();
+      const reportTypes = this.reportTypes.filter(e => selected.indexOf(e.id) > -1);
+      result.subscriptions = reportTypes;
+      this.dataService.subscriptionData = result;
+
+      this.http.post({
+        path: 'public/subscribe',
+        data: {
+          subscriber: result.subscriber,
+          subscriptions: selected.map(e => {
+            return {
+              type: 'REPORTTYPE',
+              reportTypeId: e
+            };
+          })
+        },
+        encode: true
+      }).subscribe((res) => {
+        this.router.navigate(['sub2factor_confirmation']);
+      });
     });
   }
 
@@ -209,6 +263,25 @@ export class PreferencesComponent implements OnInit {
     });
   }
 
+  private getSubscriptions() {
+    if (!this.accessToken) {
+      return;
+    }
+    this.http.get({
+      path: 'public/subscriptions?access_token=' + this.accessToken
+    }).subscribe((res) => {
+      this.subscriptions = (res.body as any).data;
+      this.subscriptions.map(e => {
+        return {
+          id: e.reportTypeId
+        };
+      }).forEach(e => {
+        const idx = this.getTypeIndex(e);
+        (this.form.controls.reportTypes as FormArray).controls[idx].setValue(true);
+      });
+    });
+  }
+
   private getCategories() {
     this.clearCheckboxes(this.form.controls.reportTypes as FormArray);
     return this.http.get({
@@ -238,10 +311,18 @@ export class PreferencesComponent implements OnInit {
 
       this.addCheckboxes(this.reportTypes);
       this.selectedCategory = this.categories[0];
+
+      this.getSubscriptions();
     });
   }
 
   ngOnInit() {
     this.getCategories();
+
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      if (params.access_token) {
+        this.accessToken = params.access_token;
+      }
+    });
   }
 }

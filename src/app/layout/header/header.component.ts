@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {Router} from '@angular/router';
 import {GoogleTagManagerService} from 'angular-google-tag-manager';
+import {EditPreferencesDialogComponent} from '../../pages/public/edit-preferences-dialog/edit-preferences-dialog.component';
+import {SubscribeDialogComponent} from '../../pages/public/subscribe-dialog/subscribe-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +14,15 @@ import {GoogleTagManagerService} from 'angular-google-tag-manager';
 export class HeaderComponent implements OnInit {
   public reportsList: Array<any>;
   public searchText: string;
+  public subscribeMenuVisible = false;
 
   constructor(
-      private http: HttpService,
-      private router: Router,
-      private gtmService: GoogleTagManagerService
-  ) { }
+    private dialog: MatDialog,
+    private http: HttpService,
+    private router: Router,
+    private gtmService: GoogleTagManagerService
+  ) {
+  }
 
   ngOnInit() {
     this.onLoadReports();
@@ -60,7 +66,7 @@ export class HeaderComponent implements OnInit {
   }
 
   redirectSelection(event) {
-    const location = event.multimediaType ? '/multimedia' : '/reports'
+    const location = event.multimediaType ? '/multimedia' : '/reports';
     if (event && event.id) {
       this.router.navigate([location, event.id]);
     }
@@ -73,12 +79,44 @@ export class HeaderComponent implements OnInit {
     const name = item.name ? 'name' : 'title';
     const author = item.name ? 'user' : 'lastUpdater';
     return item[name].toLowerCase().indexOf(term) > -1 ||
-        item[author].name.toLowerCase().indexOf(term) > -1 ||
-        dateString.indexOf(term) > -1 ||
-        item.reportType.mainCategory.find(e => e.description.toLowerCase().indexOf(term) > -1);
+      item[author].name.toLowerCase().indexOf(term) > -1 ||
+      dateString.indexOf(term) > -1 ||
+      item.reportType.mainCategory.find(e => e.description.toLowerCase().indexOf(term) > -1);
   }
 
   searchEvent() {
-    this.router.navigate(['/search'], { queryParams: { s: this.searchText } });
+    this.router.navigate(['/search'], {queryParams: {s: this.searchText}});
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(EditPreferencesDialogComponent, {
+      width: '350px',
+      data: {},
+      panelClass: 'custom-modalbox',
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result && result.subscriber) {
+        this.router.navigate(['/edit_confirmation']);
+      }
+    });
+  }
+
+  openQuincenalDialog() {
+    const dialogRef = this.dialog.open(SubscribeDialogComponent, {
+      width: '350px',
+      data: {
+        quincenal: true
+      },
+      panelClass: 'custom-modalbox',
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result && result.subscriber) {
+        this.router.navigate(['/sub2factor_confirmation']);
+      }
+    });
   }
 }

@@ -100,7 +100,7 @@
 
                 <div class="box-bottom-text">
                   <p>Se está suscribiendo a <span class="red">{{getCheckboxesSelected().length}}</span> informes y recibirá aproximadamente <span class="red">{{getMonthlyReports()}}</span> correos al mes</p>
-                  <a><button type="button" class="btn box-bottom-btn" (click)="openSubscriptionModal()">Activar suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
+                  <a><button type="button" class="btn box-bottom-btn" (click)="openSubscriptionModal()" [disabled]="getCheckboxesSelected().length === 0">{{accessToken ? 'Actualizar' : 'Activar'}} suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
                 </div>
               </div>
 
@@ -341,12 +341,10 @@
 
                 <div class="box-bottom-text">
                   <p>Se está suscribiendo a <span class="red">{{getCheckboxesSelected().length}}</span> informes y recibirá aproximadamente <span class="red">{{getMonthlyReports()}}</span> correos al mes</p>
-                  <a href="#"><button type="button" class="btn box-bottom-btn">Activar suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
+                  <a><button type="button" class="btn box-bottom-btn" (click)="openSubscriptionModal()" [disabled]="getCheckboxesSelected().length === 0">{{accessToken ? 'Actualizar' : 'Activar'}} suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
       </mat-tab>

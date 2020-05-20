@@ -10,6 +10,7 @@ import {ReportSummaryComponent} from '../report-summary/report-summary.component
 import {SideBarComponent} from '../remarkable-area/side-bar/side-bar.component';
 import {HowIsEconomyComponent} from '../how-is-economy/how-is-economy.component';
 import {PipesModule} from '../../../pipes.module';
+import {EditPreferencesDialogComponent} from '../edit-preferences-dialog/edit-preferences-dialog.component';
 
 const routes: Routes = [
   {

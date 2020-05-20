@@ -8,12 +8,8 @@
 					</div>
 				</div>
 
-
-
-
-
 				<div class="col-sm-6 contact_content">
-					<div class="subs">
+					<div class="subs" (click)="openQuincenalDialog()">
 						<div class="subs__container">
 							<h3>Boletín quincenal</h3>
 							<p>Póngase al día con los informes destacados de las últimas 2 semanas</p>
@@ -23,7 +19,7 @@
 						</div>
 					</div>
 
-					<div class="subs">
+					<div class="subs" [routerLink]="['/preferences']">
 						<div class="subs__container">
 							<h3>Informes personalizados</h3>
 							<p>Seleccione solo los informes que más le interesan</p>
@@ -33,7 +29,7 @@
 						</div>
 					</div>
 
-					<div class="subs">
+					<div class="subs" (click)="openDialog()">
 						<div class="subs__container">
 							<h3>Actualizar mis preferencias</h3>
 							<p>Modifique su suscripción y reciba los informes de su interés.</p>

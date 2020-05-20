@@ -4,9 +4,12 @@
     <i class="fa fa-times"></i>
   </div>
 
+  <form [formGroup]="subscribeGroup" (submit)="subscribe()" autocomplete="off">
   <div mat-dialog-content>
-    <form [formGroup]="subscribeGroup" (submit)="subscribe()" autocomplete="off">
-      <p>¡Su selección personalizada está casi lista! Complete los siguientes datos para activar su suscripción.</p>
+    <h4 *ngIf="quincenal">Suscripci&oacute;n al bolet&iacute;n quincenal</h4>
+    <p *ngIf="quincenal">Para terminar su suscripci&oacute;n al <strong>bolet&iacute;n quincenal,</strong> complete los siguientes campos con sus datos</p>
+
+    <p *ngIf="!quincenal">¡Su selección personalizada está casi lista! Complete los siguientes datos para activar su suscripción.</p>
       <div class="divider"></div>
       <div class="input-block">
         <div class="input-control">
@@ -64,11 +67,11 @@
           <label for="accept">Acepto términos y condiciones</label>
         </div>
       </div>
-    </form>
   </div>
   <div mat-dialog-actions>
     <div class="regresar-popup-button">
-      <button type="button" class="btn popup-red-btn" [disabled]="subscribeGroup.invalid">Enviar mis datos</button>
+      <button type="submit" class="btn popup-red-btn" [disabled]="subscribeGroup.invalid">Enviar mis datos</button>
     </div>
   </div>
+  </form>
 </div>

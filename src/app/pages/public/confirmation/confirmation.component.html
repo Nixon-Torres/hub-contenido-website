@@ -1,26 +1,93 @@
 <div class="resumen">
   <div class="container">
     <div class="resumen-contant">
-      <div class="resumen-head">
+      <div class="resumen-head" *ngIf="route === EDITCOMPLETEDCONFIRMED">
         <h3>Su suscripción fue actualizada exitosamente</h3>
-        <h4>A partir de este momento, <b>recibirá en su correo</b> los últimos informes publicados sobre los temas que elegió.</h4>
+        <h4>A partir de este momento, <b>recibirá en su correo</b> los últimos informes publicados sobre los temas que eligió.</h4>
+      </div>
+      <div class="resumen-head" *ngIf="route === EDITCONFIRMED">
+        <h3>Est&aacute; a punto de actualizar su suscripci&oacute;n</h3>
+        <p><strong>Acabamos de enviarle un correo para continuar con el proceso</strong></p>
+        <p>Revise la bandeja de entrada de<br/> su correo electr&oacute;nico.</p>
+      </div>
+      <div class="resumen-head" *ngIf="route === SUBCONFIRMED">
+        <h3>Su suscripción fue activada</h3>
+        <h4>A partir de este momento, <b>recibirá en su correo</b> los últimos informes publicados sobre los temas que eligió.</h4>
+      </div>
+      <div class="resumen-head" *ngIf="route === SUB2FACTORCONFIRMED">
+        <h3>¡Gracias por suscribirse!</h3>
+        <h4>Por &uacute;ltimo, <b>revise su bandeja</b> de entrada para finalizar la suscripci&oacute;n.</h4>
+      </div>
+
+      <div class="resumen-head" *ngIf="route.indexOf(UNSUBCONFIRMED) > -1">
+        <h3>¡No es necesario que cancele su suscripci&oacute;n!</h3>
+        <p class="text">Tenemos otras opciones para que afine la <br/> selecci&oacute;n de informes que realmente necesita.</p>
+        <p class="small">Actualice sus preferencias <a [routerLink]="['/preferences']" [queryParams]="{access_token: accessToken}">aqu&iacute;</a></p>
+        <p class="small">Si est&aacute; decidido a cancelar su suscripci&oacute;n, haga click <a (click)="unsubscribe()">aqu&iacute;</a></p>
+      </div>
+
+      <div class="resumen-head" *ngIf="route === UNSUBCOMPLETEDCONFIRMED">
+        <h3>Cancelaci&oacute;n de suscripci&oacute;n</h3>
+        <h4>Su cancelaci&oacute;n fue un &eacute;xito.</h4>
+        <p>No volver&aacute; a recibir correos<br/> electr&oacute;nicos</p>
       </div>
     </div>
     <div class="resumen-subscription">
-      <div class="subscription-head" style="display: none">
+      <div class="subscription-head" *ngIf="subscriptionData && subscriptionData.subscriptions">
         <h3>Resumen de la suscripción</h3>
       </div>
-      <div class="subcription-contant" style="display: none">
-        <p>Lo que indica el mercado</p>
-        <p>Presentación semanal</p>
-        <p>Tenedores de TES</p>
-        <p>Guía créditos corporativo</p>
-        <p>Participantes del mercado</p>
+      <div class="subcription-contant" *ngIf="subscriptionData && subscriptionData.subscriptions">
+        <p *ngFor="let type of subscriptionData.subscriptions">{{type.description}}</p>
       </div>
       <div class="subcription-button">
         <p style="display: none">Recibirá un <span class="resumen-red">total de 4 informes.</span></p>
-        <button type="button" class="btn resumen-red-btn" [routerLink]="['/home']"><i class="fas fa-chevron-left"></i>Volver al home</button>
+        <button type="button" class="btn resumen-red-btn" [routerLink]="['/home']"><i class="fas fa-chevron-left"></i>Volver al inicio</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="Nuestros-indicadores-Recomendados">
+  <div class="container">
+    <div class="destacados-title">Contenidos destacados</div>
+    <mat-divider></mat-divider>
+    <div class="nir-inline-video">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 nir_content" *ngFor="let report of relateds">
+          <img src="../../../../assets/images/nir-video-1.png" class="img-fluid">
+          <div class="nir-inline-video-contant">
+            <h5>{{getCategory(report?.reportType)}}</h5>
+            <h3>{{report?.rTitle | striphtml}}</h3><br>
+            <p>{{report?.smartContent | truncate: 200: true}}</p>
+            <button type="button" class="btn nir-inline-video-btn" [routerLink]="['/reports', report?.id]">Leer más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 text-center">
+    <p>Siganos en:</p>
+    <div class="social_icon_left">
+      <ul>
+        <li *ngIf="data && data['link-twitter']">
+          <a [href]="data['link-twitter']" target="_blank">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="data && data['link-linkedin']">
+          <a [href]="data['link-linkedin']" target="_blank">
+            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li *ngIf="data && data['link-youtube']">
+          <a [href]="data['link-youtube']" target="_blank">
+            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

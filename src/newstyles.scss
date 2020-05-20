@@ -15840,7 +15840,7 @@ max-width: 100% !important;
 
 .header_container{
   position: fixed;
-  z-index: 9;
+  z-index: 10;
   width: 100%;
 }
 
@@ -16148,4 +16148,10 @@ max-width: 100% !important;
 
   }
 
+}
+
+.custom-modalbox {
+  .mat-dialog-container {
+    background: #F8F8F8;
+  }
 }
