@@ -60,6 +60,7 @@ h2{
 .da-lead-section p{
     font-size: 12px;
     color: #5F5F5F;
+    font-family: helvetica;
     
 }
 .da-lead-section .dl-icon a{
@@ -152,6 +153,7 @@ h2{
 .brief-content{
     max-width: 580px;
     width: 100%;
+    padding: 0 !important;
 }
  .brief-head .box-title{
     font-weight: bold;
@@ -437,6 +439,9 @@ p.left-arrow-paragraph::before{
     width: 100%;
     max-width: 720px !important;
     margin: 0 auto;
+}
+.doscolumn-container {
+   font-family: helvetica;
 }
 
 .doscolumn_section {
