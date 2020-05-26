@@ -166,6 +166,7 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 25px;
+  padding-right: 6px;
   &::after{
     content: '';
     width: 37px;
@@ -767,6 +768,8 @@ footer.main_footer .footer_first .footer-links ul li:before {
   color: #ffffff;
   font-size: 14px;
   align-items: center;
+  margin-top: 20px;
+  justify-content: flex-end;
 }
 
 .social_icon_left ul {
@@ -784,19 +787,18 @@ footer.main_footer .footer_first .footer-links ul li:before {
 
 .social_icon_left ul li i {
   border-radius: 50% !important;
-  width: 30px;
-  height: 40px;
+  width: 23px;
+  height: 34px;
   margin: 0px 5px;
   text-align: center;
   font-size: 20px;
-  padding: 11px 0px;
+  padding: 8px 0px;
   color: #363636;
 }
 
 .footer_image_link {
-  width: 100%;
-  float: left;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer_sociaal_link {
@@ -805,16 +807,14 @@ footer.main_footer .footer_first .footer-links ul li:before {
   background-position: 54% 40%;
   width: 87%;
   margin-left: auto;
-  padding: 70px 0px 30px;
+  padding: 60px 0px 10px;
 }
 
 .footer_verticle_line {
   display: flex;
   align-items: center;
   position: absolute;
-  transform: rotate(-90deg);
   bottom: 100px;
-  left: -50px;
 }
 
 .footer_verticle_line .footer_verticle_text p {
@@ -1071,7 +1071,7 @@ p.para_nuvo {
 }
 
 .para_tabs {
-  padding: 50px 0px;
+  padding: 35px 0px;
 }
 
 .para_tabs .container {
@@ -1907,6 +1907,7 @@ ul.nav.nav-tabs li.activetwo a {
 .analisis-menu ul {
   list-style-type: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .analisis-menu li {
@@ -2278,6 +2279,9 @@ label#page {
   line-height: 16px;
   color: #616161;
   text-align: left;
+  &:hover{
+    font-weight: bold;
+  }
 }
 
 .hide-left-menu .hide-left-1 ul {
@@ -6019,7 +6023,7 @@ body {
 }
 
 .information_content {
-  padding: 60px 0px;
+  padding: 60px 0px 0 0;
 }
 
 .information_content .information_left_first {
@@ -16150,8 +16154,14 @@ max-width: 100% !important;
 
 }
 
+<<<<<<< HEAD
 .custom-modalbox {
   .mat-dialog-container {
     background: #F8F8F8;
   }
 }
+=======
+.tabs_works.economy_content{
+  padding: 10px;
+}
+>>>>>>> d8912342e889c124ec8bbc8021f3305465c6cae3
