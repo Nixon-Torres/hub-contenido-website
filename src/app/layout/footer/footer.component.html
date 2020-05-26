@@ -106,9 +106,12 @@
 
 							<div class="col-sm-12">
 								<div class="footer_image_link">
-									<img src="/assets/images/Fiduciaria.png" alt="" class="img-fluid">
-									<img [src]="data.logo1.assetUrl" alt="" class="img-fluid" *ngIf="data?.logo1">
-									<img [src]="data.logo2.assetUrl" alt="" class="img-fluid" *ngIf="data?.logo2">
+									<img [src]="data.logo3.assetUrl" alt="" class="img-fluid" *ngIf="data?.logo3"
+										style="width: 170px">
+									<img [src]="data.logo1.assetUrl" alt="" class="img-fluid" *ngIf="data?.logo1"
+										style="width: 170px">
+									<img [src]="data.logo2.assetUrl" alt="" class="img-fluid" *ngIf="data?.logo2"
+										style="width: 170px">
 								</div>
 							</div>
 
@@ -131,8 +134,8 @@
 												<i class="fa fa-linkedin-square" aria-hidden="true"></i>
 											</a>
 										</li>
-										<li *ngIf="data && data['link-youtube']">
-											<a [href]="data['link-youtube']" target="_blank">
+										<li *ngIf="data && data['link-youtube2']">
+											<a [href]="data['link-youtube2']" target="_blank">
 												<i class="fa fa-youtube-play" aria-hidden="true"></i>
 											</a>
 										</li>
