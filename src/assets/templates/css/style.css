@@ -446,6 +446,7 @@ p.left-arrow-paragraph::before{
 
 .doscolumn_section {
     padding: 0px 0px;
+    margin-top: 20px;
 }
 
 .doscolumn_section .title {
