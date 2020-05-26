@@ -64,7 +64,7 @@
         </div>
         <div class="input-control accept">
           <input type="checkbox" id="accept" [(ngModel)]="subscriber.accept" formControlName="accept">
-          <label for="accept">Acepto términos y condiciones</label>
+          <label for="accept"><a [routerLink]="['/terms']" target="_blank">Acepto términos y condiciones</a></label>
         </div>
       </div>
   </div>

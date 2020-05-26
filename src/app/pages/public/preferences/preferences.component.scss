@@ -2159,3 +2159,40 @@ p.right-flow {
 .box-bottom-btn.disabled, .box-bottom-btn:disabled {
   background: #AFAFAF;
 }
+
+.info-type-tooltip {
+  position: absolute;
+  border-radius: 10px;
+  width: 250px;
+  background: white;
+  z-index: 100;
+  padding: 10px;
+  font-size: 14px;
+  color: #818181;
+  bottom: 60px;
+  right: -14px;
+  -webkit-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.32);
+  -moz-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.32);
+  box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.32);
+
+  .block {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+
+    p {
+      margin-bottom: 0px;
+    }
+  }
+
+  .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid white;
+    position: absolute;
+    bottom: -15px;
+    right: 17px;
+  }
+}

@@ -7,6 +7,7 @@ import {SubscribeDialogComponent} from '../subscribe-dialog/subscribe-dialog.com
 import {MatDialog} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../../../data.service';
+import {InvestPreferencesDialogComponent} from '../invest-preferences-dialog/invest-preferences-dialog.component';
 
 @Component({
   selector: 'app-preferences',
@@ -33,11 +34,54 @@ export class PreferencesComponent implements OnInit {
   };
 
   public form: FormGroup;
+  public form2: FormGroup;
+
+  public subcategoryCbs = {};
 
   constructor(private http: HttpService, private sanitizer: DomSanitizer, private fb: FormBuilder, private dialog: MatDialog,
               private router: Router, private dataService: DataService, private activatedRoute: ActivatedRoute) {
     this.form = this.fb.group({
       reportTypes: new FormArray([])
+    });
+    this.form2 = this.fb.group({
+      categories: new FormArray([])
+    });
+  }
+
+  public toggleSubcategory(id) {
+    const addRemove = this.subcategoryCbs[id];
+
+    this.selectedCategory.childrenMainReportTypes.filter(e => e.subCategory.find(j => j.id === id)).forEach(e => {
+      const idx = this.getTypeIndex(e);
+      (this.form.controls.reportTypes as FormArray).controls[idx].setValue(addRemove);
+    });
+  }
+
+  public openInvestDialog(event, category) {
+    event.preventDefault();
+    const selected = this.getCheckboxesSelected();
+
+    const types = category.childrenSubReportTypes.map(e => {
+      e.selected = selected.indexOf(e.id) > -1;
+      return e;
+    });
+    const dialogRef = this.dialog.open(InvestPreferencesDialogComponent, {
+      width: '600px',
+      data: {
+        reportTypes: types
+      },
+      panelClass: 'custom-modalbox',
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (!result.reportTypes) {
+        return;
+      }
+      result.reportTypes.forEach(e => {
+        const idx = this.getTypeIndex(e);
+        (this.form.controls.reportTypes as FormArray).controls[idx].setValue(e.selected);
+      });
     });
   }
 
@@ -288,7 +332,14 @@ export class PreferencesComponent implements OnInit {
       path: `public/categories/`,
       data: {
         where: { parentId: null },
-        include: ['childrenMainReportTypes', 'childrenSubReportTypes', {
+        include: [{
+          relation: 'childrenMainReportTypes',
+          scope: {
+            include: [
+              'subCategory'
+            ]
+          }
+        }, 'childrenSubReportTypes', {
           relation: 'children',
           scope: {
             include: ['childrenMainReportTypes', 'childrenSubReportTypes'],
@@ -311,6 +362,13 @@ export class PreferencesComponent implements OnInit {
 
       this.addCheckboxes(this.reportTypes);
       this.selectedCategory = this.categories[0];
+
+      const enqueinvertirCat = this.categories.find(e => e.code === 'ENQUINVERTIR');
+
+      enqueinvertirCat.children.forEach(e => {
+          const control = new FormControl(false);
+          (this.form2.controls.categories as FormArray).push(control);
+      });
 
       this.getSubscriptions();
     });

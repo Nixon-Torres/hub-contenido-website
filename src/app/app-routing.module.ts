@@ -45,6 +45,11 @@ const routes: Routes = [
     loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
   },
   {
+    path: 'quincenal_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
     path: 'unsubscribe_confirmation',
     component: LayoutComponent,
     loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
@@ -53,6 +58,11 @@ const routes: Routes = [
     path: 'unsubscribe_completed_confirmation',
     component: LayoutComponent,
     loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'terms',
+    component: LayoutComponent,
+    loadChildren: './pages/public/terms/terms.module#TermsModule'
   },
   {
     path: 'reports/:id',

@@ -28,6 +28,7 @@ export class ConfirmationComponent implements OnInit {
   public SUB2FACTORCONFIRMED = '/sub2factor_confirmation';
   public UNSUBCONFIRMED = '/unsubscribe_confirmation';
   public UNSUBCOMPLETEDCONFIRMED = '/unsubscribe_completed_confirmation';
+  public QUINCENALCONFIRMED = '/quincenal_confirmation';
 
   public subscriptionData: any;
 
@@ -42,9 +43,9 @@ export class ConfirmationComponent implements OnInit {
         this.route = 'Home';
       }
 
-      if (this.route === this.SUB2FACTORCONFIRMED && !this.subscriptionData) {
+      /* if (this.route === this.SUB2FACTORCONFIRMED && !this.subscriptionData) {
         this.router.navigate(['/preferences']);
-      }
+      } */
     });
   }
 
@@ -125,7 +126,11 @@ export class ConfirmationComponent implements OnInit {
     this.http.get({
       path: 'public/subscriptions?access_token=' + this.accessToken
     }).subscribe((res) => {
-      this.subscriptions = (res.body as any).data;
+      this.subscriptions = (res.body as any).data.filter(e => e.type === 'REPORTTYPE');
+
+      if (this.subscriptions.length === 0) {
+        this.unsubscribe();
+      }
     });
   }
 

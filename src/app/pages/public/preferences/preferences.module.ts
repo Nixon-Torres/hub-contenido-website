@@ -7,6 +7,7 @@ import {PipesModule} from '../../../pipes.module';
 import {MatTabsModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SubscribeDialogComponent} from '../subscribe-dialog/subscribe-dialog.component';
+import {InvestPreferencesDialogComponent} from '../invest-preferences-dialog/invest-preferences-dialog.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
   entryComponents: [
-    SubscribeDialogComponent
+    SubscribeDialogComponent,
+    InvestPreferencesDialogComponent
   ]
 })
 export class PreferencesModule {

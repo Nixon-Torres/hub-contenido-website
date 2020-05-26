@@ -60,7 +60,15 @@
                           <input [formControlName]="getTypeIndex(type)" type="checkbox" class="custom-control-input" [id]="type.id" name="example1">
                           <label class="custom-control-label" [for]="type.id"> <h4>{{type.description}} </h4>
                             <p>Periodicidad: {{getFreqLabel2(type?.period)}}</p></label>
-                          <a><span><i class="fas fa-info-circle"></i></span></a>
+                          <a (mouseenter)="type.tooltipVisible = true" (mouseleave)="type.tooltipVisible = false"><span><i class="fas fa-info-circle"></i></span>
+                            <div class="info-type-tooltip" *ngIf="type?.info && type?.tooltipVisible">
+                              <div class="block">
+                                <div>{{type.info}}</div>
+                              </div>
+
+                              <div class="arrow-down"></div>
+                            </div>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -126,19 +134,21 @@
                   </div>
                 </div>
               </div>
-              <div class="regresar-contant" *ngFor="let subcategory of selectedCategory.children">
+              <form>
+              <div class="regresar-contant" *ngFor="let subcategory of selectedCategory.children; index as i">
                 <div class="regresar-Acciones">
                   <div class="col-md-12 col-sm-12">
                     <h3>{{subcategory.description}}</h3>
                     <div class="regresar-Acciones-contant">
                       <div class="col-md-7 col-sm-12 pl-0 pr-0">
-                        <form>
                           <div class="custom-control custom-checkbox regresar-checkbox">
-                            <input type="checkbox" class="custom-control-input" [id]="subcategory.id" name="example-1">
+                            <input type="checkbox" class="custom-control-input" [(ngModel)]="subcategoryCbs[subcategory.id]"
+                                   [ngModelOptions]="{standalone: true}" [id]="subcategory.id" name="example-1"
+                            (change)="toggleSubcategory(subcategory.id)">
                             <label class="custom-control-label" [for]="subcategory.id">
                               <ul>
                                 <li *ngFor="let type of subcategory.childrenSubReportTypes">. {{type.description}}</li>
-                                <li class="edit-item"><a href="#"><u><i class="fas fa-edit"></i>Quitar uno o más
+                                <li class="edit-item"><a (click)="openInvestDialog($event, subcategory)"><u><i class="fas fa-edit"></i>Quitar uno o más
                                   informes</u></a></li>
                               </ul>
                             </label>
@@ -160,7 +170,7 @@
                                     </div>
 
                                     <!-- Modal body -->
-                                    <div class="modal-body">
+                                    <!--<div class="modal-body">
 
                                       <h4>Aquí podrá retirar elementos del grupo seleccionado
                                       </h4>
@@ -262,18 +272,19 @@
                                         <button type="button" class="btn reg-popup-brownbtn reg-right-btn">Aplicar</button>
                                       </div>
 
-                                    </div>
+                                    </div>-->
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div></form>
+                          </div>
                       </div>
 
                     </div>
                   </div>
                 </div>
               </div>
+              </form>
 
               <div class="regresar-btn">
                 <div class="red-button">

@@ -10,9 +10,13 @@
         <p><strong>Acabamos de enviarle un correo para continuar con el proceso</strong></p>
         <p>Revise la bandeja de entrada de<br/> su correo electr&oacute;nico.</p>
       </div>
-      <div class="resumen-head" *ngIf="route === SUBCONFIRMED">
-        <h3>Su suscripción fue activada</h3>
-        <h4>A partir de este momento, <b>recibirá en su correo</b> los últimos informes publicados sobre los temas que eligió.</h4>
+      <div class="resumen-head" *ngIf="route.indexOf(SUBCONFIRMED) > -1">
+        <h3>¡Su suscripción fue activada!</h3>
+        <h4>A partir de ahora, usted va a <b>recibir en su correo</b> electr&oacute;nico los informes a los que se suscribi&oacute;.</h4>
+      </div>
+      <div class="resumen-head" *ngIf="route.indexOf(QUINCENALCONFIRMED) > -1">
+        <h3>¡Su suscripción fue activada!</h3>
+        <h4>A partir del primer d&iacute;a del siguiente mes, espere quincenalmente en su bandeja de entrada el informe que seleccion&oacute;.</h4>
       </div>
       <div class="resumen-head" *ngIf="route === SUB2FACTORCONFIRMED">
         <h3>¡Gracias por suscribirse!</h3>

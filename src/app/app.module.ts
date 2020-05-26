@@ -27,6 +27,7 @@ import {SubscribeDialogComponent} from './pages/public/subscribe-dialog/subscrib
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {EditPreferencesDialogComponent} from './pages/public/edit-preferences-dialog/edit-preferences-dialog.component';
+import {InvestPreferencesDialogComponent} from './pages/public/invest-preferences-dialog/invest-preferences-dialog.component';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -39,7 +40,8 @@ registerLocaleData(localeCo, 'es-CO');
     TopMenuComponent,
     ThankyouComponent,
     SubscribeDialogComponent,
-    EditPreferencesDialogComponent
+    EditPreferencesDialogComponent,
+    InvestPreferencesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ registerLocaleData(localeCo, 'es-CO');
     {provide: 'googleTagManagerId', useValue: 'GTM-KD77KT3'}],
   exports: [
     SubscribeDialogComponent,
-    EditPreferencesDialogComponent
+    EditPreferencesDialogComponent,
+    InvestPreferencesDialogComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
