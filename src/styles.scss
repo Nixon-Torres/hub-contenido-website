@@ -81,13 +81,14 @@ body {
   padding: 5px;
   font-size: 14px;
   color: #aeaeae;
+  border: none;
 }
 
 .header .header_section .header_right .header_search button {
   position: absolute;
-  top: 1px;
-  right: 1px;
-  height: 34px;
+  top: 0px;
+  right: 0px;
+  height: 37px;
   width: 34px;
   border: none;
 }
