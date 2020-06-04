@@ -16135,33 +16135,38 @@ max-width: 100% !important;
 
   }
 
-
-
   .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
-
     width: 130px !important;
-
     margin-left: 8px;
-
   }
 
-
   .mat-tab-body-content{
-
     overflow: hidden;
-
   }
 
 }
 
-<<<<<<< HEAD
 .custom-modalbox {
   .mat-dialog-container {
     background: #F8F8F8;
   }
 }
-=======
+
 .tabs_works.economy_content{
   padding: 10px;
 }
->>>>>>> d8912342e889c124ec8bbc8021f3305465c6cae3
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.doscolumn_section {
+  h2 {
+    color: #EC2023;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Helvetica-Neue';
+    margin-bottom: 1rem;
+    line-height: 30px;
+  }
+}
