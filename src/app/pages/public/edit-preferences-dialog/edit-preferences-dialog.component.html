@@ -11,7 +11,7 @@
       <div class="input-block">
         <div class="input-control">
           <input type="text" name="" placeholder="Correo Electrónico" [(ngModel)]="subscriber.email" formControlName="email" autocomplete="off"
-                 [ngClass]="{'error': subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched)}">
+                 [ngClass]="{'error': subscriberNotFound || (subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched))}">
           <div *ngIf="subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched)"
                class="error-text">
                     <span *ngIf="subscribeGroup.controls.email.errors.required">
@@ -20,6 +20,12 @@
                      <span *ngIf="subscribeGroup.controls.email.errors.email">
                       Email v&aacute;lido es requerido
                     </span>
+          </div>
+          <div *ngIf="subscriberNotFound"
+               class="error-text">
+            <span>
+               Correo incorrecto
+            </span>
           </div>
         </div>
       </div>

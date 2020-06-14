@@ -16,6 +16,7 @@ export class EditPreferencesDialogComponent {
   public title: string;
   public description: string;
   public source: string;
+  public subscriberNotFound = false;
 
   constructor(
     private http: HttpService,
@@ -37,6 +38,8 @@ export class EditPreferencesDialogComponent {
       }
     }).subscribe((res) => {
       this.dialogRef.close({subscriber: this.subscriber});
+    }, () => {
+      this.subscriberNotFound = true;
     });
   }
 
