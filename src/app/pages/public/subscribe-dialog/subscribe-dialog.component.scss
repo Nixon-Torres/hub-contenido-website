@@ -53,6 +53,9 @@ input[type=text] {
     color: #EF161A;
     font-style: italic;
   }
+    .mat-select-placeholder{
+      min-height: 2em;
+    }
 }
 
 .mat-form-field {
@@ -78,6 +81,16 @@ input[type=text] {
 
 .mat-dialog-content {
   margin-top: 20px;
+  h4{
+    color: #676666;
+  }
+  p{
+    font-size: 0.9em;
+    padding-left: 5px;
+    strong{
+      color: #676666;
+    }
+  }
 }
 
 .dialog-container {
@@ -123,6 +136,12 @@ input[type=text] {
     height: 70px;
     white-space: initial;
     font-style: italic;
+  }
+
+  &.dialog_subscribe{
+    &.mat-selected:not(.mat-option-disabled){
+      color: #e8162e;
+    }
   }
 }
 

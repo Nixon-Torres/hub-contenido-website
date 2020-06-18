@@ -23,9 +23,9 @@
 <div class="regresar-text">
   <div class="container">
     <div class="regresar-text-head">
-      <h3>¡Bievenido!</h3>
+      <h3>¡Bienvenido!</h3>
       <h4>Aquí puede realizar la personalización de los informes que quiere recibir.</h4>
-      <p>Haga clic en la categoría que prefiera y elija los informes que quiere en su bandeja de entrada.</p>
+      <p>Haga clic en la categoría que prefiera y elija los informes que quiere en su correo electrónico.</p>
     </div>
   </div>
 </div>
@@ -60,7 +60,7 @@
                           <input [formControlName]="getTypeIndex(type)" type="checkbox" class="custom-control-input" [id]="type.id" name="example1">
                           <label class="custom-control-label" [for]="type.id"> <h4>{{type.description}} </h4>
                             <p>Periodicidad: {{getFreqLabel2(type?.period)}}</p></label>
-                          <a (mouseenter)="type.tooltipVisible = true" (mouseleave)="type.tooltipVisible = false"><span><i class="fas fa-info-circle"></i></span>
+                          <a style="display: none;" (mouseenter)="type.tooltipVisible = true" (mouseleave)="type.tooltipVisible = false"><span><i class="fas fa-info-circle"></i></span>
                             <div class="info-type-tooltip" *ngIf="type?.info && type?.tooltipVisible">
                               <div class="block">
                                 <div>{{type.info}}</div>
@@ -122,7 +122,7 @@
                 <div class="menu-text-inner regresar-menu-text">
                   <p>{{category.description}}
                   </p>
-                  <div class="col-md-5 col-sm-12 pl-0 pr-0 regresar_checkbox">
+                  <div class="col-md-7 col-sm-12 pl-0 pr-0 regresar_checkbox">
                     <form>
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="customCheck" name="regresarcheck" [(ngModel)]="cbs.selectAllCb"

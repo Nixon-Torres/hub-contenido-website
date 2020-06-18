@@ -19,8 +19,8 @@
         <h4>A partir del primer d&iacute;a del siguiente mes, espere quincenalmente en su bandeja de entrada el informe que seleccion&oacute;.</h4>
       </div>
       <div class="resumen-head" *ngIf="route === SUB2FACTORCONFIRMED">
-        <h3>¡Gracias por suscribirse!</h3>
-        <h4>Por &uacute;ltimo, <b>revise su bandeja</b> de entrada para finalizar la suscripci&oacute;n.</h4>
+        <h3>¡Gracias!</h3>
+        <h4>Por &uacute;ltimo, <b>revise la bandeja</b> de entrada del correo electrónico para finalizar la suscripci&oacute;n.</h4>
       </div>
 
       <div class="resumen-head" *ngIf="route.indexOf(UNSUBCONFIRMED) > -1">
@@ -32,7 +32,7 @@
 
       <div class="resumen-head" *ngIf="route === UNSUBCOMPLETEDCONFIRMED">
         <h3>Cancelaci&oacute;n de suscripci&oacute;n</h3>
-        <h4>Su cancelaci&oacute;n fue un &eacute;xito.</h4>
+        <h4>Su cancelación fue exitosa No recibirá más informes en su correo electrónico</h4>
         <p>No volver&aacute; a recibir correos<br/> electr&oacute;nicos</p>
       </div>
     </div>

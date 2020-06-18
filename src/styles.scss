@@ -1065,5 +1065,13 @@ ul.nav.nav-tabs li.activetwo a {
   margin-bottom: 10px;
 }
 
+
+.input-control{
+  .mat-form-field-hide-placeholder{
+    .mat-select-placeholder{
+      height: 2em;
+    }
+  } 
+}
 /*# sourceMappingURL=style.css.map */
 
