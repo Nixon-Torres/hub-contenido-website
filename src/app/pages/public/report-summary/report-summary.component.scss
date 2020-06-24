@@ -1,3 +1,10 @@
 .nav-tabs li a {
   cursor: pointer;
 }
+
+.para_left_first_text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
+}

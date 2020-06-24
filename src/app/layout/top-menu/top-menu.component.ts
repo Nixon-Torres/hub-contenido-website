@@ -62,7 +62,7 @@ export class TopMenuComponent implements OnInit {
     code: 'ACCIONES',
     items: []
   }, {
-    name: 'Divisas',
+    name: 'Monedas',
     code: 'DIVISAS',
     items: []
   }];

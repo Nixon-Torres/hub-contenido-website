@@ -18,8 +18,8 @@
 							<div class="para_left_content">
 								<div *ngIf="headerReport" class="para_left_first">
 									<h4>{{headerReport?.rTitle | striphtml}}</h4>
-									<p>{{headerReport?.updatedAt | date:'d MMMM y'}}</p>
-									<p class="para_desc">
+									<p class="para_left_first_text">{{headerReport?.updatedAt | date:'d MMMM y'}}</p>
+									<p class="para_desc para_left_first_text">
 										{{headerReport?.smartContent}}
 									</p>
 									<p class="para_nuvo">NUEVO</p>
@@ -37,7 +37,7 @@
 										[routerLink]="['/reports', area1Report?.id]">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.rTitle | striphtml}}</h4>
-										<p>{{area1Report?.smartContent}}</p>
+										<p class="para_left_first_text">{{area1Report?.smartContent}}</p>
 										<p>{{area1Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -46,7 +46,7 @@
 										[routerLink]="['/reports', area2Report?.id]">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.rTitle | striphtml}}</h4>
-										<p>{{area2Report?.smartContent}}</p>
+										<p class="para_left_first_text">{{area2Report?.smartContent}}</p>
 										<p>{{area2Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -55,7 +55,7 @@
 										[routerLink]="['/reports', area3Report?.id]">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.rTitle | striphtml}}</h4>
-										<p>{{area3Report?.smartContent}}</p>
+										<p class="para_left_first_text">{{area3Report?.smartContent}}</p>
 										<p>{{area3Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -64,7 +64,7 @@
 										[routerLink]="['/reports', area4Report?.id]">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.rTitle | striphtml}}</h4>
-										<p>{{area4Report?.smartContent}}</p>
+										<p class="para_left_first_text">{{area4Report?.smartContent}}</p>
 										<p>{{area4Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -86,7 +86,7 @@
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
-								<p>{{report?.smartContent}}</p>
+								<p class="para_left_first_text">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>
@@ -104,7 +104,7 @@
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
-								<p>{{report?.smartContent}}</p>
+								<p class="para_left_first_text">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>

@@ -12,3 +12,10 @@
 .nav-tabs li a {
   cursor: pointer;
 }
+
+.tab_sub_division_part_text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
+}
