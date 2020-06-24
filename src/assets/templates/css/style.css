@@ -646,8 +646,29 @@ p.left-arrow-paragraph::before{
 
   .brief-section .doscolumn-container .social-bar{
     position: fixed;
-    top: 30%;
+    top: 70%;
     right: 5%;
+  }
+
+  @media (min-width: 1250px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 7.6%;
+      }
+  }
+  @media (min-width: 1350px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 10%;
+      }
+  }
+  @media (min-width: 1420px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 11.7%;
+      }
+  }
+  @media (min-width: 1920px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 26em;
+      }
   }
 
 .brief-section .doscolumn-container .social-bar.bottom{
