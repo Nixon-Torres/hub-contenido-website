@@ -787,11 +787,11 @@ footer.main_footer .footer_first .footer-links ul li:before {
 
 .social_icon_left ul li i {
   border-radius: 50% !important;
-  width: 23px;
-  height: 34px;
+  width: 21px;
+  height: 32px;
   margin: 0px 5px;
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
   padding: 8px 0px;
   color: #363636;
 }
@@ -829,13 +829,14 @@ footer.main_footer .footer_first .footer-links ul li:before {
   padding: 20px 0px;
   text-align: center;
   font-family: helvetica;
+  position: relative;
 }
 
 .footer_second p {
   margin: 0;
   text-align: center;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .tab-content a {
@@ -16070,6 +16071,7 @@ max-width: 100% !important;
   width: 478.82px;
   background-color: #ffffff;
   margin: 5px 0;
+  cursor: pointer;
   &:hover{
     border: solid 1px red;
     .subs__container{
