@@ -107,7 +107,7 @@
 
 .menu-text-inner {
   margin: 50px 0 0px;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #67666638;
 }
 
@@ -239,7 +239,8 @@
 }
 
 .menu-box-inner {
-  padding: 0px 10px 245px 10px;
+  padding: 0px 10px 80px 10px;
+  min-height: 245px;
 }
 
 .menu-box-inner h3 {
@@ -273,7 +274,7 @@
 
 .fas.fa-trash-alt {
   float: right;
-  padding: 5px 10px 0 0;
+  padding: 5px 0px 0 0;
   color: #676666;
 }
 
@@ -439,8 +440,8 @@ footer {
 }
 
 .regresar-section p {
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 14px;
+  line-height: 17px;
   color: #676666;
   text-align: left;
   padding: 15px 0px;
@@ -471,6 +472,8 @@ footer {
   text-align: left;
   color: #EF161A;
   font-weight: bold;
+  letter-spacing: 1px;
+  padding-left: 4px;
 }
 
 .regresar-text-head h4 {
@@ -685,7 +688,7 @@ footer {
 .regresar-contant {
   width: 100%;
   float: left;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 
 .regresar-btn {
@@ -2194,5 +2197,17 @@ p.right-flow {
     position: absolute;
     bottom: -15px;
     right: 17px;
+  }
+}
+
+.box-margin1{
+  .custom-control-label{
+    max-width: 85%;
+  }
+}
+
+.menu-contant{
+  .custom-checkbox{
+    border-radius: 5px;
   }
 }

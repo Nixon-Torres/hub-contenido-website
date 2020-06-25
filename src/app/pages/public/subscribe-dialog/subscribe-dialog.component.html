@@ -47,12 +47,12 @@
         </div>
         <div class="input-control">
           <mat-form-field>
-            <mat-label>¿Cómo calificaría sus conocimientos en finanzas y economía?</mat-label>
+            <mat-label>¿Cómo calificaría sus conocimientos <br> en finanzas y economía?</mat-label>
             <mat-select [(ngModel)]="subscriber.knowledge" formControlName="knowledge" (selectionChange)="setCurrentOption($event)">
               <mat-select-trigger>
                 {{currentOption}}
               </mat-select-trigger>
-              <mat-option [value]="option.code" *ngFor="let option of options">
+              <mat-option class="dialog_subscribe" [value]="option.code" *ngFor="let option of options">
                 <div class="title">{{option.title}}</div>
                 <div class="description">{{option.description}}</div>
               </mat-option>
