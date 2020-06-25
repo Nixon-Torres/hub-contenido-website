@@ -6247,6 +6247,18 @@ body {
   margin: 0;
 }
 
+@media only screen and (min-width: 1200px){
+  .page_direction ul {
+    padding-top: 2%;
+  }
+}
+@media (max-width: 1024px) and (min-width: 1000px){
+  .page_direction ul {
+    padding-top: 6%;
+  }
+}
+
+
 .page_direction ul li {
   display: inline-block;
   padding: 5px 10px;

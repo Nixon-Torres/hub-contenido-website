@@ -103,3 +103,16 @@
 .date_filter{
   color: #A5ABB1;
 }
+
+.analisis-contant {
+  .contant {
+    &.gray-back {
+      p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 8;
+        overflow: hidden;
+      }
+    }
+  }
+}
