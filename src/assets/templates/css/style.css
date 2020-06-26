@@ -73,7 +73,7 @@ h2{
 
 .da-ponderar{
     max-width: 855px;
-    margin: 57px auto;
+    margin: 20px auto;
 }
 .da-ponderar .box-title{
     margin-bottom: 31px;
@@ -634,3 +634,17 @@ p.left-arrow-paragraph::before{
  .blocks .doscolumn_section{
       padding: 0 !important;
   }
+
+.doscolumn_section blockquote:before {
+    left: -75px;
+    height: 95px;
+    top: -42px;
+}
+
+.doscolumn_section blockquote:after {
+    right: -45px;
+}
+
+.pr-full-bg .container .brief-section.smart-content-section{
+padding: 20px 0;
+}
