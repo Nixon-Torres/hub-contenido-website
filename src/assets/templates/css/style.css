@@ -50,6 +50,7 @@ h2{
 
 .da-lead-section{
     max-width: 720px;
+    width: 100%;
     margin: 0 auto;
     padding: 40px 71px;
     border-bottom: 1px solid #E3E3E3;
@@ -307,6 +308,10 @@ h2{
 
 }
 
+.company-legaltxt .brief-content{
+    max-width: 720px
+}
+
 .company-legaltxt p{
     color: #90A1AC;
     font-family: 'Helvetica-Neue';
@@ -442,6 +447,10 @@ p.left-arrow-paragraph::before{
 }
 .doscolumn-container {
    font-family: helvetica;
+}
+
+.container-fluid .smart-content-section .doscolumn-container.bottom{
+    min-width: 570px;
 }
 
 .doscolumn_section {
@@ -645,6 +654,37 @@ p.left-arrow-paragraph::before{
     right: -45px;
 }
 
-.pr-full-bg .container .brief-section.smart-content-section{
+.pr-full-bg .container .brief-section.smart-content-section {
 padding: 20px 0;
+ }
+
+  .brief-section .doscolumn-container .social-bar {
+    position: fixed;
+    top: 70%;
+    right: 5%;
+  }
+
+  @media (min-width: 1250px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 7.6%;
+      }
+  }
+  @media (min-width: 1350px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 10%;
+      }
+  }
+  @media (min-width: 1420px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 11.7%;
+      }
+  }
+  @media (min-width: 1920px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 26em;
+      }
+  }
+
+.brief-section .doscolumn-container .social-bar.bottom{
+    position: initial;
 }
