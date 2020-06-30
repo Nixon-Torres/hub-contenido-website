@@ -873,7 +873,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
 }
 
 .information_sidebar_tabs ul.nav.nav-tabs li.active {
-  border-bottom: 2px solid #e8162e;
+  border-bottom: 3px solid #e8162e;
 }
 
 .information_sidebar_tabs ul.nav.nav-tabs li.active a {
@@ -948,7 +948,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
 }
 
 ul.nav.nav-tabs li.activeone {
-  border-bottom: 2px solid #e8162e;
+  border-bottom: 3px solid #e8162e;
 }
 
 ul.nav.nav-tabs li.activeone a {
@@ -6247,6 +6247,18 @@ body {
   padding: 10px 0px;
   margin: 0;
 }
+
+@media only screen and (min-width: 1200px){
+  .page_direction ul {
+    padding-top: 2%;
+  }
+}
+@media (max-width: 1024px) and (min-width: 1000px){
+  .page_direction ul {
+    padding-top: 6%;
+  }
+}
+
 
 .page_direction ul li {
   display: inline-block;

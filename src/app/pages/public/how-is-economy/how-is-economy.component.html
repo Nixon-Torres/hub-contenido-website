@@ -36,7 +36,7 @@
 										[routerLink]="['/reports', area1Report?.id]">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.rTitle | striphtml}}</h4>
-										<p>{{area1Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area1Report?.smartContent}}</p>
 										<p>{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -45,7 +45,7 @@
 										[routerLink]="['/reports', area2Report?.id]">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.rTitle | striphtml}}</h4>
-										<p>{{area2Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area2Report?.smartContent}}</p>
 										<p>{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -54,7 +54,7 @@
 										[routerLink]="['/reports', area3Report?.id]">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.rTitle | striphtml}}</h4>
-										<p>{{area3Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area3Report?.smartContent}}</p>
 										<p>{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -63,7 +63,7 @@
 										[routerLink]="['/reports', area4Report?.id]">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.rTitle | striphtml}}</h4>
-										<p>{{area4Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area4Report?.smartContent}}</p>
 										<p>{{area4Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -83,7 +83,7 @@
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
-								<p>{{report?.smartContent}}</p>
+								<p class="tab_sub_division_part_text">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>
