@@ -257,6 +257,8 @@ export class PreferencesComponent implements OnInit {
         return 'quincenales';
       case 'month':
         return 'al mes';
+      case 'year':
+        return 'al año';
       default:
         return 'unknown';
     }
@@ -272,6 +274,8 @@ export class PreferencesComponent implements OnInit {
         return 'Quincenal';
       case 'month':
         return 'Mensual';
+      case 'year':
+        return 'Anual';
       default:
         return 'unknown';
     }
