@@ -79,7 +79,7 @@ export class MultimediaDetailComponent implements OnInit {
     this.category = this.content && this.content.params && this.content.params.category
       && this.categories.find(cat => cat.id === this.content.params.category)
       ? this.categories.find(cat => cat.id === this.content.params.category).name
-      : '';
+      : 'Corredores Davivienda';
   }
 
   getRelated() {

@@ -15,9 +15,16 @@ export class MultimediaComponent implements OnInit {
   public item2: any;
   public item3: any;
   public breadcrumbItems: Array<any> = [];
-
+  categories = [
+    { id: '0', name: 'Corredores davivienda' },
+    { id: '1', name: 'Estrategia' },
+    { id: '2', name: 'Estrategia davivienda' },
+    { id: '3', name: 'Indicadores' },
+    { id: '4', name: 'Otros' },
+  ];
   readonly TOTAL_PER_PAGE = 3;
   public currentTab = 1;
+  category: string;
 
   constructor(private http: HttpService) { }
 
@@ -57,7 +64,7 @@ export class MultimediaComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       const contents = res.body as any;
-      this.contents = this.contents.concat(contents);
+      this.contents = this.contents.concat(contents).filter(con => !con.trash);
     });
   }
 
@@ -76,6 +83,7 @@ export class MultimediaComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       const contents = res.body as any;
+      contents.filter(con => !con.trash);
       this.header = contents.find(e => e.outstandingArea === 'header');
       this.item1 = contents.find(e => e.outstandingArea === 'area1');
       this.item2 = contents.find(e => e.outstandingArea === 'area2');
@@ -89,5 +97,12 @@ export class MultimediaComponent implements OnInit {
       return this.STORAGE_URL + thumb.clientPath;
     }
     return 'assets/images/play_btn.png';
+  }
+
+  getCategoy(content: any) {
+    return this.category = content && content.params && content.params.category
+      && this.categories.find(cat => cat.id === content.params.category)
+      ? this.categories.find(cat => cat.id === content.params.category).name
+      : 'Corredores Davivienda';
   }
 }
