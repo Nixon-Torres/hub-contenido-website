@@ -40,7 +40,7 @@ export class CategoriesComponent implements OnInit {
     code: 'ACCIONES',
     reportTypes: []
   }, {
-    name: 'Divisas',
+    name: 'Monedas',
     code: 'DIVISAS',
     reportTypes: []
   }];
