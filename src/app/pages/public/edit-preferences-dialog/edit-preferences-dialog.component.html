@@ -21,7 +21,7 @@
                       Email v&aacute;lido es requerido
                     </span>
           </div>
-          <div *ngIf="subscriberNotFound"
+          <div *ngIf="subscriberNotFound && !(subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched))"
                class="error-text">
             <span>
                Correo incorrecto

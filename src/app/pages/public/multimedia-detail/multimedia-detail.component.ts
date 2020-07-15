@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpService} from '../../../services/http.service';
-import {ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree} from '@angular/router';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../../services/http.service';
+import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-multimedia-detail',
-    templateUrl: './multimedia-detail.component.html',
-    styleUrls: ['./multimedia-detail.component.scss']
+  selector: 'app-multimedia-detail',
+  templateUrl: './multimedia-detail.component.html',
+  styleUrls: ['./multimedia-detail.component.scss']
 })
 export class MultimediaDetailComponent implements OnInit {
   public content: any;
@@ -19,10 +19,18 @@ export class MultimediaDetailComponent implements OnInit {
     label: 'Multimedia',
     link: ['/multimedia']
   }];
+  categories = [
+    { id: '0', name: 'Corredores davivienda' },
+    { id: '1', name: 'Estrategia' },
+    { id: '2', name: 'Estrategia davivienda' },
+    { id: '3', name: 'Indicadores' },
+    { id: '4', name: 'Otros' },
+  ];
+  category: any;
 
   constructor(private http: HttpService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router, private sanitizer: DomSanitizer) {
+    private activatedRoute: ActivatedRoute,
+    private router: Router, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -63,7 +71,15 @@ export class MultimediaDetailComponent implements OnInit {
 
       this.isIframe = this.content.params.url.indexOf('<iframe') > -1;
       this.getRelated();
+      this.getCategoy();
     });
+  }
+
+  getCategoy() {
+    this.category = this.content && this.content.params && this.content.params.category
+      && this.categories.find(cat => cat.id === this.content.params.category)
+      ? this.categories.find(cat => cat.id === this.content.params.category).name
+      : 'Corredores Davivienda';
   }
 
   getRelated() {

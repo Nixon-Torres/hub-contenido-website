@@ -141,7 +141,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
     const left = (screen.width / 2) - (w / 2);
     const top = (screen.height / 2) - (h / 2);
     // tslint:disable-next-line:max-line-length
-    const url = 'https://www.linkedin.com/shareArticle?mini=true&url=https://stg-hub-pub.qdata.io&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn';
+    const url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href + '&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn';
     window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=none,scrollbars=no,height=' +
       h + ',width=' + w + ',top=' + top + ',left=' + left);
     return false;

@@ -29,6 +29,7 @@ export class EditPreferencesDialogComponent {
   }
 
   public subscribe() {
+    this.subscriberNotFound = false;
     this.http.post({
       path: 'public/subscribe/edit',
       data: {
