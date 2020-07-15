@@ -93,8 +93,7 @@ h2{
 
 .brief-section{
     background-color: #F7F7F7;
-    margin-top: 72px;
-    margin-bottom: 46px;
+    margin: 46px 0;
 }
 
 .brief-section.white{
@@ -687,4 +686,9 @@ padding: 20px 0;
 
 .brief-section .doscolumn-container .social-bar.bottom{
     position: initial;
+}
+
+section .pr-full-bg .container .brief-section,
+.presentation .container .brief-section {
+    padding: 20px 0;
 }
