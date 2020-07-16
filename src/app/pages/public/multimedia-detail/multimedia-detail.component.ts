@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-multimedia-detail',
@@ -19,13 +20,7 @@ export class MultimediaDetailComponent implements OnInit {
     label: 'Multimedia',
     link: ['/multimedia']
   }];
-  categories = [
-    { id: '0', name: 'Corredores davivienda' },
-    { id: '1', name: 'Estrategia' },
-    { id: '2', name: 'Estrategia davivienda' },
-    { id: '3', name: 'Indicadores' },
-    { id: '4', name: 'Otros' },
-  ];
+  categories = [];
   category: any;
 
   constructor(private http: HttpService,
@@ -46,6 +41,53 @@ export class MultimediaDetailComponent implements OnInit {
     this.http.get({
       path: `public/contents/${contentId}/view`
     }).subscribe((res) => {
+    });
+  }
+
+  public onLoadCategories() {
+    const observables = this.http.get({
+      path: 'public/sections/',
+      data: {
+        include: [
+          {
+            relation: 'reportsType',
+            scope: {
+              include: 'mainCategory'
+            }
+          }
+        ],
+        order: 'priority DESC'
+      },
+      encode: true
+    });
+    const observables2 = this.http.get({ path: 'public/companies/' });
+
+    forkJoin([observables, observables2]).subscribe((results: any) => {
+      const categories = results && results[0] && results[0].body
+        ? results[0].body
+        : [];
+      const companies = results && results[1] && results[1].body
+        ? results[1].body.map(e => {
+          e.description = e.name ? e.name : e.description;
+          return e;
+        })
+        : [];
+
+      const categoriesList = categories.map((e) => Object.assign({}, e));
+      this.categories = categoriesList.flatMap(x => x.reportsType)
+        .concat(companies)
+        .map(e => {
+          e.description = e.fullDescription ? e.fullDescription : e.description;
+          return e;
+        })
+        .reduce((y, x) => {
+          if (!y.find((e) => e.description === x.description)) {
+            y.push(x);
+          }
+          return y;
+        }, []);
+
+      this.getCategoy();
     });
   }
 
@@ -71,14 +113,14 @@ export class MultimediaDetailComponent implements OnInit {
 
       this.isIframe = this.content.params.url.indexOf('<iframe') > -1;
       this.getRelated();
-      this.getCategoy();
+      this.onLoadCategories();
     });
   }
 
   getCategoy() {
     this.category = this.content && this.content.params && this.content.params.category
       && this.categories.find(cat => cat.id === this.content.params.category)
-      ? this.categories.find(cat => cat.id === this.content.params.category).name
+      ? this.categories.find(cat => cat.id === this.content.params.category).description
       : 'Corredores Davivienda';
   }
 
