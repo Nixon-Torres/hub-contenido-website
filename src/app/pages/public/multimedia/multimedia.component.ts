@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {environment} from '../../../../environments/environment';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-multimedia',
@@ -15,13 +16,7 @@ export class MultimediaComponent implements OnInit {
   public item2: any;
   public item3: any;
   public breadcrumbItems: Array<any> = [];
-  categories = [
-    { id: '0', name: 'Corredores davivienda' },
-    { id: '1', name: 'Estrategia' },
-    { id: '2', name: 'Estrategia davivienda' },
-    { id: '3', name: 'Indicadores' },
-    { id: '4', name: 'Otros' },
-  ];
+  categories = [];
   readonly TOTAL_PER_PAGE = 3;
   public currentTab = 1;
   category: string;
@@ -31,6 +26,7 @@ export class MultimediaComponent implements OnInit {
   ngOnInit() {
     this.loadContents();
     this.loadMultimedia();
+    this.onLoadCategories();
   }
 
   private getType(item: any) {
@@ -99,10 +95,55 @@ export class MultimediaComponent implements OnInit {
     return 'assets/images/play_btn.png';
   }
 
+  public onLoadCategories() {
+    const observables = this.http.get({
+      path: 'public/sections/',
+      data: {
+        include: [
+          {
+            relation: 'reportsType',
+            scope: {
+              include: 'mainCategory'
+            }
+          }
+        ],
+        order: 'priority DESC'
+      },
+      encode: true
+    });
+    const observables2 = this.http.get({ path: 'public/companies/' });
+
+    forkJoin([observables, observables2]).subscribe((results: any) => {
+      const categories = results && results[0] && results[0].body
+        ? results[0].body
+        : [];
+      const companies = results && results[1] && results[1].body
+        ? results[1].body.map(e => {
+          e.description = e.name ? e.name : e.description;
+          return e;
+        })
+        : [];
+
+      const categoriesList = categories.map((e) => Object.assign({}, e));
+      this.categories = categoriesList.flatMap(x => x.reportsType)
+        .concat(companies)
+        .map(e => {
+          e.description = e.fullDescription ? e.fullDescription : e.description;
+          return e;
+        })
+        .reduce((y, x) => {
+          if (!y.find((e) => e.description === x.description)) {
+            y.push(x);
+          }
+          return y;
+        }, []);
+    });
+  }
+
   getCategoy(content: any) {
     return this.category = content && content.params && content.params.category
       && this.categories.find(cat => cat.id === content.params.category)
-      ? this.categories.find(cat => cat.id === content.params.category).name
+      ? this.categories.find(cat => cat.id === content.params.category).description
       : 'Corredores Davivienda';
   }
 }
