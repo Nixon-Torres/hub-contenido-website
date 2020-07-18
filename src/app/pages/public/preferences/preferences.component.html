@@ -60,7 +60,7 @@
                           <input [formControlName]="getTypeIndex(type)" type="checkbox" class="custom-control-input" [id]="type.id" name="example1">
                           <label class="custom-control-label" [for]="type.id"> <h4>{{type.description}} </h4>
                             <p>Periodicidad: {{getFreqLabel2(type?.period)}}</p></label>
-                          <a (mouseenter)="type.tooltipVisible = true" (mouseleave)="type.tooltipVisible = false"><span><i class="fas fa-info-circle"></i></span>
+                          <a *ngIf="type?.info" (mouseenter)="type.tooltipVisible = true" (mouseleave)="type.tooltipVisible = false"><span><i class="fas fa-info-circle"></i></span>
                             <div class="info-type-tooltip" *ngIf="type?.info && type?.tooltipVisible">
                               <div class="block">
                                 <div>{{type.info}}</div>
@@ -153,9 +153,15 @@
                               </ul>
                             </label>
 
-                            <button type="button" class="info-btn" data-toggle="modal" data-target="#myModal">
-                              <a href="#"><span><i class="fas fa-info-circle"></i></span></a>
-                            </button>
+                            <a *ngIf="subcategory?.info" (mouseenter)="subcategory.tooltipVisible = true" (mouseleave)="subcategory.tooltipVisible = false"><span><i class="fas fa-info-circle"></i></span>
+                              <div class="info-type-tooltip big" *ngIf="subcategory?.info && subcategory?.tooltipVisible">
+                                <div class="block">
+                                  <div>{{subcategory.info}}</div>
+                                </div>
+
+                                <div class="arrow-down"></div>
+                              </div>
+                            </a>
                             <div class="modal" id="myModal">
                               <div class="modal-dialog">
                                 <div class="modal-content">

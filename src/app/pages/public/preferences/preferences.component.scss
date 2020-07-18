@@ -2178,6 +2178,10 @@ p.right-flow {
   -moz-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.32);
   box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.32);
 
+  &.big {
+    bottom: 152px;
+  }
+
   .block {
     border: 1px solid #ccc;
     border-radius: 10px;
