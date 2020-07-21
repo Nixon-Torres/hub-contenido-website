@@ -68,6 +68,7 @@ export class PreferencesComponent implements OnInit {
     const dialogRef = this.dialog.open(InvestPreferencesDialogComponent, {
       width: '600px',
       data: {
+        category: category,
         reportTypes: types
       },
       panelClass: 'custom-modalbox',

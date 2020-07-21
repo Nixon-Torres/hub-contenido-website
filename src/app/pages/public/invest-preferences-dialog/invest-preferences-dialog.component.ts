@@ -19,6 +19,7 @@ export class InvestPreferencesDialogComponent {
   public source: string;
 
   public reportTypes: any;
+  public category: any;
 
   public options: any = [{
     title: 'Bajo',
@@ -43,6 +44,7 @@ export class InvestPreferencesDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.reportTypes = data.reportTypes;
+    this.category = data.category;
 
     this.subscribeGroup = new FormGroup({});
   }

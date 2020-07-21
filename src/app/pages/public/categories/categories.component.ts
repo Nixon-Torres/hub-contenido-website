@@ -3,6 +3,7 @@ import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
+import lodash from 'lodash';
 
 @Component({
     selector: 'app-categories',
@@ -171,8 +172,12 @@ export class CategoriesComponent implements OnInit {
       }
 
       if (this.idateEnd) {
-        const end = moment(this.idateStart).add(5, 'hours').toDate();
-        conds.push({publishedAt: {lte: end}});
+        const end = moment(this.idateEnd).add(5, 'hours').toDate();
+        if (lodash.get(conds, '[1].publishedAt')) {
+          lodash.merge(conds[1].publishedAt, {lte: end});
+        } else {
+          conds.push({publishedAt: {lte: end}});
+        }
       }
 
       where = {and: conds};

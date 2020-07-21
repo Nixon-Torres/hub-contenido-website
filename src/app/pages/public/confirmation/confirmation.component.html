@@ -20,7 +20,7 @@
       </div>
       <div class="resumen-head" *ngIf="route === SUB2FACTORCONFIRMED">
         <h3>¡Gracias!</h3>
-        <h4>Por &uacute;ltimo, <b>revise la bandeja</b> de entrada del correo electrónico para finalizar la suscripci&oacute;n.</h4>
+        <h4>Por &uacute;ltimo, <b>revise la bandeja</b> de entrada del correo electrónico suscrito para finalizar la suscripci&oacute;n.</h4>
       </div>
 
       <div class="resumen-head" *ngIf="route.indexOf(UNSUBCONFIRMED) > -1">
@@ -36,7 +36,7 @@
         <p class="unsubscribe_text">No recibirá más informes en su correo electrónico</p>
       </div>
     </div>
-    <div class="resumen-subscription">
+    <div class="resumen-subscription" *ngIf="route.indexOf(QUINCENALCONFIRMED) === -1">
       <div class="subscription-head" *ngIf="subscriptionData && subscriptionData.subscriptions">
         <h3>Resumen de la suscripción</h3>
       </div>
