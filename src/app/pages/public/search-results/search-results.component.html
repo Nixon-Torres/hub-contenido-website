@@ -26,7 +26,7 @@
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
                   <h4 class="reportTitle" [routerLink]="['/reports', report?.id]">{{report?.rTitle | striphtml}}
                   </h4>
-                  <p>{{report?.smartContent}}
+                  <p>{{report?.smartContent | truncate: 180: true}}
                   </p>
                   <p class="small ">{{report?.publishedAt | date:'d MMMM y'}}</p>
                   <a *ngIf="isANewReport(report)">

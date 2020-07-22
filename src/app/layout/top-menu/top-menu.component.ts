@@ -153,6 +153,16 @@ export class TopMenuComponent implements OnInit {
     return reportTypes;
   }
 
+  getReportTypeName(reportType: any) {
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.currentCategory.id]) {
+        return alias[this.currentCategory.id];
+      }
+    }
+    return reportType.name;
+  }
+
   private getReportTypes(): Observable<any> {
     return this.http.get({
       path: `public/reports_type/`,
@@ -214,7 +224,11 @@ export class TopMenuComponent implements OnInit {
 
   private getCompanies(): Observable<any> {
     return this.http.get({
-      path: `public/companies/`
+      path: `public/companies/`,
+      data: {
+        order: 'name ASC'
+      },
+      encode: true,
     }).pipe(
       map((res) => {
         this.companies = res.body;

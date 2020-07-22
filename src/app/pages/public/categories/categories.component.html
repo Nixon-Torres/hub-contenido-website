@@ -27,7 +27,9 @@
             <div class="col-md-3 col-sm-12 analisis-menu" *ngIf="category?.code !== 'ENQUINVERTIR'">
               <ul>
                 <a (click)="setReportType(item)" *ngFor="let item of reportTypes">
-                  <li [ngClass]="{'active': isMenuActive(item)}">{{item.name}}</li>
+                  <li [ngClass]="{'active': isMenuActive(item)}">
+                    {{getReportTypeName(item)}}
+                  </li>
                 </a>
               </ul>
             </div>
@@ -36,7 +38,7 @@
                 <span class="title">{{group.name}}</span>
                 <ul>
                   <a (click)="setReportType(item)" *ngFor="let item of group.reportTypes">
-                    <li>{{item.name}}</li>
+                    <li>{{getReportTypeName(item)}}</li>
                   </a>
                 </ul>
               </div>
@@ -90,7 +92,7 @@
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
                   <h4 class="reportTitle" [routerLink]="['/reports', report?.id]">{{report?.rTitle | striphtml}}
                   </h4>
-                  <p>{{report?.smartContent}}
+                  <p>{{report?.smartContent | truncate: 180: true}}
                   </p>
                   <p class="small ">{{report?.publishedAt | date:'d MMMM y'}}</p>
                   <a *ngIf="isANewReport(report)">

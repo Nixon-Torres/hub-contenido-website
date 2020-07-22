@@ -256,6 +256,16 @@ export class CategoriesComponent implements OnInit {
     this.getReports();
   }
 
+  getReportTypeName(reportType: any) {
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.categoryId]) {
+        return alias[this.categoryId];
+      }
+    }
+    return reportType.name;
+  }
+
   setReportType(reportType: any) {
     this.currentPage = 1;
     if (this.category.code === 'ANLISISDECOMPAAS') {
