@@ -692,7 +692,3 @@ section .pr-full-bg .container .brief-section,
 .presentation .container .brief-section {
     padding: 20px 0;
 }
-
-.smart-content-section .doscolumn-container h2 {
-    line-height: 1.5;
-}
