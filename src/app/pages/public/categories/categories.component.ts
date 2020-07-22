@@ -3,7 +3,6 @@ import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
-import lodash from 'lodash';
 
 @Component({
     selector: 'app-categories',
@@ -166,18 +165,19 @@ export class CategoriesComponent implements OnInit {
     if (this.idateStart || this.idateEnd) {
       const conds = [where];
 
-      if (this.idateStart) {
-        const start = moment(this.idateStart).add(5, 'hours').toDate();
-        conds.push({publishedAt: {gte: start}});
-      }
-
-      if (this.idateEnd) {
-        const end = moment(this.idateEnd).add(5, 'hours').toDate();
-        if (lodash.get(conds, '[1].publishedAt')) {
-          lodash.merge(conds[1].publishedAt, {lte: end});
-        } else {
-          conds.push({publishedAt: {lte: end}});
-        }
+      const start = this.idateStart ? moment(this.idateStart)
+        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).add(-5, 'hours').toDate() : '';
+      const end = this.idateEnd ? moment(this.idateEnd).set({ hour: 18, minute: 59, second: 59, millisecond: 0 }).toDate() : '';
+      if (this.idateStart && this.idateEnd) {
+        conds.push({
+          publishedAt: {
+            between: [start, end]
+          }
+        });
+      } else if (this.idateStart) {
+        conds.push({ publishedAt: { gte: start } });
+      } else if (this.idateEnd) {
+        conds.push({ publishedAt: { lte: end } });
       }
 
       where = {and: conds};
@@ -223,7 +223,10 @@ export class CategoriesComponent implements OnInit {
       },
       encode: true
     }).subscribe((response: any) => {
-      this.reports = response.body;
+      this.reports = response.body.map(rep => {
+        rep.publishedAt = moment(rep.publishedAt).add(5, 'hours');
+        return rep;
+      });
 
       this.getReportCount();
     });
