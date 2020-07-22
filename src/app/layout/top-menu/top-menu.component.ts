@@ -68,6 +68,7 @@ export class TopMenuComponent implements OnInit {
   }];
 
   public menuTimer: any;
+  total: any;
 
   constructor(private http: HttpService, private router: Router, private gtmService: GoogleTagManagerService) {
     router.events.subscribe((val) => {
@@ -225,14 +226,16 @@ export class TopMenuComponent implements OnInit {
 
   private distributeItems(showAll: boolean) {
     const items = this.getItems();
-    const total = items.length;
+    this.total = items.length;
 
     this.totalGroups = 2;
     if (this.currentMenuOption === 6 || this.currentMenuOption === 7) {
       this.totalGroups = 3;
+    } else if (!showAll || this.total <= 7) {
+      this.totalGroups = 1;
     }
-    let itemsPerGroup = Math.ceil(total / this.totalGroups);
-    itemsPerGroup = !showAll ? Math.min(this.DEFAULT_ITEMS_PER_GROUP, itemsPerGroup) : itemsPerGroup;
+    let itemsPerGroup = Math.ceil(this.total / this.totalGroups);
+    itemsPerGroup = !showAll ? Math.min(this.DEFAULT_ITEMS_PER_GROUP, this.total) : itemsPerGroup;
 
     this.itemGroups = this.itemGroups.map(e => []);
 
@@ -286,7 +289,7 @@ export class TopMenuComponent implements OnInit {
   getCategoryReportTypeLink(report: any) {
     const id = this.getCategoryId();
 
-    if (report.code === 'ELLIBRO') {
+    if (report && report.code === 'ELLIBRO') {
       return ['/book'];
     }
     const rsp = ['/categories', id, 'type', report.id];
