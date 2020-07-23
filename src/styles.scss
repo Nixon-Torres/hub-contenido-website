@@ -280,6 +280,13 @@ footer.main_footer .footer_first .footer-links ul li:before {
 
 .footer_image_link {
   text-align: right;
+  @media only screen and (max-width: 991px) {
+    img {
+      &:first-child {
+        display: none;
+      }
+    }
+  }
 }
 
 .footer_sociaal_link {
