@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
+import { forkJoin } from 'rxjs';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
 import {Location} from '@angular/common';
@@ -169,7 +170,7 @@ export class SearchResultsComponent implements OnInit {
     const where = this.getWhere();
     const skip = (this.currentPage - 1) * this.ITEMS_PER_PAGE;
 
-    this.http.get({
+    let reports = this.http.get({
       path: `public/search/`,
       data: {
         where,
@@ -185,9 +186,23 @@ export class SearchResultsComponent implements OnInit {
         order: 'publishedAt DESC'
       },
       encode: true
-    }).subscribe((response: any) => {
-      this.reports = response.body;
+    });
 
+    let contents = this.http.get({
+      path: `public/search/`,
+      data: {
+        where: Object.assign({}, where, {key: 'multimedia'}),
+        fields: ['id', 'title', 'short_description', 'updatedAt'],
+        skip,
+        limit: 2,
+        order: 'updatedAt DESC',
+        resource: 'contents'
+      },
+      encode: true
+    });
+
+    forkJoin([reports, contents]).subscribe(results => {
+      this.reports = results[0].body;
       this.getReportCount();
     });
   }
