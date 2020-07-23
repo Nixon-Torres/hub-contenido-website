@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {environment} from '../../../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -12,7 +12,8 @@ import {InvestPreferencesDialogComponent} from '../invest-preferences-dialog/inv
 @Component({
   selector: 'app-preferences',
   templateUrl: './preferences.component.html',
-  styleUrls: ['./preferences.component.scss']
+  styleUrls: ['./preferences.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PreferencesComponent implements OnInit {
   public breadcrumbItems: Array<any> = [{
