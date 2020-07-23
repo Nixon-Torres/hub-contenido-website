@@ -14,7 +14,7 @@
     </div>
     <div class="Recomendados-header">
       <div class="row" *ngIf="header" [routerLink]="['/multimedia', header.id]">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12 recomendados_container">
           <div class="Recomendados-inner-image">
             <span class="overlaycategory">{{getType(header)}}</span>
             <i class="fas fa-play-circle"></i>
