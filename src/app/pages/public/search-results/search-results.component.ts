@@ -195,7 +195,7 @@ export class SearchResultsComponent implements OnInit {
       path: `public/search/`,
       data: {
         where: Object.assign({}, where, {key: 'multimedia'}),
-        fields: ['id', 'title', 'subtitle', 'description', 'updatedAt', 'resourceId'],
+        fields: ['id', 'title', 'subtitle', 'description', 'createdAt', 'resourceId'],
         include: [{
           relation: 'reports',
           scope: {
@@ -204,7 +204,7 @@ export class SearchResultsComponent implements OnInit {
         }],
         skip,
         limit: this.ITEMS_PER_PAGE,
-        order: 'updatedAt DESC',
+        order: 'createdAt DESC',
         resource: 'contents'
       },
       encode: true
@@ -216,7 +216,7 @@ export class SearchResultsComponent implements OnInit {
         const contents = results[1].body.map((e) => {
           return {
             rTitle: e.title,
-            publishedAt: e.updatedAt,
+            publishedAt: e.createdAt,
             smartContent: e.description,
             name: e.title,
             id: e.id,
