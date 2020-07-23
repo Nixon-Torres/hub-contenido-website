@@ -44,7 +44,7 @@ export class TopMenuComponent implements OnInit {
     code: 'MULTIMEDIA'
   }];
 
-  readonly  DEFAULT_ITEMS_PER_GROUP = 7;
+  readonly  DEFAULT_ITEMS_PER_GROUP = 5;
 
   public companies: any;
   public categories: any;
@@ -231,9 +231,8 @@ export class TopMenuComponent implements OnInit {
     this.totalGroups = 2;
     if (this.currentMenuOption === 6 || this.currentMenuOption === 7) {
       this.totalGroups = 3;
-    } else if (!showAll || this.total <= 7) {
-      this.totalGroups = 1;
     }
+
     let itemsPerGroup = Math.ceil(this.total / this.totalGroups);
     itemsPerGroup = !showAll ? Math.min(this.DEFAULT_ITEMS_PER_GROUP, this.total) : itemsPerGroup;
 
