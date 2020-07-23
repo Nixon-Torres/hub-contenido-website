@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MultimediaComponent} from './multimedia.component';
 import {Routes, RouterModule} from '@angular/router';
 import {BreadcrumbModule} from '../breadcrumb/breadcrumb.module';
+import {PipesModule} from '../../../pipes.module';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        BreadcrumbModule
+        BreadcrumbModule,
+        PipesModule
     ],
   entryComponents: [
   ]
