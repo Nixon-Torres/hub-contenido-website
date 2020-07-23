@@ -86,7 +86,7 @@
                 </div>
               </div>
               <hr>
-              <div class="todo-analisis" *ngIf="currentMenuOption && total > 7">
+              <div hidden="true" class="todo-analisis" *ngIf="currentMenuOption && total > 7">
                 <h3 (click)="distributeItems(true)">Ver todo {{menuOptions[currentMenuOption - 1].name}}</h3>
               </div>
             </div>
