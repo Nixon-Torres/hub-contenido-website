@@ -269,6 +269,11 @@ export class CategoriesComponent implements OnInit {
     return reportType.name;
   }
 
+  cleanDateFilter() {
+    this.idateStart = null;
+    this.idateEnd = null;
+  }
+
   setReportType(reportType: any) {
     this.currentPage = 1;
     if (this.category.code === 'ANLISISDECOMPAAS') {
