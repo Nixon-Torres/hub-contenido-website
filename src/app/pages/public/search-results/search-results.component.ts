@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
+import { forkJoin } from 'rxjs';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
 import {Location} from '@angular/common';
@@ -151,17 +152,20 @@ export class SearchResultsComponent implements OnInit {
   getReportCount() {
     const where = this.getWhere();
 
-    this.http.get({
+    return this.http.get({
       path: `public/search/count`,
       data: {where},
       encode: true
-    }).subscribe((response: any) => {
-      this.totalCount = response.body.count;
-      this.totalPages = Math.ceil(this.totalCount / this.ITEMS_PER_PAGE);
-      this.pagesItems = [];
-      for (let i = 0; i < this.totalPages; i++) {
-        this.pagesItems.push(i + 1);
-      }
+    })
+  }
+
+  getContentCount() {
+    const where = Object.assign({}, this.getWhere(), {key: 'multimedia'});
+
+    return this.http.get({
+      path: `public/search/count`,
+      data: {where, resource: 'contents'},
+      encode: true
     });
   }
 
@@ -169,7 +173,7 @@ export class SearchResultsComponent implements OnInit {
     const where = this.getWhere();
     const skip = (this.currentPage - 1) * this.ITEMS_PER_PAGE;
 
-    this.http.get({
+    let reports = this.http.get({
       path: `public/search/`,
       data: {
         where,
@@ -185,16 +189,70 @@ export class SearchResultsComponent implements OnInit {
         order: 'publishedAt DESC'
       },
       encode: true
-    }).subscribe((response: any) => {
-      this.reports = response.body;
-
-      this.getReportCount();
     });
+
+    let contents = this.http.get({
+      path: `public/search/`,
+      data: {
+        where: Object.assign({}, where, {key: 'multimedia'}),
+        fields: ['id', 'title', 'subtitle', 'description', 'createdAt', 'resourceId'],
+        include: [{
+          relation: 'reports',
+          scope: {
+            include: ['reportType']
+          }
+        }],
+        skip,
+        limit: this.ITEMS_PER_PAGE,
+        order: 'createdAt DESC',
+        resource: 'contents'
+      },
+      encode: true
+    });
+
+    forkJoin([reports, contents, this.getReportCount(), this.getContentCount()])
+      .subscribe((results: any) => {
+        const reports = results[0].body;
+        const contents = results[1].body.map((e) => {
+          return {
+            rTitle: e.title,
+            publishedAt: e.createdAt,
+            smartContent: e.description,
+            name: e.title,
+            id: e.id,
+            reportType: {description: 'Multimedia'},
+            isContent: true
+          };
+        });
+        const reportsCount = results[2].body.count;
+        const contentsCount = results[3].body.count;
+
+        const greaterNum = (reports.length > contents.length) ?
+          reports.length : contents.length;
+        this.reports = [];
+        for (let i = 0; i < greaterNum; i++) {
+          if (i < reports.length)
+            this.reports.push(reports[i]);
+          if (i < contents.length)
+            this.reports.push(contents[i]);
+        }
+
+        this.totalCount = reportsCount > contentsCount ? reportsCount : contentsCount;
+        this.totalPages = Math.ceil(this.totalCount / this.ITEMS_PER_PAGE);
+        this.pagesItems = [];
+        for (let i = 0; i < this.totalPages; i++) {
+          this.pagesItems.push(i + 1);
+        }
+    });
+  }
+
+  getResourceBase(report:any) {
+    return report.isContent ? '/multimedia' : '/reports';
   }
 
   isANewReport(report: any) {
     const diff = moment().diff(report.publishedAt, 'hours');
-    return diff < 24;
+    return !report.isContent && diff < 24;
   }
 
   getSubCategoryName() {
