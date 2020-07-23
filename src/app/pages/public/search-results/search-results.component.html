@@ -24,7 +24,7 @@
               <div class="contant gray-back item" *ngFor="let report of reports">
                 <div class="detail">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
-                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]">{{report?.rTitle | striphtml}}
+                  <h4 class="reportTitle" [routerLink]="[getResourceBase(report), report?.id]">{{report?.rTitle | striphtml}}
                   </h4>
                   <p>{{report?.smartContent | truncate: 180: true}}
                   </p>
