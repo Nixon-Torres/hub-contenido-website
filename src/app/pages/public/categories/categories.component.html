@@ -66,7 +66,8 @@
                   </div>
                   <div class="col-md-6 col-sm-12 full-width">
                     <div class="date-picker-categorias">
-                      <label class="categorias-date-label">Filtre fecha</label>
+                      <label class="categorias-date-label" *ngIf="!idateStart && !idateEnd">Filtre fecha</label>
+                      <label class="categorias-date-label clean-filter" *ngIf="idateStart || idateEnd" (click)="cleanDateFilter()">Limpiar filtro</label>
                       <div class="date-picker-1">
                         <mat-form-field class="date-picker-category">
                           <mat-label class="date_filter">Desde</mat-label>
@@ -90,6 +91,9 @@
                 </div>
               </div>
 
+              <div class="no-results" *ngIf="reports?.length === 0">
+                No se encontraron resultados de su búsqueda
+              </div>
               <div class="contant gray-back" *ngFor="let report of reports">
                 <div class="detail">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
