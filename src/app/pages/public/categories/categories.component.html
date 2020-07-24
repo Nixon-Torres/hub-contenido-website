@@ -37,10 +37,10 @@
               <div class="enquinvertir-menu" *ngFor="let group of investmentGroups">
                 <span class="title">{{group.name}}</span>
                 <ul>
-                  <a (click)="setReportType(item)" *ngFor="let item of group.reportTypes">
+                  <a (click)="setReportType(item)" *ngFor="let item of group.reportTypes | slice:0: ((group && group.limit) ? 100 : 3);">
                     <li>{{getReportTypeName(item)}}</li>
                   </a>
-                  <a href="#" class="see_information">
+                  <a class="see_information" (click)="group.limit  = true" *ngIf="!group.limit && group.reportTypes.length > 3">
                     <li>Ver todo</li>
                   </a>
                 </ul>
