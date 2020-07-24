@@ -8,7 +8,8 @@ import {GoogleTagManagerService} from 'angular-google-tag-manager';
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss']
+  styleUrls: ['./top-menu.component.scss'],
+  host: { class: 'top-menu' }
 })
 
 export class TopMenuComponent implements OnInit {

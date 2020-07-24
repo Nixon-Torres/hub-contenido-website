@@ -107,6 +107,15 @@ export class MultimediaDetailComponent implements OnInit {
       this.content = res.body[0];
       this.type = this.content && this.content.multimediaType ? this.content.multimediaType.name : null;
 
+      const label = this.content.title && this.content.title.length > 70 ?
+                      this.content.title.substring(0, 70) + '...' : this.content.title;
+      this.breadcrumbItems = [{
+        label: 'Multimedia',
+        link: ['/multimedia']
+      }, {
+        label
+      }];
+
       if (this.content && this.content.params && this.content.params.url && this.type === 'Video') {
         this.getVideoUrl();
       }

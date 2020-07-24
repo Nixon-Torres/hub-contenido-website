@@ -14215,3 +14215,8 @@ max-width: 100% !important;
 .hide-right-menu-contant {
   cursor: pointer;
 }
+
+:host {
+  height: 184px;
+  display: block;
+}

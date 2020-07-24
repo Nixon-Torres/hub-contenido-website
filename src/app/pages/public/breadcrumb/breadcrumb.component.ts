@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class BreadcrumbComponent implements OnInit {
   @Input() pages: Array<any>;
+  @Output() back = new EventEmitter<boolean>();
 
   constructor( private location: Location, private router: Router, private activatedRouted: ActivatedRoute) {
   }
@@ -17,6 +18,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   goBack() {
+    this.back.emit(true);
     this.location.back();
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
 
@@ -45,7 +45,7 @@ export class CategoriesComponent implements OnInit {
     reportTypes: []
   }];
 
-  constructor(private http: HttpService, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -274,6 +274,10 @@ export class CategoriesComponent implements OnInit {
     this.idateEnd = null;
   }
 
+  onBack(event) {
+    this.reportTypeId = null;
+  }
+
   setReportType(reportType: any) {
     this.currentPage = 1;
     if (this.category.code === 'ANLISISDECOMPAAS') {
@@ -284,6 +288,12 @@ export class CategoriesComponent implements OnInit {
     }
     this.updateBreadcrumbItems();
     this.getReports();
+
+    if (!this.reportTypeId) {
+      this.router.navigate(['categories', this.categoryId]);
+    } else {
+      this.router.navigate(['categories', this.categoryId, 'type', this.reportTypeId]);
+    }
   }
 
   updateBreadcrumbItems() {

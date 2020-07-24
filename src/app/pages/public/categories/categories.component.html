@@ -1,6 +1,6 @@
 <div style="display: block">
 
-  <app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
+  <app-breadcrumb [pages]="breadcrumbItems" (back)="onBack($event)"></app-breadcrumb>
 
   <div class="preapertura">
     <div class="container">
@@ -40,8 +40,8 @@
                   <a (click)="setReportType(item)" *ngFor="let item of group.reportTypes | slice:0: ((group && group.limit) ? 100 : 3);">
                     <li>{{getReportTypeName(item)}}</li>
                   </a>
-                  <a class="see_information" (click)="group.limit  = true" *ngIf="!group.limit && group.reportTypes.length > 3">
-                    <li>Ver todo</li>
+                  <a class="see_information" (click)="group.limit = !group.limit" *ngIf="group.reportTypes.length > 3">
+                    <li>Ver {{!group.limit ? 'todo' : 'menos'}}</li>
                   </a>
                 </ul>
               </div>
