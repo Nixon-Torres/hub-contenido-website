@@ -3,6 +3,7 @@ import {HttpService} from '../../../services/http.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-book',
@@ -29,7 +30,7 @@ export class BookComponent implements OnInit {
     link: ['/categories', '5e7fc9a5dc4b4a6c6629517e']
   }];
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(private http: HttpService, private router: Router, private sanitizer: DomSanitizer) {
     this.subscribeGroup = new FormGroup({
       name: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -39,6 +40,10 @@ export class BookComponent implements OnInit {
       accept: new FormControl(false, [Validators.required, Validators.requiredTrue]),
       subscribe: new FormControl(''),
     });
+  }
+
+  sanitize(value) {
+    return this.sanitizer.bypassSecurityTrustHtml(value);
   }
 
   ngOnInit() {
