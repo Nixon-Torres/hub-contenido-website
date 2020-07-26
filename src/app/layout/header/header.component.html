@@ -26,10 +26,46 @@
 								</div>
 							</div>
 							<div class="sub_figure"></div>
-							<div class="acc_subscribe">
+
+							<div class="tab acc_subscribe">
 								<img src="/assets/images/Suscríbase.png" alt="">
-								<p>Suscríbase</p>
+								<input type="checkbox" id="chck0">
+								<label class="tab-label" for="chck0">Suscríbase</label>
+								<div class="tab-content accordion_tab_sub macroeconomía">
+									<div class="col-sm-6 contact_content">
+										<div class="subs" (click)="openQuincenalDialog()">
+											<div class="subs__container">
+												<h3>Boletín quincenal</h3>
+												<p>Póngase al día con los informes destacados de las últimas 2 semanas</p>
+											</div>
+											<div class="subs__img">
+												<img src="/assets/images/pagination_right.png" alt="">
+											</div>
+										</div>
+					
+										<div class="subs" [routerLink]="['/preferences']">
+											<div class="subs__container">
+												<h3>Informes personalizados</h3>
+												<p>Seleccione solo los informes que más le interesan</p>
+											</div>
+											<div class="subs__img">
+												<img src="/assets/images/pagination_right.png" alt="">
+											</div>
+										</div>
+					
+										<div class="subs" (click)="openDialog()">
+											<div class="subs__container">
+												<h3>Actualizar mis preferencias</h3>
+												<p>Modifique su suscripción y reciba los informes de su interés.</p>
+											</div>
+											<div class="subs__img">
+												<img src="/assets/images/pagination_right.png" alt="">
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
+
 							<!--  -->
 							<div class="tab">
 								<input type="checkbox" id="chck1">
