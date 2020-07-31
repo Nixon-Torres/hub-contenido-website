@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpService} from '../../services/http.service';
-import {Router} from '@angular/router';
-import {GoogleTagManagerService} from 'angular-google-tag-manager';
-import {EditPreferencesDialogComponent} from '../../pages/public/edit-preferences-dialog/edit-preferences-dialog.component';
-import {SubscribeDialogComponent} from '../../pages/public/subscribe-dialog/subscribe-dialog.component';
-import {MatDialog} from '@angular/material';
-
+import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../services/http.service';
+import { Router } from '@angular/router';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
+import { EditPreferencesDialogComponent } from '../../pages/public/edit-preferences-dialog/edit-preferences-dialog.component';
+import { SubscribeDialogComponent } from '../../pages/public/subscribe-dialog/subscribe-dialog.component';
+import { MatDialog } from '@angular/material';
+import { map } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,7 +16,56 @@ export class HeaderComponent implements OnInit {
   public reportsList: Array<any>;
   public searchText: string;
   public subscribeMenuVisible = false;
-
+  public currentMenuOption: number;
+  public categories: any;
+  public reports: any;
+  public reportTypes: any;
+  public ready = false;
+  public companies: any;
+  public currentCategory: any;
+  private menuOptions = [{
+    name: 'Estar actualizado',
+    code: 'ESTARACTUALIZADO',
+    idx: 1,
+  }, {
+    name: 'Macroeconomía',
+    code: 'MACROECONOMA',
+    idx: 2,
+  }, {
+    name: 'Nuestros indicadores',
+    code: 'NUESTROSINDICADORES',
+    idx: 3,
+  }, {
+    name: 'Economías Centroamericanas',
+    code: 'ECONOMASCENTROAMERICANAS',
+    idx: 4,
+  }, {
+    name: 'Tendencias sectoriales',
+    code: 'TENDENCIASSECTORIALES',
+    idx: 5,
+  }, {
+    name: 'Análisis de compañias',
+    code: 'ANLISISDECOMPAAS',
+    idx: 6,
+  }, {
+    name: 'En qué invertir',
+    code: 'ENQUINVERTIR',
+    idx: 7,
+  }];
+  public investmentGroups = [{
+    name: 'Renta Fija',
+    code: 'RENTAFIJA',
+    items: []
+  }, {
+    name: 'Acciones',
+    code: 'ACCIONES',
+    items: []
+  }, {
+    name: 'Monedas',
+    code: 'DIVISAS',
+    items: []
+  }];
+  items: any;
   constructor(
     private dialog: MatDialog,
     private http: HttpService,
@@ -25,8 +75,183 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onLoadReports();
+    const observables = [this.getCompanies(), this.getCategories(), this.getReportTypes()];
+    forkJoin(observables).subscribe(() => {
+      this.ready = true;
+    });
+  }
 
+  private getItems() {
+    if (this.currentMenuOption === 6) {
+      return this.companies;
+    }
+
+    const code = this.menuOptions[this.currentMenuOption - 1].code;
+    const category = this.categories.find(e => e.code === code);
+    if (!category) {
+      return [];
+    }
+
+    const reportTypes = this.reportTypes.filter(e => e.mainCategory.find(k => k.id === category.id))
+      .map(e => {
+        const item = e;
+        item.name = item.description;
+        return item;
+      });
+    return reportTypes;
+  }
+
+  mouseEnter(idx?: number) {
+    if (!this.ready) {
+      return;
+    }
+    this.mouseEnterAfterSeconds(idx);
+  }
+
+  mouseEnterAfterSeconds(idx?: number) {
+    if (!this.ready) {
+      return;
+    }
+
+    if (idx !== null) {
+      const oldIdx = this.currentMenuOption;
+      this.currentMenuOption = idx;
+
+      const code = this.menuOptions[idx - 1].code;
+      const category = this.categories.find(e => e.code === code);
+      this.currentCategory = category;
+
+      if (oldIdx !== this.currentMenuOption) {
+        this.distributeItems();
+      }
+    }
+  }
+
+  private distributeItems() {
+    this.items = this.getItems();
+
+    if (this.currentMenuOption === 7) {
+      this.investmentGroups = this.investmentGroups.map(e => {
+        const subitems = this.items.filter(k => k.subCategory.find(x => x.code === e.code));
+        e.items = subitems;
+        return e;
+      });
+      return;
+    }
+  }
+
+  go(eventName) {
+    console.log(eventName);
+
+    const gtmTag = {
+      event: eventName,
+      clickUrl: window.location.href
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
+
+  getCategoryReportTypeLink(report: any) {
+    const id = this.getCategoryId();
+
+    if (report && report.code === 'ELLIBRO') {
+      return this.router.navigate(['/book']);
+    } else {
+      this.router.navigate(['/categories', id, 'type', report && report.id ? report.id : '']);
+    }
+    document.getElementById('mySidenav').style.width = '0';
+  }
+
+  getReportTypeName(reportType: any) {
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.currentCategory.id]) {
+        return alias[this.currentCategory.id];
+      }
+    }
+    return reportType.name;
+  }
+
+  getCategoryLink(option?: number) {
+    const id = this.getCategoryId(option);
+    if (id !== null) {
+      return ['/categories', id];
+    }
+
+    return ['/categories', option];
+  }
+
+  getCategoryId(option?: number) {
+    const idx = option ? option : this.currentMenuOption;
+    if (!this.categories) {
+      return null;
+    }
+    const cat = this.categories.find(e => e.code === this.menuOptions[idx - 1].code);
+    return cat ? cat.id : null;
+  }
+
+  private getReportTypes(): Observable<any> {
+    return this.http.get({
+      path: `public/reports_type/`,
+      data: {
+        include: ['mainCategory', 'subCategory']
+      },
+      encode: true
+    }).pipe(
+      map((res) => {
+        this.reportTypes = res.body;
+        return res;
+      })
+    );
+  }
+
+  private getCategories(): Observable<any> {
+    return this.http.get({
+      path: `public/categories/`
+    }).pipe(
+      map((res) => {
+        this.categories = res.body;
+        this.getReports();
+        return res;
+      })
+    );
+  }
+
+  private getCompanies(): Observable<any> {
+    return this.http.get({
+      path: `public/companies/`,
+      data: {
+        order: 'name ASC'
+      },
+      encode: true,
+    }).pipe(
+      map((res) => {
+        this.companies = res.body;
+        return res;
+      })
+    );
+  }
+
+  private getReports() {
+    this.http.get({
+      path: `public/reports/`,
+      data: {
+        where: {
+          id: {
+            inq: this.categories.filter(e => e.mainReportId).map(e => e.mainReportId)
+          }
+        },
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'reportTypeId', 'publishedAt'],
+        include: [{
+          relation: 'reportType',
+          scope: {
+            include: ['mainCategory', 'subCategory']
+          }
+        }]
+      },
+      encode: true
+    }).subscribe((res) => {
+      this.reports = res.body;
+    });
   }
 
   onLoadReports() {
