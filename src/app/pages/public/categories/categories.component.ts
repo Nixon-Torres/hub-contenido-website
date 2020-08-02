@@ -242,14 +242,25 @@ export class CategoriesComponent implements OnInit {
       const company = this.reportTypes.find(e => e.id === this.companyId);
       return company ? company.name : '';
     } else if (this.reportType) {
+      if (this.reportType && this.reportType.aliases) {
+        const alias = this.reportType.aliases;
+        if (alias[this.categoryId]) {
+          return alias[this.categoryId];
+        }
+      }
       return this.reportType.description;
     }
     return '';
   }
 
   getReportSubCategoryName(reportType: any) {
-    const name = reportType.description;
-    return name;
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.categoryId]) {
+        return alias[this.categoryId];
+      }
+    }
+    return reportType.description;
   }
 
   setCompanyReportType(reportType) {
