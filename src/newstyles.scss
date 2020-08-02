@@ -798,7 +798,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
 
 .footer_image_link {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .footer_sociaal_link {
@@ -1046,7 +1046,8 @@ p.para_nuvo {
 .tab_sub_division_part {
   padding: 30px 0px 30px 20px;
   border-top: 2px solid #ebebeb;
-  min-height: 243px;
+  min-height: 350px;
+  height: 95%;
 }
 
 .tab_sub_division_part p {
@@ -6774,6 +6775,9 @@ p.informe_heading_desc {
   width: 100%;
   padding: 0 20px;
   border-bottom: 1px solid #F13D40;
+  @media only screen and (max-width: 1200px) {
+    padding: 0 10px;
+  }
 }
 
 .nav-tabs .nav-item.show .nav-link,
@@ -6976,6 +6980,8 @@ p.informe_heading_desc {
   float: left;
   padding: 10px 50px 0px 20px;
   word-break: break-word;
+  min-height: 250px;
+  height: 100%;
 }
 
 .nir-inline-video-contant h5 {
@@ -7007,6 +7013,7 @@ p.informe_heading_desc {
   display: -webkit-box;
   -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
+  margin-bottom: 30px;
 }
 
 .nir-inline-video-btn {
@@ -7018,6 +7025,8 @@ p.informe_heading_desc {
   padding: 6px 0 0 0;
   border-bottom: 1px solid #E8162E;
   border-radius: 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .full-image .img-fluid {
@@ -7088,10 +7097,6 @@ p.informe_heading_desc {
   font-family: Helvetica;
 }
 
-.Acciones .container {
-  padding: 0px 230px 0 15px;
-}
-
 .Acciones-header {
   width: 100%;
   float: left;
@@ -7122,7 +7127,7 @@ p.informe_heading_desc {
 .Acciones-table {
   width: 100%;
   float: left;
-  padding: 60px;
+  padding: 20px;
   border-top: 1px solid #D9D9D9;
   border-bottom: 1px solid #D9D9D9;
   background-color: #FAFAFA;
