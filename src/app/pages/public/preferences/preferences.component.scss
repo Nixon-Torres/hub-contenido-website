@@ -14,6 +14,9 @@ app-preferences{
     -moz-columns: 2;
     columns: 2;
     padding: 0px !important;
+    @media only screen and (max-width: 945px) {
+      columns: auto;
+    }
   }
 
   .text-wrap {
@@ -27,7 +30,7 @@ app-preferences{
   }
 
   .row-column {
-    margin: auto !important;
+    margin: auto;
   }
   
   .header-text {
@@ -579,6 +582,9 @@ app-preferences{
     min-height: 1.5rem;
     padding-left: 1.5rem;
     border: 1px solid #676666;
+    @media only screen and (max-width: 400px) {
+      padding-left: 2.5em;
+    }
   }
   
   .regresar-Acciones .custom-control-label {
@@ -1297,7 +1303,7 @@ app-preferences{
       margin: 0px 25px 0 20px;
     }
     .menu-text {
-      padding: 0 70px 0 70px;
+      padding: 0 10px 0 35px;
     }
     .menu-box-inner h3 {
       padding: 25px 20px 10px 0px;
@@ -1394,9 +1400,6 @@ app-preferences{
     }
     .menu-box-inner h3 {
       padding: 25px 6px 10px 0px;
-    }
-    .menu-box-inner {
-      padding: 0px 10px 180px 10px;
     }
     .regresar-Acciones-contant .col-sm-12 {
       max-width: 100%;
@@ -1567,7 +1570,7 @@ app-preferences{
       margin-bottom: 34px;
     }
     .menu-text {
-      padding: 0 15px;
+      padding: 0 30px;
     }
     .box-margin1 {
       padding-right: 15px;
@@ -1744,9 +1747,6 @@ app-preferences{
     }
     .header {
       margin-bottom: 34px;
-    }
-    .menu-text {
-      padding: 0 15px;
     }
     .box-margin1 {
       padding-right: 15px;
@@ -1927,9 +1927,6 @@ app-preferences{
     }
     .header {
       margin-bottom: 34px;
-    }
-    .menu-text {
-      padding: 0 15px;
     }
     .box-margin1 {
       padding-right: 15px;
@@ -2161,9 +2158,18 @@ app-preferences{
       margin-top: 30px;
       margin-left: 0;
       .custom-checkbox{
-        width: 312.5px;
+        width: 304.5px;
         height: 45px;
         border-radius: 5px;
+        @media only screen and (max-width: 1024px) {
+          width: 283px;
+        }
+        @media only screen and (max-width: 945px) {
+          width: 89%;
+        }
+        @media only screen and (max-width: 600px) {
+          width: 92%;
+        }
       }
     }
   }
