@@ -15,7 +15,9 @@ export class MultimediaComponent implements OnInit {
   public item1: any;
   public item2: any;
   public item3: any;
-  public breadcrumbItems: Array<any> = [];
+  public breadcrumbItems: Array<any> = [{
+    label: 'Multimedia',
+  }];
   categories = [];
   readonly TOTAL_PER_PAGE = 3;
   public currentTab = 1;
