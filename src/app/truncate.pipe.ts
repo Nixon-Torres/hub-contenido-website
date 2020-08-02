@@ -9,7 +9,7 @@ export class TruncatePipe implements PipeTransform {
       return '';
     }
     if (completeWords) {
-      limit = value.substr(0, limit).lastIndexOf(' ');
+      limit = value && value.substr(0, limit).lastIndexOf(' ');
     }
     return value && value.length > limit ? value.substr(0, limit) + ellipsis : value;
   }
