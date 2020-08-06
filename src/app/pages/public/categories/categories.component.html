@@ -80,7 +80,7 @@
                       <div class="date-picker-1">
                         <mat-form-field class="date-picker-category">
                           <mat-label class="date_filter">Hasta</mat-label>
-                          <input matInput [matDatepicker]="dateEnd"
+                          <input matInput [matDatepicker]="dateEnd" [min]="idateStart"
                                  (dateChange)="setEndDate($event)">
                           <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
                           <mat-datepicker #dateEnd></mat-datepicker>
