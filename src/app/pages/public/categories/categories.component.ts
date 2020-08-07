@@ -25,7 +25,6 @@ export class CategoriesComponent implements OnInit {
   public totalPages: number;
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
-  public tales: string;
 
   public breadcrumbItems: Array<any> = [];
 
@@ -148,7 +147,6 @@ export class CategoriesComponent implements OnInit {
           });
 
           const cat = this.investmentGroups.find(e => e.id === this.subcategoryId);
-          this.tales = cat ? cat.name : 'nada';
         }
 
         this.getReports();
