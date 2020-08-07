@@ -35,6 +35,8 @@ export class CategoriesComponent implements OnInit {
 
   public idateStart: any;
   public idateEnd: any;
+  public idateLowLimit: any;
+  public idateHighLimit: any;
 
   public investmentGroups = [{
     name: 'Renta Fija',
@@ -196,8 +198,9 @@ export class CategoriesComponent implements OnInit {
       const conds = [where];
 
       const start = this.idateStart ? moment(this.idateStart)
-        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).add(-5, 'hours').toDate() : '';
-      const end = this.idateEnd ? moment(this.idateEnd).set({ hour: 18, minute: 59, second: 59, millisecond: 0 }).toDate() : '';
+        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate() : '';
+      const end = this.idateEnd ? moment(this.idateEnd).set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate() : '';
+
       if (this.idateStart && this.idateEnd) {
         conds.push({
           publishedAt: {
@@ -318,6 +321,8 @@ export class CategoriesComponent implements OnInit {
     this.inputEnd['nativeElement'].value = '';
     this.idateStart = null;
     this.idateEnd = null;
+    this.idateLowLimit = null;
+    this.idateHighLimit = null;
   }
 
   onBack(event) {
@@ -390,11 +395,15 @@ export class CategoriesComponent implements OnInit {
 
   setStartDate(date) {
     this.idateStart = date.value;
+    this.idateLowLimit = moment(this.idateStart)
+        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate();
     this.getReports();
   }
 
   setEndDate(date) {
     this.idateEnd = date.value;
+    this.idateHighLimit = moment(this.idateEnd)
+        .set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate();
     this.getReports();
   }
 }

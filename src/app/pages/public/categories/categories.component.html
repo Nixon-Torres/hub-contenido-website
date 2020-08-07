@@ -71,7 +71,8 @@
                       <div class="date-picker-1">
                         <mat-form-field class="date-picker-category">
                           <mat-label class="date_filter">Desde</mat-label>
-                          <input matInput [matDatepicker]="dateStart" #input
+                          <input matInput [matDatepicker]="dateStart" 
+                                 [max]="idateHighLimit" #input
                                  (dateChange)="setStartDate($event)">
                           <mat-datepicker-toggle matSuffix [for]="dateStart" placeholder="Hola"></mat-datepicker-toggle>
                           <mat-datepicker #dateStart></mat-datepicker>
@@ -80,7 +81,8 @@
                       <div class="date-picker-1">
                         <mat-form-field class="date-picker-category">
                           <mat-label class="date_filter">Hasta</mat-label>
-                          <input matInput [matDatepicker]="dateEnd" [min]="idateStart" #inputEnd
+                          <input matInput [matDatepicker]="dateEnd"
+                                 [min]="idateLowLimit" #inputEnd
                                  (dateChange)="setEndDate($event)">
                           <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
                           <mat-datepicker #dateEnd></mat-datepicker>
