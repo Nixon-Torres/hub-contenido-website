@@ -77,7 +77,7 @@
             <div class="hide-left-menu" *ngIf="currentMenuOption === 7">
               <div class="row">
                 <div class="col-md-4 col-sm-12" *ngFor="let gp of investmentGroups">
-                  <a class="investment-group-section-title submenu-link" [routerLink]="getCategoryReportTypeLink(gp.items[0])">{{gp.name}}</a>
+                  <a class="investment-group-section-title submenu-link" [queryParams]="getQueryParams(gp)" [routerLink]="getCategoryLink(7)">{{gp.name}}</a>
                   <br>
                   <hr>
                   <div class="hide-left-1">

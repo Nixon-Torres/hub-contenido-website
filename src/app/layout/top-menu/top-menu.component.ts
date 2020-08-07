@@ -57,15 +57,18 @@ export class TopMenuComponent implements OnInit {
   public investmentGroups = [{
     name: 'Renta Fija',
     code: 'RENTAFIJA',
-    items: []
+    items: [],
+    id: null,
   }, {
     name: 'Acciones',
     code: 'ACCIONES',
-    items: []
+    items: [],
+    id: null,
   }, {
     name: 'Monedas',
     code: 'DIVISAS',
-    items: []
+    items: [],
+    id: null,
   }];
 
   public menuTimer: any;
@@ -260,6 +263,7 @@ export class TopMenuComponent implements OnInit {
       this.investmentGroups = this.investmentGroups.map(e => {
         const subitems = items.filter(k => k.subCategory.find(x => x.code === e.code));
         e.items = subitems;
+        e.id = subitems ? subitems[0].subCategory[0].id : '';
         return e;
       });
       return;
@@ -300,12 +304,17 @@ export class TopMenuComponent implements OnInit {
     return ['/categories', option];
   }
 
+  getQueryParams(gp) {
+    return {subcategory: gp.id};
+  }
+
   getCategoryReportTypeLink(report: any) {
     const id = this.getCategoryId();
 
     if (report && report.code === 'ELLIBRO') {
       return ['/book'];
     }
+
     const rsp = ['/categories', id, 'type', report.id];
     return rsp;
   }

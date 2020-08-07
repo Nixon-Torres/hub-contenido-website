@@ -3,6 +3,7 @@ import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
+import {combineLatest, forkJoin, zip} from 'rxjs';
 
 @Component({
     selector: 'app-categories',
@@ -12,6 +13,7 @@ import {environment} from '../../../../environments/environment';
 export class CategoriesComponent implements OnInit {
   private categoryId: string;
   private reportTypeId: string;
+  private subcategoryId: string;
   private companyId: string;
   public reportType: any;
   public category: any;
@@ -23,6 +25,7 @@ export class CategoriesComponent implements OnInit {
   public totalPages: number;
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
+  public tales: string;
 
   public breadcrumbItems: Array<any> = [];
 
@@ -34,34 +37,50 @@ export class CategoriesComponent implements OnInit {
   public investmentGroups = [{
     name: 'Renta Fija',
     code: 'RENTAFIJA',
-    reportTypes: []
+    reportTypes: [],
+    id: null,
   }, {
     name: 'Acciones',
     code: 'ACCIONES',
-    reportTypes: []
+    reportTypes: [],
+    id: null,
   }, {
     name: 'Monedas',
     code: 'DIVISAS',
-    reportTypes: []
+    reportTypes: [],
+    id: null,
   }];
 
   constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params: any) => {
-      if (params.get('id')) {
-        this.categoryId = params.get('id');
-      }
+    const obs = [this.activatedRoute.queryParams, this.activatedRoute.paramMap];
 
-      if (params.get('typeid')) {
-        this.reportTypeId = params.get('typeid');
-      }
+    const oparams = this.activatedRoute.params;
+    const oqueryParams = this.activatedRoute.queryParams;
 
-      if (this.categoryId) {
-        this.getCategory();
-      }
-    });
+    combineLatest(oparams, oqueryParams,
+      (iparams, iqueryParams) => ({ iparams, iqueryParams }))
+      .subscribe(response => {
+        const queryParams = response.iqueryParams;
+        const params = response.iparams;
+        if (params.id) {
+          this.categoryId = params.id;
+        }
+
+        if (params.typeid) {
+          this.reportTypeId = params.typeid;
+        }
+
+        if (queryParams.subcategory) {
+          this.subcategoryId = queryParams.subcategory;
+        }
+
+        if (this.categoryId) {
+          this.getCategory();
+        }
+      });
   }
 
   getBannerImg() {
@@ -116,6 +135,9 @@ export class CategoriesComponent implements OnInit {
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
             const subitems = this.reportTypes.filter(k => k.subCategory.find(h => h.code === e.code));
+            const subcat = subitems.length ? subitems[0].subCategory : {};
+
+            e.id = subcat && subcat.length ? subcat[0].id : null;
             e.reportTypes = subitems.reduce((a, b) => {
               if (!a.find(m => m.id === b.id)) {
                 a.push(b);
@@ -124,6 +146,9 @@ export class CategoriesComponent implements OnInit {
             }, []);
             return e;
           });
+
+          const cat = this.investmentGroups.find(e => e.id === this.subcategoryId);
+          this.tales = cat ? cat.name : 'nada';
         }
 
         this.getReports();
@@ -155,7 +180,11 @@ export class CategoriesComponent implements OnInit {
     if (this.reportTypeId) {
       where.reportTypeId = this.reportTypeId;
     } else {
-      where.reportTypeId = {inq: this.category.childrenMainReportTypes.map(e => e.id)};
+      if (this.subcategoryId) {
+        where.reportTypeId = {inq: this.category.childrenMainReportTypes.filter(e => e.subCategory.find(h => h.id === this.subcategoryId)).map(e => e.id)};
+      } else {
+        where.reportTypeId = {inq: this.category.childrenMainReportTypes.map(e => e.id)};
+      }
     }
 
     if (this.category.code === 'ANLISISDECOMPAAS' && this.companyId) {
@@ -249,6 +278,9 @@ export class CategoriesComponent implements OnInit {
         }
       }
       return this.reportType.description;
+    } else if (this.subcategoryId) {
+      const subcat = this.investmentGroups.find(e => e.id === this.subcategoryId);
+      return subcat ? subcat.name : '';
     }
     return '';
   }
