@@ -31,23 +31,45 @@ export class HowIsEconomyComponent implements OnInit {
 
   public getRandomReports() {
     this.http.get({
-      path: 'public/reports/',
+      path: 'public/categories/',
       data: {
-        order: 'publishedAt DESC',
-        limit: 8,
-        fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle'],
-        include: [{
-          relation: 'reportType',
-          scope: {
-            include: ['mainCategory', 'subCategory']
-          }
-        }]
+        where: {
+          code: 'TENDENCIASSECTORIALES'
+        },
+        include: 'childrenMainReportTypes',
       },
-      encode: true
-    }).subscribe((response: any) => {
-      this.randomReports = response.body;
-    }, (error: any) => {
-      console.error(error);
+      encode: true,
+    }).subscribe((res) => {
+      const resp = (res.body as any);
+
+      if (resp.length < 1) {
+        return;
+      }
+      const ids = resp[0].childrenMainReportTypes.map(e => e.id);
+      this.http.get({
+        path: 'public/reports/',
+        data: {
+          order: 'publishedAt DESC',
+          limit: 8,
+          where: {
+            reportTypeId: {
+              inq: ids,
+            },
+          },
+          fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle'],
+          include: [{
+            relation: 'reportType',
+            scope: {
+              include: ['mainCategory', 'subCategory']
+            }
+          }]
+        },
+        encode: true
+      }).subscribe((response: any) => {
+        this.randomReports = response.body;
+      }, (error: any) => {
+        console.error(error);
+      });
     });
   }
 
