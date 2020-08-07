@@ -105,7 +105,12 @@ export class CategoriesComponent implements OnInit {
         include: ['children', 'files', {
           relation: 'childrenMainReportTypes',
           scope: {
-            include: ['subCategory']
+            include: ['subCategory', {
+              relation: 'children',
+              scope: {
+                include: 'subCategory',
+              },
+            }],
           }
         }],
         limit: 1
@@ -132,7 +137,7 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        });
+        }).filter(e => !!!e.parentId);
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
@@ -310,7 +315,7 @@ export class CategoriesComponent implements OnInit {
         return alias[this.categoryId];
       }
     }
-    return reportType.name;
+    return reportType.name ? reportType.name : reportType.description;
   }
 
   cleanDateFilter() {

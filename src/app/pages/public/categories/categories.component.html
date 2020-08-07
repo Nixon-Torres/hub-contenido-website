@@ -26,11 +26,18 @@
           <div class="row">
             <div class="col-md-3 col-sm-12 analisis-menu" *ngIf="category?.code !== 'ENQUINVERTIR'">
               <ul>
-                <a (click)="setReportType(item)" *ngFor="let item of reportTypes">
-                  <li [ngClass]="{'active': isMenuActive(item)}">
-                    {{getReportTypeName(item)}}
-                  </li>
-                </a>
+                <div *ngFor="let item of reportTypes">
+                  <a (click)="setReportType(item)">
+                    <li [ngClass]="{'active': isMenuActive(item)}">
+                      {{getReportTypeName(item)}}
+                    </li>
+                  </a>
+                  <a *ngFor="let child of item.children" (click)="setReportType(child)">
+                    <li class="child" [ngClass]="{'active': isMenuActive(child)}">
+                      {{getReportTypeName(child)}}
+                    </li>
+                  </a>
+                </div>
               </ul>
             </div>
             <div class="col-md-3 col-sm-12 analisis-menu" *ngIf="category?.code === 'ENQUINVERTIR'">
