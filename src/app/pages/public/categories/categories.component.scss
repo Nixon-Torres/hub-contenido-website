@@ -142,3 +142,32 @@
 .contant-page-set a {
   cursor: pointer;
 }
+
+
+@media only screen and (max-width: 768px) {
+
+  .analisis-contant{
+    padding: 0;
+
+  }
+
+  .col-md-9.col-sm-12.analisis-contant{
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .analisis-contant .contant-1, .analisis-contant .contant{
+    padding-left: 27px;
+    padding-right: 15px;
+
+  }
+
+  .analisis-contant .contant.gray-back:nth-child(even){
+    background-color: #FAFAFA;
+  }
+
+
+  .analisis-information .container .row{
+    margin: 0;
+  }
+}

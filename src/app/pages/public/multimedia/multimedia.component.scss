@@ -21,3 +21,11 @@
 .title-multimedia {
   word-break: break-word;
 }
+
+@media only screen and (max-width: 767px) {
+  .video--image img{
+    min-height: 181px;
+    height: auto;
+  }
+}
+
