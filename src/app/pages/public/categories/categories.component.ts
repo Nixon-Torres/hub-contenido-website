@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
+import { MatInput } from '@angular/material';
 
 @Component({
     selector: 'app-categories',
@@ -23,7 +24,8 @@ export class CategoriesComponent implements OnInit {
   public totalPages: number;
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
-
+  @ViewChild('input', { static: false }) input: MatInput;
+  @ViewChild('inputEnd', { static: false }) inputEnd: MatInput;
   public breadcrumbItems: Array<any> = [];
 
   public assetBase: string = environment.URL_API;
@@ -281,6 +283,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   cleanDateFilter() {
+    this.input['nativeElement'].value = '';
+    this.inputEnd['nativeElement'].value = '';
     this.idateStart = null;
     this.idateEnd = null;
   }
