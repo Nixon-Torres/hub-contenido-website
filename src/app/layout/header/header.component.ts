@@ -311,6 +311,7 @@ export class HeaderComponent implements OnInit {
 
   searchEvent() {
     this.router.navigate(['/search'], {queryParams: {s: this.searchText}});
+    document.getElementById('mySidenav').style.width = '0';
   }
 
   openDialog() {
