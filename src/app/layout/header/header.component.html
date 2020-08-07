@@ -21,8 +21,8 @@
 							</div>
 							<div class="header_right search_menu">
 								<div class="header_search">
-									<input type="text" name="" placeholder="¿Que está buscando?">
-									<button type=""><i class="fa fa-search" aria-hidden="true"></i></button>
+									<input [(ngModel)]="searchText" type="text" (keyup.enter)="searchEvent()" name="" placeholder="¿Que está buscando?">
+									<button type="" (click)="searchEvent()"><i class="fa fa-search" aria-hidden="true"></i></button>
 								</div>
 							</div>
 							<div class="sub_figure"></div>
