@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import * as $ from 'jquery';
 import 'bootstrap';
 import {main} from '@angular/compiler-cli/src/main';
+import {combineLatest} from 'rxjs';
 
 @Component({
     selector: 'app-report',
@@ -17,6 +18,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
     public myhtml: any;
     public report: any;
     public reportId: string;
+    public categoryId: string;
     public breadcrumbItems: Array<any> = [];
 
     constructor(private http: HttpService, private activatedRoute: ActivatedRoute,
@@ -24,13 +26,24 @@ export class ReportComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.activatedRoute.paramMap.subscribe((params: any) => {
-            // Load report for edit, but if is a new report load basic data from URI
-            if (params.get('id')) {
-                this.reportId = params.get('id');
-                this.getReport(this.reportId);
-                this.loadReport(this.reportId);
-            }
+      const oparams = this.activatedRoute.params;
+      const oqueryParams = this.activatedRoute.queryParams;
+
+      combineLatest(oparams, oqueryParams,
+        (iparams, iqueryParams) => ({ iparams, iqueryParams }))
+        .subscribe(response => {
+          const queryParams = response.iqueryParams;
+          const params = response.iparams;
+
+          if (queryParams.catId) {
+            this.categoryId = queryParams.catId;
+          }
+
+          if (params.id) {
+            this.reportId = params.id;
+            this.getReport(this.reportId);
+            this.loadReport(this.reportId);
+          }
         });
     }
 
@@ -95,15 +108,21 @@ export class ReportComponent implements OnInit, AfterViewInit {
           const reportType = this.report.reportType;
 
           if (mainCategory && mainCategory.length) {
+            const category = mainCategory.find(e => !this.categoryId || (this.categoryId && this.categoryId === e.id));
             this.breadcrumbItems = [{
-              label: mainCategory[0].description,
-              link: ['/categories', mainCategory[0].id]
+              label: category.description,
+              link: ['/categories', category.id]
             }];
 
             if (reportType) {
+              let alias = reportType.description;
+
+              if (this.categoryId && reportType.aliases && reportType.aliases[this.categoryId]) {
+                alias = reportType.aliases[this.categoryId];
+              }
               this.breadcrumbItems.push({
-                label: reportType.description,
-                link: ['/categories', mainCategory[0].id, 'type', reportType.id]
+                label: alias,
+                link: ['/categories', category.id, 'type', reportType.id]
               });
             }
           }
