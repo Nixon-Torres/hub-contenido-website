@@ -343,7 +343,8 @@ export class PreferencesComponent implements OnInit {
           scope: {
             include: [
               'subCategory'
-            ]
+            ],
+            order: ['order ASC', 'description ASC']
           }
         }, 'childrenSubReportTypes', {
           relation: 'children',

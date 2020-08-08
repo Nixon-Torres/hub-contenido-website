@@ -172,7 +172,8 @@ export class TopMenuComponent implements OnInit {
     return this.http.get({
       path: `public/reports_type/`,
       data: {
-        include: ['mainCategory', 'subCategory']
+        include: ['mainCategory', 'subCategory'],
+        order: ['order ASC', 'description ASC']
       },
       encode: true
     }).pipe(

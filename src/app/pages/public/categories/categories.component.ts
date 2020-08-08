@@ -107,6 +107,7 @@ export class CategoriesComponent implements OnInit {
         include: ['children', 'files', {
           relation: 'childrenMainReportTypes',
           scope: {
+            order: ['order ASC', 'description ASC'],
             include: ['subCategory', {
               relation: 'children',
               scope: {
