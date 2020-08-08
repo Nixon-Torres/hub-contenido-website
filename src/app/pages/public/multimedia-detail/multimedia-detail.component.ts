@@ -198,8 +198,8 @@ export class MultimediaDetailComponent implements OnInit {
   }
 
   getCategory(reportType) {
-    return reportType.description;
-    /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
-      reportType.mainCategory[0].description : ''; */
+    return reportType && reportType.description ? reportType.description :
+          reportType.mainCategory && reportType.mainCategory.length ?
+          reportType.mainCategory[0].description : '';
   }
 }
