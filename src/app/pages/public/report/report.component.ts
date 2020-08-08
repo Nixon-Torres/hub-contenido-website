@@ -37,6 +37,9 @@ export class ReportComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
       setTimeout(() => {
         const button = document.querySelector('app-button');
+        if (!button) {
+          return;
+        }
         button.addEventListener('action', (event: any) => {
           if (event && event.detail) {
             $('body').addClass('modal-open');
