@@ -1,5 +1,8 @@
 .analisis-information {
   margin-top: 100px;
+  @media only screen and (max-width: 720px) {
+    overflow-x: hidden;
+  }
 }
 
 .found-title {
@@ -7,6 +10,7 @@
     font-size: 20px;
     color: #505050;
     opacity: 0.8;
+    padding: 0 20px;
 
     .text {
       font-weight: bold;
@@ -49,9 +53,12 @@
   border-bottom: 0px;
 
   .detail {
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
     border-bottom: 1px solid #E7EAF1;
+    @media only screen and (max-width: 720px) {
+      width: 85%;
+    }
   }
 }
 
@@ -163,10 +170,6 @@
 @media screen and (max-width: 375px) {
   .contant.item {
     padding-top: 26px;
-
-    .detail {
-      width: 100%;
-    }
   }
 
   .contant.item:nth-child(even){
@@ -176,4 +179,8 @@
 
 .analisis-information .contant.gray-back:nth-child(even){
   background-color: #FAFAFA;
+}
+
+.analisis-contant{
+  padding: 0px;
 }
