@@ -12,6 +12,9 @@ app-side-bar {
 	@media only screen and (max-width: 1024px){
 		width: 100%;
 	}
+	@media only screen and (max-width: 600px) {
+		margin: 0;
+	}
 }
 
 .information_content .information_left_first .information_details h6 {
