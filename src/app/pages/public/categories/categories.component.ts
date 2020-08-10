@@ -330,6 +330,7 @@ export class CategoriesComponent implements OnInit {
     this.idateEnd = null;
     this.idateLowLimit = null;
     this.idateHighLimit = null;
+    this.getReports();
   }
 
   onBack(event) {
