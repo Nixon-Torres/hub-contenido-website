@@ -159,3 +159,17 @@
 .date_filter{
   color: #A5ABB1;
 }
+
+@media screen and (max-width: 375px) {
+  .contant.item {
+    padding-top: 26px;
+
+    .detail {
+      width: 100%;
+    }
+  }
+
+  .contant.item:nth-child(even){
+    //background-color: #FAFAFA;
+  }
+}

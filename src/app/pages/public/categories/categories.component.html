@@ -103,8 +103,8 @@
               <div class="no-results" *ngIf="reports?.length === 0">
                 No se encontraron resultados de su búsqueda
               </div>
-              <div class="contant gray-back" *ngFor="let report of reports">
-                <div class="detail">
+              <div class="contant gray-back" *ngFor="let report of reports; let idx = index">
+                <div class="detail" [ngClass]="{'gray-bg': (idx % 2) === 0}">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
                   <h4 class="reportTitle" [routerLink]="['/reports', report?.id]" [queryParams]="{catId: this.categoryId}">{{report?.rTitle | striphtml}}
                   </h4>
@@ -118,15 +118,15 @@
               </div>
             </div>
 
-            <div class="mobile-pagination">
+            <div class="mobile-pagination" *ngIf="totalPages > 0">
               <div class="mob-set-div">
                 <a class="mob-button" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
                 <a class="mob-button" *ngIf="currentPage < totalPages" (click)="nextPage()">Siguiente</a>
-                <p>1/19</p>
+                <p>{{currentPage}}/{{totalPages}}</p>
               </div>
             </div>
 
-            <div class="contant-pagination ">
+            <div class="contant-pagination" *ngIf="totalPages > 0">
               <div class="contant-page-set">
                 <a *ngIf="currentPage > 1" class="underline float-left" (click)="previousPage()">Anterior</a>
                 <a *ngIf="currentPage < totalPages" class="underline " (click)="nextPage()">Siguiente</a>

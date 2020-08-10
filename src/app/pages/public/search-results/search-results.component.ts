@@ -53,8 +53,13 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       this.searchText = params.s;
+      this.currentPage = 1;
       this.getReports();
     });
+  }
+
+  scroll() {
+    window.scrollTo(0, 0);
   }
 
   getBannerImg() {
@@ -297,6 +302,7 @@ export class SearchResultsComponent implements OnInit {
     }
     this.currentPage++;
     this.getReports();
+    this.scroll();
   }
 
   previousPage() {
@@ -305,6 +311,7 @@ export class SearchResultsComponent implements OnInit {
     }
     this.currentPage--;
     this.getReports();
+    this.scroll();
   }
 
   setStartDate(date) {

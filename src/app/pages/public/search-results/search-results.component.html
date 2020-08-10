@@ -36,11 +36,11 @@
               </div>
             </div>
 
-            <div class="mobile-pagination" *ngIf="totalCount > 0">
+            <div class="mobile-pagination" *ngIf="totalCount > 0 && totalPages > 0">
               <div class="mob-set-div">
                 <a class="mob-button" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
                 <a class="mob-button" *ngIf="currentPage < totalPages" (click)="nextPage()">Siguiente</a>
-                <p>1/19</p>
+                <p> {{currentPage}}/{{totalPages}}</p>
               </div>
             </div>
 

@@ -170,4 +170,27 @@
   .analisis-information .container .row{
     margin: 0;
   }
+
+  .no-results {
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    min-height: 100px;
+  }
+}
+
+.mob-button {
+  position: absolute;
+  right: 5px;
+}
+
+@media screen and (max-width: 375px) {
+  .contant {
+    padding-top: 26px;
+    padding-bottom: 0px;
+  }
+
+  .gray-bg {
+    background-color: #FAFAFA;
+  }
 }

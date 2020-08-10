@@ -59,6 +59,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentPage = 1;
     const obs = [this.activatedRoute.queryParams, this.activatedRoute.paramMap];
 
     const oparams = this.activatedRoute.params;
@@ -383,12 +384,17 @@ export class CategoriesComponent implements OnInit {
     this.getReports();
   }
 
+  scroll() {
+    window.scrollTo(0, 0);
+  }
+
   nextPage() {
     if (this.currentPage >= this.totalPages) {
       return;
     }
     this.currentPage++;
     this.getReports();
+    this.scroll();
   }
 
   previousPage() {
@@ -397,6 +403,7 @@ export class CategoriesComponent implements OnInit {
     }
     this.currentPage--;
     this.getReports();
+    this.scroll();
   }
 
   setStartDate(date) {
