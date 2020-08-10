@@ -120,7 +120,7 @@
 
             <div class="mobile-pagination" *ngIf="totalPages > 0">
               <div class="mob-set-div">
-                <a class="mob-button" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
+                <a class="mob-button categories_back" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
                 <a class="mob-button" *ngIf="currentPage < totalPages" (click)="nextPage()">Siguiente</a>
                 <p>{{currentPage}}/{{totalPages}}</p>
               </div>

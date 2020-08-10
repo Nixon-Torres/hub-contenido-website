@@ -182,6 +182,9 @@
 .mob-button {
   position: absolute;
   right: 5px;
+  &.categories_back {
+    right: 75%;
+  }
 }
 
 @media screen and (max-width: 375px) {
