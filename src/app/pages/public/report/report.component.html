@@ -2,5 +2,5 @@
 
 <body class="report_page">
 	<div style="margin-top: 20px"></div>
-	<div [innerHTML]="myhtml"></div>
+	<div *ngIf="myhtml" [innerHTML]="myhtml"></div>
 </body>
