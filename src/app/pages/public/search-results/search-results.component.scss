@@ -2,6 +2,7 @@
   margin-top: 100px;
   @media only screen and (max-width: 720px) {
     overflow-x: hidden;
+    margin-top: 0;
   }
 }
 
@@ -55,7 +56,6 @@
   .detail {
     width: 100%;
     margin: 0 auto;
-    border-bottom: 1px solid #E7EAF1;
     @media only screen and (max-width: 720px) {
       width: 85%;
     }

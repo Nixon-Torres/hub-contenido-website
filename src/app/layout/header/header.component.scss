@@ -33,10 +33,14 @@
 .tabs {
   overflow: hidden;
   .acc_multimedia{
-    font-size: 15px;
     color: #ffffff;
     background: #ffffff;
     padding: 10px 13%;
+    a {
+      font-size: 0.94em;
+      padding-left: 11%;
+      color: #505050;
+    }
   }
   .acc_subscribe{
     display: flex;
