@@ -143,6 +143,9 @@
 .header .header_section .header_left .logo_after {
   display: inline-block;
   padding-right: 75px;
+  @media only screen and (max-width: 992px){
+    padding-right: 0;
+  }
 }
 
 .header .header_section .header_right {
@@ -915,14 +918,19 @@ footer.main_footer .footer_first .footer-links ul li:before {
     float: left;
     width: 65%;
     padding-right: 5px;
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   .right {
     max-width: 35%;
     float: left;
     padding-top: 6px;
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 768px) {
       max-width: initial;
+      width: 100%;
+      order: -1;
     }
 
     img {
@@ -1060,8 +1068,11 @@ p.para_nuvo {
 .tab_sub_division_part {
   padding: 30px 12px 30px 12px;
   border-top: 2px solid #ebebeb;
-  min-height: 350px;
+  min-height: 300px;
   height: 95%;
+  @media only screen and (max-width: 768px) {
+    min-height: 200px;
+  }
 }
 
 .tab_sub_division_part p {
@@ -6170,14 +6181,24 @@ body {
   border: 1px solid #eef4ff;
   background-color: #f8fbff;
   margin-bottom: 15px;
+  @media only screen and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 }
 
 .information_content_sidebar .information_sidebar_first_content .isfc_left {
   width: 65%;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .information_content_sidebar .information_sidebar_first_content .isfc_right {
   width: 36%;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    order: -2;
+  }
 }
 
 .information_sidebar_media-contant {
@@ -9634,7 +9655,7 @@ select option {
   }
 
   .header_left {
-    width: 80%;
+    width: 65%;
     text-align: center;
   }
 
@@ -10754,9 +10775,6 @@ max-width: 100% !important;
   }
 
   .information_content_sidebar .information_sidebar_first_content .isfc_left a{
-    position: absolute;
-    left: 0;
-    right: 0;
     text-align: center;
     bottom: 5px;
     border-top: 1px solid #DEDEDE;
@@ -11748,7 +11766,7 @@ max-width: 100% !important;
 
   .information_content .information_left_first .information_image img {
     width: 100%;
-    height: 140px;
+    min-height: 140px;
     object-fit: cover;
     object-position: 60%;
   }
@@ -12245,7 +12263,7 @@ max-width: 100% !important;
   }
 
   .contant {
-    padding: 56px 0px 0 0;
+    padding: 35px 0px 10px 0;
     border-bottom: 1px solid #E7EAF1;
     position: relative;
   }

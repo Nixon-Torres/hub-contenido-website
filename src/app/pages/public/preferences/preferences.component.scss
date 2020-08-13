@@ -266,6 +266,10 @@ app-preferences{
   .menu-box-inner {
     padding: 0px 10px 80px 10px;
     min-height: 245px;
+    @media only screen and (max-width: 768px) {
+      padding-bottom: 35px;
+      min-height: 130px;
+    }
   }
   
   .menu-box-inner h3 {
