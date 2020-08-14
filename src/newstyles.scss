@@ -1068,7 +1068,7 @@ p.para_nuvo {
 .tab_sub_division_part {
   padding: 30px 12px 30px 12px;
   border-top: 2px solid #ebebeb;
-  min-height: 300px;
+  min-height: 280px;
   height: 95%;
   @media only screen and (max-width: 768px) {
     min-height: 200px;
@@ -6093,7 +6093,6 @@ body {
 
 .information_content .information_left_first .information_image img {
   width: 100%;
-  height: auto;
 }
 
 .information_content .information_left_first .information_image p.label {
@@ -7168,6 +7167,7 @@ p.informe_heading_desc {
   border-top: 1px solid #D9D9D9;
   border-bottom: 1px solid #D9D9D9;
   background-color: #FAFAFA;
+  padding-bottom: 0;
   iframe{
     margin: 0 !important;
   }
@@ -7232,7 +7232,7 @@ p.informe_heading_desc {
 .Acciones-simple-text {
   width: 100%;
   float: left;
-  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .Acciones-simple-text p {

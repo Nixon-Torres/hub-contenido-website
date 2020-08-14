@@ -33,28 +33,32 @@
 .tabs {
   overflow: hidden;
   .acc_multimedia{
-    color: #ffffff;
     background: #ffffff;
-    padding: 10px 13%;
     a {
-      font-size: 0.94em;
-      padding-left: 11%;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      cursor: pointer;
+      margin-bottom: 0;
+      font-size: 15px;
+      padding-left: 20%;
+      padding-right: 8%;
       color: #505050;
     }
   }
   .acc_subscribe{
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
+    justify-content: flex-end;
     background-color: #f2f2f2;
-    padding: 20px 0px 0px 0px;
+    padding: 10px 8% 10px 0%;
     background: #f2f2f2;
     border-bottom: solid 1px silver;
     border-top: solid 1px silver;
     img{
-      width: 6%;
+      width: 5%;
       margin-right: 20px;
-      padding-top: 3px;
       margin-left: 28px;
     }
     p{
@@ -63,9 +67,13 @@
     }
     .tab-label {
       padding: 0;
-      width: 75%;
+      width: 78%;
       margin-bottom: 1rem;
       background-color: transparent;
+      margin: 0;
+      @media only screen and (max-width: 600px) {
+
+      }
     }
     .accordion_tab_sub {
       width: 100%;
@@ -122,9 +130,6 @@
     margin: 0;
     width: 100%;
     padding: 15px;
-    img{
-      width: 60%;
-    }
   }
 
   .sub_figure{
