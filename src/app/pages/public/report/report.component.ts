@@ -146,6 +146,9 @@ export class ReportComponent implements OnInit, AfterViewInit {
 
             setTimeout(() => {
               const parent = document.getElementById('marketingCode') as HTMLElement;
+              if (!parent) {
+                return;
+              }
               const scripts = parent.getElementsByTagName('script') as unknown as HTMLScriptElement[];
               const scriptsInitialLength = scripts.length;
               for (let i = 0; i < scriptsInitialLength; i++) {
