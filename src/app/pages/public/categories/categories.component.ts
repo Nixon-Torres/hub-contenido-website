@@ -173,6 +173,10 @@ export class CategoriesComponent implements OnInit {
   getCompanies() {
     this.http.get({
       path: `public/companies/`,
+      data: {
+        order: 'name ASC'
+      },
+      encode: true,
     }).subscribe((response: any) => {
       this.reportTypes = response.body;
       this.updateBreadcrumbItems();
