@@ -345,14 +345,17 @@ export class CategoriesComponent implements OnInit {
       this.reportType = reportType;
       this.reportTypeId = reportType.id;
     }
-    this.updateBreadcrumbItems();
-    this.getReports();
 
-    if (!this.reportTypeId) {
+    if (this.companyId) {
+      this.router.navigate(['categories', this.categoryId, 'type', this.companyId]);
+    } else if (!this.reportTypeId) {
       this.router.navigate(['categories', this.categoryId]);
     } else {
       this.router.navigate(['categories', this.categoryId, 'type', this.reportTypeId]);
     }
+
+    this.updateBreadcrumbItems();
+    this.getReports();
   }
 
   updateBreadcrumbItems() {
