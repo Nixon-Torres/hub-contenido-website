@@ -215,9 +215,9 @@
               </div>
             </div>
           </div>
-          <div class="sec-3-contant">
-            <p>Puede conocer nuestra proyecciones<br> 2019 - 2020
-              <span class="sec-3-red">aquí.</span>
+          <div class="sec-3-contant" *ngIf="data && data['link-text-fin'] && data['link-text-file'] && data['link-text-file'].assetUrl">
+            <p>{{data['link-text-fin']}}
+              <a [href]="data['link-text-file'].assetUrl" class="sec-3-red" target="_blank">aquí.</a>
             </p>
             <button type="button" class="btn sec-3-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
             </button>
