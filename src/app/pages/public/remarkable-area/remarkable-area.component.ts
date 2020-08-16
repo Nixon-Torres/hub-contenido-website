@@ -44,11 +44,13 @@ export class RemarkableAreaComponent implements OnInit {
         e.files = e.files.filter(j => j.key.toLowerCase() === 'thumbnail');
         e.image = e.files && e.files.length ? e.files[0] : null;
         return {
+          id: e.id,
           rTitle: e.title,
           smartContent: e.description,
           outstandingMainHomeArea: e.outstandingMainHomeArea,
           image: e.image,
           publishedAt: e.createdAt,
+          multimedia: true,
           reportType: {
             description: e && e.params && e.params.categoryName ? e.params.categoryName : 'CORREDORES DAVIVIENDA',
           },
@@ -67,6 +69,13 @@ export class RemarkableAreaComponent implements OnInit {
       this.area3Report = area3Report ? area3Report : this.area3Report;
       this.area4Report = area4Report ? area4Report : this.area4Report;
     });
+  }
+
+  public getLink(entry) {
+    if (entry.multimedia) {
+      return ['/multimedia', entry.id];
+    }
+    return ['/reports', entry.id];
   }
 
   private loadOutstanding() {
