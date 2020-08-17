@@ -42,7 +42,7 @@
 												<img src="/assets/images/pagination_right.png" alt="">
 											</div>
 										</div>
-					
+
 										<div class="subs" [routerLink]="['/preferences']">
 											<div class="subs__container">
 												<h3>Informes personalizados</h3>
@@ -52,7 +52,7 @@
 												<img src="/assets/images/pagination_right.png" alt="">
 											</div>
 										</div>
-					
+
 										<div class="subs" (click)="openDialog()">
 											<div class="subs__container">
 												<h3>Actualizar mis preferencias</h3>
@@ -68,20 +68,22 @@
 
 							<div class="tab" *ngFor="let menu of menuOptions">
 								<div>
-									<input type="checkbox" id="chck{{menu.idx}}" (click)="mouseEnter(menu.idx)" >
+									<input type="checkbox" id="chck{{menu.idx}}" (click)="mouseEnter(menu.idx)">
 									<label class="tab-label" for="chck{{menu.idx}}">{{menu.name}}</label>
-									<div class="tab-content accordion_tab_sub macroeconomía" *ngIf="currentMenuOption !== 7">
+									<div class="tab-content accordion_tab_sub macroeconomía" *ngIf="menu.idx !== 7">
 										<a [routerLink]="getCategoryLink(menu.idx)" class="min_text" (click)="go(menu.name)">Ver todo {{menu.name}}</a>
-										<a class="acordion_subtitle ac_links" *ngFor="let item of items" (click)="getCategoryReportTypeLink(item)">
-											{{getReportTypeName(item)}}</a>
+										<a class="acordion_subtitle ac_links" *ngFor="let item of getItems(menu)" (click)="getCategoryReportTypeLink(item)">
+											{{item.description ? item.description : item.name}}</a>
 									</div>
-									<div class="tab-content accordion_tab_sub" *ngIf="currentMenuOption === 7">
-										<div *ngFor="let inv of investmentGroups" >
-											<p class="min_text" (click)="getCategoryReportTypeLink(inv.items[0])">{{inv.name}}</p>
-											<a class="acordion_subtitle ac_links" *ngFor="let item of inv.items" (click)="getCategoryReportTypeLink(item)">
-												{{getReportTypeName(item)}}</a>
-										</div>
-									</div>
+
+                  <div class="tab-content accordion_tab_sub" *ngIf="menu.idx === 7">
+                    <div *ngFor="let inv of investmentGroups">
+                      <p class="min_text">{{inv.name}}</p>
+                      <a class="acordion_subtitle ac_links" *ngFor="let item of getItems(inv)" (click)="getCategoryReportTypeLink(item)">
+                        {{item.description ? item.description : item.name}}
+                      </a>
+                    </div>
+                  </div>
 								</div>
 							</div>
 							<div class="acc_multimedia">

@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   public subscribeMenuVisible = false;
   public currentMenuOption: number;
   public categories: any;
+  public mainCategories: any;
   public reports: any;
   public reportTypes: any;
   public ready = false;
@@ -75,74 +76,38 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    const observables = [this.getCompanies(), this.getCategories(), this.getReportTypes()];
+    const observables = [this.getCompanies(), this.getCategories()];
     forkJoin(observables).subscribe(() => {
       this.ready = true;
     });
   }
 
-  private getItems() {
-    if (this.currentMenuOption === 6) {
+  private getItems(menu) {
+    if (menu.code === 'ANLISISDECOMPAAS') {
       return this.companies;
     }
 
-    const code = this.menuOptions[this.currentMenuOption - 1].code;
+    if (!this.categories) {
+      return;
+    }
+
+    const code = menu.code;
+    debugger
     const category = this.categories.find(e => e.code === code);
     if (!category) {
       return [];
     }
 
-    const reportTypes = this.reportTypes.filter(e => e.mainCategory.find(k => k.id === category.id))
-      .map(e => {
-        const item = e;
-        item.name = item.description;
-        return item;
-      });
-    return reportTypes;
+    return category.childrenMainReportTypes.length ? category.childrenMainReportTypes : category.childrenSubReportTypes;
   }
 
   mouseEnter(idx?: number) {
     if (!this.ready) {
       return;
     }
-    this.mouseEnterAfterSeconds(idx);
-  }
-
-  mouseEnterAfterSeconds(idx?: number) {
-    if (!this.ready) {
-      return;
-    }
-
-    if (idx !== null) {
-      const oldIdx = this.currentMenuOption;
-      this.currentMenuOption = idx;
-
-      const code = this.menuOptions[idx - 1].code;
-      const category = this.categories.find(e => e.code === code);
-      this.currentCategory = category;
-
-      if (oldIdx !== this.currentMenuOption) {
-        this.distributeItems();
-      }
-    }
-  }
-
-  private distributeItems() {
-    this.items = this.getItems();
-
-    if (this.currentMenuOption === 7) {
-      this.investmentGroups = this.investmentGroups.map(e => {
-        const subitems = this.items.filter(k => k.subCategory.find(x => x.code === e.code));
-        e.items = subitems;
-        return e;
-      });
-      return;
-    }
   }
 
   go(eventName) {
-    console.log(eventName);
-
     const gtmTag = {
       event: eventName,
       clickUrl: window.location.href
@@ -161,14 +126,14 @@ export class HeaderComponent implements OnInit {
     document.getElementById('mySidenav').style.width = '0';
   }
 
-  getReportTypeName(reportType: any) {
+  getReportTypeName(reportType: any, category: any) {
     if (reportType && reportType.aliases) {
       const alias = reportType.aliases;
-      if (alias[this.currentCategory.id]) {
-        return alias[this.currentCategory.id];
+      if (alias[category.id]) {
+        return alias[category.id];
       }
     }
-    return reportType.name;
+    return reportType.description;
   }
 
   getCategoryLink(option?: number) {
@@ -206,11 +171,85 @@ export class HeaderComponent implements OnInit {
 
   private getCategories(): Observable<any> {
     return this.http.get({
-      path: `public/categories/`
+      path: `public/categories/`,
+      data: {
+        where: {},
+        include: [{
+          relation: 'childrenMainReportTypes',
+          scope: {
+            include: [
+              'subCategory'
+            ]
+          }
+        }, 'childrenSubReportTypes', {
+          relation: 'children',
+          scope: {
+            include: ['childrenMainReportTypes', 'childrenSubReportTypes'],
+            order: 'description ASC'
+          }
+        }]
+      },
+      encode: true
     }).pipe(
       map((res) => {
         this.categories = res.body;
-        this.getReports();
+        this.categories = this.categories.map((category) => {
+          const params = category && category.params ? category.params : {};
+          const alphabetic = params.sorting && params.sorting === 'alphabetic';
+          category.childrenMainReportTypes = category.childrenMainReportTypes.map((reportType) => {
+            const desc = this.getReportTypeName(reportType, category);
+            reportType.description = desc;
+            return reportType;
+          }).sort((a, b) => {
+            if (alphabetic) {
+              const nameA = a.description.toLowerCase();
+              const nameB = b.description.toLowerCase();
+              if (nameA > nameB) {
+                return 1;
+              } else if (nameA < nameB) {
+                return -1;
+              } else {
+                return 0;
+              }
+            } else {
+              if (a.order > b.order) {
+                return 1;
+              } else if (a.order < b.order) {
+                return -1;
+              } else {
+                return 0;
+              }
+            }
+          });
+
+          category.childrenSubReportTypes = category.childrenSubReportTypes.map((reportType) => {
+            const desc = this.getReportTypeName(reportType, category);
+            reportType.description = desc;
+            return reportType;
+          }).sort((a, b) => {
+            if (alphabetic) {
+              const nameA = a.description.toLowerCase();
+              const nameB = b.description.toLowerCase();
+              if (nameA > nameB) {
+                return 1;
+              } else if (nameA < nameB) {
+                return -1;
+              } else {
+                return 0;
+              }
+            } else {
+              if (a.order > b.order) {
+                return 1;
+              } else if (a.order < b.order) {
+                return -1;
+              } else {
+                return 0;
+              }
+            }
+          });
+          return category;
+        });
+        this.mainCategories = this.categories.filter(e => !e.parentId);
         return res;
       })
     );

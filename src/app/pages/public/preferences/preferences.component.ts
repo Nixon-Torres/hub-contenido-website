@@ -343,8 +343,7 @@ export class PreferencesComponent implements OnInit {
           scope: {
             include: [
               'subCategory'
-            ],
-            order: ['order ASC', 'description ASC']
+            ]
           }
         }, 'childrenSubReportTypes', {
           relation: 'children',
@@ -357,6 +356,36 @@ export class PreferencesComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       this.categories = res.body;
+      this.categories = this.categories.map((category) => {
+        const params = category && category.params ? category.params : {};
+        const alphabetic = params.sorting && params.sorting === 'alphabetic';
+        category.childrenMainReportTypes = category.childrenMainReportTypes.map((reportType) => {
+          const desc = this.getReportTypeName(reportType, category);
+          reportType.description = desc;
+          return reportType;
+        }).sort((a, b) => {
+          if (alphabetic) {
+            const nameA = a.description.toLowerCase();
+            const nameB = b.description.toLowerCase();
+            if (nameA > nameB) {
+              return 1;
+            } else if (nameA < nameB) {
+              return -1;
+            } else {
+              return 0;
+            }
+          } else {
+            if (a.order > b.order) {
+              return 1;
+            } else if (a.order < b.order) {
+              return -1;
+            } else {
+              return 0;
+            }
+          }
+        });
+        return category;
+      });
       this.mainCategories = this.categories.filter(e => !e.parentId);
 
       this.reportTypes = this.categories.reduce((all, category) => {
@@ -379,6 +408,16 @@ export class PreferencesComponent implements OnInit {
 
       this.getSubscriptions();
     });
+  }
+
+  getReportTypeName(reportType: any, currentCategory: any) {
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[currentCategory.id]) {
+        return alias[currentCategory.id];
+      }
+    }
+    return reportType.description;
   }
 
   ngOnInit() {
