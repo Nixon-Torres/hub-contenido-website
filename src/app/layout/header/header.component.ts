@@ -56,15 +56,18 @@ export class HeaderComponent implements OnInit {
   public investmentGroups = [{
     name: 'Renta Fija',
     code: 'RENTAFIJA',
-    items: []
+    items: [],
+    id: null
   }, {
     name: 'Acciones',
     code: 'ACCIONES',
-    items: []
+    items: [],
+    id: null
   }, {
     name: 'Monedas',
     code: 'DIVISAS',
-    items: []
+    items: [],
+    id: null
   }];
   items: any;
   constructor(
@@ -134,6 +137,10 @@ export class HeaderComponent implements OnInit {
       }
     }
     return reportType.description;
+  }
+
+  getQueryParams(gp) {
+    return {subcategory: gp.id};
   }
 
   getCategoryLink(option?: number) {
@@ -248,6 +255,12 @@ export class HeaderComponent implements OnInit {
             }
           });
           return category;
+        });
+
+        this.investmentGroups = this.investmentGroups.map(inv => {
+          const category = this.categories.find(cat => cat.code === inv.code);
+          inv.id = category.id;
+          return inv;
         });
         this.mainCategories = this.categories.filter(e => !e.parentId);
         return res;

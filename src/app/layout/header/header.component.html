@@ -78,7 +78,7 @@
 
                   <div class="tab-content accordion_tab_sub" *ngIf="menu.idx === 7">
                     <div *ngFor="let inv of investmentGroups">
-                      <p class="min_text">{{inv.name}}</p>
+                      <p class="min_text" [routerLink]="getCategoryLink(menu.idx)" [queryParams]="getQueryParams(inv)">{{inv.name}}</p>
                       <a class="acordion_subtitle ac_links" *ngFor="let item of getItems(inv)" (click)="getCategoryReportTypeLink(item)">
                         {{item.description ? item.description : item.name}}
                       </a>
