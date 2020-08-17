@@ -77,14 +77,14 @@
     }
     .accordion_tab_sub {
       width: 100%;
-      background-color: #DDDDDD; 
+      background-color: #DDDDDD;
     }
 
     .contact_content {
       padding: 0;
     }
     .subs {
-      border: none; 
+      border: none;
       background-color: transparent;
       border-bottom: solid 1px #70707040;
       border-radius: 0;
@@ -191,14 +191,14 @@
     z-index: -1;
   }
   // :checked
-  input:checked {
-    + .tab-label {
+  input {
+    + .tab-label-visible {
      /*  background: #f2f2f2; */
       &::after {
         transform: rotate(90deg);
       }
     }
-    ~ .tab-content {
+    ~ .tab-content-visible {
       max-height: 100%;
       /* padding: 1em; */
     }

@@ -29,9 +29,9 @@
 
 							<div class="tab acc_subscribe">
 								<img src="/assets/images/Suscríbase.png" alt="">
-								<input type="checkbox" id="chck0">
-								<label class="tab-label" for="chck0">Suscríbase</label>
-								<div class="tab-content accordion_tab_sub macroeconomía">
+								<input type="checkbox" id="chck0" (click)="mouseEnter(null)">
+								<label class="tab-label" [ngClass]="{'tab-label-visible': subscribeMenuVisible}" for="chck0">Suscríbase</label>
+								<div class="tab-content accordion_tab_sub macroeconomía" [ngClass]="{'tab-content-visible': subscribeMenuVisible}">
 									<div class="col-sm-6 contact_content">
 										<div class="subs" (click)="openQuincenalDialog()">
 											<div class="subs__container">
@@ -69,17 +69,17 @@
 							<div class="tab" *ngFor="let menu of menuOptions">
 								<div>
 									<input type="checkbox" id="chck{{menu.idx}}" (click)="mouseEnter(menu.idx)">
-									<label class="tab-label" for="chck{{menu.idx}}">{{menu.name}}</label>
-									<div class="tab-content accordion_tab_sub macroeconomía" *ngIf="menu.idx !== 7">
+									<label class="tab-label" for="chck{{menu.idx}}" [ngClass]="{'tab-label-visible': menu.visible}">{{menu.name}}</label>
+									<div class="tab-content accordion_tab_sub macroeconomía" [ngClass]="{'tab-content-visible': menu.visible}" *ngIf="menu.idx !== 7">
 										<a [routerLink]="getCategoryLink(menu.idx)" class="min_text" (click)="go(menu.name)">Ver todo {{menu.name}}</a>
-										<a class="acordion_subtitle ac_links" *ngFor="let item of getItems(menu)" (click)="getCategoryReportTypeLink(item)">
+										<a class="acordion_subtitle ac_links" *ngFor="let item of getItems(menu)" (click)="getCategoryReportTypeLink(menu, item)">
 											{{item.description ? item.description : item.name}}</a>
 									</div>
 
-                  <div class="tab-content accordion_tab_sub" *ngIf="menu.idx === 7">
+                  <div class="tab-content accordion_tab_sub" [ngClass]="{'tab-content-visible': menu.visible}" *ngIf="menu.idx === 7">
                     <div *ngFor="let inv of investmentGroups">
                       <p class="min_text" [routerLink]="getCategoryLink(menu.idx)" [queryParams]="getQueryParams(inv)">{{inv.name}}</p>
-                      <a class="acordion_subtitle ac_links" *ngFor="let item of getItems(inv)" (click)="getCategoryReportTypeLink(item)">
+                      <a class="acordion_subtitle ac_links" *ngFor="let item of getItems(inv)" (click)="getCategoryReportTypeLink(menu, item)">
                         {{item.description ? item.description : item.name}}
                       </a>
                     </div>

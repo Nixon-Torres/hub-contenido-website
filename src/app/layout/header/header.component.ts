@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   public ready = false;
   public companies: any;
   public currentCategory: any;
-  private menuOptions = [{
+  private menuOptions: any = [{
     name: 'Estar actualizado',
     code: 'ESTARACTUALIZADO',
     idx: 1,
@@ -95,7 +95,6 @@ export class HeaderComponent implements OnInit {
     }
 
     const code = menu.code;
-    debugger
     const category = this.categories.find(e => e.code === code);
     if (!category) {
       return [];
@@ -108,6 +107,18 @@ export class HeaderComponent implements OnInit {
     if (!this.ready) {
       return;
     }
+    this.menuOptions.forEach((menuItem, index) => {
+      if ((idx === null) || (index !== (idx - 1))) {
+        menuItem.visible = false;
+      }
+    });
+
+    if (idx !== null) {
+      const menu = this.menuOptions[idx - 1];
+      this.menuOptions[idx - 1].visible = !!!menu.visible;
+    } else {
+      this.subscribeMenuVisible = !this.subscribeMenuVisible;
+    }
   }
 
   go(eventName) {
@@ -118,8 +129,8 @@ export class HeaderComponent implements OnInit {
     this.gtmService.pushTag(gtmTag);
   }
 
-  getCategoryReportTypeLink(report: any) {
-    const id = this.getCategoryId();
+  getCategoryReportTypeLink(menu: any, report: any) {
+    const id = this.getCategoryId(menu.idx);
 
     if (report && report.code === 'ELLIBRO') {
       return this.router.navigate(['/book']);
@@ -157,7 +168,8 @@ export class HeaderComponent implements OnInit {
     if (!this.categories) {
       return null;
     }
-    const cat = this.categories.find(e => e.code === this.menuOptions[idx - 1].code);
+    const menu = this.menuOptions[idx - 1];
+    const cat = this.categories.find(e => e.code === menu.code);
     return cat ? cat.id : null;
   }
 
