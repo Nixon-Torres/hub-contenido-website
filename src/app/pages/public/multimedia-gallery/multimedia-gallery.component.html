@@ -21,7 +21,7 @@
 							</div>
 							<div class="slider_blog_details"  (click)="go(item1)">
                 <p style="text-transform: uppercase">{{item1?.params?.categoryName ? item1?.params?.categoryName : 'CORREDORES DAVIVIENDA'}}</p>
-								<h4>{{item1?.title | truncate: 36: false}}</h4>
+								<h4>{{item1?.title | truncate: 80: false}}</h4>
 								<p class="date_mantion">{{item1?.createdAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>
@@ -40,7 +40,7 @@
               </div>
               <div class="slider_blog_details" (click)="go(item2)">
                 <p style="text-transform: uppercase">{{item2?.params?.categoryName ? item2?.params?.categoryName : 'CORREDORES DAVIVIENDA'}}</p>
-                <h4>{{item2?.title}}</h4>
+                <h4>{{item2?.title | truncate: 80: false}}</h4>
                 <p class="date_mantion">{{item2?.createdAt | date:'d MMMM y'}}</p>
               </div>
             </div>
@@ -59,7 +59,7 @@
               </div>
               <div class="slider_blog_details" (click)="go(item3)">
                 <p style="text-transform: uppercase">{{item3?.params?.categoryName ? item3?.params?.categoryName : 'CORREDORES DAVIVIENDA'}}</p>
-                <h4>{{item3?.title | truncate: 36: false}}</h4>
+                <h4>{{item3?.title | truncate: 80: false}}</h4>
                 <p class="date_mantion">{{item3?.createdAt | date:'d MMMM y'}}</p>
               </div>
             </div>
