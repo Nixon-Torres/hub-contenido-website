@@ -15,32 +15,32 @@
 					<div class="footer-links">
 						<ul>
 							<li *ngIf="data && data['link-actualizate']"><a [href]="data['link-actualizate']"
-									[target]="getTarget(data['link-actualizate'])">{{data['title-actualizate']}}</a>
+									[target]="getTarget(data['link-actualizate'])" (click)="tagFooter(data['title-actualizate'])">{{data['title-actualizate']}}</a>
 							</li>
 							<li *ngIf="data && data['link-informes-especializados']"><a
 									[href]="data['link-informes-especializados']"
-									[target]="getTarget(data['link-informes-especializados'])">{{data['title-informes-especializados']}}</a>
+									[target]="getTarget(data['link-informes-especializados'])" (click)="tagFooter(data['title-informes-especializados'])">{{data['title-informes-especializados']}}</a>
 							</li>
 							<li *ngIf="data && data['link-nuestros-indicadores']"><a
 									[href]="data['link-nuestros-indicadores']"
-									[target]="getTarget(data['link-nuestros-indicadores'])">{{data['title-nuestros-indicadores']}}</a>
+									[target]="getTarget(data['link-nuestros-indicadores'])" (click)="tagFooter(data['title-nuestros-indicadores'])">{{data['title-nuestros-indicadores']}}</a>
 							</li>
 							<li *ngIf="data && data['link-centro-america']"><a [href]="data['link-centro-america']"
-									[target]="getTarget(data['link-centro-america'])">{{data['title-centro-america']}}</a>
+									[target]="getTarget(data['link-centro-america'])" (click)="tagFooter(data['title-centro-america'])">{{data['title-centro-america']}}</a>
 							</li>
 							<li *ngIf="data && data['link-sectores-productivos']"><a
 									[href]="data['link-sectores-productivos']"
-									[target]="getTarget(data['link-sectores-productivos'])">{{data['title-sectores-productivos']}}</a>
+									[target]="getTarget(data['link-sectores-productivos'])" (click)="tagFooter(data['title-sectores-productivos'])">{{data['title-sectores-productivos']}}</a>
 							</li>
 							<li *ngIf="data && data['link-empresarial']"><a [href]="data['link-empresarial']"
-									[target]="getTarget(data['link-empresarial'])">{{data['title-empresarial']}}</a>
+									[target]="getTarget(data['link-empresarial'])" (click)="tagFooter(data['title-empresarial'])">{{data['title-empresarial']}}</a>
 							</li>
 							<li *ngIf="data && data['link-invertir']"><a [href]="data['link-invertir']"
-									[target]="getTarget(data['link-invertir'])">{{data['title-invertir']}}</a></li>
+									[target]="getTarget(data['link-invertir'])" (click)="tagFooter(data['title-invertir'])">{{data['title-invertir']}}</a></li>
 							<li *ngIf="data && data['link-multimedia']"><a [href]="data['link-multimedia']"
-									[target]="getTarget(data['link-multimedia'])">{{data['title-multimedia']}}</a></li>
+									[target]="getTarget(data['link-multimedia'])" (click)="tagFooter(data['title-multimedia'])">{{data['title-multimedia']}}</a></li>
 							<li *ngIf="data && data['link-conozcanos']"><a [href]="data['link-conozcanos']"
-									[target]="getTarget(data['link-conozcanos'])">{{data['title-conozcanos']}}</a></li>
+									[target]="getTarget(data['link-conozcanos'])" (click)="tagFooter(data['title-conozcanos'])">{{data['title-conozcanos']}}</a></li>
 						</ul>
 					</div>
 				</div>

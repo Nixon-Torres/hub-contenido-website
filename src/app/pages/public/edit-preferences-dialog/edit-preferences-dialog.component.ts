@@ -48,4 +48,8 @@ export class EditPreferencesDialogComponent {
     this.dialogRef.close();
   }
 
+  tagValidateEmail(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Actualizar mis preferencias','eventAction': 'Envíar','eventLabel': 'Confirmación correo','eventvalue': '','event': 'eventClick'});
+  }
 }

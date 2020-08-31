@@ -54,4 +54,8 @@ export class FooterComponent implements OnInit {
     });
   }
 
+  tagFooter(footer_option: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Footer','eventAction': footer_option,'eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
+  }
 }

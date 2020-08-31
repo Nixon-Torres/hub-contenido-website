@@ -141,4 +141,10 @@ export class ConfirmationComponent implements OnInit {
       this.router.navigate(['/unsubscribe_completed_confirmation']);
     });
   }
+
+  tagConfirmation(parameter: any){
+    var response = parameter > -1 ? 'Suscripción activada' : 'Revisión Bandeja';
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción boletin quincenal','eventAction': 'Volver al inicio','eventLabel': response,'eventvalue': '','event': 'eventClick'});
+  }
 }

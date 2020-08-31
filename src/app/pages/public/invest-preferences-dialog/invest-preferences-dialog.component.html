@@ -22,7 +22,7 @@
         <tr *ngFor="let type of reportTypes" [ngClass]="{'selected': type.selected}">
           <td>
             <label class="container">
-              <input type="checkbox" checked="checked" [(ngModel)]="type.selected" [ngModelOptions]="{standalone: true}">
+              <input (click)="tagEditOptions(type?.description)" type="checkbox" checked="checked" [(ngModel)]="type.selected" [ngModelOptions]="{standalone: true}">
               <span class="checkmark"></span>
             </label>
           </td>

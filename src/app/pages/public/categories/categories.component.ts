@@ -427,4 +427,29 @@ export class CategoriesComponent implements OnInit {
         .set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate();
     this.getReports();
   }
+
+  tagCategory(name: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Categoría','eventAction': 'Subcategoría','eventLabel': name,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagReportTitle(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Categoría','eventAction': 'Informes','eventLabel': link,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagFilter(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Categoría','eventAction': 'Tipo informe - ' + link.description,'eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagFilterDateStart(date: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Categoría','eventAction': 'Tipo informe desde - ' + date.value,'eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagFilterDateFinish(date: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Categoría','eventAction': 'Tipo informe hasta - ' + date.value,'eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
+  }
 }

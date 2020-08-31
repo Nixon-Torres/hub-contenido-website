@@ -429,4 +429,46 @@ export class PreferencesComponent implements OnInit {
       }
     });
   }
+
+  tagNavMenu(full: any, index: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': full[index].description,'eventLabel': 'Categoria superior','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagSelectAll(full: any, index: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': full[index].description,'eventLabel': 'Seleccionar todos los informes','eventvalue': '','event': 'eventClick'});
+    
+  }
+
+  tagSelectOne(full: any, index: any, description:any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': full[index].description,'eventLabel': description,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagSuscription(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': 'Activar','eventLabel': 'Activar mi suscripcion','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagArrows(name: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': 'Categoria Inferior','eventLabel': name,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagAllActions(category: any, subcategory: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': category,'eventLabel': subcategory,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagEdit(category: any, subcategory: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': category,'eventLabel': 'Quitar informes - ' + subcategory,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagEditAll(category: any, subcategory: any, text: any){
+    alert(category+subcategory+text);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': category ,'eventLabel': 'Quitar informes - ' + subcategory +' - ' + text,'eventvalue': '','event': 'eventClick'});
+  }
 }

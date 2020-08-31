@@ -32,7 +32,7 @@
   </div>
   <div mat-dialog-actions>
     <div class="regresar-popup-button">
-      <button type="submit" class="btn popup-red-btn" [disabled]="subscribeGroup.invalid">Validar</button>
+      <button (click)="tagValidateEmail();" type="submit" class="btn popup-red-btn" [disabled]="subscribeGroup.invalid">Validar</button>
     </div>
   </div>
   </form>

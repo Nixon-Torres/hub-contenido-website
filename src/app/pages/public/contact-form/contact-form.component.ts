@@ -48,4 +48,9 @@ export class ContactFormComponent implements OnInit {
       }
     });
   }
+
+  tagSuscribe(suscribeText: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Suscripción','eventLabel': suscribeText,'eventvalue': '','event': 'eventClick'});
+  }
 }

@@ -78,4 +78,13 @@ export class MultimediaGalleryComponent implements OnInit {
     });
   }
 
+  tagMultimedia(tagMultimedia: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Multimedia','eventLabel': ['/multimedia', tagMultimedia ? tagMultimedia.id : 'none'],'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagAllMultimedia(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Multimedia','eventLabel': 'Ver todo el contenido','eventvalue': '','event': 'eventClick'});
+  }
 }

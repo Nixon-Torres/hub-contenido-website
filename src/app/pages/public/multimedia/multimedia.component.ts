@@ -148,4 +148,19 @@ export class MultimediaComponent implements OnInit {
       ? this.categories.find(cat => cat.id === content.params.category).description
       : 'Corredores Davivienda';
   }
+
+  tagRecomended(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Multimedia','eventAction': 'Recomendados','eventLabel': link,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagTabs(title: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Multimedia','eventAction': 'Categoría','eventLabel': title,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagCategoryVideos(link: any,category: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Multimedia','eventAction': this.currentTab==1 ? "Videos" : this.currentTab==2 ? "Podcast" : "Webinar",'eventLabel': link,'eventvalue': '','event': 'eventClick'});
+  }
 }

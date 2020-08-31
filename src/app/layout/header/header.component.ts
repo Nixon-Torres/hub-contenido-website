@@ -409,4 +409,9 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+  tagSuscribe(suscribe_option: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscribirse','eventAction': suscribe_option,'eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
+  }
 }

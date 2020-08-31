@@ -156,4 +156,44 @@ export class BookComponent implements OnInit {
       this.router.navigate(['/thankyou']);
     });
   }
+
+  tagDownload(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Descargar libro','eventLabel': 'Envío de formulario','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDownload2(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Descargar libro','eventLabel': 'Ancla 1','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDownload3(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Descargar libro','eventLabel': 'Ancla 2','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDownload4(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Descargar libro','eventLabel': 'Ancla 3','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDownload5(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Descargar libro','eventLabel': 'Ancla 4','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagProyections(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Ver proyecciones','eventLabel': link,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagEditions(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Ediciones anteriores','eventLabel': 'Ver ediciones','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDownloadEditions(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Landing Page','eventAction': 'Ediciones anteriores','eventLabel': link,'eventvalue': '','event': 'eventClick'});
+  }
 }

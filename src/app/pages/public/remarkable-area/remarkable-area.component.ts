@@ -121,4 +121,14 @@ export class RemarkableAreaComponent implements OnInit {
       this.loadOutstandingMultimedia();
     });
   }
+
+  tagImportantContent(important_content: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Contenido Destacado','eventLabel': important_content,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagSubImportantContent(subImportant_content: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Informe Destacado','eventLabel': subImportant_content,'eventvalue': '','event': 'eventClick'});
+  }
 }

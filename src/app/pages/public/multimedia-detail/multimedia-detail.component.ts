@@ -202,4 +202,14 @@ export class MultimediaDetailComponent implements OnInit {
           reportType.mainCategory && reportType.mainCategory.length ?
           reportType.mainCategory[0].description : '';
   }
+
+  tagRecommended(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Multimedia','eventAction': link,'eventLabel': 'Relacionado - CLICK URL','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagShare(social: any, link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Multimedia','eventAction': link,'eventLabel': 'Compartit - ' + social,'eventvalue': '','event': 'eventClick'});
+  }
 }

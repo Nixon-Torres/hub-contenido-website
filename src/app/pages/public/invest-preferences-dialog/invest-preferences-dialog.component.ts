@@ -72,4 +72,8 @@ export class InvestPreferencesDialogComponent {
     this.dialogRef.close();
   }
 
+  tagEditOptions(name: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción Informes personalizados','eventAction': '¿En qué invertir?','eventLabel': 'Quitar informes - ' + this.category.description +' - ' + name,'eventvalue': '','event': 'eventClick'});
+  }
 }

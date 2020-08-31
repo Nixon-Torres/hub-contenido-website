@@ -28,7 +28,7 @@
               <ul>
                 <div *ngFor="let item of reportTypes">
                   <a (click)="setReportType(item)">
-                    <li [ngClass]="{'active': isMenuActive(item)}">
+                    <li [ngClass]="{'active': isMenuActive(item)}" (click)="tagCategory(getReportTypeName(item))">
                       {{getReportTypeName(item)}}
                     </li>
                   </a>
@@ -67,7 +67,7 @@
                                    [clearable]="false"
                                    placeholder="Seleccione por tipo de informe"
                                    [multiple]="false" bindLabel="description" bindValue="id" class="company-type-select"
-                                    (change)="setCompanyReportType($event)"></ng-select>
+                                    (change)="setCompanyReportType($event);tagFilter($event);"></ng-select>
                       </div>
                     </form>
                   </div>
@@ -80,7 +80,7 @@
                           <mat-label class="date_filter">Desde</mat-label>
                           <input matInput [matDatepicker]="dateStart"
                                  [max]="idateHighLimit" #input
-                                 (dateChange)="setStartDate($event)">
+                                 (dateChange)="setStartDate($event);tagFilterDateStart($event);">
                           <mat-datepicker-toggle matSuffix [for]="dateStart" placeholder="Hola"></mat-datepicker-toggle>
                           <mat-datepicker #dateStart></mat-datepicker>
                         </mat-form-field>
@@ -90,7 +90,7 @@
                           <mat-label class="date_filter">Hasta</mat-label>
                           <input matInput [matDatepicker]="dateEnd"
                                  [min]="idateLowLimit" #inputEnd
-                                 (dateChange)="setEndDate($event)">
+                                 (dateChange)="setEndDate($event); tagFilterDateFinish($event);">
                           <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
                           <mat-datepicker #dateEnd></mat-datepicker>
                         </mat-form-field>
@@ -106,7 +106,7 @@
               <div class="contant gray-back" *ngFor="let report of reports; let idx = index">
                 <div class="detail" [ngClass]="{'gray-bg': (idx % 2) === 0}">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
-                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]" [queryParams]="{catId: this.categoryId}">{{report?.rTitle | striphtml}}
+                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]" [queryParams]="{catId: this.categoryId}" (click)="tagReportTitle(['/reports', report?.id]);">{{report?.rTitle | striphtml}}
                   </h4>
                   <p>{{report?.smartContent | truncate: 180: true}}
                   </p>

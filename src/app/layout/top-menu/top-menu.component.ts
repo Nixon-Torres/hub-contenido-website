@@ -5,6 +5,11 @@ import {forkJoin, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
+// Declare gTM dataLayer array.
+declare global {
+  interface Window { dataLayer: any[]; }
+}
+
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
@@ -349,5 +354,15 @@ export class TopMenuComponent implements OnInit {
 
     const rsp = ['/categories', id, 'type', report.id];
     return rsp;
+  }
+
+  tagMenu(menu_option: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Menú','eventAction': menu_option ,'eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagIndicators(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Indicadores','eventAction': 'Ver indicadores','eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
   }
 }

@@ -33,7 +33,7 @@
 								<label class="tab-label" [ngClass]="{'tab-label-visible': subscribeMenuVisible}" for="chck0">Suscríbase</label>
 								<div class="tab-content accordion_tab_sub macroeconomía" [ngClass]="{'tab-content-visible': subscribeMenuVisible}">
 									<div class="col-sm-6 contact_content">
-										<div class="subs" (click)="openQuincenalDialog()">
+										<div class="subs" (click)="openQuincenalDialog();">
 											<div class="subs__container">
 												<h3>Boletín quincenal</h3>
 												<p>Póngase al día con los informes destacados de las últimas 2 semanas</p>
@@ -115,17 +115,17 @@
 					<button type="" (click)="subscribeMenuVisible = !subscribeMenuVisible">Suscribase</button>
           <div class="subscribe_menu" *ngIf="subscribeMenuVisible">
             <div class="arrow-up"></div>
-            <div class="subscribe_item" (click)="openQuincenalDialog()">
+            <div class="subscribe_item" (click)="openQuincenalDialog(); tagSuscribe('Boletin quincenal');">
               <h4>Bolet&iacute;n quincenal</h4>
               <p>P&oacute;ngase al d&iacute;a con los informes destacados de las &uacute;ltimas dos semanas</p>
             </div>
             <mat-divider></mat-divider>
-            <div class="subscribe_item" [routerLink]="['/preferences']">
+            <div class="subscribe_item" [routerLink]="['/preferences']" (click)="tagSuscribe('Informes personalizados');">
               <h4>Informes personalizados</h4>
               <p>Seleccione solo los informes que más le interesan</p>
             </div>
             <mat-divider></mat-divider>
-            <div class="subscribe_item" (click)="openDialog()">
+            <div class="subscribe_item" (click)="openDialog(); tagSuscribe('Actualizar mis preferencias');">
               <h4>Actualizar mis preferencias</h4>
               <p>Modifique su suscripción y reciba los informes de su interés.</p>
             </div>

@@ -73,6 +73,7 @@ export class SubscribeDialogComponent {
           }]
       }
     }).subscribe((res) => {
+      this.tagSend();
       this.dialogRef.close({subscriber: this.subscriber});
     });
   }
@@ -88,4 +89,18 @@ export class SubscribeDialogComponent {
     this.dialogRef.close();
   }
 
+  tagTerms(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción boletin quincenal','eventAction': 'Aceptar','eventLabel': 'Terminos y condiciones','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagKnowledge(name: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción boletin quincenal','eventAction': 'Calificacion conocimiento','eventLabel': name,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagSend(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Suscripción boletin quincenal','eventAction': 'Envíar','eventLabel': 'Formulario de suscripcion','eventvalue': '','event': 'eventClick'});
+  }
 }

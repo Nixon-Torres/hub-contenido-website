@@ -111,4 +111,24 @@ export class HowIsEconomyComponent implements OnInit {
       this.area4Report = this.reports.find(e => e.howseconomyArea === 'report4');
     });
   }
+
+  tagEconomyTitle(title: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Cómo va la economía','eventLabel': title,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDetailInform(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Cómo va la economía','eventLabel': 'Detalles del informe -' + link,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDivision(link: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Cómo va la economía','eventLabel': link,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagKnowMore(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Cómo va la economía','eventLabel': 'Conocer mas sobre economia colombiana','eventvalue': '','event': 'eventClick'});
+  }
 }

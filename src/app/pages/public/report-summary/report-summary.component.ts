@@ -146,4 +146,24 @@ export class ReportSummaryComponent implements OnInit {
       this.area4Report = this.reports.find(e => e.strategyArea === 'report4');
     });
   }
+
+  tagNavBars(navBars: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Estrategia para invertir','eventLabel': navBars,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDetail(detail: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Estrategia para invertir','eventLabel': 'Detalles del informe - ' + detail,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagDetailActions(detail: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Estrategia para invertir','eventLabel': detail,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagInvestStrategy(invest: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Estrategia para invertir','eventLabel': invest,'eventvalue': '','event': 'eventClick'});
+  }
 }

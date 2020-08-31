@@ -195,4 +195,29 @@ export class SideBarComponent implements OnInit {
       this.banner2 = this.contents.find(e => e.key === 'banner_2');
     });
   }
+
+  tagRightBanner(rightBanner: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Banner derecha -  Descargar','eventLabel': rightBanner,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagRightBannerView(rightBanner: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Banner derecha -  Ver informe','eventLabel': rightBanner,'eventvalue': '','event': 'eventClick'});
+  }
+
+  tagTab1(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Informes','eventLabel': 'Últmimos informes','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagTab2(){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': 'Informes','eventLabel': 'Más leídos','eventvalue': '','event': 'eventClick'});
+  }
+
+  tagLastReport(lastReport: any){
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'eventCategory': 'Home','eventAction': lastReport,'eventLabel': window.location.href,'eventvalue': '','event': 'eventClick'});
+  }
 }
