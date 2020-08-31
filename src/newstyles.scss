@@ -918,20 +918,12 @@ footer.main_footer .footer_first .footer-links ul li:before {
     float: left;
     width: 65%;
     padding-right: 5px;
-    @media only screen and (max-width: 768px) {
-      width: 100%;
-    }
   }
 
   .right {
     max-width: 35%;
     float: left;
     padding-top: 6px;
-    @media only screen and (max-width: 768px) {
-      max-width: initial;
-      width: 100%;
-      order: -1;
-    }
 
     img {
       width: 100%;
@@ -957,6 +949,9 @@ footer.main_footer .footer_first .footer-links ul li:before {
   font-family: Helvetica_Neu_Bold;
   overflow: hidden;
   word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .information_tab_pen p {
@@ -1014,6 +1009,10 @@ ul.nav.nav-tabs li.activeone a {
   font-weight: 400;
   position: relative;
   padding-left: 5px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 15;
+  overflow: hidden;
 }
 
 .para_left_content .para_left_first p.para_desc:before {
@@ -6633,7 +6632,7 @@ p.informe_heading_desc {
   color: #FFFFFF;
   text-transform: uppercase;
   position: absolute;
-  bottom: 30%;
+  bottom: 23%;
   left: 38%;
   z-index: 2;
   font-size: 13px;
@@ -6706,6 +6705,7 @@ p.informe_heading_desc {
 
 .Recomendados-inner-image img {
   filter: grayscale(50%);
+  width: 100%;
 }
 
 .Recomendados-inner-text h4 {
@@ -6735,6 +6735,10 @@ p.informe_heading_desc {
   font-size: 14px;
   line-height: 21px;
   text-align: left;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
 }
 
 .Recomandados-inline-video {
@@ -8511,7 +8515,7 @@ button.owl-next {
 .section-2 {
   width: 100%;
   float: left;
-  padding: 70px 0;
+  padding: 40px 0;
   background-color: #F8F8F8;
 }
 
@@ -8576,7 +8580,7 @@ button.owl-next {
 .section-3 {
   width: 100%;
   float: left;
-  padding: 90px 0;
+  padding: 40px 0;
 }
 
 .sec-3-estimamos {
@@ -8781,7 +8785,8 @@ button.owl-next {
   width: 100%;
   float: left;
   padding: 50px 0;
-  margin: 70px 0;
+  margin-top: 70px;
+  margin-bottom: 0;
   background-color: #F8F8F8;
 }
 
@@ -8924,7 +8929,8 @@ button.owl-next {
 .section-5 {
   width: 100%;
   float: left;
-  padding: 100px 0;
+  padding-top: 65px;
+  padding-bottom: 0;
 }
 
 .atencion {
@@ -15985,8 +15991,8 @@ max-width: 100% !important;
   top: 8.4em;
   z-index: 8;
   width: 100%;
-  @media only screen and (max-width: 1000px){
-    display: none;
+  @media only screen and (max-width: 768px) {
+   top: 4em;     
   }
 }
 
@@ -15994,7 +16000,6 @@ max-width: 100% !important;
   .content{
     .indictor_btn{
       @media only screen and (max-width: 768px){
-        width: 23% !important;
         margin-right: 0 !important;
       }
       button{
