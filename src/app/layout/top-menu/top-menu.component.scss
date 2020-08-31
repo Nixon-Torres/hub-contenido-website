@@ -14150,14 +14150,14 @@ max-width: 100% !important;
 
 .ifx-indicators-iframe {
   height: 50px;
+  @media (max-width: 768px){
+    padding: 0;
+  }
 
   .content {
     background: #EAEAEA;
     height: 90%;
     width: 100%;
-    @media (max-width: 1200px){
-      width: 103%;
-    }
 
     iframe {
       width: 91%;
@@ -14165,6 +14165,12 @@ max-width: 100% !important;
       border: 0px;
       margin-top: 5px;
       margin-left: -57px;
+      @media only screen and (max-width: 768px) {
+        width: 75%;
+      }
+      @media only screen and (max-width: 500px) {
+        width: 82%;
+      }
     }
 
     .indictor_btn {
@@ -14173,6 +14179,9 @@ max-width: 100% !important;
       margin-top: 8px;
       text-align: right;
       margin-right: 15px;
+      @media only screen and (max-width: 768px) {
+        width: 30%;
+      }
 
       button {
         background-color: #ffffff;
@@ -14189,6 +14198,9 @@ max-width: 100% !important;
         i {
           margin-left: 8px;
           margin-top: 2px;
+          @media only screen and (max-width: 768px) {
+            margin: 0;
+          }
         }
       }
     }
