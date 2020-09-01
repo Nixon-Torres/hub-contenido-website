@@ -17,3 +17,27 @@
 .nav-item {
   cursor: pointer;
 }
+
+.title-multimedia {
+  word-break: break-word;
+  height: 46px;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 767px) {
+  .video--image img{
+    min-height: 181px;
+    height: auto;
+  }
+}
+
+.recomendados_content {
+  .inline-video {
+    min-height: 300px;
+    padding-bottom: 20px;
+    h6 {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}

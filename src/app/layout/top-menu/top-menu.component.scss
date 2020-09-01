@@ -780,9 +780,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
   display: flex;
   align-items: center;
   position: absolute;
-  transform: rotate(-90deg);
   bottom: 100px;
-  left: -50px;
 }
 
 .footer_verticle_line .footer_verticle_text p {
@@ -14082,6 +14080,7 @@ max-width: 100% !important;
     font-size: 14px;
     font-weight: 400;
     color: #5F5F5F;
+    letter-spacing: 0;
   }
 
   i {
@@ -14142,6 +14141,7 @@ max-width: 100% !important;
 .investment-group-section-title {
     font-size: 18px;
     margin-bottom: -5px;
+    color: black !important;
 }
 
 .investment-list {
@@ -14150,10 +14150,14 @@ max-width: 100% !important;
 
 .ifx-indicators-iframe {
   height: 50px;
+  @media (max-width: 768px){
+    padding: 0;
+  }
 
   .content {
-    background: #F4F4F4;
-    height: 87%;
+    background: #EAEAEA;
+    height: 90%;
+    width: 100%;
 
     iframe {
       width: 91%;
@@ -14161,6 +14165,12 @@ max-width: 100% !important;
       border: 0px;
       margin-top: 5px;
       margin-left: -57px;
+      @media only screen and (max-width: 768px) {
+        width: 75%;
+      }
+      @media only screen and (max-width: 500px) {
+        width: 82%;
+      }
     }
 
     .indictor_btn {
@@ -14169,13 +14179,16 @@ max-width: 100% !important;
       margin-top: 8px;
       text-align: right;
       margin-right: 15px;
+      @media only screen and (max-width: 768px) {
+        width: 30%;
+      }
 
       button {
         background-color: #ffffff;
         border: 1px solid #e8162e;
         max-width: 133px;
         color: #e8162e;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 500;
         height: 33px;
         border-radius: 5px;
@@ -14185,12 +14198,40 @@ max-width: 100% !important;
         i {
           margin-left: 8px;
           margin-top: 2px;
+          @media only screen and (max-width: 768px) {
+            margin: 0;
+          }
         }
       }
     }
   }
 }
 
+.menu_icon{
+  width: 13% !important;
+  figure{
+    margin: 0;
+    margin-left: -7px;
+    padding-right: 8px;
+    img{
+    width: 30px;
+    height: auto;
+    }
+  }
+}
+
 .submenu-link {
   cursor: pointer;
+}
+
+.hide-right-menu-contant {
+  cursor: pointer;
+}
+
+:host {
+  height: 184px;
+  display: block;
+  @media only screen and (max-width: 768px) {
+    height: auto;
+  }
 }

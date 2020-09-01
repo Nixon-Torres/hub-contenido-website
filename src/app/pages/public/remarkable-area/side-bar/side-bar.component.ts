@@ -29,8 +29,9 @@ export class SideBarComponent implements OnInit {
   }
 
   getCategory(reportType) {
-    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
-      reportType.mainCategory[0].description : '';
+    return reportType ? reportType.description : '';
+    /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : ''; */
   }
 
   getDailyType() {
@@ -80,7 +81,7 @@ export class SideBarComponent implements OnInit {
     const filter = {
       where: {
       },
-      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'reads'],
+      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle', 'reads'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {
@@ -154,7 +155,7 @@ export class SideBarComponent implements OnInit {
       multimedia = multimedia.map(e => {
         return {
           ...e,
-          name: e.title,
+          rTitle: e.title,
           publishedAt: e.updatedAt,
           multimedia: true
         };

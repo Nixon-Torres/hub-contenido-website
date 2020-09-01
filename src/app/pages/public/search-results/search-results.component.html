@@ -1,0 +1,71 @@
+<div style="display: block">
+
+  <div class="analisis-main-div">
+    <div class="container">
+
+      <div class="analisis-information">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 analisis-contant">
+              <div class="contant-1 found-title">
+                <p *ngIf="totalCount > 0">Se encontraron {{totalCount}} resultados para <strong class="text">{{searchText}}</strong></p>
+                <p *ngIf="totalCount === 0">No se encontraron resultados para <strong class="text">{{searchText}}</strong></p>
+              </div>
+
+              <div class="contant back-button" *ngIf="totalCount === 0">
+                 <div class="btn-container">
+                   <button (click)="goBack()">
+                     <i aria-hidden="true" class="fa fa-angle-left"></i>
+                     Regresar
+                   </button>
+                 </div>
+              </div>
+
+              <div class="contant gray-back item" *ngFor="let report of reports">
+                <div class="detail">
+                  <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
+                  <h4 class="reportTitle" [routerLink]="[getResourceBase(report), report?.id]">{{report?.rTitle | striphtml}}
+                  </h4>
+                  <p>{{report?.smartContent | truncate: 180: true}}
+                  </p>
+                  <p class="small ">{{report?.publishedAt | date:'d MMMM y'}}</p>
+                  <a *ngIf="isANewReport(report)">
+                    <button class="btn contant-btn ">Informe nuevo</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="mobile-pagination" *ngIf="totalCount > 0 && totalPages > 0">
+              <div class="mob-set-div">
+                <a class="mob-button" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
+                <a class="mob-button" *ngIf="currentPage < totalPages" (click)="nextPage()">Siguiente</a>
+                <p> {{currentPage}}/{{totalPages}}</p>
+              </div>
+            </div>
+
+            <div class="contant-pagination" *ngIf="totalCount > 0">
+              <div class="contant-page-set">
+                <a *ngIf="currentPage > 1" class="underline float-left" (click)="previousPage()">Anterior</a>
+                <a *ngIf="currentPage < totalPages" class="underline " (click)="nextPage()">Siguiente</a>
+                <div class="dropdown ">
+                  <label for="page " id="page ">Página</label>
+                  <div class="dropdown">
+
+                    <ng-select [items]="pagesItems" [searchable]="false"
+                               [clearable]="false"
+                               (change)="pageChanged()"
+                               [(ngModel)]="currentPage"
+                               [multiple]="false" class="page-select"></ng-select>
+                  </div>
+                </div>
+                <label for="page " id="page">de {{totalPages}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br style="clear: both">
+</div>

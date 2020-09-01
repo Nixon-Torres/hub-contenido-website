@@ -4,11 +4,18 @@
   &.economy{
     margin-left: 0;
   }
-  @media only screen and (max-width: 768px){
-    width: 170px;
+  @media only screen and (max-width: 320px){
+    padding: 0;
   }
 }
 
 .nav-tabs li a {
   cursor: pointer;
+}
+
+.tab_sub_division_part_text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
 }

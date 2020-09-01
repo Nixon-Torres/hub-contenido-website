@@ -24,29 +24,52 @@ export class HowIsEconomyComponent implements OnInit {
   }
 
   getCategory(reportType) {
-    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
-      reportType.mainCategory[0].description : '';
+    return reportType ? reportType.description : '';
+    /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : ''; */
   }
 
   public getRandomReports() {
     this.http.get({
-      path: 'public/reports/',
+      path: 'public/categories/',
       data: {
-        order: 'publishedAt DESC',
-        limit: 8,
-        fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
-        include: [{
-          relation: 'reportType',
-          scope: {
-            include: ['mainCategory', 'subCategory']
-          }
-        }]
+        where: {
+          code: 'TENDENCIASSECTORIALES'
+        },
+        include: 'childrenMainReportTypes',
       },
-      encode: true
-    }).subscribe((response: any) => {
-      this.randomReports = response.body;
-    }, (error: any) => {
-      console.error(error);
+      encode: true,
+    }).subscribe((res) => {
+      const resp = (res.body as any);
+
+      if (resp.length < 1) {
+        return;
+      }
+      const ids = resp[0].childrenMainReportTypes.map(e => e.id);
+      this.http.get({
+        path: 'public/reports/',
+        data: {
+          order: 'publishedAt DESC',
+          limit: 8,
+          where: {
+            reportTypeId: {
+              inq: ids,
+            },
+          },
+          fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle'],
+          include: [{
+            relation: 'reportType',
+            scope: {
+              include: ['mainCategory', 'subCategory']
+            }
+          }]
+        },
+        encode: true
+      }).subscribe((response: any) => {
+        this.randomReports = response.body;
+      }, (error: any) => {
+        console.error(error);
+      });
     });
   }
 
@@ -55,7 +78,7 @@ export class HowIsEconomyComponent implements OnInit {
       where: {
         howseconomy: true
       },
-      fields: ['id', 'name', 'howseconomyArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent'],
+      fields: ['id', 'name', 'howseconomyArea', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {

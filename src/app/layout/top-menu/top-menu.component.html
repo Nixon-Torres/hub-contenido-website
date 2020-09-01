@@ -1,40 +1,43 @@
 <div class="header_menu">
   <div class="container">
     <div class="menu_item">
-      <ul *ngIf="ready">
-        <li (mouseenter)="mouseEnter(1)" (mouseleave)="mouseLeave()"
+      <ul *ngIf="ready" (mouseleave)="mouseLeave()">
+        <li (mouseenter)="mouseEnter(1)" (click)="go('Estar actualizado')"
             class="set-padd set-caret-1" [routerLink]="getCategoryLink(1)"
             routerLinkActive="active">
           <a>Estar<br>actualizado</a>
           <i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(2)" (mouseleave)="mouseLeave()"
+        <li (mouseenter)="mouseEnter(2)"
             class="add-padd set-caret-2" [routerLink]="getCategoryLink(2)"
             routerLinkActive="active">
           <a>Macroeconomía</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(3)" (mouseleave)="mouseLeave()" class="set-caret-3 set-padd"
+        <li (mouseenter)="mouseEnter(3)" class="set-caret-3 set-padd menu_icon"
             [routerLink]="getCategoryLink(3)"
             routerLinkActive="active">
+            <figure>
+              <img src="/assets/images/menu-icon.png" alt="">
+            </figure>
           <a>Nuestros <br/> indicadores</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(4)" (mouseleave)="mouseLeave()" class="set-caret-4 set-padd"
+        <li (mouseenter)="mouseEnter(4)" class="set-caret-4 set-padd"
             [routerLink]="getCategoryLink(4)"
             routerLinkActive="active">
           <a>Economías <br/>Centroamericanas</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(5)" (mouseleave)="mouseLeave()" class="set-caret-5 set-padd"
+        <li (mouseenter)="mouseEnter(5)" class="set-caret-5 set-padd"
             [routerLink]="getCategoryLink(5)"
             routerLinkActive="active">
           <a>Tendencias <br/>sectoriales</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(6)" (mouseleave)="mouseLeave()" class="set-caret-6 set-padd"
+        <li (mouseenter)="mouseEnter(6)" class="set-caret-6 set-padd"
             [routerLink]="getCategoryLink(6)"
             routerLinkActive="active"
             id="inner-menu-detail">
           <a>Análisis de<br>compañías</a><i class="fas fa-caret-down"></i>
         </li>
-        <li (mouseenter)="mouseEnter(7)" (mouseleave)="mouseLeave()" class="set-padd set-caret-7"
+        <li (mouseenter)="mouseEnter(7)" class="set-padd set-caret-7"
             [routerLink]="getCategoryLink(7)"
             routerLinkActive="active">
           <a>¿En qué<br> invertir?&nbsp;</a><i class="fas fa-caret-down"></i>
@@ -47,7 +50,7 @@
     </div>
   </div>
   <div class="categorias-hide-menu" [ngClass]="{'category-menu-visible': subMenuVisible}"
-       (mouseenter)="mouseEnter(null)" (mouseleave)="mouseLeave()">
+       (mouseenter)="mouseEnterAfterSeconds(null)" (mouseleave)="mouseLeave()">
     <div class="container">
       <div class="hide-menu-contant">
         <div class="row">
@@ -59,32 +62,34 @@
                   <div class="hide-left-1">
                     <ul>
                       <li class="submenu-link" *ngFor="let item of items"
-                          [routerLink]="getCategoryReportTypeLink(item)">{{item.name}}</li>
+                          [routerLink]="getCategoryReportTypeLink(item)">
+                        {{getReportTypeName(item)}}
+                      </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <hr>
-              <div class="todo-analisis" *ngIf="currentMenuOption">
+              <div class="todo-analisis" *ngIf="currentMenuOption && total > 10">
                 <h3 (click)="distributeItems(true)">Ver todo {{menuOptions[currentMenuOption - 1].name}}</h3>
               </div>
             </div>
             <div class="hide-left-menu" *ngIf="currentMenuOption === 7">
               <div class="row">
                 <div class="col-md-4 col-sm-12" *ngFor="let gp of investmentGroups">
-                  <h3 class="investment-group-section-title">{{gp.name}}</h3>
+                  <a class="investment-group-section-title submenu-link" [queryParams]="getQueryParams(gp)" [routerLink]="getCategoryLink(7)">{{gp.name}}</a>
+                  <br>
                   <hr>
                   <div class="hide-left-1">
                     <ul class="investment-list">
                       <li class="submenu-link" *ngFor="let item of gp.items" [routerLink]="getCategoryReportTypeLink(item)">{{item.name}}</li>
                     </ul>
                   </div>
-
-                  <hr>
-                  <div class="todo-analisis" *ngIf="currentMenuOption">
-                    <h3 (click)="distributeItems(true)">Ver todo {{menuOptions[currentMenuOption - 1].name}}</h3>
-                  </div>
                 </div>
+              </div>
+              <hr>
+              <div hidden="true" class="todo-analisis" *ngIf="currentMenuOption && total > 7">
+                <h3 (click)="distributeItems(true)">Ver todo {{menuOptions[currentMenuOption - 1].name}}</h3>
               </div>
             </div>
           </div>
@@ -94,11 +99,11 @@
                 <h3>Contenido Destacado</h3>
               </div>
 
-              <div class="hide-right-menu-contant">
+              <div class="hide-right-menu-contant" [routerLink]="['/reports', currentReport?.id]">
                 <h3>{{getCategoryName(currentReport?.reportType)}}</h3>
-                <h4>{{currentReport.name}}</h4>
-                <h5>{{currentReport.smartContent}} </h5>
-                <p>{{currentReport.publishedAt | date:'d MMMM y'}}</p>
+                <h4>{{currentReport?.rTitle | striphtml}}</h4>
+                <h5>{{currentReport?.smartContent | truncate: 140: true}}</h5>
+                <p>{{currentReport?.publishedAt | date:'d MMMM y'}}</p>
               </div>
             </div>
           </div>

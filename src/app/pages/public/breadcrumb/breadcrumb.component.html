@@ -1,0 +1,9 @@
+<div class="page_direction">
+  <div class="container">
+    <ul>
+      <li class="back_page"><a (click)="goBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i>Volver </a></li>
+      <li><a [routerLink]="['/home']">Inicio</a></li>
+      <li *ngFor="let page of pages"><a [routerLink]="page.link">{{page.label}}</a></li>
+    </ul>
+  </div>
+</div>

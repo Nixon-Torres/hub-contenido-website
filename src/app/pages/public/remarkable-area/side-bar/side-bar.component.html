@@ -3,7 +3,7 @@
 		<div class="information_sidebar_first_content">
 			<div class="isfc_left">
 				<h4>{{banner1?.title}}</h4>
-				<p>{{banner1?.description}}</p>
+				<p>{{banner1?.description | truncate: 140: true}}</p>
 				<a target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
 			</div>
 			<div class="isfc_right" *ngIf="banner1 && banner1.files && banner1.files.length">
@@ -13,14 +13,14 @@
 		<div class="information_sidebar_first_content">
 			<div class="isfc_left full_width">
 				<h4>{{banner2?.title}}</h4>
-				<p>{{banner2?.description}}</p>
+				<p>{{banner2?.description | truncate: 140: true}}</p>
 				<a target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
 			</div>
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li class="last_inf" [ngClass]="{'active' : selectedTab === 'tab1'}"><a (click)="changeTab(1)">&Uacute;ltimos informes</a></li>
-				<li [ngClass]="{'active' : selectedTab === 'tab2'}"><a (click)="changeTab(2)">M&aacute;s le&iacute;dos</a></li>
+				<li class="ult-li last_inf" [ngClass]="{'active' : selectedTab === 'tab1'}"><a (click)="changeTab(1)">&Uacute;ltimos</a></li>
+				<li class="ult-li" [ngClass]="{'active' : selectedTab === 'tab2'}"><a (click)="changeTab(2)">M&aacute;s le&iacute;dos</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="tab-1" class="tab-pane active">
@@ -37,17 +37,20 @@
 					<div *ngFor="let report of reports">
 						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]">
 							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
-							<h4>{{report?.name}}</h4>
+							<h4>{{report?.rTitle | striphtml}}</h4>
 							<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 						</div>
             <div *ngIf="report.multimedia" class="information_tab_pen multimedia-cont" (click)="go(report)">
               <div class="left">
                 <a style="text-transform: uppercase">MULTIMEDIA</a>
-                <h4>{{report?.name}}</h4>
+                <h4>{{report?.rTitle | striphtml}}</h4>
                 <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
               </div>
               <div class="right">
-                <img [src]="getThumbSource(report)" alt="">
+                <div class="img-container">
+                  <img class="thumb" [src]="getThumbSource(report)" alt="">
+                  <div class="play_button"><img alt="" src="assets/images/play_btn.png"></div>
+                </div>
               </div>
             </div>
 						<hr>

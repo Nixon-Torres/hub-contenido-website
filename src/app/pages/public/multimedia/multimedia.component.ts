@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {environment} from '../../../../environments/environment';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-multimedia',
@@ -14,15 +15,20 @@ export class MultimediaComponent implements OnInit {
   public item1: any;
   public item2: any;
   public item3: any;
-
+  public breadcrumbItems: Array<any> = [{
+    label: 'Multimedia',
+  }];
+  categories = [];
   readonly TOTAL_PER_PAGE = 3;
   public currentTab = 1;
+  category: string;
 
   constructor(private http: HttpService) { }
 
   ngOnInit() {
     this.loadContents();
     this.loadMultimedia();
+    this.onLoadCategories();
   }
 
   private getType(item: any) {
@@ -56,7 +62,7 @@ export class MultimediaComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       const contents = res.body as any;
-      this.contents = this.contents.concat(contents);
+      this.contents = this.contents.concat(contents).filter(con => !con.trash);
     });
   }
 
@@ -75,6 +81,7 @@ export class MultimediaComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       const contents = res.body as any;
+      contents.filter(con => !con.trash);
       this.header = contents.find(e => e.outstandingArea === 'header');
       this.item1 = contents.find(e => e.outstandingArea === 'area1');
       this.item2 = contents.find(e => e.outstandingArea === 'area2');
@@ -88,5 +95,57 @@ export class MultimediaComponent implements OnInit {
       return this.STORAGE_URL + thumb.clientPath;
     }
     return 'assets/images/play_btn.png';
+  }
+
+  public onLoadCategories() {
+    const observables = this.http.get({
+      path: 'public/sections/',
+      data: {
+        include: [
+          {
+            relation: 'reportsType',
+            scope: {
+              include: 'mainCategory'
+            }
+          }
+        ],
+        order: 'priority DESC'
+      },
+      encode: true
+    });
+    const observables2 = this.http.get({ path: 'public/companies/' });
+
+    forkJoin([observables, observables2]).subscribe((results: any) => {
+      const categories = results && results[0] && results[0].body
+        ? results[0].body
+        : [];
+      const companies = results && results[1] && results[1].body
+        ? results[1].body.map(e => {
+          e.description = e.name ? e.name : e.description;
+          return e;
+        })
+        : [];
+
+      const categoriesList = categories.map((e) => Object.assign({}, e));
+      this.categories = categoriesList.flatMap(x => x.reportsType)
+        .concat(companies)
+        .map(e => {
+          e.description = e.fullDescription ? e.fullDescription : e.description;
+          return e;
+        })
+        .reduce((y, x) => {
+          if (!y.find((e) => e.description === x.description)) {
+            y.push(x);
+          }
+          return y;
+        }, []);
+    });
+  }
+
+  getCategoy(content: any) {
+    return this.category = content && content.params && content.params.category
+      && this.categories.find(cat => cat.id === content.params.category)
+      ? this.categories.find(cat => cat.id === content.params.category).description
+      : 'Corredores Davivienda';
   }
 }

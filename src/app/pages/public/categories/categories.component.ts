@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
+import {combineLatest} from 'rxjs';
+import { MatInput } from '@angular/material';
+
 
 @Component({
     selector: 'app-categories',
@@ -12,6 +15,7 @@ import {environment} from '../../../../environments/environment';
 export class CategoriesComponent implements OnInit {
   private categoryId: string;
   private reportTypeId: string;
+  private subcategoryId: string;
   private companyId: string;
   public reportType: any;
   public category: any;
@@ -23,43 +27,69 @@ export class CategoriesComponent implements OnInit {
   public totalPages: number;
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
+  @ViewChild('input', { static: false }) input: MatInput;
+  @ViewChild('inputEnd', { static: false }) inputEnd: MatInput;
+  public breadcrumbItems: Array<any> = [];
 
   public assetBase: string = environment.URL_API;
 
   public idateStart: any;
   public idateEnd: any;
+  public idateLowLimit: any;
+  public idateHighLimit: any;
 
   public investmentGroups = [{
     name: 'Renta Fija',
     code: 'RENTAFIJA',
-    reportTypes: []
+    reportTypes: [],
+    id: null,
   }, {
     name: 'Acciones',
     code: 'ACCIONES',
-    reportTypes: []
+    reportTypes: [],
+    id: null,
   }, {
-    name: 'Divisas',
+    name: 'Monedas',
     code: 'DIVISAS',
-    reportTypes: []
+    reportTypes: [],
+    id: null,
   }];
 
-  constructor(private http: HttpService, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params: any) => {
-      if (params.get('id')) {
-        this.categoryId = params.get('id');
-      }
+    this.currentPage = 1;
+    const obs = [this.activatedRoute.queryParams, this.activatedRoute.paramMap];
 
-      if (params.get('typeid')) {
-        this.reportTypeId = params.get('typeid');
-      }
+    const oparams = this.activatedRoute.params;
+    const oqueryParams = this.activatedRoute.queryParams;
 
-      if (this.categoryId) {
-        this.getCategory();
-      }
-    });
+    combineLatest(oparams, oqueryParams,
+      (iparams, iqueryParams) => ({ iparams, iqueryParams }))
+      .subscribe(response => {
+        const queryParams = response.iqueryParams;
+        const params = response.iparams;
+        this.categoryId = null;
+        this.reportTypeId = null;
+        this.subcategoryId = null;
+
+        if (params.id) {
+          this.categoryId = params.id;
+        }
+
+        if (params.typeid) {
+          this.reportTypeId = params.typeid;
+        }
+
+        if (queryParams.subcategory) {
+          this.subcategoryId = queryParams.subcategory;
+        }
+
+        if (this.categoryId) {
+          this.getCategory();
+        }
+      });
   }
 
   getBannerImg() {
@@ -82,7 +112,13 @@ export class CategoriesComponent implements OnInit {
         include: ['children', 'files', {
           relation: 'childrenMainReportTypes',
           scope: {
-            include: ['subCategory']
+            order: ['order ASC', 'description ASC'],
+            include: ['subCategory', {
+              relation: 'children',
+              scope: {
+                include: 'subCategory',
+              },
+            }],
           }
         }],
         limit: 1
@@ -109,11 +145,14 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        });
+        }).filter(e => !!!e.parentId);
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
             const subitems = this.reportTypes.filter(k => k.subCategory.find(h => h.code === e.code));
+            const subcat = subitems.length ? subitems[0].subCategory : {};
+
+            e.id = subcat && subcat.length ? subcat[0].id : null;
             e.reportTypes = subitems.reduce((a, b) => {
               if (!a.find(m => m.id === b.id)) {
                 a.push(b);
@@ -122,9 +161,12 @@ export class CategoriesComponent implements OnInit {
             }, []);
             return e;
           });
+
+          const cat = this.investmentGroups.find(e => e.id === this.subcategoryId);
         }
 
         this.getReports();
+        this.updateBreadcrumbItems();
       } else {
         this.companyTypesSelect = this.category.childrenMainReportTypes;
         this.getCompanies();
@@ -135,8 +177,13 @@ export class CategoriesComponent implements OnInit {
   getCompanies() {
     this.http.get({
       path: `public/companies/`,
+      data: {
+        order: 'name ASC'
+      },
+      encode: true,
     }).subscribe((response: any) => {
       this.reportTypes = response.body;
+      this.updateBreadcrumbItems();
       this.getReports();
     });
   }
@@ -151,7 +198,11 @@ export class CategoriesComponent implements OnInit {
     if (this.reportTypeId) {
       where.reportTypeId = this.reportTypeId;
     } else {
-      where.reportTypeId = {inq: this.category.childrenMainReportTypes.map(e => e.id)};
+      if (this.subcategoryId) {
+        where.reportTypeId = {inq: this.category.childrenMainReportTypes.filter(e => e.subCategory.find(h => h.id === this.subcategoryId)).map(e => e.id)};
+      } else {
+        where.reportTypeId = {inq: this.category.childrenMainReportTypes.map(e => e.id)};
+      }
     }
 
     if (this.category.code === 'ANLISISDECOMPAAS' && this.companyId) {
@@ -161,14 +212,20 @@ export class CategoriesComponent implements OnInit {
     if (this.idateStart || this.idateEnd) {
       const conds = [where];
 
-      if (this.idateStart) {
-        const start = moment(this.idateStart).add(5, 'hours').toDate();
-        conds.push({publishedAt: {gte: start}});
-      }
+      const start = this.idateStart ? moment(this.idateStart)
+        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate() : '';
+      const end = this.idateEnd ? moment(this.idateEnd).set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate() : '';
 
-      if (this.idateEnd) {
-        const end = moment(this.idateStart).add(5, 'hours').toDate();
-        conds.push({publishedAt: {lte: end}});
+      if (this.idateStart && this.idateEnd) {
+        conds.push({
+          publishedAt: {
+            between: [start, end]
+          }
+        });
+      } else if (this.idateStart) {
+        conds.push({ publishedAt: { gte: start } });
+      } else if (this.idateEnd) {
+        conds.push({ publishedAt: { lte: end } });
       }
 
       where = {and: conds};
@@ -201,7 +258,7 @@ export class CategoriesComponent implements OnInit {
       path: `public/reports/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -210,11 +267,14 @@ export class CategoriesComponent implements OnInit {
         }],
         skip,
         limit: this.ITEMS_PER_PAGE,
-        sort: 'publishedAt DESC'
+        order: 'publishedAt DESC'
       },
       encode: true
     }).subscribe((response: any) => {
-      this.reports = response.body;
+      this.reports = response.body.map(rep => {
+        rep.publishedAt = moment(rep.publishedAt).add(5, 'hours');
+        return rep;
+      });
 
       this.getReportCount();
     });
@@ -226,17 +286,32 @@ export class CategoriesComponent implements OnInit {
   }
 
   getSubCategoryName() {
-    if (this.companyId) {
-      return this.reportTypes.find(e => e.id === this.companyId).name;
+    if (this.companyId && this.reportTypes) {
+      const company = this.reportTypes.find(e => e.id === this.companyId);
+      return company ? company.name : '';
     } else if (this.reportType) {
+      if (this.reportType && this.reportType.aliases) {
+        const alias = this.reportType.aliases;
+        if (alias[this.categoryId]) {
+          return alias[this.categoryId];
+        }
+      }
       return this.reportType.description;
+    } else if (this.subcategoryId) {
+      const subcat = this.investmentGroups.find(e => e.id === this.subcategoryId);
+      return subcat ? subcat.name : '';
     }
     return '';
   }
 
   getReportSubCategoryName(reportType: any) {
-    const name = reportType.description;
-    return name;
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.categoryId]) {
+        return alias[this.categoryId];
+      }
+    }
+    return reportType.description;
   }
 
   setCompanyReportType(reportType) {
@@ -244,6 +319,30 @@ export class CategoriesComponent implements OnInit {
     this.reportType = reportType;
     this.reportTypeId = reportType.id;
     this.getReports();
+  }
+
+  getReportTypeName(reportType: any) {
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.categoryId]) {
+        return alias[this.categoryId];
+      }
+    }
+    return reportType.name ? reportType.name : reportType.description;
+  }
+
+  cleanDateFilter() {
+    this.input['nativeElement'].value = '';
+    this.inputEnd['nativeElement'].value = '';
+    this.idateStart = null;
+    this.idateEnd = null;
+    this.idateLowLimit = null;
+    this.idateHighLimit = null;
+    this.getReports();
+  }
+
+  onBack(event) {
+    this.reportTypeId = null;
   }
 
   setReportType(reportType: any) {
@@ -254,11 +353,51 @@ export class CategoriesComponent implements OnInit {
       this.reportType = reportType;
       this.reportTypeId = reportType.id;
     }
+
+    if (this.companyId) {
+      this.router.navigate(['categories', this.categoryId, 'type', this.companyId]);
+    } else if (!this.reportTypeId) {
+      this.router.navigate(['categories', this.categoryId]);
+    } else {
+      this.router.navigate(['categories', this.categoryId, 'type', this.reportTypeId]);
+    }
+
+    this.updateBreadcrumbItems();
     this.getReports();
+  }
+
+  updateBreadcrumbItems() {
+    this.breadcrumbItems = [{
+      label: this.category.description,
+      link: ['/categories', this.categoryId]
+    }];
+
+    if (this.reportType) {
+      this.breadcrumbItems.push({
+        label: this.reportType.description,
+        link: ['/categories', this.categoryId, 'type', this.reportTypeId]
+      });
+    }
+
+    if (this.companyId) {
+      const company = this.reportTypes.find(e => e.id === this.companyId);
+
+      if (!company) {
+        return;
+      }
+      this.breadcrumbItems.push({
+        label: company.name,
+        link: ['/categories', this.categoryId, 'type', this.companyId]
+      });
+    }
   }
 
   pageChanged() {
     this.getReports();
+  }
+
+  scroll() {
+    window.scrollTo(0, 0);
   }
 
   nextPage() {
@@ -267,6 +406,7 @@ export class CategoriesComponent implements OnInit {
     }
     this.currentPage++;
     this.getReports();
+    this.scroll();
   }
 
   previousPage() {
@@ -275,15 +415,20 @@ export class CategoriesComponent implements OnInit {
     }
     this.currentPage--;
     this.getReports();
+    this.scroll();
   }
 
   setStartDate(date) {
     this.idateStart = date.value;
+    this.idateLowLimit = moment(this.idateStart)
+        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate();
     this.getReports();
   }
 
   setEndDate(date) {
     this.idateEnd = date.value;
+    this.idateHighLimit = moment(this.idateEnd)
+        .set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate();
     this.getReports();
   }
 }

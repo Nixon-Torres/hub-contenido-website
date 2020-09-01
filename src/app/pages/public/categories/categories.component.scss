@@ -17,9 +17,9 @@
 .enquinvertir-menu {
   .title {
     font-size: 14px;
-    font-weight: normal;
+    font-weight: bold;
     padding-left: 10px;
-    color: #454545;
+    color: #818181;
   }
 }
 
@@ -63,9 +63,14 @@
   color: #E8162E;
 }
 
+.analisis-menu .child {
+  margin-left: 15px;
+  width: auto;
+}
+
 .date-picker-category {
   width: 130px;
-
+  display: initial;
 }
 
 .date-picker-1 input {
@@ -102,4 +107,93 @@
 
 .date_filter{
   color: #A5ABB1;
+}
+
+.analisis-contant {
+  .contant {
+    &.gray-back {
+      p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 8;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.see_information {
+  color: #454545;
+  font-weight: bold;
+}
+
+.no-results {
+  text-align: center;
+  margin-top: 69px;
+  font-size: 17px;
+  color: #666;
+}
+
+.clean-filter {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.contant-page-set a {
+  cursor: pointer;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  .analisis-contant{
+    padding: 0;
+
+  }
+
+  .col-md-9.col-sm-12.analisis-contant{
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .analisis-contant .contant-1, .analisis-contant .contant{
+    padding-left: 27px;
+    padding-right: 15px;
+
+  }
+
+  .analisis-contant .contant.gray-back:nth-child(even){
+    background-color: #FAFAFA;
+  }
+
+
+  .analisis-information .container .row{
+    margin: 0;
+  }
+
+  .no-results {
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    min-height: 100px;
+  }
+}
+
+.mob-button {
+  position: absolute;
+  right: 5px;
+  &.categories_back {
+    right: 75%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .contant {
+    padding-top: 26px;
+    padding-bottom: 0px;
+  }
+
+  .gray-bg {
+    background-color: #FAFAFA;
+  }
 }

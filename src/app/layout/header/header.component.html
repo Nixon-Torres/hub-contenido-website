@@ -16,186 +16,120 @@
 						<div class="tabs">
 							<div class="header_left acc_header">
 								<div class="site_logo" [routerLink]="'/home'">
-									<img src="/assets/images/logo-vision-menu.png" alt="">
+									<img src="/assets/images/logo-vision.svg" alt="">
 								</div>
 							</div>
 							<div class="header_right search_menu">
 								<div class="header_search">
-									<input type="text" name="" placeholder="¿Que está buscando?">
-									<button type=""><i class="fa fa-search" aria-hidden="true"></i></button>
+									<input [(ngModel)]="searchText" type="text" (keyup.enter)="searchEvent()" name="" placeholder="¿Que está buscando?">
+									<button type="" (click)="searchEvent()"><i class="fa fa-search" aria-hidden="true"></i></button>
 								</div>
 							</div>
 							<div class="sub_figure"></div>
-							<div class="acc_subscribe">
+
+							<div class="tab acc_subscribe">
 								<img src="/assets/images/Suscríbase.png" alt="">
-								<p>Suscríbase</p>
-							</div>
-							<!--  -->
-							<div class="tab">
-								<input type="checkbox" id="chck1">
-								<label class="tab-label" for="chck1">Estar actualizado</label>
-								<div class="tab-content accordion_tab_sub macroeconomía">
-									<a href="#" class="min_text">Ver todo Estar actualizado</a>
-									<a href="#" class="acordion_subtitle ac_links">Para empezar el día</a>
-									<a href="#" class="acordion_subtitle ac_links">Debe saberlo</a>
-									<a href="#" class="acordion_subtitle ac_links">Bitácora mercado de capitales</a>
-									<a href="#" class="acordion_subtitle ac_links">Diario acciones</a>
-									<a href="#" class="acordion_subtitle ac_links">Nuevas emisiones</a>
-									<a href="#" class="acordion_subtitle ac_links">Así cierran los mercados</a>
-									<a href="#" class="acordion_subtitle ac_links">El Libro</a>
-									<a href="#" class="acordion_subtitle ac_links">Expectativa semanal</a>
-									<a href="#" class="acordion_subtitle ac_links">Estrategia anual</a>
+								<input type="checkbox" id="chck0" (click)="mouseEnter(null)">
+								<label class="tab-label" [ngClass]="{'tab-label-visible': subscribeMenuVisible}" for="chck0">Suscríbase</label>
+								<div class="tab-content accordion_tab_sub macroeconomía" [ngClass]="{'tab-content-visible': subscribeMenuVisible}">
+									<div class="col-sm-6 contact_content">
+										<div class="subs" (click)="openQuincenalDialog()">
+											<div class="subs__container">
+												<h3>Boletín quincenal</h3>
+												<p>Póngase al día con los informes destacados de las últimas 2 semanas</p>
+											</div>
+											<div class="subs__img">
+												<img src="/assets/images/pagination_right.png" alt="">
+											</div>
+										</div>
+
+										<div class="subs" [routerLink]="['/preferences']">
+											<div class="subs__container">
+												<h3>Informes personalizados</h3>
+												<p>Seleccione solo los informes que más le interesan</p>
+											</div>
+											<div class="subs__img">
+												<img src="/assets/images/pagination_right.png" alt="">
+											</div>
+										</div>
+
+										<div class="subs" (click)="openDialog()">
+											<div class="subs__container">
+												<h3>Actualizar mis preferencias</h3>
+												<p>Modifique su suscripción y reciba los informes de su interés.</p>
+											</div>
+											<div class="subs__img">
+												<img src="/assets/images/pagination_right.png" alt="">
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<!--  -->
-							<div class="tab">
-								<input type="checkbox" id="chck2">
-								<label class="tab-label" for="chck2">Macroeconomía</label>
-								<div class="tab-content accordion_tab_sub macroeconomía">
-									<a href="#" class="min_text">Ver todo Macroeconomía</a>
-									<a href="#" class="acordion_subtitle ac_links">Visión macro 2020</a>
-									<a href="#" class="acordion_subtitle ac_links">Tendencias actividad económica</a>
-									<a href="#" class="acordion_subtitle ac_links">Perspectivas inflación</a>
-									<a href="#" class="acordion_subtitle ac_links">Seguimiento Banco de la República</a>
-									<a href="#" class="acordion_subtitle ac_links">Indicador de Confianza Davivienda</a>
-									<a href="#" class="acordion_subtitle ac_links">Relaciones con el mundo</a>
-									<a href="#" class="acordion_subtitle ac_links">Tendencias mercado laboral</a>
-									<a href="#" class="acordion_subtitle ac_links">Entorno internacional</a>
-									<a href="#" class="acordion_subtitle ac_links">Recuento macro anual</a>
-									<a href="#" class="acordion_subtitle ac_links">Comparando Colombia</a>
+
+							<div class="tab" *ngFor="let menu of menuOptions">
+								<div>
+									<input type="checkbox" id="chck{{menu.idx}}" (click)="mouseEnter(menu.idx)">
+									<label class="tab-label" for="chck{{menu.idx}}" [ngClass]="{'tab-label-visible': menu.visible}">{{menu.name}}</label>
+									<div class="tab-content accordion_tab_sub macroeconomía" [ngClass]="{'tab-content-visible': menu.visible}" *ngIf="menu.idx !== 7">
+										<a [routerLink]="getCategoryLink(menu.idx)" class="min_text" (click)="go(menu.name)">Ver todo {{menu.name}}</a>
+										<a class="acordion_subtitle ac_links" *ngFor="let item of getItems(menu)" (click)="getCategoryReportTypeLink(menu, item)">
+											{{item.description ? item.description : item.name}}</a>
+									</div>
+
+                  <div class="tab-content accordion_tab_sub" [ngClass]="{'tab-content-visible': menu.visible}" *ngIf="menu.idx === 7">
+                    <a [routerLink]="getCategoryLink(menu.idx)" class="min_text" (click)="go(menu.name)">Ver todo {{menu.name}}</a>
+                    <div *ngFor="let inv of investmentGroups">
+                      <p class="min_text" [routerLink]="getCategoryLink(menu.idx)" [queryParams]="getQueryParams(inv)" (click)="go(inv.name)">{{inv.name}}</p>
+                      <a class="acordion_subtitle ac_links" *ngFor="let item of getItems(inv)" (click)="getCategoryReportTypeLink(menu, item)">
+                        {{item.description ? item.description : item.name}}
+                      </a>
+                    </div>
+                  </div>
 								</div>
 							</div>
-							<!--  -->
-							<div class="tab">
-								<input type="checkbox" id="chck3">
-								<label class="tab-label" for="chck3">Nuestros indicadores</label>
-								<div class="tab-content accordion_tab_sub macroeconomía">
-									<a href="#" class="min_text">Ver todo Nuestros indicadores</a>
-									<a href="#" class="acordion_subtitle ac_links">Davivienda PMI</a>
-									<a href="#" class="acordion_subtitle ac_links">Precios reales ventas vivienda nueva</a>
-									<a href="#" class="acordion_subtitle ac_links">Precios edificaciones nuevas</a>
-									<a href="#" class="acordion_subtitle ac_links">Precios de vehículos usados</a>
-									<a href="#" class="acordion_subtitle ac_links">Indicador de Confianza Davivienda</a>
-									<a href="#" class="acordion_subtitle ac_links">Gran encuesta de acciones</a>
-								</div>
-							</div>
-							<!--  -->
-							<div class="tab">
-								<input type="checkbox" id="chck4">
-								<label class="tab-label" for="chck4">Economias Centroamericanas</label>
-								<div class="tab-content accordion_tab_sub macroeconomía">
-									<a href="#" class="min_text">Ver todo Economías Centroamericanas</a>
-									<a href="#" class="acordion_subtitle ac_links">Costa Rica</a>
-									<a href="#" class="acordion_subtitle ac_links">El Salvador</a>
-									<a href="#" class="acordion_subtitle ac_links">Honduras</a>
-									<a href="#" class="acordion_subtitle ac_links">Panamá</a>
-									<a href="#" class="acordion_subtitle ac_links">Comparando Centroamérica</a>
-								</div>
-							</div>
-							<!--  -->
-							<div class="tab">
-								<input type="checkbox" id="chck5">
-								<label class="tab-label" for="chck5">Tendencias sectoriales</label>
-								<div class="tab-content accordion_tab_sub macroeconomía">
-									<a href="#" class="min_text">Ver todo Tendencias sectoriales</a>
-									<a href="#" class="acordion_subtitle ac_links">Construcción</a>
-									<a href="#" class="acordion_subtitle ac_links">Mineria y petróleo</a>
-									<a href="#" class="acordion_subtitle ac_links">Comercio</a>
-									<a href="#" class="acordion_subtitle ac_links">Transporte</a>
-									<a href="#" class="acordion_subtitle ac_links">Energía</a>
-									<a href="#" class="acordion_subtitle ac_links">Sector Financiero</a>
-									<a href="#" class="acordion_subtitle ac_links">Industria</a>
-									<a href="#" class="acordion_subtitle ac_links">Otros</a>
-									<a href="#" class="acordion_subtitle ac_links">Inmobiliairio</a>
-								</div>
-							</div>
-							<!--  -->
-							<div class="tab">
-								<input type="checkbox" id="chck6">
-								<label class="tab-label" for="chck6">Análisis de compañias</label>
-								<div class="tab-content accordion_tab_sub macroeconomía">
-									<a href="#" class="min_text">Ver todo Análisis de compañias</a>
-									<a href="#" class="acordion_subtitle ac_links">Bancolombia</a>
-									<a href="#" class="acordion_subtitle ac_links">Ecopetrol</a>
-									<a href="#" class="acordion_subtitle ac_links">Grupo ÉXITO</a>
-									<a href="#" class="acordion_subtitle ac_links">PEI</a>
-									<a href="#" class="acordion_subtitle ac_links">Avianca holdings</a>
-									<a href="#" class="acordion_subtitle ac_links">Davivienda</a>
-									<a href="#" class="acordion_subtitle ac_links">AgrupoAVal</a>
-									<a href="#" class="acordion_subtitle ac_links">Mineros</a>
-									<a href="#" class="acordion_subtitle ac_links">Banco de Bogotá</a>
-									<a href="#" class="acordion_subtitle ac_links">El Cóndor</a>
-									<a href="#" class="acordion_subtitle ac_links">Grupo Nutresa</a>
-									<a href="#" class="acordion_subtitle ac_links">Promigas</a>
-									<a href="#" class="acordion_subtitle ac_links">Celsia</a>
-									<a href="#" class="acordion_subtitle ac_links">GEB</a>
-									<a href="#" class="acordion_subtitle ac_links">Grupo Sura</a>
-									<a href="#" class="acordion_subtitle ac_links">Terpel</a>
-									<a href="#" class="acordion_subtitle ac_links">CEMEX</a>
-									<a href="#" class="acordion_subtitle ac_links">Conconcreto</a>
-									<a href="#" class="acordion_subtitle ac_links">Grupo Argos</a>
-									<a href="#" class="acordion_subtitle ac_links">ISA</a>
-									<a href="#" class="acordion_subtitle ac_links">Proximity</a>
-								</div>
-							</div>
-							<!--  -->
-							<div class="tab">
-								<input type="checkbox" id="chck7">
-								<label class="tab-label" for="chck7">¿En qué invertir?</label>
-								<div class="tab-content accordion_tab_sub">
-									<p class="min_text">Renta Fija</p>
-									<a href="#" class="acordion_subtitle ac_links">Estrategia del mes</a>
-									<a href="#" class="acordion_subtitle ac_links">Valor justo de TES</a>
-									<a href="#" class="acordion_subtitle ac_links">Inversionistas de TES</a>
-									<a href="#" class="acordion_subtitle ac_links">Guía de crédito corporativo</a>
-									<a href="#" class="acordion_subtitle ac_links">De su interés</a>
-									<a href="#" class="max_text">Ver todo Renta Fija</a>
-									<!--  -->
-									<p class="min_text">Acciones</p>
-									<a href="#" class="acordion_subtitle ac_links">Estrategia del mes</a>
-									<a href="#" class="acordion_subtitle ac_links">Inversionistas de acciones</a>
-									<a href="#" class="acordion_subtitle ac_links">Rebalanceos de índices</a>
-									<a href="#" class="acordion_subtitle ac_links">De su interés</a>
-									<a href="#" class="max_text">Ver todo Acciones</a>
-									<!--  -->
-									<p class="min_text">Divisas</p>
-									<a href="#" class="acordion_subtitle ac_links">La estrategia del mes</a>
-									<a href="#" class="acordion_subtitle ac_links">De su interés</a>
-									<a href="#" class="max_text">Ver todo Divisas</a>
-								</div>
-							</div>
-							<!--  -->
 							<div class="acc_multimedia">
 								<a [routerLink]="['/multimedia']">Multimedia</a>
 							</div>
 						</div>
 					</div>
 
-
 				</div>
 			</div>
 			<div class="header_left">
 				<div class="site_logo" [routerLink]="'/home'">
-					<img src="./assets/images/logo-vision.png" alt="">
+					<img src="./assets/images/logo-vision.svg" alt="">
 				</div>
-				<!-- 
+				<!--
 				<div class="logo_after">
 					<img src="./assets/images/logo_after.png" alt="">
 				</div> -->
 			</div>
 			<div class="header_right">
 				<div class="header_search">
-					<ng-select [items]="reportsList"
-							   [minTermLength]="3"
-							   [searchFn]="customSearchFn"
-							   placeholder="Busque por:informe,categoria,autor,fecha"
-							   bindLabel="name"
-							   bindValue="id"
-							   (change)="redirectSelection($event)"></ng-select>
-					<button type=""><i class="fa fa-search" aria-hidden="true"></i></button>
+          <input matInput [(ngModel)]="searchText" type="text"
+                 placeholder="Busque por: informe, categoría, autor o fecha"
+                 (keyup.enter)="searchEvent()">
+					<button type="" (click)="searchEvent()"><i class="fa fa-search" aria-hidden="true"></i></button>
 				</div>
 				<div class="suscribe_btn">
-					<button type="">Suscribase</button>
+					<button type="" (click)="subscribeMenuVisible = !subscribeMenuVisible">Suscribase</button>
+          <div class="subscribe_menu" *ngIf="subscribeMenuVisible">
+            <div class="arrow-up"></div>
+            <div class="subscribe_item" (click)="openQuincenalDialog()">
+              <h4>Bolet&iacute;n quincenal</h4>
+              <p>P&oacute;ngase al d&iacute;a con los informes destacados de las &uacute;ltimas dos semanas</p>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="subscribe_item" [routerLink]="['/preferences']">
+              <h4>Informes personalizados</h4>
+              <p>Seleccione solo los informes que más le interesan</p>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="subscribe_item" (click)="openDialog()">
+              <h4>Actualizar mis preferencias</h4>
+              <p>Modifique su suscripción y reciba los informes de su interés.</p>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>

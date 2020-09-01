@@ -3,11 +3,48 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="contect_left">
-						<h4>Suscribase a  nuestros informes</h4>
-						<p>Conozca antes que nadie Ios informes  mas destacados de la semana</p>
+						<h4>Suscríbase y mejore su experiencia en Visión</h4>
+						<p>Seleccione el tipo de suscripción que mejor se adapte a lo que busca.</p>
 					</div>
 				</div>
-				<div class="col-sm-6">
+
+				<div class="col-sm-6 contact_content">
+					<div class="subs" (click)="openQuincenalDialog()">
+						<div class="subs__container">
+							<h3>Boletín quincenal</h3>
+							<p>Póngase al día con los informes destacados de las últimas 2 semanas</p>
+						</div>
+						<div class="subs__img">
+							<img src="/assets/images/pagination_right.png" alt="">
+						</div>
+					</div>
+
+					<div class="subs" [routerLink]="['/preferences']">
+						<div class="subs__container">
+							<h3>Informes personalizados</h3>
+							<p>Seleccione solo los informes que más le interesan</p>
+						</div>
+						<div class="subs__img">
+							<img src="/assets/images/pagination_right.png" alt="">
+						</div>
+					</div>
+
+					<div class="subs" (click)="openDialog()">
+						<div class="subs__container">
+							<h3>Actualizar mis preferencias</h3>
+							<p>Modifique su suscripción y reciba los informes de su interés.</p>
+						</div>
+						<div class="subs__img">
+							<img src="/assets/images/pagination_right.png" alt="">
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+				<!-- <div class="col-sm-6">
 					<div class="contect_form">
 						<div class="contect_form_first_line">
 							<div class="contact_form_sub">
@@ -55,7 +92,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
+

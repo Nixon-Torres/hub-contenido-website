@@ -1,3 +1,5 @@
+<app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
+
 <div class="multimedia">
   <div class="container">
     <h2>Multimedia</h2>
@@ -12,7 +14,7 @@
     </div>
     <div class="Recomendados-header">
       <div class="row" *ngIf="header" [routerLink]="['/multimedia', header.id]">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12 recomendados_container">
           <div class="Recomendados-inner-image">
             <span class="overlaycategory">{{getType(header)}}</span>
             <i class="fas fa-play-circle"></i>
@@ -22,8 +24,8 @@
           </div>
         </div>
         <div class="col-md-6 col-sm-12 Recomendados-inner-text">
-          <h4>Corredores Davivienda</h4>
-          <h2>{{header?.title}}</h2>
+          <h4>{{getCategoy(header)}}</h4>
+          <h2>{{header?.title | truncate: 80: false}}</h2>
           <h6>{{header?.createdAt | date:'d MMMM y'}}</h6>
           <p>{{header?.description}}</p>
         </div>
@@ -41,8 +43,8 @@
             <div class="overlay-image-header"></div>
           </div>
 
-          <h4>Corredores Davivienda</h4>
-          <h2>{{item1.title}}</h2>
+          <h4>{{getCategoy(item1)}}</h4>
+          <h2 class="title-multimedia">{{item1.title | truncate: 80: false}}</h2>
           <h6>{{item1?.description}}</h6>
         </div>
         <div class="col-md-4 col-sm-4 inline-video" *ngIf="item2" [routerLink]="['/multimedia', item2.id]">
@@ -54,7 +56,7 @@
             <div class="overlay-image-header"></div>
           </div>
 
-          <h4>Corredores Davivienda</h4>
+          <h4>{{getCategoy(item2)}}</h4>
           <h2>{{item2.title}}</h2>
           <h6>{{item2?.description}}</h6>
         </div>
@@ -68,7 +70,7 @@
             <div class="overlay-image-header"></div>
           </div>
 
-          <h4>Corredores Davivienda</h4>
+          <h4>{{getCategoy(item3)}}</h4>
           <h2>{{item3.title}}</h2>
           <h6>{{item3?.description}}</h6>
         </div>
@@ -96,11 +98,11 @@
         <div id="home" class="container tab-pane active">
           <div class="Recomandados-tab-contant">
             <p>Aquí podrá acceder a las cápsulas en las que nuestro equipo de trabajo le presenta lo más relevante en temas económicos, financieros y recomendaciones de inversión.</p>
-            <div class="Recomandados-inline-video">
+            <div class="Recomandados-inline-video recomendados_content">
               <div class="row">
                 <div class="col-md-4 col-sm-4 inline-video" *ngFor="let item of contents">
 
-                  <div class="vidimg">
+                  <div class="vidimg video--image" [routerLink]="['/multimedia', item.id]">
                     <img [src]="getThumbSource(item)" alt="" class="img-fluid">
                     <span class="overlaycategory">{{getType(item)}}</span>
                     <i class="fas fa-play-circle"></i>
@@ -108,8 +110,8 @@
                     <div class="overlay-image-header"></div>
                   </div>
 
-                  <h4>Corredores Davivienda</h4>
-                  <h2>{{item?.title}}</h2>
+                  <h4>{{getCategoy(item)}}</h4>
+                  <h2 class="title-multimedia">{{item?.title | truncate: 80: false}}</h2>
                   <h6>{{item?.createdAt | date:'d MMMM y'}}</h6>
 
                 </div>

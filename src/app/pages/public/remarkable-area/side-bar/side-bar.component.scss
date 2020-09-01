@@ -6,7 +6,50 @@
 }
 
 .information_sidebar_tabs ul.nav.nav-tabs li{
+  width: 44%;
   &.last_inf{
     margin-left: 0;
   }
 }
+
+.multimedia-cont {
+  width: 100%;
+
+  .right {
+    position: relative;
+
+    .thumb {
+      width: 126px;
+      height: 60px;
+      @media only screen and (max-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    .play_button {
+      width: 33px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.information_tab_pen.multimedia-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  @media only screen and (max-width: 1024px) {
+    padding: 0 15px;
+  }
+  @media only screen and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+}
+
+.information_tab_pen.multimedia-cont .right {
+  padding-top: 0px;
+}
+
