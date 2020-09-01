@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, Sanitizer, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, Sanitizer, ViewEncapsulation} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../../environments/environment';
@@ -22,7 +22,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
     public breadcrumbItems: Array<any> = [];
 
     constructor(private http: HttpService, private activatedRoute: ActivatedRoute,
-                private sanitizer: DomSanitizer) {
+                private sanitizer: DomSanitizer, private elementRef: ElementRef) {
     }
 
     ngOnInit() {
@@ -143,6 +143,27 @@ export class ReportComponent implements OnInit, AfterViewInit {
         }).subscribe((res) => {
             const html = (res.body as unknown as string); // .replace(/\/public\/reports\//g, environment.URL_API + 'public/reports/');
             this.myhtml = this.sanitizer.bypassSecurityTrustHtml(html);
+
+            setTimeout(() => {
+              const parent = document.getElementById('marketingCode') as HTMLElement;
+              if (!parent) {
+                return;
+              }
+              const scripts = parent.getElementsByTagName('script') as unknown as HTMLScriptElement[];
+              const scriptsInitialLength = scripts.length;
+              for (let i = 0; i < scriptsInitialLength; i++) {
+                const script = scripts[i];
+                const scriptCopy = document.createElement('script') as HTMLScriptElement;
+                scriptCopy.type = script.type ? script.type : 'text/javascript';
+                if (script.innerHTML) {
+                  scriptCopy.innerHTML = script.innerHTML;
+                } else if (script.src) {
+                  scriptCopy.src = script.src;
+                }
+                scriptCopy.async = false;
+                script.parentNode.replaceChild(scriptCopy, script);
+              }
+            }, 1000);
         });
     }
 

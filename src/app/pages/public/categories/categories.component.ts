@@ -70,6 +70,10 @@ export class CategoriesComponent implements OnInit {
       .subscribe(response => {
         const queryParams = response.iqueryParams;
         const params = response.iparams;
+        this.categoryId = null;
+        this.reportTypeId = null;
+        this.subcategoryId = null;
+
         if (params.id) {
           this.categoryId = params.id;
         }
@@ -173,6 +177,10 @@ export class CategoriesComponent implements OnInit {
   getCompanies() {
     this.http.get({
       path: `public/companies/`,
+      data: {
+        order: 'name ASC'
+      },
+      encode: true,
     }).subscribe((response: any) => {
       this.reportTypes = response.body;
       this.updateBreadcrumbItems();
@@ -330,6 +338,7 @@ export class CategoriesComponent implements OnInit {
     this.idateEnd = null;
     this.idateLowLimit = null;
     this.idateHighLimit = null;
+    this.getReports();
   }
 
   onBack(event) {
@@ -344,14 +353,17 @@ export class CategoriesComponent implements OnInit {
       this.reportType = reportType;
       this.reportTypeId = reportType.id;
     }
-    this.updateBreadcrumbItems();
-    this.getReports();
 
-    if (!this.reportTypeId) {
+    if (this.companyId) {
+      this.router.navigate(['categories', this.categoryId, 'type', this.companyId]);
+    } else if (!this.reportTypeId) {
       this.router.navigate(['categories', this.categoryId]);
     } else {
       this.router.navigate(['categories', this.categoryId, 'type', this.reportTypeId]);
     }
+
+    this.updateBreadcrumbItems();
+    this.getReports();
   }
 
   updateBreadcrumbItems() {

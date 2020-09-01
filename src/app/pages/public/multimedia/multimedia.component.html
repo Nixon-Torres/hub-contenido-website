@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-6 col-sm-12 Recomendados-inner-text">
           <h4>{{getCategoy(header)}}</h4>
-          <h2>{{header?.title}}</h2>
+          <h2>{{header?.title | truncate: 80: false}}</h2>
           <h6>{{header?.createdAt | date:'d MMMM y'}}</h6>
           <p>{{header?.description}}</p>
         </div>
@@ -44,7 +44,7 @@
           </div>
 
           <h4>{{getCategoy(item1)}}</h4>
-          <h2 class="title-multimedia">{{item1.title}}</h2>
+          <h2 class="title-multimedia">{{item1.title | truncate: 80: false}}</h2>
           <h6>{{item1?.description}}</h6>
         </div>
         <div class="col-md-4 col-sm-4 inline-video" *ngIf="item2" [routerLink]="['/multimedia', item2.id]">
@@ -111,7 +111,7 @@
                   </div>
 
                   <h4>{{getCategoy(item)}}</h4>
-                  <h2 class="title-multimedia">{{item?.title}}</h2>
+                  <h2 class="title-multimedia">{{item?.title | truncate: 80: false}}</h2>
                   <h6>{{item?.createdAt | date:'d MMMM y'}}</h6>
 
                 </div>

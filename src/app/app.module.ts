@@ -28,6 +28,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {EditPreferencesDialogComponent} from './pages/public/edit-preferences-dialog/edit-preferences-dialog.component';
 import {InvestPreferencesDialogComponent} from './pages/public/invest-preferences-dialog/invest-preferences-dialog.component';
+import {RunScriptsDirective} from './run-scripts.directive';
 
 registerLocaleData(localeCo, 'es-CO');
 
@@ -41,7 +42,8 @@ registerLocaleData(localeCo, 'es-CO');
     ThankyouComponent,
     SubscribeDialogComponent,
     EditPreferencesDialogComponent,
-    InvestPreferencesDialogComponent
+    InvestPreferencesDialogComponent,
+    RunScriptsDirective,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ registerLocaleData(localeCo, 'es-CO');
   exports: [
     SubscribeDialogComponent,
     EditPreferencesDialogComponent,
-    InvestPreferencesDialogComponent
+    InvestPreferencesDialogComponent,
+    RunScriptsDirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

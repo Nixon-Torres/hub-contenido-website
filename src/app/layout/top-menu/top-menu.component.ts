@@ -140,7 +140,17 @@ export class TopMenuComponent implements OnInit {
 
   private getItems() {
     if (this.currentMenuOption === 6) {
-      return this.companies;
+      return this.companies.sort((a, b) => {
+          const nameA = a.name.toLowerCase();
+          const nameB = b.name.toLowerCase();
+          if (nameA > nameB) {
+            return 1;
+          } else if (nameA < nameB) {
+            return -1;
+          } else {
+            return 0;
+          }
+      });
     }
 
     const code = this.menuOptions[this.currentMenuOption - 1].code;
@@ -149,11 +159,33 @@ export class TopMenuComponent implements OnInit {
       return [];
     }
 
+    const params = this.currentCategory && this.currentCategory.params ? this.currentCategory.params : {};
+    const alphabetic = params.sorting && params.sorting === 'alphabetic';
     const reportTypes = this.reportTypes.filter(e => e.mainCategory.find(k => k.id === category.id))
       .map(e => {
         const item = e;
         item.name = item.description;
         return item;
+      }).sort((a, b) => {
+        if (alphabetic) {
+          const nameA = this.getReportTypeName(a).toLowerCase();
+          const nameB = this.getReportTypeName(b).toLowerCase();
+          if (nameA > nameB) {
+            return 1;
+          } else if (nameA < nameB) {
+            return -1;
+          } else {
+            return 0;
+          }
+        } else {
+          if (a.order > b.order) {
+            return 1;
+          } else if (a.order < b.order) {
+            return -1;
+          } else {
+            return 0;
+          }
+        }
       });
     return reportTypes;
   }
@@ -172,8 +204,7 @@ export class TopMenuComponent implements OnInit {
     return this.http.get({
       path: `public/reports_type/`,
       data: {
-        include: ['mainCategory', 'subCategory'],
-        order: ['order ASC', 'description ASC']
+        include: ['mainCategory', 'subCategory']
       },
       encode: true
     }).pipe(
