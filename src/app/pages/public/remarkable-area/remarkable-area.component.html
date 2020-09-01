@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="content">
-				<div class="information_left_first" *ngIf="headerReport" [routerLink]="['/reports', headerReport.id]">
+				<div class="information_left_first first_banner" *ngIf="headerReport" [routerLink]="['/reports', headerReport.id]">
 					<div class="information_image">
 						<img [src]="assetBase + headerReport?.image.clientPath" alt="">
 						<p class="label">CONTENIDO DESTACADO</p>

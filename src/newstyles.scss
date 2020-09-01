@@ -6082,12 +6082,18 @@ body {
 .information_content .information_left_first {
   border-bottom: 1px solid #f5f5f5;
   padding-bottom: 15px;
+  @media only screen and (max-width: 768px) {
+    display: flex;
+  }
 }
 
 .information_content .information_left_first .information_image {
   position: relative;
   margin-bottom: 20px;
   border-bottom: 1px solid #e8162e;
+  @media only screen and (max-width: 500px) {
+    width: 50%;
+  }
 }
 
 .information_content .information_left_first .information_image img {
@@ -6106,6 +6112,9 @@ body {
 
 .information_content .information_left_first .information_details {
   padding: 10px 5px;
+  @media only screen and (max-width: 500px) {
+    width: 50%;
+  }
 }
 
 .information_content .information_left_first .information_details p.date:before {
@@ -6187,15 +6196,15 @@ body {
 .information_content_sidebar .information_sidebar_first_content .isfc_left {
   width: 65%;
   @media only screen and (max-width: 768px) {
-    width: 100%;
+    margin-left: 5%;
+    width: 50%;
   }
 }
 
 .information_content_sidebar .information_sidebar_first_content .isfc_right {
   width: 36%;
   @media only screen and (max-width: 768px) {
-    width: 100%;
-    order: -2;
+    order: -1;
   }
 }
 
@@ -8593,7 +8602,7 @@ button.owl-next {
   width: 100%;
   float: left;
   padding-right: 420px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .estimamos-head h4 {
@@ -8628,6 +8637,7 @@ button.owl-next {
   position: relative;
   overflow: hidden;
   min-height: 23em;
+  height: 100%;
 }
 
 .estimampius-big-box-1 .fas.fa-angle-up {
@@ -8788,6 +8798,9 @@ button.owl-next {
   margin-top: 70px;
   margin-bottom: 0;
   background-color: #F8F8F8;
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .calcap {
@@ -8929,7 +8942,7 @@ button.owl-next {
 .section-5 {
   width: 100%;
   float: left;
-  padding-top: 65px;
+  padding-top: 40px;
   padding-bottom: 0;
 }
 
@@ -8965,7 +8978,7 @@ button.owl-next {
 .atencion-table {
   width: 100%;
   float: left;
-  padding: 50px 150px;
+  padding: 20px 150px;
 }
 
 .atencion-table .table td {
@@ -9087,7 +9100,7 @@ button.owl-next {
 .ediciones-midcont {
   width: 100%;
   float: left;
-  padding: 70px;
+  padding: 20px 70px;
   border-bottom: solid 1px #ccc;
 }
 
@@ -11772,9 +11785,13 @@ max-width: 100% !important;
 
   .information_content .information_left_first .information_image img {
     width: 100%;
-    min-height: 140px;
+    height: 140px;
     object-fit: cover;
     object-position: 60%;
+    @media only screen and (max-width: 500px) {
+      height: 100%;
+      object-fit: initial;
+    }
   }
 
   .information_left_second_content {
@@ -15695,11 +15712,7 @@ max-width: 100% !important;
   .sec-3-contant .sec-3-colombia-btn {
     padding: 15px 25px;
   }
-
-  .section-4 {
-    padding: 30px 0;
-  }
-
+  
   .calcap {
     padding: 0;
   }
@@ -16085,7 +16098,7 @@ max-width: 100% !important;
     text-align: left;
     border-left: 3px solid #EF161A;
     padding: 0 205px 0 12px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     strong{
       font-weight: bold;
     }
@@ -16133,6 +16146,9 @@ max-width: 100% !important;
 }
 
 .section-5{
+  p {
+    margin-bottom: 0;
+  }
   .atencion{
     h3{
       font-size: 23px;
@@ -16343,6 +16359,20 @@ body.modal-open {
     font-family: 'Helvetica-Neue';
     margin-bottom: 1rem;
     line-height: 30px;
+  }
+}
+
+.information_content {
+  .content {
+    .first_banner {
+      display: block;
+      .information_image {
+        width: 100%;
+      }
+      .information_details {
+        width: 100%;
+      }
+    }
   }
 }
 
