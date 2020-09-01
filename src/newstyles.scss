@@ -6203,9 +6203,6 @@ body {
 
 .information_content_sidebar .information_sidebar_first_content .isfc_right {
   width: 36%;
-  @media only screen and (max-width: 768px) {
-    order: -1;
-  }
 }
 
 .information_sidebar_media-contant {
