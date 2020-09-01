@@ -70,6 +70,10 @@ export class CategoriesComponent implements OnInit {
       .subscribe(response => {
         const queryParams = response.iqueryParams;
         const params = response.iparams;
+        this.categoryId = null;
+        this.reportTypeId = null;
+        this.subcategoryId = null;
+
         if (params.id) {
           this.categoryId = params.id;
         }

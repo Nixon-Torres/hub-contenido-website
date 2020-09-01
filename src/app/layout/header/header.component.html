@@ -79,7 +79,7 @@
                   <div class="tab-content accordion_tab_sub" [ngClass]="{'tab-content-visible': menu.visible}" *ngIf="menu.idx === 7">
                     <a [routerLink]="getCategoryLink(menu.idx)" class="min_text" (click)="go(menu.name)">Ver todo {{menu.name}}</a>
                     <div *ngFor="let inv of investmentGroups">
-                      <p class="min_text" [routerLink]="getCategoryLink(menu.idx)" [queryParams]="getQueryParams(inv)">{{inv.name}}</p>
+                      <p class="min_text" [routerLink]="getCategoryLink(menu.idx)" [queryParams]="getQueryParams(inv)" (click)="go(inv.name)">{{inv.name}}</p>
                       <a class="acordion_subtitle ac_links" *ngFor="let item of getItems(inv)" (click)="getCategoryReportTypeLink(menu, item)">
                         {{item.description ? item.description : item.name}}
                       </a>

@@ -127,6 +127,7 @@ export class HeaderComponent implements OnInit {
       clickUrl: window.location.href
     };
     this.gtmService.pushTag(gtmTag);
+    document.getElementById('mySidenav').style.width = '0';
   }
 
   getCategoryReportTypeLink(menu: any, report: any) {
