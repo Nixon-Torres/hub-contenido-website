@@ -986,6 +986,9 @@ ul.nav.nav-tabs li.activeone a {
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: #fafafa;
+  @media only screen and (max-width: 500px) {
+    background-color: #ffffff;
+  }
 }
 
 .para_left_content .para_left_first h4 {
@@ -1071,6 +1074,9 @@ p.para_nuvo {
   height: 95%;
   @media only screen and (max-width: 768px) {
     min-height: 200px;
+  }
+  @media only screen and (max-width: 500px) {
+    background-color: #ffffff;
   }
 }
 
@@ -16362,6 +16368,9 @@ max-width: 100% !important;
 
 .tabs_works.economy_content{
   padding: 10px;
+  @media only screen and (max-width: 500px) {
+    background-color: #F4F4F4;
+  }
 }
 
 body.modal-open {
