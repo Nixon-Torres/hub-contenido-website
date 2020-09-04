@@ -326,7 +326,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
 }
 
 .tab-content a {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 .information_sidebar_tabs ul.nav.nav-tabs {
@@ -405,6 +405,10 @@ ul.nav.nav-tabs li.activeone a {
   padding-bottom: 25px;
   border-left: 1px solid #e8162e;
   background-color: #fafafa;
+  @media only screen and (max-width: 500px) {
+    border-top: solid 1px #e8162e;
+    border-left: 0;
+  }
 }
 
 .para_left_content .para_left_first h4 {
