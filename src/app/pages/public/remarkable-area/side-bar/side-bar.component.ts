@@ -15,6 +15,7 @@ export class SideBarComponent implements OnInit {
   public dailyReport: any;
   public reports: any;
   public contents: any;
+  public discardedIds: any;
   public selectedTab = 'tab1';
 
   public banner1: any;
@@ -23,7 +24,6 @@ export class SideBarComponent implements OnInit {
   constructor(private http: HttpService, private router: Router) { }
 
   ngOnInit() {
-    this.loadReports(1);
     this.loadContents();
     this.getDailyType();
   }
@@ -35,30 +35,36 @@ export class SideBarComponent implements OnInit {
   }
 
   getDailyType() {
-    const code = 'DIARIOACCIONES';
+    const codes = ['DIARIOACCIONES', 'ASICIERRANLOSMERCADOS'];
 
     this.http.get({
       path: `public/reports_type/`,
       data: {
         where: {
-          code
+          code: {
+            inq: codes
+          }
         }
       },
       encode: true
     }).subscribe((res) => {
       const data = res.body as any;
       if (data.length) {
-        this.getDailyReport(data[0].id);
+        this.discardedIds = data.map(e => e.id);
+        this.getDailyReport(this.discardedIds);
       }
+      this.loadReports(1);
     });
   }
 
-  getDailyReport(reportTypeId: string) {
+  getDailyReport(reportTypeIds: string) {
     this.http.get({
       path: `public/reports/`,
       data: {
         where: {
-          reportTypeId
+          reportTypeId: {
+            inq: reportTypeIds
+          }
         },
         order: 'publishedAt DESC',
         limit: 1
@@ -80,6 +86,9 @@ export class SideBarComponent implements OnInit {
   private loadReports(idx) {
     const filter = {
       where: {
+        reportTypeId: {
+          nin: idx === 1 ? this.discardedIds : []
+        }
       },
       fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle', 'reads'],
       include: ['files', 'section', {
