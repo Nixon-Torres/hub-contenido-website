@@ -46,9 +46,19 @@
   height: 150px;
 }
 
-.ediciones-midcont li {
-  height: 370px;
-  margin-bottom: 15px;
+.ediciones-midcont {
+  ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+
+    li {
+      height: 370px;
+      width: 32%;
+      margin: 0 0 15px;
+    }
+  }
 }
 
 iframe {
