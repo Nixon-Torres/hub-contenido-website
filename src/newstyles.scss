@@ -8370,13 +8370,16 @@ button.owl-next {
   float: left;
 }
 
+.el-libro-contant h3.title {
+  text-transform: uppercase;
+}
+
 .el-libro-contant h3 {
   font-size: 26px;
   line-height: 21px;
   color: #E8162E;
   text-align: left;
   margin-bottom: 15px;
-  text-transform: uppercase;
   font-weight: bold;
 }
 
@@ -15787,7 +15790,7 @@ max-width: 100% !important;
   .sec-3-contant .sec-3-colombia-btn {
     padding: 15px 25px;
   }
-  
+
   .calcap {
     padding: 0;
   }
@@ -16080,7 +16083,7 @@ max-width: 100% !important;
   z-index: 8;
   width: 100%;
   @media only screen and (max-width: 768px) {
-   top: 4em;     
+   top: 4em;
   }
 }
 
