@@ -22,6 +22,10 @@ export class RemarkableAreaComponent implements OnInit {
     this.loadOutstanding();
   }
 
+  private getType(item: any) {
+    return item && item.multimediaType ? item.multimediaType.name : 'none';
+  }
+
   getCategory(reportType) {
     return reportType ? reportType.description : '';
     /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
@@ -41,7 +45,10 @@ export class RemarkableAreaComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       const multimedia: any = (res.body as any).map(e => {
-        e.files = e.files.filter(j => j.key.toLowerCase() === 'thumbnail');
+        e.files = e.files.filter(j => (e.outstandingMainHomeArea === 'header' &&
+          j.key.toLowerCase() === 'outstandingimage') ||
+          (e.outstandingMainHomeArea !== 'header' &&
+            j.key.toLowerCase() === 'thumbnail'));
         e.image = e.files && e.files.length ? e.files[0] : null;
         return {
           id: e.id,
@@ -51,6 +58,7 @@ export class RemarkableAreaComponent implements OnInit {
           image: e.image,
           publishedAt: e.createdAt,
           multimedia: true,
+          multimediaType: e.multimediaType,
           reportType: {
             description: e && e.params && e.params.categoryName ? e.params.categoryName : 'CORREDORES DAVIVIENDA',
           },

@@ -30,3 +30,42 @@ app-side-bar {
 	outline: 0 !important;
 	cursor: pointer;
 }
+
+.remarkable-area {
+  position: relative;
+
+  .play_button {
+    position: absolute;
+    top: 39%;
+    left: 43%;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .up_label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffffffeb;
+    min-width: 45px;
+    text-align: center;
+    border-radius: 4px;
+
+    p {
+      margin: 0;
+      color: #e8162e;
+      padding: 2px;
+      font-size: 9px;
+      font-weight: 500;
+      font-family: HelveticaNeueMedium;
+      text-transform: uppercase;
+
+      &:before {
+        background-color: transparent;
+      }
+    }
+  }
+}
