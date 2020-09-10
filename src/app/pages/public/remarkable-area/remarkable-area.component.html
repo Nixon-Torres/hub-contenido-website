@@ -10,7 +10,7 @@
 					<div class="information_details">
 						<h6>{{getCategory(headerReport?.reportType)}}</h6>
 						<h4>{{headerReport?.rTitle | striphtml}}</h4>
-						<p>{{headerReport?.smartContent | truncate: 150: true}}</p>
+						<p class="outstanding_text">{{headerReport?.smartContent | truncate: 150: true}}</p>
 						<p class="date">{{headerReport?.publishedAt | date:'d MMMM y'}}</p>
 					</div>
 				</div>
