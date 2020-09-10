@@ -913,6 +913,9 @@ footer.main_footer .footer_first .footer-links ul li:before {
   padding-left: 0px;
   display: inline-block;
   margin-bottom: -1.5rem;
+  @media only screen and (max-width: 500px) {
+    border-top: dashed 1px #dadada;
+  }
 
   .left {
     float: left;
@@ -6179,6 +6182,10 @@ body {
   font: 14px/21px Helvetica;
   font-weight: 500;
   word-break: break-word;
+  &.date {
+    font-size: 13px;
+    color: #818181;
+  }
 }
 
 .information_content .information_left_first .information_details p:before {
@@ -11877,7 +11884,7 @@ max-width: 100% !important;
   }
 
   .information_left_second_content {
-    padding: 15px 15px;
+    padding: 15px 25px;
   }
 
   .information_content .col-sm-8 {
@@ -16489,6 +16496,15 @@ body.modal-open {
       }
       .information_details {
         width: 100%;
+        @media only screen and (max-width: 500px) {
+          padding: 0 22px;
+          margin-top: 25px;
+        }
+      }
+      .outstanding_text {
+        @media only screen and (max-width: 500px) {
+          margin-left: 11px;
+        }
       }
     }
   }

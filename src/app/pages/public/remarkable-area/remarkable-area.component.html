@@ -13,7 +13,7 @@
               <p>{{getType(headerReport)}}</p>
             </div>
 						<h4>{{headerReport?.rTitle | striphtml}}</h4>
-						<p>{{headerReport?.smartContent | truncate: 150: true}}</p>
+						<p class="outstanding_text">{{headerReport?.smartContent | truncate: 150: true}}</p>
 						<p class="date">{{headerReport?.publishedAt | date:'d MMMM y'}}</p>
 					</div>
           <div *ngIf="headerReport.multimedia" class="play_button"><img src="assets/images/play_btn.png" alt=""></div>
