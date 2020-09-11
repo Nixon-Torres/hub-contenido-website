@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="content">
-				<div class="remarkable-area information_left_first first_banner" *ngIf="headerReport" [routerLink]="getLink(headerReport)">
+				<div class="remarkable-area information_left_first first_banner" *ngIf="headerReport" [routerLink]="getLink(headerReport)" (click)="tag('Home', 'Contenido Destacado', getLink(headerReport));">
 					<div class="information_image">
 						<img [src]="assetBase + headerReport?.image.clientPath" alt="">
 						<p class="label">CONTENIDO DESTACADO</p>
@@ -24,7 +24,7 @@
 					</div>
 					<div class="informs_under_content">
 						<div class="row">
-							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area1Report" [routerLink]="getLink(area1Report)">
+							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area1Report" [routerLink]="getLink(area1Report)" (click)="tag('Home', 'Informe Destacado', getLink(area1Report));">
 								<h6 class="outstanding_title">{{getCategory(area1Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
@@ -42,7 +42,7 @@
 									<p class="date">{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
 								</div>
 							</div>
-							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area2Report" [routerLink]="getLink(area2Report)">
+							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area2Report" [routerLink]="getLink(area2Report)" (click)="tag('Home', 'Informe Destacado', getLink(area2Report));">
 								<h6 class="outstanding_title">{{getCategory(area2Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
@@ -60,7 +60,7 @@
 									<p class="date">{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
 								</div>
 							</div>
-							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area3Report" [routerLink]="getLink(area3Report)">
+							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area3Report" [routerLink]="getLink(area3Report)" (click)="tag('Home', 'Informe Destacado', getLink(area3Report));">
 								<h6 class="outstanding_title">{{getCategory(area3Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
@@ -78,7 +78,7 @@
 									<p class="date">{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
 								</div>
 							</div>
-							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area4Report" [routerLink]="getLink(area4Report)">
+							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area4Report" [routerLink]="getLink(area4Report)" (click)="tag('Home', 'Informe Destacado', getLink(area4Report));">
 								<h6 class="outstanding_title">{{getCategory(area4Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">

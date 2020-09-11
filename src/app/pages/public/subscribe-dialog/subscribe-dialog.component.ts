@@ -4,6 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {HttpService} from '../../../services/http.service';
 import {DataService} from '../../../data.service';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-subscribe-dialog',
@@ -40,7 +41,8 @@ export class SubscribeDialogComponent {
     private http: HttpService,
     private dataService: DataService,
     public dialogRef: MatDialogRef<SubscribeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private gtmService: GoogleTagManagerService) {
 
     this.quincenal = data.quincenal;
 
@@ -73,6 +75,7 @@ export class SubscribeDialogComponent {
           }]
       }
     }).subscribe((res) => {
+      this.tag('Suscripción boletin quincenal', 'Enviar','Formulario de suscripcion');
       this.dialogRef.close({subscriber: this.subscriber});
     });
   }
@@ -88,4 +91,15 @@ export class SubscribeDialogComponent {
     this.dialogRef.close();
   }
 
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../../services/http.service';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-how-is-economy',
@@ -16,7 +17,7 @@ export class HowIsEconomyComponent implements OnInit {
   public area3Report: any;
   public area4Report: any;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private gtmService: GoogleTagManagerService) { }
 
   ngOnInit() {
     this.loadOutstanding();
@@ -110,5 +111,17 @@ export class HowIsEconomyComponent implements OnInit {
       this.area3Report = this.reports.find(e => e.howseconomyArea === 'report3');
       this.area4Report = this.reports.find(e => e.howseconomyArea === 'report4');
     });
+  }
+
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

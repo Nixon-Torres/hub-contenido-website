@@ -4,6 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {HttpService} from '../../../services/http.service';
 import {DataService} from '../../../data.service';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-invest-preferences-dialog',
@@ -41,7 +42,8 @@ export class InvestPreferencesDialogComponent {
     private http: HttpService,
     private dataService: DataService,
     public dialogRef: MatDialogRef<InvestPreferencesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private gtmService: GoogleTagManagerService) {
 
     this.reportTypes = data.reportTypes;
     this.category = data.category;
@@ -72,4 +74,15 @@ export class InvestPreferencesDialogComponent {
     this.dialogRef.close();
   }
 
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: 'Quitar informes - ' + this.category.description + ' - ' + eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
 }

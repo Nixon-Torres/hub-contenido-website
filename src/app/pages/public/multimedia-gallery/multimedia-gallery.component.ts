@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import {HttpService} from '../../../services/http.service';
 import * as moment from 'moment';
 import {Router} from '@angular/router';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-multimedia-gallery',
@@ -17,7 +18,7 @@ export class MultimediaGalleryComponent implements OnInit {
   public item2: any;
   public item3: any;
 
-  constructor(private http: HttpService, private router: Router) { }
+  constructor(private http: HttpService, private router: Router, private gtmService: GoogleTagManagerService) { }
 
   ngOnInit() {
     this.loadContents();
@@ -78,4 +79,16 @@ export class MultimediaGalleryComponent implements OnInit {
     });
   }
 
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    console.log(gtmTag);
+    this.gtmService.pushTag(gtmTag);
+  }
 }

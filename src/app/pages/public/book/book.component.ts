@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-book',
@@ -30,7 +31,7 @@ export class BookComponent implements OnInit {
     link: ['/categories', '5e7fc9a5dc4b4a6c6629517e']
   }];
 
-  constructor(private http: HttpService, private router: Router, private sanitizer: DomSanitizer) {
+  constructor(private http: HttpService, private router: Router, private sanitizer: DomSanitizer, private gtmService: GoogleTagManagerService) {
     this.subscribeGroup = new FormGroup({
       name: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -155,5 +156,17 @@ export class BookComponent implements OnInit {
     }).subscribe((res) => {
       this.router.navigate(['/thankyou']);
     });
+  }
+
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

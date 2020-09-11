@@ -3,6 +3,7 @@ import {HttpService} from '../../../../services/http.service';
 import {environment} from '../../../../../environments/environment';
 import * as moment from 'moment';
 import {Router} from '@angular/router';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-side-bar',
@@ -21,7 +22,7 @@ export class SideBarComponent implements OnInit {
   public banner1: any;
   public banner2: any;
 
-  constructor(private http: HttpService, private router: Router) { }
+  constructor(private http: HttpService, private router: Router, private gtmService: GoogleTagManagerService) { }
 
   ngOnInit() {
     this.loadContents();
@@ -203,5 +204,17 @@ export class SideBarComponent implements OnInit {
       this.banner1 = this.contents.find(e => e.key === 'banner_1');
       this.banner2 = this.contents.find(e => e.key === 'banner_2');
     });
+  }
+
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

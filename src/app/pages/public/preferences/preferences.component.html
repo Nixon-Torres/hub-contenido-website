@@ -32,7 +32,7 @@
 
 <div class="email-menu">
   <div class="container">
-    <mat-tab-group (selectedTabChange)="changeCategory($event)" [(selectedIndex)]="selectedIdx">
+    <mat-tab-group (selectedTabChange)="changeCategory($event)" [(selectedIndex)]="selectedIdx" (click)="tag('Suscripción Informes personalizados', mainCategories[selectedIdx].description, 'Categoria superior');">
       <mat-tab [label]="category.description" *ngFor="let category of mainCategories">
         <div *ngIf="category.code !== 'ENQUINVERTIR'" class="tab__wrapper">
           <div class="row">
@@ -45,7 +45,7 @@
                 <div class="row select_reports">
                   <div class="col-md-12 col-sm-12 pl-0 pr-0 regresar_checkbox">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="selectAllCb" name="regresarcheck" [(ngModel)]="cbs.selectAllCb"
+                      <input (click)="tag('Suscripción Informes personalizados', mainCategories[selectedIdx].description, 'Seleccionar todos los informes');" type="checkbox" class="custom-control-input" id="selectAllCb" name="regresarcheck" [(ngModel)]="cbs.selectAllCb"
                               (change)="toggleSelection()" [ngModelOptions]="{standalone: true}">
                       <label class="custom-control-label" for="selectAllCb">Seleccionar todos los
                         informes</label>
@@ -58,7 +58,7 @@
                       <div class="box-margin1" *ngFor="let type of selectedCategory?.childrenMainReportTypes; let i = index">
                         <div class="menu-text-box-1">
                           <div class="custom-control custom-checkbox">
-                            <input [formControlName]="getTypeIndex(type)" type="checkbox" class="custom-control-input" [id]="type.id" name="example1">
+                            <input (click)="tag('Suscripción Informes personalizados', mainCategories[selectedIdx].description, type.description)" [formControlName]="getTypeIndex(type)" type="checkbox" class="custom-control-input" [id]="type.id" name="example1">
                             <label class="custom-control-label" [for]="type.id"> <h4 class="text-wrap">{{type.description}} </h4>
                               <p>Periodicidad: {{getFreqLabel2(type?.period)}}</p></label>
                             <a *ngIf="type?.info" (mouseenter)="type.tooltipVisible = true" (mouseleave)="type.tooltipVisible = false"><span><i class="fas fa-info-circle"></i></span>
@@ -118,7 +118,7 @@
 
                 <div class="box-bottom-text">
                   <p>Se está suscribiendo a <span class="red">{{getCheckboxesSelected().length}}</span> informes y recibirá aproximadamente <span class="red">{{getMonthlyReports()}}</span> correos al mes, sin contar los informes eventuales.</p>
-                  <a><button type="button" class="btn box-bottom-btn" (click)="openSubscriptionModal()" [disabled]="getCheckboxesSelected().length === 0">{{accessToken ? 'Actualizar' : 'Activar'}} suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
+                  <a><button type="button" class="btn box-bottom-btn" (click)="openSubscriptionModal(); tag('Suscripción Informes personalizados', 'Activar', 'Activar mi suscripcion')" [disabled]="getCheckboxesSelected().length === 0">{{accessToken ? 'Actualizar' : 'Activar'}} suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
                 </div>
               </div>
 
@@ -152,13 +152,13 @@
                     <div class="regresar-Acciones-contant">
                       <div class="col-md-7 col-sm-12 pl-0 pr-0">
                           <div class="custom-control custom-checkbox regresar-checkbox">
-                            <input type="checkbox" class="custom-control-input" [(ngModel)]="subcategoryCbs[subcategory.id]"
+                            <input (click)="tag('Suscripción Informes personalizados',category.description,subcategory.description);" type="checkbox" class="custom-control-input" [(ngModel)]="subcategoryCbs[subcategory.id]"
                                    [ngModelOptions]="{standalone: true}" [id]="subcategory.id" name="example-1"
                             (change)="toggleSubcategory(subcategory.id)">
                             <label class="custom-control-label" [for]="subcategory.id">
                               <ul>
                                 <li *ngFor="let type of subcategory.childrenSubReportTypes">. {{type.description}}</li>
-                                <li class="edit-item"><a (click)="openInvestDialog($event, subcategory)"><u><i class="fas fa-edit"></i>Quitar uno o más
+                                <li class="edit-item"><a (click)="openInvestDialog($event, subcategory);tag('Suscripción Informes personalizados', category.description, ('Quitar informes - ').concat(subcategory.description))"><u><i class="fas fa-edit"></i>Quitar uno o más
                                   informes</u></a></li>
                               </ul>
                             </label>
@@ -304,12 +304,12 @@
 
               <div class="regresar-btn">
                 <div class="red-button">
-                  <a (click)="previousCategory()" class="left" *ngIf="selectedIdx > 0">
+                  <a (click)="previousCategory(); tag('Suscripción Informes personalizados', 'Categoria Inferior', getPreviousCatName())" class="left" *ngIf="selectedIdx > 0">
                     <button type="button" class="btn btn-red">
                       <span><i class="fas fa-chevron-left"></i></span>
                       {{getPreviousCatName()}}</button>
                   </a>
-                  <a (click)="nextCategory()" class="right" *ngIf="selectedIdx < (mainCategories.length - 1)">
+                  <a (click)="nextCategory(); tag('Suscripción Informes personalizados', 'Categoria Inferior', getNextCatName())" class="right" *ngIf="selectedIdx < (mainCategories.length - 1)">
                     <button type="button" class="btn btn-red">
                       {{getNextCatName()}}<span><i class="fas fa-chevron-right"></i></span>
                     </button>

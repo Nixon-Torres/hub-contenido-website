@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { environment } from '../../../../environments/environment';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-remarkable-area',
@@ -16,7 +17,7 @@ export class RemarkableAreaComponent implements OnInit {
   public area4Report: any;
 
   public assetBase: string = environment.URL_API;
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private gtmService: GoogleTagManagerService) { }
 
   ngOnInit() {
     this.loadOutstanding();
@@ -128,5 +129,17 @@ export class RemarkableAreaComponent implements OnInit {
 
       this.loadOutstandingMultimedia();
     });
+  }
+
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

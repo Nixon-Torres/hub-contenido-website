@@ -3,6 +3,7 @@ import { HttpService } from '../../../services/http.service';
 import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-multimedia-detail',
@@ -25,7 +26,7 @@ export class MultimediaDetailComponent implements OnInit {
 
   constructor(private http: HttpService,
     private activatedRoute: ActivatedRoute,
-    private router: Router, private sanitizer: DomSanitizer) {
+    private router: Router, private sanitizer: DomSanitizer, private gtmService: GoogleTagManagerService) {
   }
 
   ngOnInit() {
@@ -201,5 +202,17 @@ export class MultimediaDetailComponent implements OnInit {
     return reportType && reportType.description ? reportType.description :
           reportType.mainCategory && reportType.mainCategory.length ?
           reportType.mainCategory[0].description : '';
+  }
+
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

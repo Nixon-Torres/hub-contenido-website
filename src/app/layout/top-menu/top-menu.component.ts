@@ -350,4 +350,16 @@ export class TopMenuComponent implements OnInit {
     const rsp = ['/categories', id, 'type', report.id];
     return rsp;
   }
+
+  tag(eventCategory, eventAction) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: window.location.href,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
 }
