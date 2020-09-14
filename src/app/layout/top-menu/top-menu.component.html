@@ -10,12 +10,12 @@
         </li>
         <li (mouseenter)="mouseEnter(2)"
             class="add-padd set-caret-2" [routerLink]="getCategoryLink(2)"
-            routerLinkActive="active" (click)="tag('Macroeconomia');">
+            routerLinkActive="active" (click)="tag('Menu','Macroeconomia');">
           <a>Macroeconomía</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(3)" class="set-caret-3 set-padd menu_icon"
             [routerLink]="getCategoryLink(3)"
-            routerLinkActive="active" (click)="tag('Nuestros indicadores');">
+            routerLinkActive="active" (click)="tag('Menu','Nuestros indicadores');">
             <figure>
               <img src="/assets/images/menu-icon.png" alt="">
             </figure>
@@ -23,27 +23,27 @@
         </li>
         <li (mouseenter)="mouseEnter(4)" class="set-caret-4 set-padd"
             [routerLink]="getCategoryLink(4)"
-            routerLinkActive="active" (click)="tag('Economias centroamericandas');">
+            routerLinkActive="active" (click)="tag('Menu', 'Economias centroamericandas');">
           <a>Economías <br/>Centroamericanas</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(5)" class="set-caret-5 set-padd"
             [routerLink]="getCategoryLink(5)"
-            routerLinkActive="active" (click)="tag('Tendencias sectoriales');">
+            routerLinkActive="active" (click)="tag('Menu', 'Tendencias sectoriales');">
           <a>Tendencias <br/>sectoriales</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(6)" class="set-caret-6 set-padd"
             [routerLink]="getCategoryLink(6)"
             routerLinkActive="active"
-            id="inner-menu-detail" (click)="tag('Analisis de companias');">
+            id="inner-menu-detail" (click)="tag('Menu', 'Analisis de companias');">
           <a>Análisis de<br>compañías</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(7)" class="set-padd set-caret-7"
             [routerLink]="getCategoryLink(7)"
-            routerLinkActive="active" (click)="tag('En que invertir');">
+            routerLinkActive="active" (click)="tag('Menu', 'En que invertir');">
           <a>¿En qué<br> invertir?&nbsp;</a><i class="fas fa-caret-down"></i>
         </li>
         <li class="add-padd set-caret-8 right-border-no" [routerLink]="['/multimedia']"
-            routerLinkActive="active" (click)="tag('Multimedia');">
+            routerLinkActive="active" (click)="tag('Menu', 'Multimedia');">
           <a>Multimedia</a>
         </li>
       </ul>
