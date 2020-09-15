@@ -136,10 +136,10 @@ export class RemarkableAreaComponent implements OnInit {
     const gtmTag = {
       eventCategory: eventCategory,
       eventAction: eventAction,
-      eventLabel: eventLabel,
+      eventLabel: window.location.origin + eventLabel,
       eventvalue: '',
       event: 'eventClick'
-    };
+    };console.log(gtmTag);
     this.gtmService.pushTag(gtmTag);
   }
 }
