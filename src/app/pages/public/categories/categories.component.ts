@@ -432,8 +432,8 @@ export class CategoriesComponent implements OnInit {
     this.getReports();
   }
 
-  tag(eventCategory, eventAction, eventLabel) {
-
+  tag(eventCategory, eventAction, eventLabel, getUrl) {
+    (getUrl) ? eventLabel = window.location.origin + eventLabel : '';
     const gtmTag = {
       eventCategory: eventCategory,
       eventAction: eventAction,

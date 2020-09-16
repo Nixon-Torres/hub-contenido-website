@@ -351,12 +351,12 @@ export class TopMenuComponent implements OnInit {
     return rsp;
   }
 
-  tag(eventCategory, eventAction) {
-
+  tag(eventCategory, eventAction, eventLabel, getUrl) {
+    (getUrl) ? eventLabel = window.location.origin + eventLabel : eventLabel = window.location.href; 
     const gtmTag = {
       eventCategory: eventCategory,
       eventAction: eventAction,
-      eventLabel: window.location.href,
+      eventLabel: eventLabel,
       eventvalue: '',
       event: 'eventClick'
     };

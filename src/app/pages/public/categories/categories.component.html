@@ -28,7 +28,7 @@
               <ul>
                 <div *ngFor="let item of reportTypes">
                   <a (click)="setReportType(item)">
-                    <li [ngClass]="{'active': isMenuActive(item)}" (click)="tag('Categoria', 'Subcategoria', getReportTypeName(item))">
+                    <li [ngClass]="{'active': isMenuActive(item)}" (click)="tag('Categoría', 'Subcategoria', getReportTypeName(item))">
                       {{getReportTypeName(item)}}
                     </li>
                   </a>
@@ -106,7 +106,7 @@
               <div class="contant gray-back" *ngFor="let report of reports; let idx = index">
                 <div class="detail" [ngClass]="{'gray-bg': (idx % 2) === 0}">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
-                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]" [queryParams]="{catId: this.categoryId}" (click)="tag('Categoría', 'Informes', ['/reports', report?.id]);">{{report?.rTitle | striphtml}}
+                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]" [queryParams]="{catId: this.categoryId}" (click)="tag('Categoría', 'Informes', '/reports'.concat('/', report?.id), true);">{{report?.rTitle | striphtml}}
                   </h4>
                   <p>{{report?.smartContent | truncate: 180: true}}
                   </p>
