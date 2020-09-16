@@ -124,8 +124,4 @@ export class HowIsEconomyComponent implements OnInit {
     };console.log(gtmTag);
     this.gtmService.pushTag(gtmTag);
   }
-
-  test(){
-    alert(1);
-  }
 }
