@@ -45,7 +45,7 @@
       </div>
       <div class="subcription-button">
         <p style="display: none">Recibirá un <span class="resumen-red">total de 4 informes.</span></p>
-        <button (click)="tag('Suscripción boletin quincenal', 'Volver al inicio', route.indexOf(QUINCENALCONFIRMED) > -1 ? 'Suscripción activada' : 'Revisión Bandeja')" type="button" class="btn resumen-red-btn" [routerLink]="['/home']"><i class="fas fa-chevron-left"></i>Volver al inicio</button>
+        <button (click)="tag('Suscripción boletin quincenal', 'Volver al inicio', (route.indexOf(SUBCONFIRMED) > -1) ? 'Suscripción activada' : 'Revisión Bandeja')" type="button" class="btn resumen-red-btn" [routerLink]="['/home']"><i class="fas fa-chevron-left"></i>Volver al inicio</button>
       </div>
     </div>
   </div>
