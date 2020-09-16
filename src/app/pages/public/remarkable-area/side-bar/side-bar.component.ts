@@ -214,7 +214,7 @@ export class SideBarComponent implements OnInit {
       eventLabel: eventLabel,
       eventvalue: '',
       event: 'eventClick'
-    };console.log(gtmTag);
+    };
     this.gtmService.pushTag(gtmTag);
   }
 }
