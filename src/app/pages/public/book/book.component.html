@@ -160,8 +160,8 @@
 
               <div *ngIf="data?.second" [innerHtml]="sanitize(data.second)"></div>
               <div class="sec-2-colombia-botton">
-                <button type="button" class="btn sec-2-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i
-                  class="fas fa-chevron-right" (click)="tag('Landing Page','Descargar libro','Ancla 1');"></i></button>
+                <button type="button" class="btn sec-2-colombia-btn" routerLink="./" fragment="subscribe" (click)="tag('Landing Page','Descargar libro','Ancla 1');">Descargar El Libro<i
+                  class="fas fa-chevron-right"></i></button>
               </div>
             </div>
           </div>

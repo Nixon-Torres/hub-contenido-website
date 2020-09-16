@@ -154,6 +154,7 @@ export class BookComponent implements OnInit {
         subscriber: this.subscriber
       }
     }).subscribe((res) => {
+      this.tag('Landing Page', 'Descargar libro', 'Envío de formulario')
       this.router.navigate(['/thankyou']);
     });
   }
