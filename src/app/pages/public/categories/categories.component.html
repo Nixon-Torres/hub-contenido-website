@@ -67,7 +67,7 @@
                                    [clearable]="false"
                                    placeholder="Seleccione por tipo de informe"
                                    [multiple]="false" bindLabel="description" bindValue="id" class="company-type-select"
-                                    (change)="setCompanyReportType($event);tag('Categoría', ('Tipo informe - ').concat($event['description']), this.router.url);"></ng-select>
+                                    (change)="setCompanyReportType($event);tag('Categoría', ('Tipo informe - ').concat($event['description']), this.router.url, true);"></ng-select>
                       </div>
                     </form>
                   </div>
@@ -80,7 +80,7 @@
                           <mat-label class="date_filter">Desde</mat-label>
                           <input matInput [matDatepicker]="dateStart"
                                  [max]="idateHighLimit" #input
-                                 (dateChange)="setStartDate($event); tag('Categoría', ('Tipo informe desde - ').concat($event['value']), this.router.url);">
+                                 (dateChange)="setStartDate($event); tag('Categoría', ('Tipo informe desde - ').concat($event['value']), this.router.url, true);">
                           <mat-datepicker-toggle matSuffix [for]="dateStart" placeholder="Hola"></mat-datepicker-toggle>
                           <mat-datepicker #dateStart></mat-datepicker>
                         </mat-form-field>
@@ -90,7 +90,7 @@
                           <mat-label class="date_filter">Hasta</mat-label>
                           <input matInput [matDatepicker]="dateEnd"
                                  [min]="idateLowLimit" #inputEnd
-                                 (dateChange)="setEndDate($event); tag('Categoría', ('Tipo informe hasta - ').concat($event['value']), this.router.url);">
+                                 (dateChange)="setEndDate($event); tag('Categoría', ('Tipo informe hasta - ').concat($event['value']), this.router.url, true);">
                           <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
                           <mat-datepicker #dateEnd></mat-datepicker>
                         </mat-form-field>
