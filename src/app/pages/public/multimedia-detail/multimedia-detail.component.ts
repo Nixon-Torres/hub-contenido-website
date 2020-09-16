@@ -204,8 +204,9 @@ export class MultimediaDetailComponent implements OnInit {
           reportType.mainCategory[0].description : '';
   }
 
-  tag(eventCategory, eventAction, eventLabel) {
-
+  tag(eventCategory, eventAction, eventLabel, getUrl, detail) {
+    (getUrl) ? (detail) ? eventLabel = 'Relacionado - ' + window.location.origin + eventLabel : eventLabel = window.location.origin + eventLabel : '';
+    eventAction = eventAction.replace('<h2>', '').replace('</h2>', '');
     const gtmTag = {
       eventCategory: eventCategory,
       eventAction: eventAction,
