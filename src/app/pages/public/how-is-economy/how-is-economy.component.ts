@@ -113,15 +113,19 @@ export class HowIsEconomyComponent implements OnInit {
     });
   }
 
-  tag(eventCategory, eventAction, eventLabel) {
-
+  tag(eventCategory, eventAction, eventLabel, getUrl, detail) {
+    (getUrl) ? (detail) ? eventLabel = 'Detalles del informe - ' + window.location.origin + eventLabel : eventLabel = window.location.origin + eventLabel : '';
     const gtmTag = {
       eventCategory: eventCategory,
       eventAction: eventAction,
       eventLabel: eventLabel,
       eventvalue: '',
       event: 'eventClick'
-    };
+    };console.log(gtmTag);
     this.gtmService.pushTag(gtmTag);
+  }
+
+  test(){
+    alert(1);
   }
 }
