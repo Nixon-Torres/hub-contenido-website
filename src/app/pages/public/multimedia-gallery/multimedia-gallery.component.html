@@ -8,7 +8,7 @@
 			<div class="slider_content">
 				<div class="owl-carousel owl-theme multimedia_img">
 					<div class="item" [ngClass]="{'invisible': !item1}">
-						<div class="slider_blog" (click)="go(item1); tag('Home', 'Multimedia', ('multimedia').concat('/',item1.id));">
+						<div class="slider_blog" (click)="go(item1); tag('Home', 'Multimedia', ('multimedia').concat('/',item1.id), true);">
 							<div class="slider_blog_img">
 								<img [src]="getThumbSource(item1)" alt="">
 								<div class="up_label">
@@ -19,7 +19,7 @@
 								</div>
 								<div class="play_button"><img src="assets/images/play_btn.png" alt=""></div>
 							</div>
-							<div class="slider_blog_details"  (click)="go(item1); tag('Home', 'Multimedia', ('multimedia').concat('/',item1.id));">
+							<div class="slider_blog_details"  (click)="go(item1); tag('Home', 'Multimedia', ('multimedia').concat('/',item1.id), true);">
                 <p style="text-transform: uppercase">{{item1?.params?.categoryName ? item1?.params?.categoryName : 'CORREDORES DAVIVIENDA'}}</p>
 								<h4>{{item1?.title | truncate: 80: false}}</h4>
 								<p class="date_mantion">{{item1?.createdAt | date:'d MMMM y'}}</p>
@@ -27,7 +27,7 @@
 						</div>
 					</div>
           <div class="item" [ngClass]="{'invisible': !item2}">
-            <div class="slider_blog" (click)="go(item2); tag('Home', 'Multimedia', ('multimedia').concat('/',item2.id));">
+            <div class="slider_blog" (click)="go(item2); tag('Home', 'Multimedia', ('multimedia').concat('/',item2.id), true);">
               <div class="slider_blog_img">
                 <img [src]="getThumbSource(item2)" alt="">
                 <div class="up_label">
@@ -38,14 +38,14 @@
                 </div>
                 <div class="play_button"><img src="assets/images/play_btn.png" alt=""></div>
               </div>
-              <div class="slider_blog_details" (click)="go(item2); tag('Home', 'Multimedia', ('multimedia').concat('/',item2.id));">
+              <div class="slider_blog_details" (click)="go(item2); tag('Home', 'Multimedia', ('multimedia').concat('/',item2.id), true);">
                 <p style="text-transform: uppercase">{{item2?.params?.categoryName ? item2?.params?.categoryName : 'CORREDORES DAVIVIENDA'}}</p>
                 <h4>{{item2?.title | truncate: 80: false}}</h4>
                 <p class="date_mantion">{{item2?.createdAt | date:'d MMMM y'}}</p>
               </div>
             </div>
           </div>
-          <div class="item"  (click)="go(item3); tag('Home', 'Multimedia', ('multimedia').concat('/',item3.id));">
+          <div class="item"  (click)="go(item3); tag('Home', 'Multimedia', ('multimedia').concat('/',item3.id), true);">
             <div class="slider_blog" [routerLink]="['/multimedia', item3 ? item3.id : 'none']">
               <div class="slider_blog_img">
                 <img [src]="getThumbSource(item3)" alt="">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="play_button"><img src="assets/images/play_btn.png" alt=""></div>
               </div>
-              <div class="slider_blog_details" (click)="go(item3); tag('Home', 'Multimedia', ('multimedia').concat('/',item3.id));">
+              <div class="slider_blog_details" (click)="go(item3); tag('Home', 'Multimedia', ('multimedia').concat('/',item3.id), true);">
                 <p style="text-transform: uppercase">{{item3?.params?.categoryName ? item3?.params?.categoryName : 'CORREDORES DAVIVIENDA'}}</p>
                 <h4>{{item3?.title | truncate: 80: false}}</h4>
                 <p class="date_mantion">{{item3?.createdAt | date:'d MMMM y'}}</p>
