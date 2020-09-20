@@ -16593,6 +16593,15 @@ body.modal-open {
   }
 }
 
+.section-1,
+.section-2,
+.estimamos-head {
+  ul {
+    li {
+      list-style-image: url(./assets/images/arrow_dav.svg);
+    }
+  }
+}
 
 .monitor-head {
   img {
