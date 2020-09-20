@@ -50,3 +50,11 @@
   padding-top: 0px;
 }
 
+.last_container {
+  @media only screen and (max-width: 500px) {
+   &:nth-child(5),
+   &:nth-child(6){
+    display: none;
+  }
+  }
+}
