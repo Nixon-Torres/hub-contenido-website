@@ -36,7 +36,7 @@
 						</div>
 						<a class="latest-reports-mobile" [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
 					</div>
-					<div *ngFor="let report of reports">
+					<div class="last_container" *ngFor="let report of reports">
 						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]">
 							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
 							<h4>{{report?.rTitle | striphtml}}</h4>
