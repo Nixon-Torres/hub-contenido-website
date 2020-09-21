@@ -6110,6 +6110,7 @@ body {
   @media only screen and (max-width: 600px) {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
 }
 
@@ -6140,7 +6141,7 @@ body {
 .information_content .information_left_first .information_details {
   padding: 10px 5px;
   @media only screen and (max-width: 500px) {
-    width: 50%;
+    width: 55%;
     padding: 0 5px;
     margin: 0 auto;
   }
