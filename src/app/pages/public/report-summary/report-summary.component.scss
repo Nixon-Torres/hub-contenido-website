@@ -21,5 +21,16 @@
     &:nth-child(2){
       display: block;
     }
+    &.second_tab {
+      &:nth-child(3),
+      &:nth-child(4){
+      display: block;
+      @media only screen and (max-width: 600px) {
+        &:nth-child(4){
+          display: none;
+        }
+      }
+    }
+    }
   }
 }
