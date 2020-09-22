@@ -1154,6 +1154,9 @@ p.para_nuvo {
   font-weight: 600;
   text-decoration: none;
   font-family: Helvetica_Neu_Bold;
+  @media only screen and (max-width: 600px) {
+    padding: 8px 15px;
+  }
 }
 
 .button_inner a i {
