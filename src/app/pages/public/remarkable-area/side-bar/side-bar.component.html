@@ -12,11 +12,15 @@
 			<a class="latest-reports-mobile" target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
 		</div>
 		<div class="information_sidebar_first_content">
-			<div class="isfc_left full_width">
+			<div class="isfc_left">
 				<h4>{{banner2?.title}}</h4>
 				<p>{{banner2?.description | truncate: 140: true}}</p>
-				<a class="latest-reports-2" target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
+				<a class="latest-reports-desktop" target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
 			</div>
+      <div class="isfc_right" *ngIf="banner2 && banner2.files && banner2.files.length">
+        <img src="{{STORAGE_URL}}{{banner2.files[0].clientPath}}" alt="">
+      </div>
+      <a class="latest-reports-mobile" target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
