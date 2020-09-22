@@ -16561,6 +16561,9 @@ body.modal-open {
   .content {
     .first_banner {
       display: block;
+      @media only screen and (max-width: 500px) {
+        margin-top: 2em;
+      }
       .information_image {
         img {
           width: 100%;
