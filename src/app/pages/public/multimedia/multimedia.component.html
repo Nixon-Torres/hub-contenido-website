@@ -17,7 +17,8 @@
         <div class="col-md-6 col-sm-12 recomendados_container">
           <div class="Recomendados-inner-image">
             <span class="overlaycategory">{{getType(header)}}</span>
-            <i class="fas fa-play-circle"></i>
+            <i class="fas" [ngClass]="{'fa-play-circle': getType(header) !== 'Podcast',
+            'fa-podcast': getType(header) === 'Podcast'}"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
             <img [src]="getThumbSource(header)" alt="" class="img-fluid">
@@ -38,7 +39,9 @@
           <div class="vidimg">
             <img [src]="getThumbSource(item1)" alt="" class="img-fluid">
             <span class="overlaycategory">{{getType(item1)}}</span>
-            <i class="fas fa-play-circle"></i>
+
+            <i class="fas" [ngClass]="{'fa-play-circle': getType(item1) !== 'Podcast',
+            'fa-podcast': getType(item1) === 'Podcast'}"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
           </div>
@@ -51,7 +54,8 @@
           <div class="vidimg">
             <img [src]="getThumbSource(item2)" alt="" class="img-fluid">
             <span class="overlaycategory">{{getType(item2)}}</span>
-            <i class="fas fa-podcast"></i>
+            <i class="fas" [ngClass]="{'fa-play-circle': getType(item2) !== 'Podcast',
+            'fa-podcast': getType(item2) === 'Podcast'}"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
           </div>
@@ -65,7 +69,8 @@
           <div class="vidimg">
             <img [src]="getThumbSource(item3)" alt="" class="img-fluid">
             <span class="overlaycategory">{{getType(item3)}}</span>
-            <i class="fas fa-play-circle"></i>
+            <i class="fas" [ngClass]="{'fa-play-circle': getType(item3) !== 'Podcast',
+            'fa-podcast': getType(item3) === 'Podcast'}"></i>
             <span class="overlaytitle">Reproducir</span>
             <div class="overlay-image-header"></div>
           </div>
@@ -105,7 +110,8 @@
                   <div class="vidimg video--image" [routerLink]="['/multimedia', item.id]">
                     <img [src]="getThumbSource(item)" alt="" class="img-fluid">
                     <span class="overlaycategory">{{getType(item)}}</span>
-                    <i class="fas fa-play-circle"></i>
+                    <i class="fas" [ngClass]="{'fa-play-circle': getType(item) !== 'Podcast',
+                      'fa-podcast': getType(item) === 'Podcast'}"></i>
                     <span class="overlaytitle">Reproducir</span>
                     <div class="overlay-image-header"></div>
                   </div>
