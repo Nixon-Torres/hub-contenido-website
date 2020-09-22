@@ -82,7 +82,7 @@
 				</div>
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
 					<div class="row">
-						<div class="col-sm-3 summary-mobile_hiden" *ngFor="let report of divisasReports">
+						<div class="col-sm-3" *ngFor="let report of divisasReports">
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
@@ -99,7 +99,7 @@
 				</div>
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab3'">
 					<div class="row">
-						<div class="col-sm-3 summary-mobile_hiden" *ngFor="let report of rentaReports">
+						<div class="col-sm-3" *ngFor="let report of rentaReports">
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
