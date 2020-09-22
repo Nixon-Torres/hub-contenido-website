@@ -96,3 +96,15 @@ app-side-bar {
     font-size: 13px;
   }
 }
+
+.information_content .information_left_first .information_image .wrapper i.fas {
+  @media only screen and (max-width: 500px) {
+    font-size: 30px;
+  }
+}
+
+.information_content .information_left_first.first_banner .information_image .wrapper i.fas {
+  @media only screen and (max-width: 500px) {
+    font-size: 50px;
+  }
+}
