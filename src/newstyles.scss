@@ -958,10 +958,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
-  @media only screen and (max-width: 500px) {
-    word-break: initial;
-  }
-  
+  word-break: initial;
 }
 
 .information_tab_pen p {
