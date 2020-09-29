@@ -76,6 +76,10 @@ export class ReportComponent implements OnInit, AfterViewInit {
         $('.circle.link').on('click', () => {
           this.copyToClipboard(window.location);
         });
+
+        $('#ponderarToggle').on('click', () => {
+          $('#ponderarToggle').toggleClass('ponderar_down');
+        });
       }, 1000);
     }
 

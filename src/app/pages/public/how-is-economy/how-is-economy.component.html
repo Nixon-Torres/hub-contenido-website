@@ -14,7 +14,7 @@
 				<div class="tab-pane activeone" *ngIf="tab === 'tab1'">
 					<div class="row">
 						<div class="col-sm-6 left-tab">
-							<div class="para_left_content">
+							<div class="para_left_content economy_background">
 								<div *ngIf="headerReport" class="para_left_first">
 									<h4>{{headerReport?.rTitle | striphtml}}</h4>
 									<p>{{headerReport?.publishedAt | date:'d MMMM y'}}</p>
@@ -31,8 +31,8 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="row">
-								<div class="col-sm-6">
-									<div *ngIf="area1Report" class="tab_sub_division_part"
+								<div class="col-sm-6 economy-mobile_hiden">
+									<div *ngIf="area1Report" class="tab_sub_division_part economy_background"
 										[routerLink]="['/reports', area1Report?.id]">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.rTitle | striphtml}}</h4>
@@ -40,8 +40,8 @@
 										<p>{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
-									<div *ngIf="area2Report" class="tab_sub_division_part"
+								<div class="col-sm-6 economy-mobile_hiden">
+									<div *ngIf="area2Report" class="tab_sub_division_part economy_background"
 										[routerLink]="['/reports', area2Report?.id]">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.rTitle | striphtml}}</h4>
@@ -49,8 +49,8 @@
 										<p>{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
-									<div *ngIf="area3Report" class="tab_sub_division_part"
+								<div class="col-sm-6 economy-mobile_hiden">
+									<div *ngIf="area3Report" class="tab_sub_division_part economy_background"
 										[routerLink]="['/reports', area3Report?.id]">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.rTitle | striphtml}}</h4>
@@ -58,8 +58,8 @@
 										<p>{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
-									<div *ngIf="area4Report" class="tab_sub_division_part"
+								<div class="col-sm-6 economy-mobile_hiden">
+									<div *ngIf="area4Report" class="tab_sub_division_part economy_background"
 										[routerLink]="['/reports', area4Report?.id]">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.rTitle | striphtml}}</h4>
@@ -79,8 +79,8 @@
 				</div>
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
 					<div class="row">
-						<div class="col-sm-3" *ngFor="let report of randomReports">
-							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
+						<div class="col-sm-3 economy-mobile_hiden second_tab" *ngFor="let report of randomReports">
+							<div class="tab_sub_division_part economy_background" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
 								<p class="tab_sub_division_part_text">{{report?.smartContent}}</p>

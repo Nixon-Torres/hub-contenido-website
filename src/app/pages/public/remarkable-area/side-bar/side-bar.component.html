@@ -4,18 +4,23 @@
 			<div class="isfc_left">
 				<h4>{{banner1?.title}}</h4>
 				<p>{{banner1?.description | truncate: 140: true}}</p>
-				<a target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
+				<a class="latest-reports-desktop" target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
 			</div>
 			<div class="isfc_right" *ngIf="banner1 && banner1.files && banner1.files.length">
 				<img src="{{STORAGE_URL}}{{banner1.files[0].clientPath}}" alt="">
 			</div>
+			<a class="latest-reports-mobile" target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
 		</div>
 		<div class="information_sidebar_first_content">
-			<div class="isfc_left full_width">
+			<div class="isfc_left">
 				<h4>{{banner2?.title}}</h4>
 				<p>{{banner2?.description | truncate: 140: true}}</p>
-				<a target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
+				<a class="latest-reports-desktop" target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
 			</div>
+      <div class="isfc_right" *ngIf="banner2 && banner2.files && banner2.files.length">
+        <img src="{{STORAGE_URL}}{{banner2.files[0].clientPath}}" alt="">
+      </div>
+      <a class="latest-reports-mobile" target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
@@ -24,17 +29,18 @@
 			</ul>
 			<div class="tab-content">
 				<div id="tab-1" class="tab-pane active">
-					<div class="information_sidebar_first_content" *ngIf="dailyReport">
+					<div class="information_sidebar_first_content latest-reports-container" *ngIf="dailyReport">
 						<div class="isfc_left">
 							<!-- <p>Acceda aqui al informe</p> -->
-							<h4>Así cierran los mercados</h4>
-							<a [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
+							<h4>{{dailyReport?.reportType?.code === 'DIARIOACCIONES' ? 'Diario de acciones' : 'Así cierran los mercados'}}</h4>
+							<a class="latest-reports-desktop" [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
 						</div>
 						<div class="isfc_right">
 							<img src="assets/images/tablet.png" alt="">
 						</div>
+						<a class="latest-reports-mobile" [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
 					</div>
-					<div *ngFor="let report of reports">
+					<div class="last_container" *ngFor="let report of reports">
 						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]">
 							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
 							<h4>{{report?.rTitle | striphtml}}</h4>

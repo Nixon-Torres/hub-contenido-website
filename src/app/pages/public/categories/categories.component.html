@@ -5,7 +5,7 @@
   <div class="preapertura">
     <div class="container">
       <div class="banner_image">
-        <img [src]="getBannerImg()" class="img-fluid" alt="">
+        <img *ngIf="getBannerImg()" [src]="getBannerImg()" class="img-fluid" alt="">
       </div>
     </div>
   </div>

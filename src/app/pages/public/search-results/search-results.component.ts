@@ -22,6 +22,7 @@ export class SearchResultsComponent implements OnInit {
   public pagesItems = [];
   public companyTypesSelect: any;
   public totalCount: number;
+  public totalCountSum: number;
   public totalPages: number;
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
@@ -242,6 +243,7 @@ export class SearchResultsComponent implements OnInit {
             this.reports.push(contents[i]);
         }
 
+        this.totalCountSum = reportsCount + contentsCount;
         this.totalCount = reportsCount > contentsCount ? reportsCount : contentsCount;
         this.totalPages = Math.ceil(this.totalCount / this.ITEMS_PER_PAGE);
         this.pagesItems = [];

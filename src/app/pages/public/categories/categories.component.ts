@@ -93,7 +93,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getBannerImg() {
-    const defaultBanner = '../../../../assets/images/Imagen 3.png';
+    const defaultBanner = null;
     if (!this.category || (this.category && !this.category.files)) {
       return defaultBanner;
     }

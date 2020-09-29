@@ -32,39 +32,39 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area1Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area1Report?.id]">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.rTitle | striphtml}}</h4>
-										<p class="para_left_first_text">{{area1Report?.smartContent}}</p>
+										<p class="para_left_first_text description">{{area1Report?.smartContent}}</p>
 										<p>{{area1Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area2Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area2Report?.id]">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.rTitle | striphtml}}</h4>
-										<p class="para_left_first_text">{{area2Report?.smartContent}}</p>
+										<p class="para_left_first_text description">{{area2Report?.smartContent}}</p>
 										<p>{{area2Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area3Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area3Report?.id]">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.rTitle | striphtml}}</h4>
-										<p class="para_left_first_text">{{area3Report?.smartContent}}</p>
+										<p class="para_left_first_text description">{{area3Report?.smartContent}}</p>
 										<p>{{area3Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area4Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area4Report?.id]">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.rTitle | striphtml}}</h4>
-										<p class="para_left_first_text">{{area4Report?.smartContent}}</p>
+										<p class="para_left_first_text description">{{area4Report?.smartContent}}</p>
 										<p>{{area4Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -82,11 +82,11 @@
 				</div>
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
 					<div class="row">
-						<div class="col-sm-3" *ngFor="let report of divisasReports">
+						<div class="col-sm-3 summary-mobile_hiden second_tab" *ngFor="let report of divisasReports">
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
-								<p class="para_left_first_text">{{report?.smartContent}}</p>
+								<p class="para_left_first_text description">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>
@@ -99,11 +99,11 @@
 				</div>
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab3'">
 					<div class="row">
-						<div class="col-sm-3" *ngFor="let report of rentaReports">
+						<div class="col-sm-3 summary-mobile_hiden second_tab" *ngFor="let report of rentaReports">
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
-								<p class="para_left_first_text">{{report?.smartContent}}</p>
+								<p class="para_left_first_text description">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>

@@ -21,9 +21,6 @@
     .thumb {
       width: 126px;
       height: 60px;
-      @media only screen and (max-width: 768px) {
-        width: 100%;
-      }
     }
 
     .play_button {
@@ -42,7 +39,7 @@
   align-items: center;
   width: 100%;
   @media only screen and (max-width: 1024px) {
-    padding: 0 15px;
+    padding: 15px;
   }
   @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
@@ -53,3 +50,11 @@
   padding-top: 0px;
 }
 
+.last_container {
+  @media only screen and (max-width: 500px) {
+   &:nth-child(5),
+   &:nth-child(6){
+    display: none;
+  }
+  }
+}
