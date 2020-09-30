@@ -1,19 +1,11 @@
 <div style="display: block">
-  <div class="page_direction">
-    <div class="container">
-      <ul>
-        <li class="back_page"><a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i>Volver </a></li>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Pagina dos</a></li>
-        <li><a href="#">Pagina tres</a></li>
-      </ul>
-    </div>
-  </div>
+
+  <app-breadcrumb [pages]="breadcrumbItems" (back)="onBack($event)"></app-breadcrumb>
 
   <div class="preapertura">
     <div class="container">
       <div class="banner_image">
-        <img [src]="getBannerImg()" class="img-fluid" alt="">
+        <img *ngIf="getBannerImg()" [src]="getBannerImg()" class="img-fluid" alt="">
       </div>
     </div>
   </div>
@@ -34,17 +26,29 @@
           <div class="row">
             <div class="col-md-3 col-sm-12 analisis-menu" *ngIf="category?.code !== 'ENQUINVERTIR'">
               <ul>
-                <a (click)="setReportType(item)" *ngFor="let item of reportTypes">
-                  <li [ngClass]="{'active': isMenuActive(item)}">{{item.name}}</li>
-                </a>
+                <div *ngFor="let item of reportTypes">
+                  <a (click)="setReportType(item)">
+                    <li [ngClass]="{'active': isMenuActive(item)}">
+                      {{getReportTypeName(item)}}
+                    </li>
+                  </a>
+                  <a *ngFor="let child of item.children" (click)="setReportType(child)">
+                    <li class="child" [ngClass]="{'active': isMenuActive(child)}">
+                      {{getReportTypeName(child)}}
+                    </li>
+                  </a>
+                </div>
               </ul>
             </div>
             <div class="col-md-3 col-sm-12 analisis-menu" *ngIf="category?.code === 'ENQUINVERTIR'">
               <div class="enquinvertir-menu" *ngFor="let group of investmentGroups">
                 <span class="title">{{group.name}}</span>
                 <ul>
-                  <a href="#" *ngFor="let item of group.reportTypes">
-                    <li>{{item.name}}</li>
+                  <a (click)="setReportType(item)" *ngFor="let item of group.reportTypes | slice:0: ((group && group.limit) ? 100 : 3);">
+                    <li>{{getReportTypeName(item)}}</li>
+                  </a>
+                  <a class="see_information" (click)="group.limit = !group.limit" *ngIf="group.reportTypes.length > 3">
+                    <li>Ver {{!group.limit ? 'todo' : 'menos'}}</li>
                   </a>
                 </ul>
               </div>
@@ -52,9 +56,9 @@
 
             <div class="col-md-9 col-sm-12 analisis-contant">
               <div class="contant-1">
-                <h3>Informes {{getSubCategoryName()}}</h3>
+                <h3>{{getSubCategoryName() ? getSubCategoryName() : 'Informes'}}</h3>
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 select-list-hide">
+                  <div class="col-md-6 col-sm-12 select-list">
                     <form>
                       <div *ngIf="category?.code === 'ANLISISDECOMPAAS'">
                         <label class="categorias-select-list">Filtro
@@ -69,11 +73,13 @@
                   </div>
                   <div class="col-md-6 col-sm-12 full-width">
                     <div class="date-picker-categorias">
-                      <label class="categorias-date-label">Filtre fecha</label>
+                      <label class="categorias-date-label" *ngIf="!idateStart && !idateEnd">Filtre fecha</label>
+                      <label class="categorias-date-label clean-filter" *ngIf="idateStart || idateEnd" (click)="cleanDateFilter()">Limpiar filtro</label>
                       <div class="date-picker-1">
                         <mat-form-field class="date-picker-category">
                           <mat-label class="date_filter">Desde</mat-label>
                           <input matInput [matDatepicker]="dateStart"
+                                 [max]="idateHighLimit" #input
                                  (dateChange)="setStartDate($event)">
                           <mat-datepicker-toggle matSuffix [for]="dateStart" placeholder="Hola"></mat-datepicker-toggle>
                           <mat-datepicker #dateStart></mat-datepicker>
@@ -83,6 +89,7 @@
                         <mat-form-field class="date-picker-category">
                           <mat-label class="date_filter">Hasta</mat-label>
                           <input matInput [matDatepicker]="dateEnd"
+                                 [min]="idateLowLimit" #inputEnd
                                  (dateChange)="setEndDate($event)">
                           <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
                           <mat-datepicker #dateEnd></mat-datepicker>
@@ -93,12 +100,15 @@
                 </div>
               </div>
 
-              <div class="contant gray-back" *ngFor="let report of reports">
-                <div class="detail">
+              <div class="no-results" *ngIf="reports?.length === 0">
+                No se encontraron resultados de su búsqueda
+              </div>
+              <div class="contant gray-back" *ngFor="let report of reports; let idx = index">
+                <div class="detail" [ngClass]="{'gray-bg': (idx % 2) === 0}">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
-                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]">{{report?.name}}
+                  <h4 class="reportTitle" [routerLink]="['/reports', report?.id]" [queryParams]="{catId: this.categoryId}">{{report?.rTitle | striphtml}}
                   </h4>
-                  <p>{{report?.smartContent}}
+                  <p>{{report?.smartContent | truncate: 180: true}}
                   </p>
                   <p class="small ">{{report?.publishedAt | date:'d MMMM y'}}</p>
                   <a *ngIf="isANewReport(report)">
@@ -108,15 +118,15 @@
               </div>
             </div>
 
-            <div class="mobile-pagination">
+            <div class="mobile-pagination" *ngIf="totalPages > 0">
               <div class="mob-set-div">
-                <a class="mob-button" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
+                <a class="mob-button categories_back" *ngIf="currentPage > 1" (click)="previousPage()">Anterior</a>
                 <a class="mob-button" *ngIf="currentPage < totalPages" (click)="nextPage()">Siguiente</a>
-                <p>1/19</p>
+                <p>{{currentPage}}/{{totalPages}}</p>
               </div>
             </div>
 
-            <div class="contant-pagination ">
+            <div class="contant-pagination" *ngIf="totalPages > 0">
               <div class="contant-page-set">
                 <a *ngIf="currentPage > 1" class="underline float-left" (click)="previousPage()">Anterior</a>
                 <a *ngIf="currentPage < totalPages" class="underline " (click)="nextPage()">Siguiente</a>

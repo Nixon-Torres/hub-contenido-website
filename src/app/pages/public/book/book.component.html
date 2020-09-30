@@ -1,17 +1,22 @@
-<div class="section-1">
+<app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
+
+<div class="section-1" id="subscribe">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-sm-12">
         <div class="el-libro">
           <div class="el-libro-contant">
-            <h3>El libro 2020</h3>
-            <h4>¿Qué impulsará el crecimiento de la economía colombiana en 2020?</h4>
+            <h3 class="title">{{data?.title}}</h3>
+            <!-- <h4>¿Qué impulsará el crecimiento de la economía colombiana en 2020?</h4>
             <h4> ¿Aún cuenta el COLCAP con espacio de valorización? </h4>
             <h4>¿Cuales son las mejores opciones de inversión en acciones locales?</h4>
-            <p>Descargue El Libro 2020: <span class="libro-red"> Colombia con fuerza propia</span> y cuente con un panorama completo para tomar las mejores decisiones de inversión</p>
+            <p>Descargue El Libro 2020: <span class="libro-red"> Colombia con fuerza propia</span> y cuente con un
+              panorama completo para tomar las mejores decisiones de inversión</p>-->
+            <div *ngIf="data?.header" [innerHtml]="sanitize(data.header)"></div>
           </div>
           <div class="libro-image">
-            <img src="../../../../assets/images/libro-image.png" alt="" class="img-fluid">
+            <img src="../../../../assets/images/libro-image.png" alt="" class="img-fluid" *ngIf="!data?.image">
+            <img [src]="data.image.assetUrl" alt="" class="img-fluid" *ngIf="data?.image">
           </div>
         </div>
       </div>
@@ -21,47 +26,101 @@
             <h3>Solo tiene que completar los siguientes campos para iniciar la descarga</h3>
           </div>
           <div class="libro-form-contant">
-            <div class="libro-Nombre">
-              <input type="text" name="" placeholder="Nambre">
-            </div>
-            <div class="libro-Apellido">
-              <input type="text" name="" placeholder="Apellido">
-            </div>
-            <div class="libro-electrónico">
-              <input type="text" name="" placeholder="Correo electrónico">
-            </div>
-            <div class="libro-select-list-1">
-              <select>
-                <option value="1">¿En qué sector económico usted trabaja?</option>
-                <option value="2">option 1</option>
-                <option value="3">option 2</option>
-                <option value="4">option 3</option>
-              </select>
-            </div>
-            <div class="libro-select-list-2">
-              <select>
-                <option value="volvo">¿Cual es su nivel de conocimiento en finanzas y economía?</option>
-                <option value="saab">option 1</option>
-                <option value="mercedes">option 2</option>
-                <option value="audi">option 3</option>
-              </select>
-            </div>
-            <div class="libro-checkbox">
-              <form>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="libro-customCheck-1" name="libro-1">
-                  <label class="custom-control-label" for="libro-customCheck-1">Acepto términos y condiciones</label>
+            <form [formGroup]="subscribeGroup" (ngSubmit)="subscribe()" #f>
+              <div class="libro-Nombre">
+                <input type="text" name="" placeholder="Nombre" [(ngModel)]="subscriber.name" formControlName="name">
+                <div *ngIf="subscribeGroup.controls.name.invalid && (subscribeGroup.controls.name.dirty || subscribeGroup.controls.name.touched)"
+                     class="error">
+                  <span *ngIf="subscribeGroup.controls.name.errors.required">
+                    Nombre es requerido
+                  </span>
                 </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="libro-customCheck-2" name="libro-2">
-                  <label class="custom-control-label" for="libro-customCheck-2">Suscribirse al boletín quincenal</label>
+              </div>
+              <div class="libro-Apellido">
+                <input type="text" name="" placeholder="Apellido" [(ngModel)]="subscriber.lastName" formControlName="lastName">
+                <div *ngIf="subscribeGroup.controls.lastName.invalid && (subscribeGroup.controls.lastName.dirty ||
+                  subscribeGroup.controls.lastName.touched)"
+                     class="error">
+                  <span *ngIf="subscribeGroup.controls.lastName.errors.required">
+                    Apellido es requerido
+                  </span>
                 </div>
-              </form>
-            </div>
+              </div>
+              <div class="libro-electrónico">
+                <input type="text" name="" placeholder="Correo electrónico" [(ngModel)]="subscriber.email" formControlName="email">
+                <div *ngIf="subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty ||
+                  subscribeGroup.controls.email.touched)"
+                     class="error">
+                  <span *ngIf="subscribeGroup.controls.email.errors.required">
+                    Email es requerido
+                  </span>
+                </div>
+              </div>
+              <div class="libro-select-list-1">
+                <select [(ngModel)]="subscriber.sector" formControlName="sector">
+                  <option value="1" [selected]="1">¿En qué sector económico usted trabaja?</option>
+                  <option value="2">Agropecuario</option>
+                  <option value="3">Comercio</option>
+                  <option value="4">Construcción</option>
+                  <option value="5">Energía</option>
+                  <option value="6">Financiero</option>
+                  <option value="7">Industrial</option>
+                  <option value="8">Inmobiliario</option>
+                  <option value="9">Minería y petróleo</option>
+                  <option value="10">Transporte</option>
+                  <option value="11">Otros</option>
+                </select>
+                <div *ngIf="subscribeGroup.controls.sector.invalid && (subscribeGroup.controls.sector.dirty ||
+                  subscribeGroup.controls.sector.touched)"
+                     class="error">
+                  <span *ngIf="subscribeGroup.controls.sector.errors.required">
+                    Sector es requerido
+                  </span>
+                </div>
+              </div>
+              <div class="libro-select-list-2">
+                <select [(ngModel)]="subscriber.knowledge" formControlName="knowledge">
+                  <option value="1" [selected]="1">¿Cual es su nivel de conocimiento en finanzas y economía?</option>
+                  <option value="LOW">Bajo</option>
+                  <option value="MEDIUM">Medio</option>
+                  <option value="HIGH">Alto</option>
+                </select>
+                <div *ngIf="subscribeGroup.controls.knowledge.invalid && (subscribeGroup.controls.knowledge.dirty ||
+                  subscribeGroup.controls.knowledge.touched)"
+                     class="error">
+                  <span *ngIf="subscribeGroup.controls.knowledge.errors.required">
+                    Nivel de conocimiento es requerido
+                  </span>
+                </div>
+              </div>
+              <div class="libro-checkbox">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="libro-customCheck-1" name="libro-1"
+                           [(ngModel)]="subscriber.accept" formControlName="accept">
+                    <label class="custom-control-label" for="libro-customCheck-1">Acepto términos y condiciones</label>
+                    <div *ngIf="subscribeGroup.controls.accept.invalid && (subscribeGroup.controls.accept.dirty ||
+                      subscribeGroup.controls.accept.touched)"
+                             class="error">
+                      <span *ngIf="subscribeGroup.controls.accept.errors.requiredTrue">
+                        Aceptaci&oacute;n de t&eacute;rminos es requerido
+                      </span>
+                    </div>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="libro-customCheck-2" name="libro-2"
+                           [(ngModel)]="subscriber.subscribe" formControlName="subscribe">
+                    <label class="custom-control-label" for="libro-customCheck-2">Suscribirse al boletín
+                      quincenal</label>
+                  </div>
+              </div>
 
-            <div class="libro-button">
-              <button type="button" class="btn libro-red-btn">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
-            </div>
+              <div class="libro-button">
+                <button type="submit" class="btn libro-red-btn" [disabled]="subscribeGroup.invalid" *ngIf="!submitted">
+                  Descargar El Libro<i class="fas fa-chevron-right"></i>
+                </button>
+                <span class="message" *ngIf="submitted">El libro ha sido enviado a su correo.</span>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -76,8 +135,20 @@
 
         <div class="col-md-6 col-sm-12">
           <div class="colombia-1">
-            <div class="sec-2_colombia-1-contant">
-              <img src="../../../../assets/images/libro-sec-2.jpg" alt="" class="img-fluid">
+            <div class="sec-2_colombia-1-contant" *ngIf="bookPreviewPdfSrc">
+              <pdf-viewer [src]="bookPreviewPdfSrc"
+                          [(page)]="currentPdfPage"
+                          [render-text]="true"
+                          [autoresize]="true"
+                          [fit-to-page]="true"
+                          [show-all]="false"
+                          (after-load-complete)="callBackFn($event)"
+                          style="display: block;"
+              ></pdf-viewer>
+              <div class="pdf-pagination">
+                <span class="pager" (click)="currentPdfPage > 1 ? currentPdfPage = currentPdfPage - 1 : currentPdfPage = 1"><</span> {{currentPdfPage}} de {{numPages}}
+                <span class="pager" (click)="currentPdfPage < numPages ? currentPdfPage = currentPdfPage + 1 : currentPdfPage = numPages">></span>
+              </div>
               <div class="bookoverlay">
                 <span class="btnpreview"><i class="fas fa-eye"></i>Ver preview</span>
               </div>
@@ -87,11 +158,17 @@
         <div class="col-md-6 col-sm-12">
           <div class="colombia-2">
             <div class="sec-2_colombia-1-contant">
-              <h4>Colombia toma la delantera en un entorno con fuertes vientos en contra</h4>
-              <p>¡la economía de Colombia ha despegado! El incremento del consumo interno y la inversión privada constituyen el motor para que la economía colombiana se destaque, y usted no puede perderse este momento.</p>
-              <p><b>Colombia con fuerza propia</b> es una herramienta para contextualizar sobre el panorama de la economía colombiana y el mercado de acciones local.</p>
+              <!-- <h4>Colombia toma la delantera en un entorno con fuertes vientos en contra</h4>
+              <p>¡la economía de Colombia ha despegado! El incremento del consumo interno y la inversión privada
+                constituyen el motor para que la economía colombiana se destaque, y usted no puede perderse este
+                momento.</p>
+              <p><b>Colombia con fuerza propia</b> es una herramienta para contextualizar sobre el panorama de la
+                economía colombiana y el mercado de acciones local.</p> -->
+
+              <div *ngIf="data?.second" [innerHtml]="sanitize(data.second)"></div>
               <div class="sec-2-colombia-botton">
-                <button type="button" class="btn sec-2-colombia-btn">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
+                <button type="button" class="btn sec-2-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i
+                  class="fas fa-chevron-right"></i></button>
               </div>
             </div>
           </div>
@@ -105,9 +182,11 @@
   <div class="container">
     <div class="sec-3-estimamos">
       <div class="estimamos-head">
-        <h4>“Estimamos que el crecimiento de 2020 va a ser muy similar al que esperemos se dé en 2019 (3.2%)...”</h4>
-        <p><b>‘De liquidez y oportunidades’</b> contiene nuestra visión macroeconómica de Colombia para 2020. lo invitamos a que la consulte.
-        </p>
+        <!--<h4>“Estimamos que el crecimiento de 2020 va a ser muy similar al que esperemos se dé en 2019 (3.2%)...”</h4>
+        <p><b>‘De liquidez y oportunidades’</b> contiene nuestra visión macroeconómica de Colombia para 2020. lo
+          invitamos a que la consulte.
+        </p>-->
+        <div *ngIf="data?.third" [innerHtml]="sanitize(data.third)"></div>
       </div>
       <div class="estimamos-row-contant">
         <div class="row">
@@ -116,12 +195,14 @@
             <div class="estimamos-box-1">
               <div class="estimampius-big-box-1">
                 <i class="fas fa-angle-up"></i>
-                <h3>Factores que propician el crecimiento</h3>
+                <!-- <h3>Factores que propician el crecimiento</h3>
                 <ul>
                   <li>Actividades relacionada con la construcción de edificaciones</li>
                   <li>Buen crecimiento del consumo de los hogares</li>
                   <li>Continuación buen desempeño de obras civiles</li>
                 </ul>
+                -->
+                <div *ngIf="data?.fourth" [innerHtml]="sanitize(data.fourth)"></div>
               </div>
             </div>
           </div>
@@ -129,20 +210,24 @@
             <div class="estimamos-box-2">
               <div class="estimampius-big-box-2">
                 <i class="fas fa-angle-down"></i>
-                <h3>Factores que limitan el crecimiento</h3>
+                <!--<h3>Factores que limitan el crecimiento</h3>
                 <ul>
                   <li>Incertidumbre global en máximos históricos</li>
                   <li>El crecimiento económico de los socios comerciales de Colombia</li>
                   <li>Cumplimiento de las metas fiscales en 2020</li>
                   <li>Efecto de la devaluación sobre bienes importados</li>
-                </ul></div>
+                </ul>-->
+
+                <div *ngIf="data?.fifth" [innerHtml]="sanitize(data.fifth)"></div>
+              </div>
             </div>
           </div>
-          <div class="sec-3-contant">
-            <p>Puede conocer nuestra proyecciones<br> 2019 - 2020
-              <span class="sec-3-red">aquí.</span>
+          <div class="sec-3-contant" *ngIf="data && data['link-text-fin'] && data['link-text-file'] && data['link-text-file'].assetUrl">
+            <p>{{data['link-text-fin']}}
+              <a [href]="data['link-text-file'].assetUrl" class="sec-3-red" target="_blank">aquí.</a>
             </p>
-            <button type="button" class="btn sec-3-colombia-btn">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
+            <button type="button" class="btn sec-3-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -152,43 +237,54 @@
   <div class="section-4">
     <div class="container">
       <div class="calcap">
-        <div class="calcap-head">
-          <h3><b>COLCAP:</b> ¿Aún hay espacio para que en el 2020 el comportamiento sea positivo?</h3>
-        </div>
-        <div class="calcap-contant-1">
-          <p>Aunque el potencial de las acciones locales se ha reducido, el desajuste entre el precio de mercado y el valor justo a nivel fundamental del grueso de las acciones se mantiene:</p>
-          <ul>
-            <li>La economía colombiana mantendrá una senda de crecimiento superior al 3% y continuará destacándose frente a sus pares en Latinoamérica. Esto, pese a que el potencial de las acciones locales se ha reducido.</li>
-            <li><b>COLCAP</b> seguirá por encima de dos dígitos, y la expansión del ROE continuará, no obstante, factores como los bajos volúmenes de negociación y la incertidumbre por factores externos.</li>
-          </ul>
+<!--        <div class="calcap-head">-->
+<!--          <h3><b>COLCAP:</b> ¿Aún hay espacio para que en el 2020 el comportamiento sea positivo?</h3>-->
+<!--        </div>-->
+<!--        <div class="calcap-contant-1">-->
+<!--          <p>Aunque el potencial de las acciones locales se ha reducido, el desajuste entre el precio de mercado y el-->
+<!--            valor justo a nivel fundamental del grueso de las acciones se mantiene:</p>-->
+<!--          <ul>-->
+<!--            <li>La economía colombiana mantendrá una senda de crecimiento superior al 3% y continuará destacándose-->
+<!--              frente a sus pares en Latinoamérica. Esto, pese a que el potencial de las acciones locales se ha reducido.-->
+<!--            </li>-->
+<!--            <li><b>COLCAP</b> seguirá por encima de dos dígitos, y la expansión del ROE continuará, no obstante,-->
+<!--              factores como los bajos volúmenes de negociación y la incertidumbre por factores externos.-->
+<!--            </li>-->
+<!--          </ul>-->
 
-        </div>
-        <div class="calcap-contant-2">
-          <p>Estas son otras factores que propician el crecimiento del COLCAP</p>
-          <ul>
-            <li>Colombia, la economía de mayor crecimiento de América Latina.</li>
-            <li>Para 2019 y 2020, estimamos crecimientos en utilidades del 15.1% y 13.0%, respectivamente, lo cual resultaría en expansiones adicionales en rentabilidad.</li>
-            <li>COLCAP alcanzaría un máximo histórico en retorno por dividendos en 2020 siendo el más alto entre pares comparables.</li>
-          </ul>
+<!--        </div>-->
+<!--        <div class="calcap-contant-2">-->
+<!--          <p>Estas son otras factores que propician el crecimiento del COLCAP</p>-->
+<!--          <ul>-->
+<!--            <li>Colombia, la economía de mayor crecimiento de América Latina.</li>-->
+<!--            <li>Para 2019 y 2020, estimamos crecimientos en utilidades del 15.1% y 13.0%, respectivamente, lo cual-->
+<!--              resultaría en expansiones adicionales en rentabilidad.-->
+<!--            </li>-->
+<!--            <li>COLCAP alcanzaría un máximo histórico en retorno por dividendos en 2020 siendo el más alto entre pares-->
+<!--              comparables.-->
+<!--            </li>-->
+<!--          </ul>-->
 
-        </div>
+<!--        </div>-->
+        <div *ngIf="data?.sixth" [innerHtml]="sanitize(data.sixth)"></div>
 
-        <div class="calcap-graph">
-          <div class="row">
-            <div class="col-md-4 col-sm-4">
-              <div class="graph-contant-1">
-                <p>Retorno por dividendo del<br> COLCAP frente a sus pares<br> 2020E</p>
-              </div>
-            </div>
-            <div class="col-md-7 col-sm-7">
-              <div class="graph-contant-2">
-                <img src="../../../../assets/images/calcap-graph.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-        </div>
+<!--        <div class="calcap-graph">-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-4 col-sm-4">-->
+<!--              <div class="graph-contant-1">-->
+<!--                <p>Retorno por dividendo del<br> COLCAP frente a sus pares<br> 2020E</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-7 col-sm-7">-->
+<!--              <div class="graph-contant-2">-->
+<!--                <img src="../../../../assets/images/calcap-graph.jpg" alt="" class="img-fluid">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="calcap-graph-button">
-          <button type="button" class="btn calcap-graph-btn">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
+          <button type="button" class="btn calcap-graph-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -197,74 +293,23 @@
   <div class="section-5">
     <div class="container">
       <div class="atencion">
-        <div class="atencion-head">
-          <h3>¡Atención! Esta información es sumamente valiosa.</h3>
-        </div>
-        <div class="atention-contant">
-          <p>Conozca nuestros <b>TOP PICKS</b> en acciones colombianas; aquellas compañías en las que nuestro equipo, luego de un riguroso análisis, considera que presentan las mejores oportunidades de inversión.</p>
-          <p>Descargue Colombia con fuerza propia</p>
-        </div>
+<!--        <div class="atencion-head">-->
+<!--          <h3>¡Atención! Esta información es sumamente valiosa.</h3>-->
+<!--        </div>-->
+<!--        <div class="atention-contant">-->
+<!--          <p>Conozca nuestros <b>TOP PICKS</b> en acciones colombianas; aquellas compañías en las que nuestro equipo,-->
+<!--            luego de un riguroso análisis, considera que presentan las mejores oportunidades de inversión.</p>-->
+<!--          <p>Descargue Colombia con fuerza propia</p>-->
+<!--        </div>-->
+        <div *ngIf="data?.seventh" [innerHtml]="sanitize(data.seventh)"></div>
       </div>
 
       <div class="atencion-table">
-        <table class="table">
-          <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th><img class="ecopetrol_img" src="../../../../assets/images/sec-5-table-1.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-2.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-3.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-4.png" alt=""></th>
-            <th><img src="../../../../assets/images/sec-5-table-5.png" alt=""></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td class="gray-bg">Sector</td>
-            <td>Petróleo y Gas</td>
-            <td>Utilities</td>
-            <td>Utilities</td>
-            <td>Utilities</td>
-            <td>Contrucción</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Peso sugerido en Portafolio</td>
-            <td>30%</td>
-            <td>30%</td>
-            <td>15%</td>
-            <td>15%</td>
-            <td>10%</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Dividen Yleld*</td>
-            <td>7.1%</td>
-            <td>6.3%</td>
-            <td>4.5%</td>
-            <td>1.8%</td>
-            <td>4.0%</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Precio Objetivo 2020FA</td>
-            <td>3,600</td>
-            <td>2,650</td>
-            <td>5,350</td>
-            <td>44,500</td>
-            <td>2,660</td>
-          </tr>
-          <tr>
-            <td class="gray-bg">Potencial de valoración*</td>
-            <td class="red-bg">6.0%</td>
-            <td class="brown-bg">15.2%</td>
-            <td class="light-brown-bg">22.1%</td>
-            <td class="smock-white-bg">34.8%</td>
-            <td class="cyan-bg">95.6%</td>
-          </tr>
-          </tbody>
-        </table>
+        <div *ngIf="data?.atencionTable" [innerHtml]="sanitize(data.atencionTable)"></div>
       </div>
     </div>
     <div class="sec-5-table-button">
-      <button type="button" class="btn sec-5-table-btn">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
+      <button type="button" class="btn sec-5-table-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </div>
@@ -280,27 +325,20 @@
         <div class="collapse show" id="collapsebooks" style="">
           <div class="ediciones-midcont">
             <ul>
-              <li>
-                <img src="../../../../assets/images/bookImagen1.png" alt="">
-                <p>De Liquidez y Oportunidades <br><strong>2018</strong></p>
-                <a href="#">Descargar ahora <i class="fas fa-chevron-right"></i></a>
-              </li>
-              <li>
-                <img src="../../../../assets/images/bookImagen2.png" alt="">
-                <p>De Liquidez y Oportunidades <br><strong>2018</strong></p>
-                <a href="#">Descargar ahora <i class="fas fa-chevron-right"></i></a>
-              </li>
-              <li>
-                <img src="../../../../assets/images/bookImage3.png" alt="">
-                <p>De Liquidez y Oportunidades <br><strong>2018</strong></p>
-                <a href="#">Descargar ahora <i class="fas fa-chevron-right"></i></a>
+              <li *ngFor="let book of books | slice:0 : maxBooks">
+                <img class="bookThumb" src="../../../../assets/images/bookImagen1.png" alt="" *ngIf="!book?.thumbnail?.assetUrl">
+                <img class="bookThumb" [src]="book?.thumbnail?.assetUrl" alt="" *ngIf="book?.thumbnail?.assetUrl">
+                <p>{{book.title}} <br><strong>{{book.year}}</strong></p>
+                <a *ngIf="book?.pdf?.assetUrl" [href]="book.pdf.assetUrl" target="_blank">Descargar ahora <i class="fas fa-ch evron-right"></i></a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="ediciones-btn">
-          <button type="button" class="btn ediciones-red-btn" data-toggle="collapse" data-target="#collapsebooks" aria-expanded="true" aria-controls="collapseExample"> Ver ediciones anteriores<i class="fas fa-chevron-down"></i></button>
+        <div class="ediciones-btn" *ngIf="maxBooks === 3">
+          <button type="button" class="btn ediciones-red-btn" data-toggle="collapse" data-target="#collapsebooks"
+                  aria-expanded="true" aria-controls="collapseExample" (click)="maxBooks = 20"> Ver ediciones anteriores<i
+            class="fas fa-chevron-down"></i></button>
         </div>
       </div>
     </div>

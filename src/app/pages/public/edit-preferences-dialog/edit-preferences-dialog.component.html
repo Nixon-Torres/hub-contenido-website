@@ -1,0 +1,39 @@
+<div class="dialog-container">
+  <div class="close-img" (click)="onNoClick()">
+    <span class="text">Cerrar</span>
+    <i class="fa fa-times"></i>
+  </div>
+
+  <form [formGroup]="subscribeGroup" (submit)="subscribe()" autocomplete="off">
+  <div mat-dialog-content>
+      <p class="update_preferences-text">Para actualizar sus preferencias, por favor necesitamos validar su <strong>direcci&oacute;n de correo electr&oacute;nico</strong>, a continuaci&oacute;n.</p>
+      <div class="divider"></div>
+      <div class="input-block">
+        <div class="input-control">
+          <input type="text" name="" placeholder="Correo Electrónico" [(ngModel)]="subscriber.email" formControlName="email" autocomplete="off"
+                 [ngClass]="{'error': subscriberNotFound || (subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched))}">
+          <div *ngIf="subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched)"
+               class="error-text">
+                    <span *ngIf="subscribeGroup.controls.email.errors.required">
+                      Campo es requerido
+                    </span>
+                     <span *ngIf="subscribeGroup.controls.email.errors.email">
+                      Email v&aacute;lido es requerido
+                    </span>
+          </div>
+          <div *ngIf="subscriberNotFound && !(subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched))"
+               class="error-text">
+            <span>
+               Correo incorrecto
+            </span>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div mat-dialog-actions>
+    <div class="regresar-popup-button">
+      <button type="submit" class="btn popup-red-btn" [disabled]="subscribeGroup.invalid">Validar</button>
+    </div>
+  </div>
+  </form>
+</div>

@@ -21,12 +21,13 @@ export class ReportSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.loadOutstanding();
-    this.loadReportTypes();;
+    this.loadReportTypes();
   }
 
   getCategory(reportType) {
-    return reportType && reportType.mainCategory && reportType.mainCategory.length ?
-      reportType.mainCategory[0].description : '';
+    return reportType ? reportType.description : '';
+    /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+      reportType.mainCategory[0].description : ''; */
   }
 
   private loadReportTypes() {
@@ -64,7 +65,7 @@ export class ReportSummaryComponent implements OnInit {
       where: {
         reportTypeId: {inq: reportTypeIds}
       },
-      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent', 'rTitle'],
       include: [{
         relation: 'reportType',
         scope: {
@@ -88,7 +89,7 @@ export class ReportSummaryComponent implements OnInit {
       where: {
         reportTypeId: {inq: reportTypeIds}
       },
-      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent', 'rTitle'],
       include: [{
         relation: 'reportType',
         scope: {
@@ -112,7 +113,7 @@ export class ReportSummaryComponent implements OnInit {
       where: {
         strategy: true
       },
-      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent'],
+      fields: ['id', 'name', 'strategyArea', 'sectionId', 'reportTypeId', 'updatedAt', 'smartContent', 'rTitle'],
       include: ['files', 'section', {
         relation: 'reportType',
         scope: {

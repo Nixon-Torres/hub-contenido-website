@@ -12,6 +12,9 @@ app-side-bar {
 	@media only screen and (max-width: 1024px){
 		width: 100%;
 	}
+	@media only screen and (max-width: 600px) {
+		margin: 0;
+	}
 }
 
 .information_content .information_left_first .information_details h6 {
@@ -26,4 +29,82 @@ app-side-bar {
 .clickable-section {
 	outline: 0 !important;
 	cursor: pointer;
+}
+
+.remarkable-area {
+  position: relative;
+
+  .play_button {
+    position: absolute;
+    top: 39%;
+    left: 43%;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .up_label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffffffeb;
+    min-width: 45px;
+    text-align: center;
+    border-radius: 4px;
+
+    p {
+      margin: 0;
+      color: #e8162e;
+      padding: 2px;
+      font-size: 9px;
+      font-weight: 500;
+      font-family: HelveticaNeueMedium;
+      text-transform: uppercase;
+
+      &:before {
+        background-color: transparent;
+      }
+    }
+  }
+  &.mobile_hiden {
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+}
+
+.information_image .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  i.fas {
+    font-size: 65px;
+    z-index: 2;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+  }
+
+  .overlaytitle {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    z-index: 2;
+    font-size: 13px;
+  }
+}
+
+.information_content .information_left_first .information_image .wrapper i.fas {
+  @media only screen and (max-width: 500px) {
+    font-size: 30px;
+  }
+}
+
+.information_content .information_left_first.first_banner .information_image .wrapper i.fas {
+  @media only screen and (max-width: 500px) {
+    font-size: 50px;
+  }
 }

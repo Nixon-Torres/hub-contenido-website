@@ -1,3 +1,36 @@
 .nav-tabs li a {
   cursor: pointer;
 }
+
+.para_left_first_text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
+  &.description {
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+}
+
+.summary-mobile_hiden {
+  @media only screen and (max-width: 768px) {
+    display: none;
+    &:nth-child(1),
+    &:nth-child(2){
+      display: block;
+    }
+    &.second_tab {
+      &:nth-child(3),
+      &:nth-child(4){
+      display: block;
+      @media only screen and (max-width: 600px) {
+        &:nth-child(4){
+          display: none;
+        }
+      }
+    }
+    }
+  }
+}

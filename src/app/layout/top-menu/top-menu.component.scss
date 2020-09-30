@@ -780,9 +780,7 @@ footer.main_footer .footer_first .footer-links ul li:before {
   display: flex;
   align-items: center;
   position: absolute;
-  transform: rotate(-90deg);
   bottom: 100px;
-  left: -50px;
 }
 
 .footer_verticle_line .footer_verticle_text p {
@@ -14143,6 +14141,7 @@ max-width: 100% !important;
 .investment-group-section-title {
     font-size: 18px;
     margin-bottom: -5px;
+    color: black !important;
 }
 
 .investment-list {
@@ -14151,14 +14150,14 @@ max-width: 100% !important;
 
 .ifx-indicators-iframe {
   height: 50px;
+  @media (max-width: 768px){
+    padding: 0;
+  }
 
   .content {
     background: #EAEAEA;
     height: 90%;
     width: 100%;
-    @media (max-width: 1200px){
-      width: 103%;
-    }
 
     iframe {
       width: 91%;
@@ -14166,6 +14165,12 @@ max-width: 100% !important;
       border: 0px;
       margin-top: 5px;
       margin-left: -57px;
+      @media only screen and (max-width: 768px) {
+        width: 94%;
+      }
+      @media only screen and (max-width: 500px) {
+        width: 87%;
+      }
     }
 
     .indictor_btn {
@@ -14174,6 +14179,10 @@ max-width: 100% !important;
       margin-top: 8px;
       text-align: right;
       margin-right: 15px;
+      @media only screen and (max-width: 768px) {
+        width: auto;
+        padding-right: 10px;
+      }
 
       button {
         background-color: #ffffff;
@@ -14190,6 +14199,9 @@ max-width: 100% !important;
         i {
           margin-left: 8px;
           margin-top: 2px;
+          @media only screen and (max-width: 768px) {
+            margin: 0;
+          }
         }
       }
     }
@@ -14211,4 +14223,16 @@ max-width: 100% !important;
 
 .submenu-link {
   cursor: pointer;
+}
+
+.hide-right-menu-contant {
+  cursor: pointer;
+}
+
+:host {
+  height: 184px;
+  display: block;
+  @media only screen and (max-width: 768px) {
+    height: auto;
+  }
 }

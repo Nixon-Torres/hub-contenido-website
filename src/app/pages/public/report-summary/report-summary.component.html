@@ -8,18 +8,18 @@
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
 				<li [ngClass]="{activeone: tab === 'tab1'}" class="action"><a (click)="tab = 'tab1'">Acciones</a></li>
-				<li [ngClass]="{activeone: tab === 'tab2'}"><a (click)="tab = 'tab2'">Divisas</a></li>
+				<li [ngClass]="{activeone: tab === 'tab2'}"><a (click)="tab = 'tab2'">Monedas</a></li>
 				<li [ngClass]="{activeone: tab === 'tab3'}"><a (click)="tab = 'tab3'">Renta fija</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="tab-3" class="tab-pane activeone" *ngIf="tab === 'tab1'">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-6 left-tab">
 							<div class="para_left_content">
 								<div *ngIf="headerReport" class="para_left_first">
-									<h4>{{headerReport?.name}}</h4>
-									<p>{{headerReport?.updatedAt | date:'d MMMM y'}}</p>
-									<p class="para_desc">
+									<h4>{{headerReport?.rTitle | striphtml}}</h4>
+									<p class="para_left_first_text">{{headerReport?.updatedAt | date:'d MMMM y'}}</p>
+									<p class="para_desc para_left_first_text">
 										{{headerReport?.smartContent}}
 									</p>
 									<p class="para_nuvo">NUEVO</p>
@@ -32,39 +32,39 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area1Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area1Report?.id]">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
-										<h4>{{area1Report?.name}}</h4>
-										<p>{{area1Report?.smartContent}}</p>
+										<h4>{{area1Report?.rTitle | striphtml}}</h4>
+										<p class="para_left_first_text description">{{area1Report?.smartContent}}</p>
 										<p>{{area1Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area2Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area2Report?.id]">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
-										<h4>{{area2Report?.name}}</h4>
-										<p>{{area2Report?.smartContent}}</p>
+										<h4>{{area2Report?.rTitle | striphtml}}</h4>
+										<p class="para_left_first_text description">{{area2Report?.smartContent}}</p>
 										<p>{{area2Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area3Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area3Report?.id]">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
-										<h4>{{area3Report?.name}}</h4>
-										<p>{{area3Report?.smartContent}}</p>
+										<h4>{{area3Report?.rTitle | striphtml}}</h4>
+										<p class="para_left_first_text description">{{area3Report?.smartContent}}</p>
 										<p>{{area3Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area4Report" class="tab_sub_division_part"
 										[routerLink]="['/reports', area4Report?.id]">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
-										<h4>{{area4Report?.name}}</h4>
-										<p>{{area4Report?.smartContent}}</p>
+										<h4>{{area4Report?.rTitle | striphtml}}</h4>
+										<p class="para_left_first_text description">{{area4Report?.smartContent}}</p>
 										<p>{{area4Report?.updatedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -82,36 +82,34 @@
 				</div>
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
 					<div class="row">
-						<div class="col-sm-3" *ngFor="let report of divisasReports">
+						<div class="col-sm-3 summary-mobile_hiden second_tab" *ngFor="let report of divisasReports">
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
-								<h4>{{report?.name}}</h4>
-								<p>{{report?.smartContent}}</p>
+								<h4>{{report?.rTitle | striphtml}}</h4>
+								<p class="para_left_first_text description">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>
 					</div>
 					<div class="para_bottom_btn">
 						<div class="button_inner">
-							<a href="/categories/5e7fc9a5dc4b4a6c66295184" class="empresas">Ir a empresas <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-							<a href="/categories/5e7fc9a5dc4b4a6c66295184/type/5ea111d7b15ce0025b84c176" class="acciones">Ir a Divisas <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							<a href="/categories/5e7fc9a5dc4b4a6c66295184/type/5ea111d7b15ce0025b84c176" class="acciones">Ir a Monedas <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab3'">
 					<div class="row">
-						<div class="col-sm-3" *ngFor="let report of rentaReports">
+						<div class="col-sm-3 summary-mobile_hiden second_tab" *ngFor="let report of rentaReports">
 							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
-								<h4>{{report?.name}}</h4>
-								<p>{{report?.smartContent}}</p>
+								<h4>{{report?.rTitle | striphtml}}</h4>
+								<p class="para_left_first_text description">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
 						</div>
 					</div>
 					<div class="para_bottom_btn">
 						<div class="button_inner">
-							<a href="/categories/5e7fc9a5dc4b4a6c66295184" class="empresas">Ir a empresas <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 							<a href="/categories/5e7fc9a5dc4b4a6c66295184/type/5e7fc9a5dc4b4a6c66295191" class="acciones">Ir a Renta fija <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 						</div>
 					</div>

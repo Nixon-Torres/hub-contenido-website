@@ -1,37 +1,29 @@
-<div class="page_direction">
-  <div class="container">
-    <ul>
-      <li class="back_page"><a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i>Atras </a></li>
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#">Pagina</a></li>
-      <li><a href="#">Pagina tres</a></li>
-    </ul>
-  </div>
-</div>
+<app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
 
 <div class="monitor-de-marcado">
   <div class="container">
     <div class="monitor-head">
-      <h3>Monitor de Mercado</h3>
-      <p>Ponemos a su disposición datos en línea e históricos de los principales indicadores económicos y financieros locales e internacionales, que le permitirán estar actualizado rápidamente.</p>
-      <p>Seleccione las empresas que usted sigue y profundice la información de cada una al hacer clic en los recuadros que aparecen en la fila superior.</p>
+      <h3>{{data?.title}}</h3>
+      <div *ngIf="data?.content" [innerHtml]="data.content"></div>
     </div>
   </div>
 </div>
 
-<div class="Acciones">
+<div class="Acciones" *ngFor="let section of sections">
   <div class="container">
     <div class="Acciones-header">
-      <h3>Acciones</h3>
+      <h3>{{section.title}}</h3>
     </div>
     <div class="Acciones-table">
-      <iframe scrolling="no" src="https://widgetsdataifx.blob.core.windows.net/corredores/hubliststocksdavivienda"></iframe>
+      <div *ngIf="section?.content" [innerHtml]="getHTML(section.content)"></div>
     </div>
     <div class="Acciones-simple-text">
-      <p>Fuente BVC. La información tiene 20 minutos de retraso.</p>
+      <p>Fuente: DataIFX. La información tiene 20 minutos de retraso.</p>
     </div>
   </div>
 </div>
+
+<!--
 <div class="Monedas">
   <div class="container">
     <div class="Monedas-header">
@@ -44,7 +36,6 @@
       <p>Fuente BVC. La información tiene 20 minutos de retraso.</p>
     </div>
   </div>
-
 </div>
 
 <div class="Indices-y-commodities">
@@ -74,23 +65,24 @@
     </div>
   </div>
 </div>
+-->
 
 <div class="monitor-de-marcado-Recomendados">
   <div class="container">
     <h2>Artículos Relacionados</h2>
     <div class="nir-inline-video">
       <div class="row">
-        <div class="col-md-4 col-sm-12 right-border-ifx">
+        <div class="col-md-4 col-sm-12 right-border-ifx" *ngFor="let report of reports">
           <img src="../../../../assets/images/single_blog_img.png" class="img-fluid">
           <div class="nir-inline-video-contant">
-            <h5>Nombre de la categoría del informe</h5>
-            <h3>Lorem ipsum dolor sit amet</h3><br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <button type="button" class="btn nir-inline-video-btn">Leer más</button>
+            <h5>{{getCategory(report?.reportType)}}</h5>
+            <h3>{{report?.rTitle | striphtml}}</h3><br>
+            <p>{{report?.smartContent}}</p>
+            <button type="button" class="btn nir-inline-video-btn" [routerLink]="['/reports', report?.id]">Leer más</button>
           </div>
         </div>
 
-        <div class="col-md-4 col-sm-12 right-border-ifx">
+        <!--<div class="col-md-4 col-sm-12 right-border-ifx">
           <img src="../../../../assets/images/second_single_blog_img.png" class="img-fluid">
           <div class="nir-inline-video-contant">
             <h5>Nombre de la categoría del informe</h5>
@@ -108,7 +100,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <button type="button" class="btn nir-inline-video-btn">Leer más</button>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

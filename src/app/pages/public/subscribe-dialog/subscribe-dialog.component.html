@@ -1,0 +1,77 @@
+<div class="dialog-container">
+  <div class="close-img" (click)="onNoClick()">
+    <span class="text">Cerrar</span>
+    <i class="fa fa-times"></i>
+  </div>
+
+  <form [formGroup]="subscribeGroup" (submit)="subscribe()" autocomplete="off">
+  <div mat-dialog-content class="suscribe_dialog_container">
+    <h4 *ngIf="quincenal">Suscripci&oacute;n al bolet&iacute;n quincenal</h4>
+    <p *ngIf="quincenal">Para terminar su suscripci&oacute;n al <strong>bolet&iacute;n quincenal,</strong> complete los siguientes campos con sus datos</p>
+
+    <p *ngIf="!quincenal">¡Su selección personalizada está casi lista! Complete los siguientes datos para activar su suscripción.</p>
+      <div class="divider"></div>
+      <div class="input-block">
+        <div class="input-control">
+          <input type="text" name="" placeholder="Nombre" [(ngModel)]="subscriber.name" formControlName="name" autocomplete="off"
+            [ngClass]="{'error': subscribeGroup.controls.name.invalid && (subscribeGroup.controls.name.dirty || subscribeGroup.controls.name.touched)}">
+          <div *ngIf="subscribeGroup.controls.name.invalid && (subscribeGroup.controls.name.dirty || subscribeGroup.controls.name.touched)"
+               class="error-text">
+                    <span *ngIf="subscribeGroup.controls.name.errors.required">
+                      Campo es requerido
+                    </span>
+          </div>
+        </div>
+        <div class="input-control">
+          <input type="text" name="" placeholder="Apellido" [(ngModel)]="subscriber.lastName" formControlName="lastName" autocomplete="off"
+                 [ngClass]="{'error': subscribeGroup.controls.lastName.invalid && (subscribeGroup.controls.lastName.dirty || subscribeGroup.controls.lastName.touched)}">
+          <div *ngIf="subscribeGroup.controls.lastName.invalid && (subscribeGroup.controls.lastName.dirty || subscribeGroup.controls.lastName.touched)"
+               class="error-text">
+                    <span *ngIf="subscribeGroup.controls.lastName.errors.required">
+                      Campo es requerido
+                    </span>
+          </div>
+        </div>
+        <div class="input-control">
+          <input type="text" name="" placeholder="Correo Electrónico" [(ngModel)]="subscriber.email" formControlName="email" autocomplete="off"
+                 [ngClass]="{'error': subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched)}">
+          <div *ngIf="subscribeGroup.controls.email.invalid && (subscribeGroup.controls.email.dirty || subscribeGroup.controls.email.touched)"
+               class="error-text">
+                    <span *ngIf="subscribeGroup.controls.email.errors.required">
+                      Campo es requerido
+                    </span>
+                     <span *ngIf="subscribeGroup.controls.email.errors.email">
+                      Email v&aacute;lido es requerido
+                    </span>
+          </div>
+        </div>
+        <div class="input-control">
+          <mat-form-field>
+            <mat-label>¿Cómo calificaría sus conocimientos <br> en finanzas y economía?</mat-label>
+            <mat-select [(ngModel)]="subscriber.knowledge" formControlName="knowledge" (selectionChange)="setCurrentOption($event)">
+              <mat-select-trigger>
+                {{currentOption}}
+              </mat-select-trigger>
+              <mat-option class="dialog_subscribe" [value]="option.code" *ngFor="let option of options">
+                <div class="title">{{option.title}}</div>
+                <div class="description">{{option.description}}</div>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="subscribeGroup.controls && subscribeGroup.controls.knowledge && subscribeGroup.controls.knowledge.hasError('required')">
+              Seleccione una opci&oacute;n
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-control accept">
+          <input type="checkbox" id="accept" [(ngModel)]="subscriber.accept" formControlName="accept">
+          <label for="accept"><a [routerLink]="['/terms']" target="_blank">Acepto términos y condiciones</a></label>
+        </div>
+      </div>
+  </div>
+  <div mat-dialog-actions>
+    <div class="regresar-popup-button">
+      <button type="submit" class="btn popup-red-btn" [disabled]="subscribeGroup.invalid">Enviar mis datos</button>
+    </div>
+  </div>
+  </form>
+</div>

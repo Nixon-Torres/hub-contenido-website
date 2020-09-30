@@ -28,8 +28,16 @@ h2{
     margin-bottom: 30px;
 }
 .box-title{
-    color: #EC2023;
-    font-size: 20px;
+    font-weight: bold !important;
+    color: #EC2023 !important;
+    font-size: 20px !important;
+    font-weight: 500;
+    font-family: 'Helvetica-Neue';
+}
+
+.box-title-h3{
+    color: #EC2023 !important;
+    font-size: 17px !important;
     font-weight: 500;
     font-family: 'Helvetica-Neue';
 }
@@ -50,6 +58,7 @@ h2{
 
 .da-lead-section{
     max-width: 720px;
+    width: 100%;
     margin: 0 auto;
     padding: 40px 71px;
     border-bottom: 1px solid #E3E3E3;
@@ -60,6 +69,7 @@ h2{
 .da-lead-section p{
     font-size: 12px;
     color: #5F5F5F;
+    font-family: helvetica;
     
 }
 .da-lead-section .dl-icon a{
@@ -72,7 +82,7 @@ h2{
 
 .da-ponderar{
     max-width: 855px;
-    margin: 57px auto;
+    margin: 20px auto;
 }
 .da-ponderar .box-title{
     margin-bottom: 31px;
@@ -91,8 +101,7 @@ h2{
 
 .brief-section{
     background-color: #F7F7F7;
-    margin-top: 72px;
-    margin-bottom: 46px;
+    margin: 46px 0;
 }
 
 .brief-section.white{
@@ -152,6 +161,7 @@ h2{
 .brief-content{
     max-width: 580px;
     width: 100%;
+    padding: 0 !important;
 }
  .brief-head .box-title{
     font-weight: bold;
@@ -305,6 +315,14 @@ h2{
 
 }
 
+.p-b-10{
+    padding-bottom: 10px;
+}
+
+.company-legaltxt .brief-content{
+    max-width: 720px
+}
+
 .company-legaltxt p{
     color: #90A1AC;
     font-family: 'Helvetica-Neue';
@@ -314,9 +332,10 @@ h2{
 }
 
 .article-ralation{
-    margin: 44px 44px;
+    margin: auto;
     padding: 40px 0;
     border-bottom: 1px solid #E3E3E3;
+    width: 75%;
 }
 
 .article-ralation .title h2{
@@ -324,10 +343,6 @@ h2{
     font-size: 26px;
     font-weight: 600;
     font-family: 'Helvetica-Neue';
-}
-
-.article-ralation .article-block-section{
-
 }
 
 .article-ralation .article-block-section .block{
@@ -438,9 +453,17 @@ p.left-arrow-paragraph::before{
     max-width: 720px !important;
     margin: 0 auto;
 }
+.doscolumn-container {
+   font-family: helvetica;
+}
+
+.container-fluid .smart-content-section .doscolumn-container.bottom{
+    min-width: 570px;
+}
 
 .doscolumn_section {
     padding: 0px 0px;
+    margin-top: 20px;
 }
 
 .doscolumn_section .title {
@@ -616,3 +639,65 @@ p.left-arrow-paragraph::before{
         padding: 15px;
     }
   }
+
+  .doscolumn-container{
+    font-family: 'PT Serif', serif;
+  }
+
+  .person-portfolio .group-block{
+    float: left;
+  }
+
+ .blocks .doscolumn_section{
+      padding: 0 !important;
+  }
+
+.doscolumn_section blockquote:before {
+    left: -75px;
+    height: 95px;
+    top: -42px;
+}
+
+.doscolumn_section blockquote:after {
+    right: -45px;
+}
+
+.pr-full-bg .container .brief-section.smart-content-section {
+padding: 20px 0;
+ }
+
+  .brief-section .doscolumn-container .social-bar {
+    position: fixed;
+    top: 65%;
+    right: 5%;
+  }
+
+  @media (min-width: 1250px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 7.6%;
+      }
+  }
+  @media (min-width: 1350px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 10%;
+      }
+  }
+  @media (min-width: 1420px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 11.7%;
+      }
+  }
+  @media (min-width: 1920px) {
+    .brief-section .doscolumn-container .social-bar {
+        right: 26em;
+      }
+  }
+
+.brief-section .doscolumn-container .social-bar.bottom{
+    position: initial;
+}
+
+section .pr-full-bg .container .brief-section,
+.presentation .container .brief-section {
+    padding: 20px 0;
+}

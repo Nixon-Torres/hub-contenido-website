@@ -2,74 +2,120 @@
 	<div class="container">
 		<div class="row">
 			<div class="content">
-				<div class="information_left_first" *ngIf="headerReport" [routerLink]="['/reports', headerReport.id]">
+				<div class="remarkable-area information_left_first first_banner" *ngIf="headerReport" [routerLink]="getLink(headerReport)">
 					<div class="information_image">
 						<img [src]="assetBase + headerReport?.image.clientPath" alt="">
 						<p class="label">CONTENIDO DESTACADO</p>
+
+            <div class="wrapper" *ngIf="headerReport.multimedia">
+              <i class="fas" [ngClass]="{'fa-play-circle': getType(headerReport) !== 'PODCAST',
+          'fa-podcast': getType(headerReport) === 'PODCAST'}"></i>
+              <span  class="overlaytitle">Reproducir</span>
+            </div>
 					</div>
 					<div class="information_details">
 						<h6>{{getCategory(headerReport?.reportType)}}</h6>
-						<h4>{{headerReport?.name}}</h4>
-						<p>{{headerReport?.smartContent}}</p>
+            <div class="up_label" *ngIf="headerReport.multimedia">
+              <p>{{getType(headerReport)}}</p>
+            </div>
+						<h4>{{headerReport?.rTitle | striphtml}}</h4>
+						<p class="outstanding_text">{{headerReport?.smartContent | truncate: 150: true}}</p>
 						<p class="date">{{headerReport?.publishedAt | date:'d MMMM y'}}</p>
 					</div>
 				</div>
 				<div class="information_left_second_content">
 					<div class="information_left_second_head">
-						<h4>INFORMES DESTACADOS</h4>
+						<h4>DESTACADOS</h4>
 					</div>
 					<div class="informs_under_content">
 						<div class="row">
-							<div class="clickable-section col-sm-6" *ngIf="area1Report" [routerLink]="['/reports', area1Report.id]">
+							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area1Report" [routerLink]="getLink(area1Report)">
+								<h6 class="outstanding_title">{{getCategory(area1Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
+                    <div class="up_label" *ngIf="area1Report.multimedia">
+                      <p>{{getType(area1Report)}}</p>
+                    </div>
 										<img [src]="assetBase + area1Report?.image.clientPath" alt="">
+
+                    <div class="wrapper" *ngIf="area1Report.multimedia">
+                      <i class="fas" [ngClass]="{'fa-play-circle': getType(area1Report) !== 'PODCAST',
+          'fa-podcast': getType(area1Report) === 'PODCAST'}"></i>
+                      <span  class="overlaytitle">Reproducir</span>
+                    </div>
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area1Report?.reportType)}}</h6>
-										<h4>{{area1Report?.name}}</h4>
-										<p>{{area1Report?.smartContent}}</p>
-										<p class="date">{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
+										<h4>{{area1Report?.rTitle | striphtml}}</h4>
+										<p class="outstanding_description">{{area1Report?.smartContent | truncate: 140: true}}</p>
 									</div>
+									<p class="date">{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
 								</div>
 							</div>
-							<div class="clickable-section col-sm-6" *ngIf="area2Report" [routerLink]="['/reports', area2Report.id]">
+							<div class="remarkable-area clickable-section col-sm-6" *ngIf="area2Report" [routerLink]="getLink(area2Report)">
+								<h6 class="outstanding_title">{{getCategory(area2Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
+                    <div class="up_label" *ngIf="area2Report.multimedia">
+                      <p>{{getType(area2Report)}}</p>
+                    </div>
 										<img [src]="assetBase + area2Report?.image.clientPath" alt="">
+                    <div class="wrapper" *ngIf="area2Report.multimedia">
+                      <i class="fas" [ngClass]="{'fa-play-circle': getType(area2Report) !== 'PODCAST',
+          'fa-podcast': getType(area2Report) === 'PODCAST'}"></i>
+                      <span  class="overlaytitle">Reproducir</span>
+                    </div>
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area2Report?.reportType)}}</h6>
-										<h4>{{area2Report?.name}}</h4>
-										<p>{{area2Report?.smartContent}}</p>
-										<p class="date">{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
+										<h4>{{area2Report?.rTitle | striphtml}}</h4>
+										<p class="outstanding_description">{{area2Report?.smartContent | truncate: 150: true}}</p>
 									</div>
+									<p class="date">{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
 								</div>
 							</div>
-							<div class="clickable-section col-sm-6" *ngIf="area3Report" [routerLink]="['/reports', area3Report.id]">
+							<div class="remarkable-area clickable-section col-sm-6 mobile_hiden" *ngIf="area3Report" [routerLink]="getLink(area3Report)">
+								<h6 class="outstanding_title">{{getCategory(area3Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
+                    <div class="up_label" *ngIf="area3Report.multimedia">
+                      <p>{{getType(area3Report)}}</p>
+                    </div>
 										<img [src]="assetBase + area3Report?.image.clientPath" alt="">
+                    <div class="wrapper" *ngIf="area3Report.multimedia">
+                      <i class="fas" [ngClass]="{'fa-play-circle': getType(area3Report) !== 'PODCAST',
+          'fa-podcast': getType(area3Report) === 'PODCAST'}"></i>
+                      <span  class="overlaytitle">Reproducir</span>
+                    </div>
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area3Report?.reportType)}}</h6>
-										<h4>{{area3Report?.name}}</h4>
-										<p>{{area3Report?.smartContent}}</p>
-										<p class="date">{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
+										<h4>{{area3Report?.rTitle | striphtml}}</h4>
+										<p class="outstanding_description">{{area3Report?.smartContent | truncate: 150: true}}</p>
 									</div>
+									<p class="date">{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
 								</div>
 							</div>
-							<div class="clickable-section col-sm-6" *ngIf="area4Report" [routerLink]="['/reports', area4Report.id]">
+							<div class="remarkable-area clickable-section col-sm-6 mobile_hiden" *ngIf="area4Report" [routerLink]="getLink(area4Report)">
+								<h6 class="outstanding_title">{{getCategory(area4Report?.reportType)}}</h6>
 								<div class="informs_under_blog information_left_first">
 									<div class="information_image">
+                    <div class="up_label" *ngIf="area4Report.multimedia">
+                      <p>{{getType(area4Report)}}</p>
+                    </div>
 										<img [src]="assetBase + area4Report?.image.clientPath" alt="">
+                    <div class="wrapper" *ngIf="area4Report.multimedia">
+                      <i class="fas" [ngClass]="{'fa-play-circle': getType(area4Report) !== 'PODCAST',
+          'fa-podcast': getType(area4Report) === 'PODCAST'}"></i>
+                      <span  class="overlaytitle">Reproducir</span>
+                    </div>
 									</div>
 									<div class="information_details">
 										<h6>{{getCategory(area4Report?.reportType)}}</h6>
-										<h4>{{area4Report?.name}}</h4>
-										<p>{{area4Report?.smartContent}}</p>
-										<p class="date">{{area4Report?.publishedAt | date:'d MMMM y'}}</p>
+										<h4>{{area4Report?.rTitle | striphtml}}</h4>
+										<p class="outstanding_description">{{area4Report?.smartContent | truncate: 150: true}}</p>
 									</div>
+									<p class="date">{{area4Report?.publishedAt | date:'d MMMM y'}}</p>
 								</div>
 							</div>
 						</div>

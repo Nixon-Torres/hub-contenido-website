@@ -3,11 +3,13 @@ import {HttpService} from '../../services/http.service';
 import {map} from 'rxjs/operators';
 import {forkJoin, Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss']
+  styleUrls: ['./top-menu.component.scss'],
+  host: { class: 'top-menu' }
 })
 
 export class TopMenuComponent implements OnInit {
@@ -43,7 +45,7 @@ export class TopMenuComponent implements OnInit {
     code: 'MULTIMEDIA'
   }];
 
-  readonly  DEFAULT_ITEMS_PER_GROUP = 7;
+  readonly  DEFAULT_ITEMS_PER_GROUP = 5;
 
   public companies: any;
   public categories: any;
@@ -55,18 +57,24 @@ export class TopMenuComponent implements OnInit {
   public investmentGroups = [{
     name: 'Renta Fija',
     code: 'RENTAFIJA',
-    items: []
+    items: [],
+    id: null,
   }, {
     name: 'Acciones',
     code: 'ACCIONES',
-    items: []
+    items: [],
+    id: null,
   }, {
-    name: 'Divisas',
+    name: 'Monedas',
     code: 'DIVISAS',
-    items: []
+    items: [],
+    id: null,
   }];
 
-  constructor(private http: HttpService, private router: Router) {
+  public menuTimer: any;
+  total: any;
+
+  constructor(private http: HttpService, private router: Router, private gtmService: GoogleTagManagerService) {
     router.events.subscribe((val) => {
       this.mouseLeave();
     });
@@ -79,7 +87,31 @@ export class TopMenuComponent implements OnInit {
     });
   }
 
+  go(eventName) {
+    console.log(eventName);
+
+    const gtmTag = {
+      event: eventName,
+      clickUrl: window.location.href
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
+
   mouseEnter(idx?: number) {
+    if (!this.ready) {
+      return;
+    }
+
+    if (this.subMenuVisible) {
+      return this.mouseEnterAfterSeconds(idx);
+    }
+
+    this.menuTimer = setTimeout(() => {
+      this.mouseEnterAfterSeconds(idx);
+    }, 500);
+  }
+
+  mouseEnterAfterSeconds(idx?: number) {
     if (!this.ready) {
       return;
     }
@@ -108,7 +140,17 @@ export class TopMenuComponent implements OnInit {
 
   private getItems() {
     if (this.currentMenuOption === 6) {
-      return this.companies;
+      return this.companies.sort((a, b) => {
+          const nameA = a.name.toLowerCase();
+          const nameB = b.name.toLowerCase();
+          if (nameA > nameB) {
+            return 1;
+          } else if (nameA < nameB) {
+            return -1;
+          } else {
+            return 0;
+          }
+      });
     }
 
     const code = this.menuOptions[this.currentMenuOption - 1].code;
@@ -117,13 +159,45 @@ export class TopMenuComponent implements OnInit {
       return [];
     }
 
+    const params = this.currentCategory && this.currentCategory.params ? this.currentCategory.params : {};
+    const alphabetic = params.sorting && params.sorting === 'alphabetic';
     const reportTypes = this.reportTypes.filter(e => e.mainCategory.find(k => k.id === category.id))
       .map(e => {
         const item = e;
         item.name = item.description;
         return item;
+      }).sort((a, b) => {
+        if (alphabetic) {
+          const nameA = this.getReportTypeName(a).toLowerCase();
+          const nameB = this.getReportTypeName(b).toLowerCase();
+          if (nameA > nameB) {
+            return 1;
+          } else if (nameA < nameB) {
+            return -1;
+          } else {
+            return 0;
+          }
+        } else {
+          if (a.order > b.order) {
+            return 1;
+          } else if (a.order < b.order) {
+            return -1;
+          } else {
+            return 0;
+          }
+        }
       });
     return reportTypes;
+  }
+
+  getReportTypeName(reportType: any) {
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.currentCategory.id]) {
+        return alias[this.currentCategory.id];
+      }
+    }
+    return reportType.name;
   }
 
   private getReportTypes(): Observable<any> {
@@ -171,7 +245,7 @@ export class TopMenuComponent implements OnInit {
             inq: this.categories.filter(e => e.mainReportId).map(e => e.mainReportId)
           }
         },
-        fields: ['id', 'name', 'smartContent', 'reportTypeId', 'publishedAt'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'reportTypeId', 'publishedAt'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -187,7 +261,11 @@ export class TopMenuComponent implements OnInit {
 
   private getCompanies(): Observable<any> {
     return this.http.get({
-      path: `public/companies/`
+      path: `public/companies/`,
+      data: {
+        order: 'name ASC'
+      },
+      encode: true,
     }).pipe(
       map((res) => {
         this.companies = res.body;
@@ -198,14 +276,15 @@ export class TopMenuComponent implements OnInit {
 
   private distributeItems(showAll: boolean) {
     const items = this.getItems();
-    const total = items.length;
+    this.total = items.length;
 
     this.totalGroups = 2;
     if (this.currentMenuOption === 6 || this.currentMenuOption === 7) {
       this.totalGroups = 3;
     }
-    let itemsPerGroup = Math.ceil(total / this.totalGroups);
-    itemsPerGroup = !showAll ? Math.min(this.DEFAULT_ITEMS_PER_GROUP, itemsPerGroup) : itemsPerGroup;
+
+    let itemsPerGroup = Math.ceil(this.total / this.totalGroups);
+    itemsPerGroup = !showAll ? Math.min(this.DEFAULT_ITEMS_PER_GROUP, this.total) : itemsPerGroup;
 
     this.itemGroups = this.itemGroups.map(e => []);
 
@@ -216,6 +295,7 @@ export class TopMenuComponent implements OnInit {
       this.investmentGroups = this.investmentGroups.map(e => {
         const subitems = items.filter(k => k.subCategory.find(x => x.code === e.code));
         e.items = subitems;
+        e.id = subitems ? subitems[0].subCategory[0].id : '';
         return e;
       });
       return;
@@ -232,6 +312,10 @@ export class TopMenuComponent implements OnInit {
 
   mouseLeave() {
     this.subMenuVisible = false;
+
+    if (this.menuTimer) {
+      window.clearTimeout(this.menuTimer);
+    }
   }
 
   getCategoryId(option?: number) {
@@ -252,12 +336,17 @@ export class TopMenuComponent implements OnInit {
     return ['/categories', option];
   }
 
+  getQueryParams(gp) {
+    return {subcategory: gp.id};
+  }
+
   getCategoryReportTypeLink(report: any) {
     const id = this.getCategoryId();
 
-    if (report.code === 'ELLIBRO') {
+    if (report && report.code === 'ELLIBRO') {
       return ['/book'];
     }
+
     const rsp = ['/categories', id, 'type', report.id];
     return rsp;
   }

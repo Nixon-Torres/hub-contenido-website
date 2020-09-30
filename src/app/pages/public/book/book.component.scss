@@ -13,3 +13,58 @@
 .investment-list {
   min-height: 205px;
 }
+
+.error {
+  span {
+    font-size: 10px;
+    color: #EF161A;
+  }
+}
+
+.libro-button {
+  .message {
+    color: #EF161A;
+  }
+}
+
+.pdf-pagination {
+  margin-top: -10px;
+  background: white;
+  border: 2px solid #efefef;
+  text-align: right;
+  font-size: 12px;
+  padding: 3px 19px 3px 3px;
+  color: #8d8c8a;
+
+  .pager {
+    cursor: pointer;
+  }
+}
+
+.bookThumb {
+  width: 113px;
+  height: 150px;
+}
+
+.ediciones-midcont {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    li {
+      height: 370px;
+      width: 32%;
+      margin: 0 5px 15px;
+    }
+  }
+}
+
+iframe {
+  width: 100% !important;
+}
+
+.sec-3-contant a.sec-3-red {
+  color: #EF161A;
+  text-decoration: underline;
+}

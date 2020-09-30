@@ -1,0 +1,24 @@
+.slider_part .slider_content .slider_blog .slider_blog_details h4 {
+  width: 290px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.slider_blog i.fas {
+  position: absolute;
+  top: 32%;
+  left: 40%;
+  font-size: 65px;
+  z-index: 2;
+  color: #FFFFFF;
+}
+
+.slider_blog .overlaytitle {
+  color: #FFFFFF;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 19%;
+  left: 38%;
+  z-index: 2;
+  font-size: 13px;
+}

@@ -1,0 +1,136 @@
+.mat-dialog-container {
+  background: #F8F8F8;
+}
+
+.divider {
+  border: 0.5px solid #eaedf1;
+}
+
+.regresar-popup-button {
+  margin: 20px auto;
+}
+
+.popup-red-btn {
+  font-size: 15px;
+  line-height: 21px;
+  color: #FFFFFF;
+  font-weight: bold;
+  background-color: #EF161A;
+  padding: 10px 80px;
+  border-radius: 5px;
+}
+
+input[type=text] {
+  margin-bottom: 9px;
+  border: 0px;
+  border-bottom: 1px solid #6766663C;
+  width: 100%;
+  padding-left: 10px;
+  background: none;
+
+  &.error::placeholder {
+    color: #EF161A;
+  }
+}
+
+::ng-deep .mat-form-field-infix {
+  margin-left: 10px;
+}
+
+.input-block {
+  margin-top: 30px;
+}
+
+.input-control {
+  margin-bottom: 18px;
+  position: relative;
+
+  .error-text {
+    position: absolute;
+    font-size: 12px;
+    bottom: -10px;
+    left: 10px;
+    color: #EF161A;
+    font-style: italic;
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.accept {
+  color: #454545;
+
+  label {
+    margin-left: 7px;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+}
+
+.close-img {
+  color: #616161;
+  text-align: right;
+  margin-right: -10px;
+  cursor: pointer;
+}
+
+.mat-dialog-content {
+  margin-top: 20px;
+}
+
+.dialog-container {
+  position: relative;
+}
+
+.close-img {
+  .text {
+    margin-right: 10px;
+    font-size: 17px;
+    text-align: right;
+  }
+
+  .fa {
+    vertical-align: middle;
+    font-size: 24px;
+  }
+}
+
+.btn.disabled, .btn:disabled {
+  background: #AFAFAF;
+}
+
+.mat-error {
+  padding-left: 10px;
+  font-size: 12px;
+  color: #EF161A;
+  font-style: italic;
+}
+
+.mat-option {
+  height: 100px !important;
+
+  .title {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .description {
+    color: #818181;
+    font-size: 14px;
+    line-height: 18px;
+    height: 70px;
+    white-space: initial;
+    font-style: italic;
+  }
+}
+
+input.error {
+  color: #EF161A;
+}
+
+.update_preferences-text{
+  color: #454545;
+  font-size: 0.9em;
+}

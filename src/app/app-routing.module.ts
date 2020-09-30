@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, ExtraOptions} from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
+import {ThankyouComponent} from './pages/public/thankyou/thankyou.component';
+import {PreferencesComponent} from './pages/public/preferences/preferences.component';
 
 const routes: Routes = [
   {
@@ -10,14 +12,67 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'preferences',
+    component: PreferencesComponent
+  },
+  {
+    path: 'thankyou',
+    component: ThankyouComponent
+  },
+  {
     path: 'home',
     component: LayoutComponent,
     loadChildren: './pages/public/home/home.module#HomeModule'
   },
   {
+    path: 'edit_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'edit_completed_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'sub2factor_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'subscribe_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'quincenal_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'unsubscribe_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'unsubscribe_completed_confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
+    path: 'terms',
+    component: LayoutComponent,
+    loadChildren: './pages/public/terms/terms.module#TermsModule'
+  },
+  {
     path: 'reports/:id',
     component: LayoutComponent,
     loadChildren: './pages/public/report/report.module#ReportModule'
+  },
+  {
+    path: 'search',
+    component: LayoutComponent,
+    loadChildren: './pages/public/search-results/search-results.module#SearchResultsModule'
   },
   {
     path: 'categories/:id',
@@ -40,6 +95,11 @@ const routes: Routes = [
     loadChildren: './pages/public/ifx/ifx.module#IfxModule'
   },
   {
+    path: 'confirmation',
+    component: LayoutComponent,
+    loadChildren: './pages/public/confirmation/confirmation.module#ConfirmationModule'
+  },
+  {
     path: 'multimedia',
     component: LayoutComponent,
     loadChildren: './pages/public/multimedia/multimedia.module#MultimediaModule'
@@ -51,8 +111,13 @@ const routes: Routes = [
   }
 ];
 
+const routerOptions: ExtraOptions = {
+  useHash: false,
+  anchorScrolling: 'enabled',
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

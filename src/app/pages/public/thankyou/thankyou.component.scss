@@ -1,0 +1,50 @@
+.site_logo {
+  cursor: pointer;
+}
+
+.main_footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 740px;
+
+  .img {
+    float: left;
+  }
+
+  .text {
+    width: 390px;
+    float: right;
+
+    h3 {
+      font-size: 26px;
+      line-height: 36px;
+      color: #E8162E;
+      text-align: left;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    p {
+      color: #505050;
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      font-size: 15px;
+      line-height: 21px;
+      color: #EF161A;
+      padding: 15px 50px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: 1px solid #EF161A;
+    }
+  }
+}
