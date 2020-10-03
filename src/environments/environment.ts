@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  URL_API:  'https://vision.davivienda.com/',
-  URL_SOCKET:  'https://vision.davivienda.com/',
-  STORAGE_FILES: 'https://vision.davivienda.com/public/assets/',
+  URL_API:  'https://testhub-pro.qdata.io/',
+  URL_SOCKET:  'https://testhub-pro.qdata.io/',
+  STORAGE_FILES: 'https://testhub-pro.qdata.io/public/assets/',
   DRAFT_KEY: '5e068d1cb81d1c5f29b62977',
   // URL_API:  'http://localhost:3000/',
   // URL_SOCKET:  'http://localhost:3000/',
