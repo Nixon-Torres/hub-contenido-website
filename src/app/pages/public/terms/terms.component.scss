@@ -84,4 +84,12 @@ ul {
 
 .resumen-contant {
   padding: 0 200px;
+  @media only screen and (max-width: 1024px) {
+    padding: 0;
+    ul {
+      li {
+        word-break: break-word;
+      }
+    }
+  }
 }
