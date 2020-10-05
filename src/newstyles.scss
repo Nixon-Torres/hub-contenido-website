@@ -9256,6 +9256,9 @@ button.owl-next {
   float: left;
   padding: 20px 70px;
   border-bottom: solid 1px #ccc;
+  @media only screen and (max-width: 768px) {
+    padding: 20px 0;
+  }
 }
 
 .ediciones-midcont ul {
@@ -11550,7 +11553,7 @@ max-width: 100% !important;
   }
 
   .resumen {
-    padding: 30px 0;
+    padding: 5em 0;
   }
 
   .logros_carousel {
@@ -13100,10 +13103,6 @@ max-width: 100% !important;
     padding: 0;
   }
 
-  .resumen {
-    padding: 30px 0 20px;
-  }
-
   .resumen-subscription {
     padding: 30px 0;
   }
@@ -14399,10 +14398,6 @@ max-width: 100% !important;
     padding: 0;
   }
 
-  .resumen {
-    padding: 30px 0 20px;
-  }
-
   .resumen-subscription {
     padding: 30px 0;
   }
@@ -15382,10 +15377,6 @@ max-width: 100% !important;
     padding: 0;
   }
 
-  .resumen {
-    padding: 30px 0 20px;
-  }
-
   .resumen-subscription {
     padding: 30px 0;
   }
@@ -16108,10 +16099,6 @@ max-width: 100% !important;
   /* resumes code start */
   .resumen-contant {
     padding: 0;
-  }
-
-  .resumen {
-    padding: 30px 0 20px;
   }
 
   .resumen-subscription {
