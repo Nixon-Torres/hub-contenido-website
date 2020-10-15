@@ -70,7 +70,7 @@ h2{
     font-size: 12px;
     color: #5F5F5F;
     font-family: helvetica;
-    
+
 }
 .da-lead-section .dl-icon a{
     color: #363636;
@@ -147,7 +147,7 @@ h2{
 }
 
 .podcast-video .video-desc p{
-    font-size: 13px;  
+    font-size: 13px;
     color: #505050;
     font-family: 'Helvetica-Neue';
 }
@@ -422,7 +422,7 @@ p.left-arrow-paragraph::before{
 
 .carousel-indicators{
     bottom: -50px;
- 
+
     position: initial;
 }
 
@@ -700,4 +700,21 @@ padding: 20px 0;
 section .pr-full-bg .container .brief-section,
 .presentation .container .brief-section {
     padding: 20px 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container-fluid.pr-full-bg .brief-section .doscolumn-container {
+    display: flex;
+  }
+  .container-fluid.pr-full-bg .brief-section .podcast-video {
+    position: relative;
+    margin-left: -10%;
+    left: 0;
+  }
+  .brief-section.smart-content-section.bottom {
+    max-width: initial;
+  }
+  .container-fluid .smart-content-section .doscolumn-container.bottom {
+    display: initial;
+  }
 }
