@@ -367,7 +367,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   openPdf(report) {
-    const url = this.assetBase + `/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}`;
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
     window.open(url, '_blank');
   }
 

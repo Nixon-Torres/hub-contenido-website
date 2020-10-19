@@ -60,8 +60,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   openPdf(report) {
-    const url = this.assetBase + `/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}`;
-    console.log(url);
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
     window.open(url, '_blank');
   }
 
