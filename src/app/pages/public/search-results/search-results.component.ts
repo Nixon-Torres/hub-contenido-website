@@ -59,6 +59,12 @@ export class SearchResultsComponent implements OnInit {
     });
   }
 
+  openPdf(report) {
+    const url = this.assetBase + `/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}`;
+    console.log(url);
+    window.open(url, '_blank');
+  }
+
   scroll() {
     window.scrollTo(0, 0);
   }
@@ -183,7 +189,7 @@ export class SearchResultsComponent implements OnInit {
       path: `public/search/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId', 'migrated', 'pdfFolder', 'pdfFile', 'publishedYear'],
         include: [{
           relation: 'reportType',
           scope: {

@@ -258,7 +258,7 @@ export class CategoriesComponent implements OnInit {
       path: `public/reports/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId', 'migrated', 'pdfFile', 'pdfFolder', 'publishedYear'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -364,6 +364,11 @@ export class CategoriesComponent implements OnInit {
 
     this.updateBreadcrumbItems();
     this.getReports();
+  }
+
+  openPdf(report) {
+    const url = this.assetBase + `/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}`;
+    window.open(url, '_blank');
   }
 
   updateBreadcrumbItems() {

@@ -24,7 +24,9 @@
               <div class="contant gray-back item" *ngFor="let report of reports">
                 <div class="detail">
                   <h3>{{getReportSubCategoryName(report?.reportType)}}</h3>
-                  <h4 class="reportTitle" [routerLink]="[getResourceBase(report), report?.id]">{{report?.rTitle | striphtml}}
+                  <h4 *ngIf="!report?.migrated" class="reportTitle" [routerLink]="[getResourceBase(report), report?.id]">{{report?.rTitle | striphtml}}
+                  </h4>
+                  <h4 *ngIf="report?.migrated" class="reportTitle" (click)="openPdf(report)">{{report?.rTitle | striphtml}}
                   </h4>
                   <p>{{report?.smartContent | truncate: 180: true}}
                   </p>
