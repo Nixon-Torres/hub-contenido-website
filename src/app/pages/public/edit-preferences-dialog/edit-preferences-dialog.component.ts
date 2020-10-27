@@ -3,6 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog
 
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {HttpService} from '../../../services/http.service';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-edit-preferences-dialog',
@@ -21,7 +22,8 @@ export class EditPreferencesDialogComponent {
   constructor(
     private http: HttpService,
     public dialogRef: MatDialogRef<EditPreferencesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private gtmService: GoogleTagManagerService) {
 
     this.subscribeGroup = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email])
@@ -48,4 +50,15 @@ export class EditPreferencesDialogComponent {
     this.dialogRef.close();
   }
 
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
 }

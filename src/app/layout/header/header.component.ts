@@ -410,4 +410,16 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+  tag(eventCategory, eventAction) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: window.location.href,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
 }

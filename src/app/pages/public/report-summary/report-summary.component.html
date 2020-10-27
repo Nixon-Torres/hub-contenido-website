@@ -7,9 +7,9 @@
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li [ngClass]="{activeone: tab === 'tab1'}" class="action"><a (click)="tab = 'tab1'">Acciones</a></li>
-				<li [ngClass]="{activeone: tab === 'tab2'}"><a (click)="tab = 'tab2'">Monedas</a></li>
-				<li [ngClass]="{activeone: tab === 'tab3'}"><a (click)="tab = 'tab3'">Renta fija</a></li>
+				<li [ngClass]="{activeone: tab === 'tab1'}" class="action"><a (click)="tab = 'tab1'; tag('Home', 'Estrategia para invertir', 'Acciones');">Acciones</a></li>
+				<li [ngClass]="{activeone: tab === 'tab2'}"><a (click)="tab = 'tab2'; tag('Home', 'Estrategia para invertir', 'Monedas');">Monedas</a></li>
+				<li [ngClass]="{activeone: tab === 'tab3'}"><a (click)="tab = 'tab3'; tag('Home', 'Estrategia para invertir', 'Rent fija');">Renta fija</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="tab-3" class="tab-pane activeone" *ngIf="tab === 'tab1'">
@@ -24,7 +24,7 @@
 									</p>
 									<p class="para_nuvo">NUEVO</p>
 									<div class="conocer_btn">
-										<a [routerLink]="['/reports', headerReport?.id]">Conocer a detalle el informe <i
+										<a [routerLink]="['/reports', headerReport?.id]" (click)="tag('Home', 'Estrategia para invertir', '/reports'.concat('/',headerReport?.id), true, true);">Conocer a detalle el informe <i
 												class="fa fa-angle-right" aria-hidden="true"></i></a>
 									</div>
 								</div>
@@ -34,7 +34,7 @@
 							<div class="row">
 								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area1Report" class="tab_sub_division_part"
-										[routerLink]="['/reports', area1Report?.id]">
+										[routerLink]="['/reports', area1Report?.id]" (click)="tag('Home', 'Estrategia para invertir', '/reports'.concat('/', area1Report?.id), true);">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.rTitle | striphtml}}</h4>
 										<p class="para_left_first_text description">{{area1Report?.smartContent}}</p>
@@ -43,7 +43,7 @@
 								</div>
 								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area2Report" class="tab_sub_division_part"
-										[routerLink]="['/reports', area2Report?.id]">
+										[routerLink]="['/reports', area2Report?.id]" (click)="tag('Home', 'Estrategia para invertir', '/reports'.concat('/', area2Report?.id), true);">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.rTitle | striphtml}}</h4>
 										<p class="para_left_first_text description">{{area2Report?.smartContent}}</p>
@@ -52,7 +52,7 @@
 								</div>
 								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area3Report" class="tab_sub_division_part"
-										[routerLink]="['/reports', area3Report?.id]">
+										[routerLink]="['/reports', area3Report?.id]" (click)="tag('Home', 'Estrategia para invertir', '/reports'.concat('/', area3Report?.id), true);">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.rTitle | striphtml}}</h4>
 										<p class="para_left_first_text description">{{area3Report?.smartContent}}</p>
@@ -61,7 +61,7 @@
 								</div>
 								<div class="col-sm-6 summary-mobile_hiden">
 									<div *ngIf="area4Report" class="tab_sub_division_part"
-										[routerLink]="['/reports', area4Report?.id]">
+										[routerLink]="['/reports', area4Report?.id]" (click)="tag('Home', 'Estrategia para invertir', '/reports'.concat('/', area4Report?.id), true);">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.rTitle | striphtml}}</h4>
 										<p class="para_left_first_text description">{{area4Report?.smartContent}}</p>
@@ -73,10 +73,10 @@
 					</div>
 					<div class="para_bottom_btn">
 						<div class="button_inner">
-							<a href="/categories/5e7fc9a5dc4b4a6c66295184" class="empresas">Ir a empresas <i class="fa fa-angle-right"
-									aria-hidden="true"></i></a>
+							<a href="/categories/5e7fc9a5dc4b4a6c66295184" class="empresas" (click)="tag('Home', 'Estrategia para invertir', 'Ir a empresas');">Ir a empresas <i class="fa fa-angle-right"
+									aria-hidden="true" ></i></a>
 							<a href="/categories/5e7fc9a5dc4b4a6c66295184/type/5e7fc9a5dc4b4a6c662951af" class="acciones">Ir a Acciones <i class="fa fa-angle-right"
-									aria-hidden="true"></i></a>
+									aria-hidden="true" (click)="tag('Home', 'Estrategia para invertir', 'Ir a acciones');"></i></a>
 						</div>
 					</div>
 				</div>

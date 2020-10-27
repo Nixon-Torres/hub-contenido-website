@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
 import {combineLatest} from 'rxjs';
 import { MatInput } from '@angular/material';
-
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
     selector: 'app-categories',
@@ -55,7 +55,7 @@ export class CategoriesComponent implements OnInit {
     id: null,
   }];
 
-  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router, private gtmService: GoogleTagManagerService) {
   }
 
   ngOnInit() {
@@ -435,5 +435,17 @@ export class CategoriesComponent implements OnInit {
     this.idateHighLimit = moment(this.idateEnd)
         .set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate();
     this.getReports();
+  }
+
+  tag(eventCategory, eventAction, eventLabel, getUrl) {
+    (getUrl) ? eventLabel = window.location.origin + eventLabel : '';
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }
