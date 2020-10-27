@@ -41,11 +41,18 @@
 						<a class="latest-reports-mobile" [routerLink]="['/reports', dailyReport.id]" >Ver ahora</a>
 					</div>
 					<div class="last_container"  *ngFor="let report of reports">
-						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]" (click)="tag('Home', 'Más leidos', ('multimedia').concat('/',report.id), true)">
+						<div *ngIf="!report.multimedia && !report.migrated" class="information_tab_pen" [routerLink]="['/reports', report.id]"
+                 (click)="tag('Home', 'Más leidos', ('multimedia').concat('/',report.id), true)">
 							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
 							<h4>{{report?.rTitle | striphtml}}</h4>
 							<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 						</div>
+            <div *ngIf="!report.multimedia && report.migrated" class="information_tab_pen"
+                 (click)="tag('Home', 'Más leidos', ('multimedia').concat('/',report.id), true); openPdf(report)">
+              <a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
+              <h4>{{report?.rTitle | striphtml}}</h4>
+              <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+            </div>
             <div *ngIf="report.multimedia" class="information_tab_pen multimedia-cont" (click)="go(report); tag('Home', 'ultimos informes', ('multimedia').concat('/',report.id), true)">
               <div class="left">
                 <a style="text-transform: uppercase">MULTIMEDIA</a>

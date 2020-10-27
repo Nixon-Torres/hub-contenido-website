@@ -1,6 +1,6 @@
 <app-breadcrumb [pages]="breadcrumbItems"></app-breadcrumb>
 
-<body class="report_page">
+<body class="report_page" *ngIf="!report?.migrated">
 	<div style="margin-top: 20px"></div>
 	<div *ngIf="myhtml" [innerHTML]="myhtml"></div>
 </body>
