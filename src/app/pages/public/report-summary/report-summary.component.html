@@ -100,12 +100,19 @@
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab3'">
 					<div class="row">
 						<div class="col-sm-3 summary-mobile_hiden second_tab" *ngFor="let report of rentaReports">
-							<div class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
+							<div *ngIf="!report?.migrated" class="tab_sub_division_part" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
 								<p class="para_left_first_text description">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
+
+              <div *ngIf="report?.migrated" class="tab_sub_division_part" (click)="openPdf(report)">
+                <p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
+                <h4>{{report?.rTitle | striphtml}}</h4>
+                <p class="para_left_first_text description">{{report?.smartContent}}</p>
+                <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+              </div>
 						</div>
 					</div>
 					<div class="para_bottom_btn">

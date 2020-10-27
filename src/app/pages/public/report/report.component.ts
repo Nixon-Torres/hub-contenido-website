@@ -20,6 +20,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
     public reportId: string;
     public categoryId: string;
     public breadcrumbItems: Array<any> = [];
+    public assetBase: string = environment.URL_API;
 
     constructor(private http: HttpService, private activatedRoute: ActivatedRoute,
                 private sanitizer: DomSanitizer, private elementRef: ElementRef) {
@@ -83,6 +84,11 @@ export class ReportComponent implements OnInit, AfterViewInit {
       }, 1000);
     }
 
+    openPdf(report) {
+      const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
+      window.open(url);
+    }
+
     getReport(reportId: string) {
       const filter = {
         where: {
@@ -103,6 +109,11 @@ export class ReportComponent implements OnInit, AfterViewInit {
       }).subscribe((res) => {
         if (res.body && (res.body as any).length) {
           this.report = res.body[0];
+
+          if (this.report.migrated) {
+            this.openPdf(this.report);
+            return;
+          }
 
           if (!this.report.reportType) {
             return;

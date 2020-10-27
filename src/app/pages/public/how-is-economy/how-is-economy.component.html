@@ -80,12 +80,19 @@
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
 					<div class="row">
 						<div class="col-sm-3 economy-mobile_hiden second_tab" *ngFor="let report of randomReports">
-							<div class="tab_sub_division_part economy_background" [routerLink]="['/reports', report?.id]">
+							<div *ngIf="!report?.migrated" class="tab_sub_division_part economy_background" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
 								<p class="tab_sub_division_part_text">{{report?.smartContent}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
+
+              <div *ngIf="report?.migrated" class="tab_sub_division_part economy_background" (click)="openPdf(report)">
+                <p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
+                <h4>{{report?.rTitle | striphtml}}</h4>
+                <p class="tab_sub_division_part_text">{{report?.smartContent}}</p>
+                <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+              </div>
 						</div>
 					</div>
 					<div class="para_bottom_btn">

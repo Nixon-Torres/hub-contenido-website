@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../../services/http.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-how-is-economy',
@@ -15,12 +16,18 @@ export class HowIsEconomyComponent implements OnInit {
   public area2Report: any;
   public area3Report: any;
   public area4Report: any;
+  public assetBase: string = environment.URL_API;
 
   constructor(private http: HttpService) { }
 
   ngOnInit() {
     this.loadOutstanding();
     this.getRandomReports();
+  }
+
+  openPdf(report) {
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
+    window.open(url);
   }
 
   getCategory(reportType) {
