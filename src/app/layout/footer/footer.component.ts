@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {environment} from '../../../environments/environment';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-footer',
@@ -13,7 +14,7 @@ export class FooterComponent implements OnInit {
 
   public STORAGE_URL = environment.URL_API;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private gtmService: GoogleTagManagerService) { }
 
   ngOnInit() {
     this.getContent();
@@ -54,4 +55,15 @@ export class FooterComponent implements OnInit {
     });
   }
 
+  tag(eventCategory, eventAction) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: window.location.href,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
 }

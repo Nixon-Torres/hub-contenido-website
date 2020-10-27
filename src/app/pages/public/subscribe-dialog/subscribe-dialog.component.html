@@ -52,7 +52,7 @@
               <mat-select-trigger>
                 {{currentOption}}
               </mat-select-trigger>
-              <mat-option class="dialog_subscribe" [value]="option.code" *ngFor="let option of options">
+              <mat-option class="dialog_subscribe" [value]="option.code" *ngFor="let option of options" (click)="tag('Suscripción boletin quincenal', 'Calificacion conocimiento', option.title);">
                 <div class="title">{{option.title}}</div>
                 <div class="description">{{option.description}}</div>
               </mat-option>
@@ -63,7 +63,7 @@
           </mat-form-field>
         </div>
         <div class="input-control accept">
-          <input type="checkbox" id="accept" [(ngModel)]="subscriber.accept" formControlName="accept">
+          <input (click)="tag('Suscripción boletin quincenal', 'Aceptar', 'Terminos y condiciones');" type="checkbox" id="accept" [(ngModel)]="subscriber.accept" formControlName="accept">
           <label for="accept"><a [routerLink]="['/terms']" target="_blank">Acepto términos y condiciones</a></label>
         </div>
       </div>

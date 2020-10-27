@@ -2,7 +2,7 @@
   <div class="container">
     <div class="menu_item">
       <ul *ngIf="ready" (mouseleave)="mouseLeave()">
-        <li (mouseenter)="mouseEnter(1)" (click)="go('Estar actualizado')"
+        <li (mouseenter)="mouseEnter(1)" (click)="go('Estar actualizado');tag('Estar actualizado')"
             class="set-padd set-caret-1" [routerLink]="getCategoryLink(1)"
             routerLinkActive="active">
           <a>Estar<br>actualizado</a>
@@ -10,12 +10,12 @@
         </li>
         <li (mouseenter)="mouseEnter(2)"
             class="add-padd set-caret-2" [routerLink]="getCategoryLink(2)"
-            routerLinkActive="active">
+            routerLinkActive="active" (click)="tag('Menu','Macroeconomia');">
           <a>Macroeconomía</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(3)" class="set-caret-3 set-padd menu_icon"
             [routerLink]="getCategoryLink(3)"
-            routerLinkActive="active">
+            routerLinkActive="active" (click)="tag('Menu','Nuestros indicadores');">
             <figure>
               <img src="/assets/images/menu-icon.png" alt="">
             </figure>
@@ -23,27 +23,27 @@
         </li>
         <li (mouseenter)="mouseEnter(4)" class="set-caret-4 set-padd"
             [routerLink]="getCategoryLink(4)"
-            routerLinkActive="active">
+            routerLinkActive="active" (click)="tag('Menu', 'Economias centroamericandas');">
           <a>Economías <br/>Centroamericanas</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(5)" class="set-caret-5 set-padd"
             [routerLink]="getCategoryLink(5)"
-            routerLinkActive="active">
+            routerLinkActive="active" (click)="tag('Menu', 'Tendencias sectoriales');">
           <a>Tendencias <br/>sectoriales</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(6)" class="set-caret-6 set-padd"
             [routerLink]="getCategoryLink(6)"
             routerLinkActive="active"
-            id="inner-menu-detail">
+            id="inner-menu-detail" (click)="tag('Menu', 'Analisis de companias');">
           <a>Análisis de<br>compañías</a><i class="fas fa-caret-down"></i>
         </li>
         <li (mouseenter)="mouseEnter(7)" class="set-padd set-caret-7"
             [routerLink]="getCategoryLink(7)"
-            routerLinkActive="active">
+            routerLinkActive="active" (click)="tag('Menu', 'En que invertir');">
           <a>¿En qué<br> invertir?&nbsp;</a><i class="fas fa-caret-down"></i>
         </li>
         <li class="add-padd set-caret-8 right-border-no" [routerLink]="['/multimedia']"
-            routerLinkActive="active">
+            routerLinkActive="active" (click)="tag('Menu', 'Multimedia');">
           <a>Multimedia</a>
         </li>
       </ul>
@@ -99,7 +99,7 @@
                 <h3>Contenido Destacado</h3>
               </div>
 
-              <div class="hide-right-menu-contant" [routerLink]="['/reports', currentReport?.id]">
+              <div class="hide-right-menu-contant" [routerLink]="['/reports', currentReport?.id]" (click)="tag('Categoria', 'Informes destacados', '/reports'.concat('/', currentReport?.id), true)">
                 <h3>{{getCategoryName(currentReport?.reportType)}}</h3>
                 <h4>{{currentReport?.rTitle | striphtml}}</h4>
                 <h5>{{currentReport?.smartContent | truncate: 140: true}}</h5>
@@ -118,7 +118,7 @@
     <div class="content">
       <iframe class="top_iframe" src="https://widgetsdataifx.blob.core.windows.net/corredores/ticker" scrolling="no"></iframe>
       <div class="indictor_btn">
-        <button [routerLink]="['/indicators']">
+        <button [routerLink]="['/indicators']" (click)="tag('Indicadores','Ver indicadores');">
           Ver indicadores
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </button>

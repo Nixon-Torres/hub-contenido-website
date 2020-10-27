@@ -13,7 +13,7 @@
       <h3>Recomendados</h3>
     </div>
     <div class="Recomendados-header">
-      <div class="row" *ngIf="header" [routerLink]="['/multimedia', header.id]">
+      <div class="row" *ngIf="header" [routerLink]="['/multimedia', header.id]" (click)="tag('Multimedia', 'Recomendados', '/multimedia'.concat('/', header.id), true)">
         <div class="col-md-6 col-sm-12 recomendados_container">
           <div class="Recomendados-inner-image">
             <span class="overlaycategory">{{getType(header)}}</span>
@@ -35,7 +35,7 @@
 
     <div class="Recomandados-inline-video">
       <div class="row">
-        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item1" [routerLink]="['/multimedia', item1.id]">
+        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item1" [routerLink]="['/multimedia', item1.id]" (click)="tag('Multimedia', 'Recomendados', '/multimedia'.concat('/', item1.id), true)">
           <div class="vidimg">
             <img [src]="getThumbSource(item1)" alt="" class="img-fluid">
             <span class="overlaycategory">{{getType(item1)}}</span>
@@ -50,7 +50,7 @@
           <h2 class="title-multimedia">{{item1.title | truncate: 80: false}}</h2>
           <h6>{{item1?.description}}</h6>
         </div>
-        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item2" [routerLink]="['/multimedia', item2.id]">
+        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item2" [routerLink]="['/multimedia', item2.id]" (click)="tag('Multimedia', 'Recomendados', '/multimedia'.concat('/', item2.id), true)">
           <div class="vidimg">
             <img [src]="getThumbSource(item2)" alt="" class="img-fluid">
             <span class="overlaycategory">{{getType(item2)}}</span>
@@ -64,7 +64,7 @@
           <h2>{{item2.title}}</h2>
           <h6>{{item2?.description}}</h6>
         </div>
-        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item3" [routerLink]="['/multimedia', item3.id]">
+        <div class="col-md-4 col-sm-4 inline-video" *ngIf="item3" [routerLink]="['/multimedia', item3.id]" (click)="tag('Multimedia', 'Recomendados', '/multimedia'.concat('/', item3.id), true)">
 
           <div class="vidimg">
             <img [src]="getThumbSource(item3)" alt="" class="img-fluid">
@@ -89,13 +89,13 @@
   <div class="container">
     <div class="row">
       <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" (click)="setTab(1)">
+        <li class="nav-item" (click)="setTab(1); tag('Multimedia', 'Categoría', 'Videos')">
           <a class="nav-link" [ngClass]="{'active': currentTab === 1}">Videos</a>
         </li>
-        <li class="nav-item" (click)="setTab(2)">
+        <li class="nav-item" (click)="setTab(2); tag('Multimedia', 'Categoría', 'Podcast')">
           <a class="nav-link" [ngClass]="{'active': currentTab === 2}">Podcast</a>
         </li>
-        <li class="nav-item" (click)="setTab(3)">
+        <li class="nav-item" (click)="setTab(3); tag('Multimedia', 'Categoría', 'Webinar')">
           <a class="nav-link" [ngClass]="{'active': currentTab === 3}" >Webinar</a>
         </li>
       </ul>
@@ -107,7 +107,7 @@
               <div class="row">
                 <div class="col-md-4 col-sm-4 inline-video" *ngFor="let item of contents">
 
-                  <div class="vidimg video--image" [routerLink]="['/multimedia', item.id]">
+                  <div class="vidimg video--image" [routerLink]="['/multimedia', item.id]" (click)="tag('Multimedia', this.currentTab==1 ? 'Videos' : this.currentTab==2 ? 'Podcast' : 'Webinar', '/multimedia'.concat('/' ,item.id), true)">
                     <img [src]="getThumbSource(item)" alt="" class="img-fluid">
                     <span class="overlaycategory">{{getType(item)}}</span>
                     <i class="fas" [ngClass]="{'fa-play-circle': getType(item) !== 'Podcast',

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
 import {environment} from '../../../../environments/environment';
 import { forkJoin } from 'rxjs';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
     selector: 'app-multimedia',
@@ -23,7 +24,7 @@ export class MultimediaComponent implements OnInit {
   public currentTab = 1;
   category: string;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private gtmService: GoogleTagManagerService) { }
 
   ngOnInit() {
     this.loadContents();
@@ -147,5 +148,17 @@ export class MultimediaComponent implements OnInit {
       && this.categories.find(cat => cat.id === content.params.category)
       ? this.categories.find(cat => cat.id === content.params.category).description
       : 'Corredores Davivienda';
+  }
+
+  tag(eventCategory, eventAction, eventLabel, getUrl) {
+    (getUrl) ? eventLabel = window.location.origin + eventLabel : '';
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }
