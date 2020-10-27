@@ -22,6 +22,7 @@ export class SearchResultsComponent implements OnInit {
   public pagesItems = [];
   public companyTypesSelect: any;
   public totalCount: number;
+  public totalCountSum: number;
   public totalPages: number;
   public currentPage = 1;
   readonly ITEMS_PER_PAGE = 6;
@@ -56,6 +57,11 @@ export class SearchResultsComponent implements OnInit {
       this.currentPage = 1;
       this.getReports();
     });
+  }
+
+  openPdf(report) {
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
+    window.open(url, '_blank');
   }
 
   scroll() {
@@ -182,7 +188,7 @@ export class SearchResultsComponent implements OnInit {
       path: `public/search/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId', 'migrated', 'pdfFolder', 'pdfFile', 'publishedYear'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -242,6 +248,7 @@ export class SearchResultsComponent implements OnInit {
             this.reports.push(contents[i]);
         }
 
+        this.totalCountSum = reportsCount + contentsCount;
         this.totalCount = reportsCount > contentsCount ? reportsCount : contentsCount;
         this.totalPages = Math.ceil(this.totalCount / this.ITEMS_PER_PAGE);
         this.pagesItems = [];

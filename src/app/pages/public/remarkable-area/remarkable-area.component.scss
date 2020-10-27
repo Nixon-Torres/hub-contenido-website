@@ -68,4 +68,43 @@ app-side-bar {
       }
     }
   }
+  &.mobile_hiden {
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+}
+
+.information_image .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  i.fas {
+    font-size: 65px;
+    z-index: 2;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+  }
+
+  .overlaytitle {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    z-index: 2;
+    font-size: 13px;
+  }
+}
+
+.information_content .information_left_first .information_image .wrapper i.fas {
+  @media only screen and (max-width: 500px) {
+    font-size: 30px;
+  }
+}
+
+.information_content .information_left_first.first_banner .information_image .wrapper i.fas {
+  @media only screen and (max-width: 500px) {
+    font-size: 50px;
+  }
 }

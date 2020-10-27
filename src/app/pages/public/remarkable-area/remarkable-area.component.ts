@@ -24,7 +24,7 @@ export class RemarkableAreaComponent implements OnInit {
   }
 
   private getType(item: any) {
-    return item && item.multimediaType ? item.multimediaType.name : 'none';
+    return item && item.multimediaType ? item.multimediaType.name.toUpperCase() : 'none';
   }
 
   getCategory(reportType) {

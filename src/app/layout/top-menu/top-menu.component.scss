@@ -14166,10 +14166,10 @@ max-width: 100% !important;
       margin-top: 5px;
       margin-left: -57px;
       @media only screen and (max-width: 768px) {
-        width: 75%;
+        width: 94%;
       }
       @media only screen and (max-width: 500px) {
-        width: 82%;
+        width: 87%;
       }
     }
 
@@ -14180,7 +14180,8 @@ max-width: 100% !important;
       text-align: right;
       margin-right: 15px;
       @media only screen and (max-width: 768px) {
-        width: 30%;
+        width: auto;
+        padding-right: 10px;
       }
 
       button {

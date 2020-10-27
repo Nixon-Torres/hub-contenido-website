@@ -93,7 +93,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getBannerImg() {
-    const defaultBanner = '../../../../assets/images/Imagen 3.png';
+    const defaultBanner = null;
     if (!this.category || (this.category && !this.category.files)) {
       return defaultBanner;
     }
@@ -258,7 +258,7 @@ export class CategoriesComponent implements OnInit {
       path: `public/reports/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId', 'migrated', 'pdfFile', 'pdfFolder', 'publishedYear'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -364,6 +364,11 @@ export class CategoriesComponent implements OnInit {
 
     this.updateBreadcrumbItems();
     this.getReports();
+  }
+
+  openPdf(report) {
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
+    window.open(url, '_blank');
   }
 
   updateBreadcrumbItems() {

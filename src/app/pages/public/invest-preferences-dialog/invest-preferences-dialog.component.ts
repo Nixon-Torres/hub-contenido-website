@@ -51,8 +51,20 @@ export class InvestPreferencesDialogComponent {
     this.subscribeGroup = new FormGroup({});
   }
 
-  public getFreqLabel2(period) {
-    switch (period) {
+  public getFreqLabel2(type) {
+    if (!type) {
+      return '';
+    }
+
+    if (type && type.periodText) {
+      return type.periodText;
+    }
+
+    if (type && !type.period) {
+      return '';
+    }
+
+    switch (type.period) {
       case 'day':
         return 'Diaria';
       case 'week':
@@ -61,6 +73,8 @@ export class InvestPreferencesDialogComponent {
         return 'Quincenal';
       case 'month':
         return 'Mensual';
+      case 'year':
+        return 'Anual';
       default:
         return 'unknown';
     }

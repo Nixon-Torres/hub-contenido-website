@@ -49,14 +49,20 @@
 .ediciones-midcont {
   ul {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
+    @media only screen and (max-width: 768px) {
+      justify-content: space-between;
+    }
 
     li {
       height: 370px;
       width: 32%;
-      margin: 0 0 15px;
+      margin: 0 5px 15px;
+      @media only screen and (max-width: 768px) {
+        padding: 50px 0;
+        width: 45%;
+      }
     }
   }
 }

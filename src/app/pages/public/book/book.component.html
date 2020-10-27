@@ -59,9 +59,16 @@
               <div class="libro-select-list-1">
                 <select [(ngModel)]="subscriber.sector" formControlName="sector">
                   <option value="1" [selected]="1">¿En qué sector económico usted trabaja?</option>
-                  <option value="2">Sector 1</option>
-                  <option value="3">Sector 2</option>
-                  <option value="4">Sector 3</option>
+                  <option value="2">Agropecuario</option>
+                  <option value="3">Comercio</option>
+                  <option value="4">Construcción</option>
+                  <option value="5">Energía</option>
+                  <option value="6">Financiero</option>
+                  <option value="7">Industrial</option>
+                  <option value="8">Inmobiliario</option>
+                  <option value="9">Minería y petróleo</option>
+                  <option value="10">Transporte</option>
+                  <option value="11">Otros</option>
                 </select>
                 <div *ngIf="subscribeGroup.controls.sector.invalid && (subscribeGroup.controls.sector.dirty ||
                   subscribeGroup.controls.sector.touched)"
