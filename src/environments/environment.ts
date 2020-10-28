@@ -4,16 +4,13 @@
 
 export const environment = {
   production: false,
-  // URL_API:  'https://vision.davivienda.com/',
-  // URL_SOCKET:  'https://vision.davivienda.com/',
-  /// STORAGE_FILES: 'https://vision.davivienda.com/public/assets/',
+  URL_API:  'https://vision.davivienda.com/',
+  URL_SOCKET:  'https://vision.davivienda.com/',
+  STORAGE_FILES: 'https://vision.davivienda.com/public/assets/',
   DRAFT_KEY: '5e068d1cb81d1c5f29b62977',
   // URL_API:  'http://localhost:3000/',
   // URL_SOCKET:  'http://localhost:3000/',
   // STORAGE_FILES: 'http://localhost:3000/public/assets/'
-  URL_API:  'https://stg-hub.qdata.io/',
-  URL_SOCKET:  'https://stg-hub.qdata.io/',
-  STORAGE_FILES: 'https://stg-hub.qdata.io/public/assets/'
 };
 
 /*
