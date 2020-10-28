@@ -127,6 +127,9 @@ export class CategoriesComponent implements OnInit {
     }).subscribe((response: any) => {
       this.category = response.body[0];
 
+      const params = this.category && this.category.params ? this.category.params : {};
+      const alphabetic = params.sorting && params.sorting === 'alphabetic';
+
       if (this.category.code === 'ANLISISDECOMPAAS') {
         this.companyId = this.reportTypeId;
         this.reportTypeId = null;
@@ -145,7 +148,28 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        }).filter(e => !!!e.parentId);
+        }).filter(e => !!!e.parentId)
+          .sort((a, b) => {
+            if (alphabetic) {
+              const nameA = this.getReportTypeName(a).toLowerCase();
+              const nameB = this.getReportTypeName(b).toLowerCase();
+              if (nameA > nameB) {
+                return 1;
+              } else if (nameA < nameB) {
+                return -1;
+              } else {
+                return 0;
+              }
+            } else {
+              if (a.order > b.order) {
+                return 1;
+              } else if (a.order < b.order) {
+                return -1;
+              } else {
+                return 0;
+              }
+            }
+          });
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
