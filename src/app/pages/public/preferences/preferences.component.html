@@ -119,6 +119,7 @@
                 <div class="box-bottom-text">
                   <p>Se está suscribiendo a <span class="red">{{getCheckboxesSelected().length}}</span> informes y recibirá aproximadamente <span class="red">{{getMonthlyReports()}}</span> correos al mes, sin contar los informes eventuales.</p>
                   <a><button type="button" class="btn box-bottom-btn" (click)="openSubscriptionModal(); tag('Suscripción Informes personalizados', 'Activar', 'Activar mi suscripcion')" [disabled]="getCheckboxesSelected().length === 0">{{accessToken ? 'Actualizar' : 'Activar'}} suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
+                    <p *ngIf="subsRequestError"><span class="red">El correo electrónico ya se encuentra registrado</span></p>
                 </div>
               </div>
 
@@ -369,6 +370,7 @@
                 <div class="box-bottom-text">
                   <p>Se está suscribiendo a <span class="red">{{getCheckboxesSelected().length}}</span> informes y recibirá aproximadamente <span class="red">{{getMonthlyReports()}}</span> correos al mes, sin contar los informes eventuales.</p>
                   <a><button type="button" class="btn box-bottom-btn" (click)="openSubscriptionModal()" [disabled]="getCheckboxesSelected().length === 0">{{accessToken ? 'Actualizar' : 'Activar'}} suscripción<span><i class="fas fa-chevron-right"></i></span></button></a>
+                  <p *ngIf="subsRequestError"><span class="red">El correo electrónico ya se encuentra registrado</span></p>
                 </div>
               </div>
             </div>

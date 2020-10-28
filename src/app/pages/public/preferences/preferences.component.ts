@@ -39,6 +39,7 @@ export class PreferencesComponent implements OnInit {
   public form2: FormGroup;
 
   public subcategoryCbs = {};
+  public subsRequestError:boolean = false;
 
   constructor(private http: HttpService, private sanitizer: DomSanitizer, private fb: FormBuilder, private dialog: MatDialog,
               private router: Router, private dataService: DataService, private activatedRoute: ActivatedRoute, private gtmService: GoogleTagManagerService) {
@@ -240,7 +241,10 @@ export class PreferencesComponent implements OnInit {
         },
         encode: true
       }).subscribe((res) => {
+        this.subsRequestError = false;
         this.router.navigate(['sub2factor_confirmation']);
+      }, (error) => {
+        this.subsRequestError = true
       });
     });
   }
