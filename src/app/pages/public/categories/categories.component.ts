@@ -148,8 +148,11 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        }).filter(e => !!!e.parentId)
-          .sort((a, b) => {
+        }).filter(e => {
+          const rsp = !!!e.parentId ||
+            (!!e.parentId && !this.category.childrenMainReportTypes.find(j => j.id === e.parentId));
+          return rsp;
+        }).sort((a, b) => {
             if (alphabetic) {
               const nameA = this.getReportTypeName(a).toLowerCase();
               const nameB = this.getReportTypeName(b).toLowerCase();
