@@ -57,7 +57,7 @@
     <mat-divider></mat-divider>
     <div class="nir-inline-video">
       <div class="row">
-        <div class="col-md-4 col-sm-4 nir_content" *ngFor="let report of relateds" [routerLink]="['/reports', report?.id]">
+        <div class="col-md-4 col-sm-4 nir_content right-border-ifx" *ngFor="let report of relateds" [routerLink]="['/reports', report?.id]">
           <img src="../../../../assets/images/nir-video-1.png" class="img-fluid">
           <div class="nir-inline-video-contant">
             <h5>{{getCategory(report?.reportType)}}</h5>
