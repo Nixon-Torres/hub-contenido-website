@@ -7127,7 +7127,6 @@ p.informe_heading_desc {
   float: left;
   padding: 10px 50px 0px 20px;
   word-break: break-word;
-  min-height: 250px;
   height: 100%;
   text-align: left;
 }
@@ -7166,7 +7165,6 @@ p.informe_heading_desc {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  margin-bottom: 30px;
 }
 
 .nir-inline-video-btn {
@@ -7178,8 +7176,6 @@ p.informe_heading_desc {
   padding: 6px 0 0 0;
   border-bottom: 1px solid #E8162E;
   border-radius: 0;
-  position: absolute;
-  bottom: 0;
 }
 
 .full-image .img-fluid {
