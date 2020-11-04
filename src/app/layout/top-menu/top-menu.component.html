@@ -102,7 +102,7 @@
               <div class="hide-right-menu-contant" [routerLink]="['/reports', currentReport?.id]" (click)="tag('Categoria', 'Informes destacados', '/reports'.concat('/', currentReport?.id), true)">
                 <h3>{{getCategoryName(currentReport?.reportType)}}</h3>
                 <h4>{{currentReport?.rTitle | striphtml}}</h4>
-                <h5>{{currentReport?.smartContent | truncate: 140: true}}</h5>
+                <h5>{{currentReport?.smartContent | striphtml | truncate: 140: true}}</h5>
                 <p>{{currentReport?.publishedAt | date:'d MMMM y'}}</p>
               </div>
             </div>

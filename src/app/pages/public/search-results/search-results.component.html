@@ -28,7 +28,7 @@
                   </h4>
                   <h4 *ngIf="report?.migrated" class="reportTitle" (click)="openPdf(report)">{{report?.rTitle | striphtml}}
                   </h4>
-                  <p>{{report?.smartContent | truncate: 180: true}}
+                  <p>{{report?.smartContent | striphtml | truncate: 180: true}}
                   </p>
                   <p class="small ">{{report?.publishedAt | date:'d MMMM y'}}</p>
                   <a *ngIf="isANewReport(report)">
