@@ -2,188 +2,198 @@ import {AfterViewInit, Component, ElementRef, OnInit, Sanitizer, ViewEncapsulati
 import {HttpService} from '../../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../../environments/environment';
-import { DomSanitizer } from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
 import * as $ from 'jquery';
 import 'bootstrap';
 import {main} from '@angular/compiler-cli/src/main';
 import {combineLatest} from 'rxjs';
 
 @Component({
-    selector: 'app-report',
-    templateUrl: './report.component.html',
-    styleUrls: ['./report.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-report',
+  templateUrl: './report.component.html',
+  styleUrls: ['./report.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ReportComponent implements OnInit, AfterViewInit {
-    public myhtml: any;
-    public report: any;
-    public reportId: string;
-    public categoryId: string;
-    public breadcrumbItems: Array<any> = [];
-    public assetBase: string = environment.URL_API;
+  public myhtml: any;
+  public report: any;
+  public reportId: string;
+  public categoryId: string;
+  public breadcrumbItems: Array<any> = [];
+  public assetBase: string = environment.URL_API;
 
-    constructor(private http: HttpService, private activatedRoute: ActivatedRoute,
-                private sanitizer: DomSanitizer, private elementRef: ElementRef) {
-    }
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute,
+              private sanitizer: DomSanitizer, private elementRef: ElementRef) {
+  }
 
-    ngOnInit() {
-      const oparams = this.activatedRoute.params;
-      const oqueryParams = this.activatedRoute.queryParams;
+  ngOnInit() {
+    const oparams = this.activatedRoute.params;
+    const oqueryParams = this.activatedRoute.queryParams;
 
-      combineLatest(oparams, oqueryParams,
-        (iparams, iqueryParams) => ({ iparams, iqueryParams }))
-        .subscribe(response => {
-          const queryParams = response.iqueryParams;
-          const params = response.iparams;
+    combineLatest(oparams, oqueryParams,
+      (iparams, iqueryParams) => ({iparams, iqueryParams}))
+      .subscribe(response => {
+        const queryParams = response.iqueryParams;
+        const params = response.iparams;
 
-          if (queryParams.catId) {
-            this.categoryId = queryParams.catId;
-          }
-
-          if (params.id) {
-            this.reportId = params.id;
-            this.getReport(this.reportId);
-            this.loadReport(this.reportId);
-          }
-        });
-    }
-
-    ngAfterViewInit(): void {
-      setTimeout(() => {
-        const button = document.querySelector('app-button');
-        if (!button) {
-          return;
+        if (queryParams.catId) {
+          this.categoryId = queryParams.catId;
         }
-        button.addEventListener('action', (event: any) => {
-          if (event && event.detail) {
-            $('body').addClass('modal-open');
-          } else {
-            $('body').removeClass('modal-open');
-          }
-        });
-      }, 2000);
 
-      setTimeout(() => {
-        ( $('[data-toggle="tooltip"]') as any).tooltip();
-
-        $('.circle.twitter').on('click', () => {
-          this.shareOntwitter();
-        });
-
-        $('.circle.linkedin').on('click', () => {
-          this.shareOnLinkedin();
-        });
-
-        $('.circle.link').on('click', () => {
-          this.copyToClipboard(window.location);
-        });
-
-        $('#ponderarToggle').on('click', () => {
-          $('#ponderarToggle').toggleClass('ponderar_down');
-        });
-      }, 1000);
-    }
-
-    openPdf(report) {
-      const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
-      window.open(url);
-    }
-
-    getReport(reportId: string) {
-      const filter = {
-        where: {
-          id: reportId
-        },
-        fields: ['reportTypeId'],
-        include: [{
-          relation: 'reportType',
-          scope: {
-            include: ['mainCategory', 'subCategory']
-          }
-        }]
-      };
-      this.http.get({
-        path: `public/reports/`,
-        data: filter,
-        encode: true
-      }).subscribe((res) => {
-        if (res.body && (res.body as any).length) {
-          this.report = res.body[0];
-
-          if (this.report.migrated) {
-            this.openPdf(this.report);
-            return;
-          }
-
-          if (!this.report.reportType) {
-            return;
-          }
-
-          const mainCategory = this.report.reportType.mainCategory;
-          const reportType = this.report.reportType;
-
-          if (mainCategory && mainCategory.length) {
-            const category = mainCategory.find(e => !this.categoryId || (this.categoryId && this.categoryId === e.id));
-            this.breadcrumbItems = [{
-              label: category.description,
-              link: ['/categories', category.id]
-            }];
-
-            if (reportType) {
-              let alias = reportType.description;
-
-              if (this.categoryId && reportType.aliases && reportType.aliases[this.categoryId]) {
-                alias = reportType.aliases[this.categoryId];
-              }
-              this.breadcrumbItems.push({
-                label: alias,
-                link: ['/categories', category.id, 'type', reportType.id]
-              });
-            }
-          }
+        if (params.id) {
+          this.reportId = params.id;
+          this.getReport(this.reportId);
+          this.loadReport(this.reportId);
         }
       });
-    }
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      const button = document.querySelector('app-button');
+      if (!button) {
+        return;
+      }
+      button.addEventListener('action', (event: any) => {
+        if (event && event.detail) {
+          $('body').addClass('modal-open');
+        } else {
+          $('body').removeClass('modal-open');
+        }
+      });
+    }, 2000);
+
+    setTimeout(() => {
+      ($('[data-toggle="tooltip"]') as any).tooltip();
+
+      $('.circle.twitter').on('click', () => {
+        this.shareOntwitter();
+      });
+
+      $('.circle.linkedin').on('click', () => {
+        this.shareOnLinkedin();
+      });
+
+      $('.circle.link').on('click', () => {
+        this.copyToClipboard(window.location);
+      });
+
+      $('#ponderarToggle').on('click', () => {
+        $('#ponderarToggle').toggleClass('ponderar_down');
+      });
+    }, 1000);
+  }
+
+  openPdf(report) {
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
+    window.open(url);
+  }
+
+  getReport(reportId: string) {
+    const filter = {
+      where: {
+        id: reportId
+      },
+      fields: ['reportTypeId'],
+      include: [{
+        relation: 'reportType',
+        scope: {
+          include: ['mainCategory', 'subCategory']
+        }
+      }]
+    };
+    this.http.get({
+      path: `public/reports/`,
+      data: filter,
+      encode: true
+    }).subscribe((res) => {
+      if (res.body && (res.body as any).length) {
+        this.report = res.body[0];
+
+        if (this.report.migrated) {
+          this.openPdf(this.report);
+          return;
+        }
+
+        if (!this.report.reportType) {
+          return;
+        }
+
+        const mainCategory = this.report.reportType.mainCategory;
+        const reportType = this.report.reportType;
+
+        if (mainCategory && mainCategory.length) {
+          const category = mainCategory.find(e => !this.categoryId || (this.categoryId && this.categoryId === e.id));
+          this.breadcrumbItems = [{
+            label: category.description,
+            link: ['/categories', category.id]
+          }];
+
+          if (reportType) {
+            let alias = reportType.description;
+
+            if (this.categoryId && reportType.aliases && reportType.aliases[this.categoryId]) {
+              alias = reportType.aliases[this.categoryId];
+            }
+            this.breadcrumbItems.push({
+              label: alias,
+              link: ['/categories', category.id, 'type', reportType.id]
+            });
+          }
+        }
+      }
+    });
+  }
 
   loadReport(reportId: string) {
-        const filter = {
-            where: {
-                id: reportId
-            }
-        };
-        this.http.getHTML({
-            path: `public/reports/${this.reportId}/view`,
-            data: filter,
-            encode: true
-        }).subscribe((res) => {
-            const html = (res.body as unknown as string); // .replace(/\/public\/reports\//g, environment.URL_API + 'public/reports/');
-            this.myhtml = this.sanitizer.bypassSecurityTrustHtml(html);
+    const filter = {
+      where: {
+        id: reportId
+      }
+    };
+    this.http.getHTML({
+      path: `public/reports/${this.reportId}/view`,
+      data: filter,
+      encode: true
+    }).subscribe((res) => {
+      const html = (res.body as unknown as string); // .replace(/\/public\/reports\//g, environment.URL_API + 'public/reports/');
+      this.myhtml = this.sanitizer.bypassSecurityTrustHtml(html);
 
-            setTimeout(() => {
-              const parent = document.getElementById('marketingCode') as HTMLElement;
-              if (!parent) {
-                return;
-              }
-              const scripts = parent.getElementsByTagName('script') as unknown as HTMLScriptElement[];
-              const scriptsInitialLength = scripts.length;
-              for (let i = 0; i < scriptsInitialLength; i++) {
-                const script = scripts[i];
-                const scriptCopy = document.createElement('script') as HTMLScriptElement;
-                scriptCopy.type = script.type ? script.type : 'text/javascript';
-                if (script.innerHTML) {
-                  scriptCopy.innerHTML = script.innerHTML;
-                } else if (script.src) {
-                  scriptCopy.src = script.src;
-                }
-                scriptCopy.async = false;
-                script.parentNode.replaceChild(scriptCopy, script);
-              }
-            }, 1000);
-        });
-    }
+      setTimeout(() => {
+        const parent = document.getElementById('marketingCode') as HTMLElement;
+        if (!parent) {
+          return;
+        }
+        const scripts = parent.getElementsByTagName('script') as unknown as HTMLScriptElement[];
+        const scriptsInitialLength = scripts.length;
+        for (let i = 0; i < scriptsInitialLength; i++) {
+          const script = scripts[i];
+          const scriptCopy = document.createElement('script') as HTMLScriptElement;
+          scriptCopy.type = script.type ? script.type : 'text/javascript';
+          if (script.innerHTML) {
+            scriptCopy.innerHTML = script.innerHTML;
+          } else if (script.src) {
+            scriptCopy.src = script.src;
+          }
+          scriptCopy.async = false;
+          script.parentNode.replaceChild(scriptCopy, script);
+        }
+      }, 1000);
+    });
+  }
+
+  validateUrl(value) {
+    // tslint:disable-next-line:max-line-length
+    return /^(?:(https:\/\/vision.davivienda.com)|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value);
+  }
 
   shareOntwitter() {
-    const url = 'https://twitter.com/intent/tweet?url=' + window.location + '&via=vision&text=Check%20this%20out';
+    const origin = window.location;
+
+    if (!this.validateUrl(origin)) {
+      return false;
+    }
+    const url = 'https://twitter.com/intent/tweet?url=' + origin + '&via=vision&text=Check%20this%20out';
     const w = 600;
     const h = 300;
     const left = (screen.width / 2) - (w / 2);
@@ -194,12 +204,18 @@ export class ReportComponent implements OnInit, AfterViewInit {
   }
 
   shareOnLinkedin() {
+    const origin = window.location.href;
+
+    if (!this.validateUrl(origin)) {
+      return false;
+    }
+
     const w = 600;
     const h = 300;
     const left = (screen.width / 2) - (w / 2);
     const top = (screen.height / 2) - (h / 2);
     // tslint:disable-next-line:max-line-length
-    const url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href + '&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn';
+    const url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + origin + '&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn';
     window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=none,scrollbars=no,height=' +
       h + ',width=' + w + ',top=' + top + ',left=' + left);
     return false;
