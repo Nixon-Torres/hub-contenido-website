@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import {BehaviorSubject, concat, Observable, of, ReplaySubject, throwError} from 'rxjs';
+import {catchError, first, last, map, switchMap, takeLast} from 'rxjs/operators';
 
 import { Request, Response } from './http.service.model';
 import { environment } from '../../environments/environment';
@@ -12,10 +12,52 @@ import { environment } from '../../environments/environment';
 export class HttpService {
   public authorization: string = null;
   private _URL_API: string = environment.URL_API;
+  getToken$: Observable<boolean>;
+  subject: ReplaySubject<any> = new ReplaySubject<any>();
 
   constructor(
       private http: HttpClient
   ) {
+    this.getToken$ = this.getTokenInfo().pipe(
+      map(val => {
+        return true;
+      }),
+      catchError(error => {
+        return this.getToken().pipe(
+          map(val => {
+            // Production will use a secure cookie, only needed in local environments
+            if (!!!environment.production) {
+              this.authorization = 'Bearer ' + (val as any).body.access_token;
+            }
+            return true;
+          })
+        );
+      }),
+      first()
+    );
+
+    this.getToken$.subscribe(this.subject);
+  }
+
+  public getTokenInfo(): Observable<HttpResponse<Response>> {
+    const headers = this.headers();
+    return this.http.get<Response>(`${this._URL_API}oauth/tokeninfo`, {
+      observe: 'response',
+      headers
+    });
+  }
+
+  public getToken(): Observable<HttpResponse<Response>> {
+    const headers = this.headers();
+    return this.http.post<Response>(`${this._URL_API}oauth/token`, {
+      grant_type: 'client_credentials',
+      client_id: environment.CLIENT_ID,
+      client_secret: environment.CLIENT_SECRET,
+      scope: 'basic'
+    }, {
+      observe: 'response',
+      headers
+    });
   }
 
   public get(input: Request): Observable<HttpResponse<Response>> {
@@ -26,11 +68,16 @@ export class HttpService {
       }
     }
     let encodeData = input.data ? this.encodeURIObj(input.data) : '';
-    let headers = this.headers();
-    return this.http.get<Response>(`${this._URL_API}${input.path}${(input.encode ? `?filter=${encodeData}` : encodeData)}`, {
-      observe: 'response',
-      headers: headers
-    }).pipe(catchError(this.handleError));
+    return this.subject.pipe(
+      switchMap(value => {
+        const headers = this.headers();
+        const obs$ = this.http.get<Response>(`${this._URL_API}${input.path}${(input.encode ? `?filter=${encodeData}` : encodeData)}`, {
+          observe: 'response',
+          headers
+        }).pipe(catchError(this.handleError));
+        return obs$;
+      })
+    );
   }
 
   public getHTML(input: Request): Observable<HttpResponse<Response>> {
