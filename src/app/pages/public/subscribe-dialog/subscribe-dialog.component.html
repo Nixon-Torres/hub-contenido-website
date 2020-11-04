@@ -73,5 +73,10 @@
       <button type="submit" class="btn popup-red-btn" [disabled]="subscribeGroup.invalid">Enviar mis datos</button>
     </div>
   </div>
+  <div *ngIf="quincenalError" class="input-control">
+        <span class="error-text2">
+           El correo ya se encuentra registrado
+        </span>
+  </div>
   </form>
 </div>
