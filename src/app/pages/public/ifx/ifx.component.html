@@ -78,7 +78,7 @@
           <div class="nir-inline-video-contant">
             <h5>{{getCategory(report?.reportType)}}</h5>
             <h3>{{report?.rTitle | striphtml}}</h3><br>
-            <p>{{report?.smartContent}}</p>
+            <p>{{report?.smartContent | striphtml}}</p>
             <button type="button" class="btn nir-inline-video-btn" [routerLink]="['/reports', report?.id]">Leer más</button>
           </div>
         </div>
