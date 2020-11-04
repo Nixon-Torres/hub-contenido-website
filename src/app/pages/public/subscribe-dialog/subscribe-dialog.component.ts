@@ -20,6 +20,7 @@ export class SubscribeDialogComponent {
   public source: string;
 
   public quincenal = false;
+  public quincenalError = false;
 
   public options: any = [{
     title: 'Bajo',
@@ -77,6 +78,13 @@ export class SubscribeDialogComponent {
     }).subscribe((res) => {
       this.tag('Suscripción boletin quincenal', 'Enviar','Formulario de suscripcion');
       this.dialogRef.close({subscriber: this.subscriber});
+    },
+    (error) => {
+      this.quincenalError = true;
+      const self = this;
+      setTimeout(() =>{
+        self.quincenalError = false;
+      }, 6000);
     });
   }
 
