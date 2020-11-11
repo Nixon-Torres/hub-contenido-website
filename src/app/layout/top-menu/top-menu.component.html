@@ -61,9 +61,9 @@
                      *ngFor="let items of itemGroups | slice:0:totalGroups">
                   <div class="hide-left-1">
                     <ul>
-                      <li class="submenu-link" *ngFor="let item of items"
-                          [routerLink]="getCategoryReportTypeLink(item)">
-                        {{getReportTypeName(item)}}
+                      <li class="submenu-link" *ngFor="let item of items">
+                        <span *ngIf="!getCategoryReportTypeLink(item)" (click)="openBook()">{{getReportTypeName(item)}}</span>
+                        <span [routerLink]="getCategoryReportTypeLink(item)" *ngIf="getCategoryReportTypeLink(item)">{{getReportTypeName(item)}}</span>
                       </li>
                     </ul>
                   </div>

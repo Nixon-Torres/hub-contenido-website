@@ -134,7 +134,9 @@ export class HeaderComponent implements OnInit {
     const id = this.getCategoryId(menu.idx);
 
     if (report && report.code === 'ELLIBRO') {
-      return this.router.navigate(['/book']);
+      window.open('https://libro.daviviendacorredores.com/', '_blank');
+      return;
+      // return this.router.navigate(['/book']);
     } else {
       this.router.navigate(['/categories', id, 'type', report && report.id ? report.id : '']);
     }
