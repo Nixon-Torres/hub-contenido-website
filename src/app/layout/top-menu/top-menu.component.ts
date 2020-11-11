@@ -318,6 +318,10 @@ export class TopMenuComponent implements OnInit {
     }
   }
 
+  openBook() {
+    window.open('https://libro.daviviendacorredores.com/', '_blank');
+  }
+
   getCategoryId(option?: number) {
     const idx = option ? option : this.currentMenuOption;
     if (!this.categories) {
@@ -344,7 +348,7 @@ export class TopMenuComponent implements OnInit {
     const id = this.getCategoryId();
 
     if (report && report.code === 'ELLIBRO') {
-      return ['/book'];
+      return null;
     }
 
     const rsp = ['/categories', id, 'type', report.id];
@@ -352,7 +356,7 @@ export class TopMenuComponent implements OnInit {
   }
 
   tag(eventCategory, eventAction, eventLabel, getUrl) {
-    (getUrl) ? eventLabel = window.location.origin + eventLabel : eventLabel = window.location.href; 
+    (getUrl) ? eventLabel = window.location.origin + eventLabel : eventLabel = window.location.href;
     const gtmTag = {
       eventCategory: eventCategory,
       eventAction: eventAction,
