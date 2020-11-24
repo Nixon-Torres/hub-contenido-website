@@ -3,6 +3,7 @@ import { HttpService } from '../../../services/http.service';
 import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-multimedia-detail',
@@ -10,6 +11,9 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./multimedia-detail.component.scss']
 })
 export class MultimediaDetailComponent implements OnInit {
+
+  public STORAGE_URL_BASE = environment.STORAGE_URL;
+
   public content: any;
   public contentId: string;
   public videoId: string;
@@ -146,7 +150,14 @@ export class MultimediaDetailComponent implements OnInit {
         scope: {
           include: ['mainCategory', 'subCategory']
         }
-      }]
+      },
+      {
+        relation: 'files',
+        scope: {
+          where: {key: 'thumbImage'}, 
+        }
+      }
+    ]
     };
     this.http.get({
       path: `public/reports/`,
@@ -154,6 +165,7 @@ export class MultimediaDetailComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       this.relateds = res.body;
+      console.log(this.relateds);
     });
   }
 
