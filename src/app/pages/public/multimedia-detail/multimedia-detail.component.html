@@ -52,7 +52,8 @@
     <div class="nir-inline-video">
       <div class="row">
         <div class="col-md-4 col-sm-4 nir_content" *ngFor="let report of relateds">
-          <img src="../../../../assets/images/nir-video-1.png" class="img-fluid">
+          <img *ngIf="!report.files[0] || report.files[0] == ''" src="../../../../assets/images/nir-video-1.png" class="img-fluid">
+          <img *ngIf="report.files[0] && report.files[0] != ''" [src]="STORAGE_URL_BASE + report.files[0].clientPath" class="img-fluid">
           <div class="nir-inline-video-contant">
             <h5>{{getCategory(report?.reportType)}}</h5>
             <h3>{{report?.rTitle | striphtml}}</h3><br>
