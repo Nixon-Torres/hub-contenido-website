@@ -4,6 +4,7 @@ import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, Ur
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
 import {GoogleTagManagerService} from 'angular-google-tag-manager';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-multimedia-detail',
@@ -11,6 +12,9 @@ import {GoogleTagManagerService} from 'angular-google-tag-manager';
   styleUrls: ['./multimedia-detail.component.scss']
 })
 export class MultimediaDetailComponent implements OnInit {
+
+  public STORAGE_URL_BASE = environment.URL_API;
+
   public content: any;
   public contentId: string;
   public videoId: string;
@@ -146,6 +150,12 @@ export class MultimediaDetailComponent implements OnInit {
         relation: 'reportType',
         scope: {
           include: ['mainCategory', 'subCategory']
+        }
+      },
+      {
+        relation: 'files',
+        scope: {
+          where: {key: 'thumbImage'}, 
         }
       }]
     };
