@@ -153,7 +153,7 @@ export class SideBarComponent implements OnInit {
         key: 'multimedia'
       },
       include: ['files'],
-      order: idx === 1 ? 'updatedAt DESC' : 'reads DESC',
+      order: idx === 1 ? 'createdAt DESC' : 'reads DESC',
       limit: 6
     };
     this.http.get({
@@ -166,7 +166,7 @@ export class SideBarComponent implements OnInit {
         return {
           ...e,
           rTitle: e.title,
-          publishedAt: e.updatedAt,
+          publishedAt: e.createdAt,
           multimedia: true
         };
       });
@@ -207,7 +207,7 @@ export class SideBarComponent implements OnInit {
   }
 
   tag(eventCategory, eventAction, eventLabel, getUrl) {
-    (getUrl) ? eventLabel = window.location.origin + '/' + eventLabel : ''; 
+    (getUrl) ? eventLabel = window.location.origin + '/' + eventLabel : '';
     const gtmTag = {
       eventCategory: eventCategory,
       eventAction: eventAction,
