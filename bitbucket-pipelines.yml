@@ -47,6 +47,7 @@ pipelines:
             - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
             - export S3_BUCKET=$S3_BUCKET_PRO
             - export APPLICATION_NAME=$APPLICATION_NAME_PRO
+            - export LC_ALL=en_US.UTF-8
             #- zip -r /tmp/artifact.zip * # package up the application for deployment
             #- python codedeploy_deploy.py # run the deployment script
             - aws s3 sync . s3://$S3_BUCKET_PRO/website --acl public-read --delete  --region $REGION #Deploy in S3
