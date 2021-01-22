@@ -113,12 +113,7 @@ export class CategoriesComponent implements OnInit {
           relation: 'childrenMainReportTypes',
           scope: {
             order: ['order ASC', 'description ASC'],
-            include: ['subCategory', {
-              relation: 'children',
-              scope: {
-                include: 'subCategory',
-              },
-            }],
+            include: ['subCategory'],
           }
         }],
         limit: 1
