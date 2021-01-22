@@ -219,11 +219,17 @@ export class CategoriesComponent implements OnInit {
     return (item.id === this.reportTypeId) || (item.id === this.companyId);
   }
 
-  getWhere() {
+  getWhere(mirrorArray: [] = []) {
     let where: any = {};
 
     if (this.reportTypeId) {
       where.reportTypeId = this.reportTypeId;
+      if (mirrorArray.length > 0) {
+        mirrorArray.forEach((data: any) => {
+          console.log(data.reportTypeIdChild);
+          where.reportTypeId = data.reportTypeIdChild;
+        });
+      }
     } else {
       if (this.subcategoryId) {
         where.reportTypeId = {inq: this.category.childrenMainReportTypes.filter(e => e.subCategory.find(h => h.id === this.subcategoryId)).map(e => e.id)};
@@ -277,8 +283,23 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  getReports() {
-    const where = this.getWhere();
+  getMirrorContent(): Promise<[]>  {
+    return new Promise((resolve, reject) => {
+      this.http.get({
+        path: `public/reportTypeReportTypeGlue/`,
+        data: {
+          fields: ['reportTypeId', 'reportTypeIdChild']
+        },
+        encode: true
+      }).subscribe( (response: any) => {
+        resolve(response.body);
+      });
+    });
+  }
+
+  async getReports() {
+    const mirrors: [] = await this.getMirrorContent();
+    const where = this.getWhere(mirrors);
     const skip = (this.currentPage - 1) * this.ITEMS_PER_PAGE;
 
     this.http.get({
