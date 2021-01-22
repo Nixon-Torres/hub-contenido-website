@@ -225,16 +225,21 @@ export class CategoriesComponent implements OnInit {
     if (this.reportTypeId) {
       where.reportTypeId = this.reportTypeId;
       if (mirrorArray.length > 0) {
+        const ids = [];
+        ids.push(this.reportTypeId);
         mirrorArray.forEach((data: any) => {
           console.log(data.reportTypeIdChild);
-          where.reportTypeId = data.reportTypeIdChild;
+          ids.push(data.reportTypeIdChild);
         });
+        where.reportTypeId = {inq: ids};
       }
     } else {
       if (this.subcategoryId) {
         where.reportTypeId = {inq: this.category.childrenMainReportTypes.filter(e => e.subCategory.find(h => h.id === this.subcategoryId)).map(e => e.id)};
+        console.log(where);
       } else {
         where.reportTypeId = {inq: this.category.childrenMainReportTypes.map(e => e.id)};
+        console.log(where);
       }
     }
 
@@ -268,7 +273,7 @@ export class CategoriesComponent implements OnInit {
 
   getReportCount() {
     const where = this.getWhere();
-
+    console.log(where);
     this.http.get({
       path: `public/reports/count`,
       data: where,
@@ -285,9 +290,12 @@ export class CategoriesComponent implements OnInit {
 
   getMirrorContent(): Promise<[]>  {
     return new Promise((resolve, reject) => {
+      let where: any = {};
+      where.reportTypeId = this.reportTypeId;
       this.http.get({
         path: `public/reportTypeReportTypeGlue/`,
         data: {
+          where,
           fields: ['reportTypeId', 'reportTypeIdChild']
         },
         encode: true
