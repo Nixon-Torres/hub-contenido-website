@@ -228,7 +228,6 @@ export class CategoriesComponent implements OnInit {
         const ids = [];
         ids.push(this.reportTypeId);
         mirrorArray.forEach((data: any) => {
-          console.log(data.reportTypeIdChild);
           ids.push(data.reportTypeIdChild);
         });
         where.reportTypeId = {inq: ids};
@@ -236,10 +235,8 @@ export class CategoriesComponent implements OnInit {
     } else {
       if (this.subcategoryId) {
         where.reportTypeId = {inq: this.category.childrenMainReportTypes.filter(e => e.subCategory.find(h => h.id === this.subcategoryId)).map(e => e.id)};
-        console.log(where);
       } else {
         where.reportTypeId = {inq: this.category.childrenMainReportTypes.map(e => e.id)};
-        console.log(where);
       }
     }
 
@@ -327,6 +324,7 @@ export class CategoriesComponent implements OnInit {
       },
       encode: true
     }).subscribe((response: any) => {
+      console.log('reports', response);
       this.reports = response.body.map(rep => {
         rep.publishedAt = moment(rep.publishedAt).add(5, 'hours');
         return rep;
@@ -361,12 +359,12 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReportSubCategoryName(reportType: any) {
-    if (reportType && reportType.aliases) {
-      const alias = reportType.aliases;
-      if (alias[this.categoryId]) {
-        return alias[this.categoryId];
-      }
-    }
+    // if (reportType && reportType.aliases) {
+    //   const alias = reportType.aliases;
+    //   if (alias[this.categoryId]) {
+    //     return alias[this.categoryId];
+    //   }
+    // }
     return reportType.description;
   }
 
