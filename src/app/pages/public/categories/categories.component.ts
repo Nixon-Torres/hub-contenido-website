@@ -113,7 +113,12 @@ export class CategoriesComponent implements OnInit {
           relation: 'childrenMainReportTypes',
           scope: {
             order: ['order ASC', 'description ASC'],
-            include: ['subCategory'],
+            include: ['subCategory', {
+              relation: 'children',
+              scope: {
+                include: 'subCategory',
+              },
+            }],
           }
         }],
         limit: 1
@@ -223,7 +228,7 @@ export class CategoriesComponent implements OnInit {
         const ids = [];
         ids.push(this.reportTypeId);
         mirrorArray.forEach((data: any) => {
-          ids.push(data.reportTypeIdChild);
+          ids.push(data.id);
         });
         where.reportTypeId = {inq: ids};
       }
@@ -264,8 +269,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReportCount() {
-    const where = this.getWhere();
-    console.log(where);
+    let d = this.category.childrenMainReportTypes.find((e: any) => e.id === this.reportTypeId);
+    if(d !== undefined){
+      d = d.children;
+    } else {
+      d = [];
+    }
+    const where = this.getWhere(d);
     this.http.get({
       path: `public/reports/count`,
       data: where,
@@ -280,26 +290,14 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  getMirrorContent(): Promise<[]>  {
-    return new Promise((resolve, reject) => {
-      let where: any = {};
-      where.reportTypeId = this.reportTypeId;
-      this.http.get({
-        path: `public/reportTypeReportTypeGlue/`,
-        data: {
-          where,
-          fields: ['reportTypeId', 'reportTypeIdChild']
-        },
-        encode: true
-      }).subscribe( (response: any) => {
-        resolve(response.body);
-      });
-    });
-  }
-
   async getReports() {
-    const mirrors: [] = await this.getMirrorContent();
-    const where = this.getWhere(mirrors);
+    let d = this.category.childrenMainReportTypes.find((e: any) => e.id === this.reportTypeId);
+    if(d !== undefined){
+      d = d.children;
+    } else {
+      d = [];
+    }
+    const where = this.getWhere(d);
     const skip = (this.currentPage - 1) * this.ITEMS_PER_PAGE;
 
     this.http.get({
@@ -319,7 +317,6 @@ export class CategoriesComponent implements OnInit {
       },
       encode: true
     }).subscribe((response: any) => {
-      console.log('reports', response);
       this.reports = response.body.map(rep => {
         rep.publishedAt = moment(rep.publishedAt).add(5, 'hours');
         return rep;
@@ -354,12 +351,12 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReportSubCategoryName(reportType: any) {
-    // if (reportType && reportType.aliases) {
-    //   const alias = reportType.aliases;
-    //   if (alias[this.categoryId]) {
-    //     return alias[this.categoryId];
-    //   }
-    // }
+    if (reportType && reportType.aliases) {
+      const alias = reportType.aliases;
+      if (alias[this.categoryId]) {
+        return alias[this.categoryId];
+      }
+    }
     return reportType.description;
   }
 
