@@ -5,12 +5,12 @@ import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
 import {combineLatest} from 'rxjs';
 import { MatInput } from '@angular/material';
-import {GoogleTagManagerService} from 'angular-google-tag-manager';
+
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+    selector: 'app-categories',
+    templateUrl: './categories.component.html',
+    styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
   private categoryId: string;
@@ -55,7 +55,7 @@ export class CategoriesComponent implements OnInit {
     id: null,
   }];
 
-  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router, private gtmService: GoogleTagManagerService) {
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -66,30 +66,30 @@ export class CategoriesComponent implements OnInit {
     const oqueryParams = this.activatedRoute.queryParams;
 
     combineLatest(oparams, oqueryParams,
-        (iparams, iqueryParams) => ({ iparams, iqueryParams }))
-        .subscribe(response => {
-          const queryParams = response.iqueryParams;
-          const params = response.iparams;
-          this.categoryId = null;
-          this.reportTypeId = null;
-          this.subcategoryId = null;
+      (iparams, iqueryParams) => ({ iparams, iqueryParams }))
+      .subscribe(response => {
+        const queryParams = response.iqueryParams;
+        const params = response.iparams;
+        this.categoryId = null;
+        this.reportTypeId = null;
+        this.subcategoryId = null;
 
-          if (params.id) {
-            this.categoryId = params.id;
-          }
+        if (params.id) {
+          this.categoryId = params.id;
+        }
 
-          if (params.typeid) {
-            this.reportTypeId = params.typeid;
-          }
+        if (params.typeid) {
+          this.reportTypeId = params.typeid;
+        }
 
-          if (queryParams.subcategory) {
-            this.subcategoryId = queryParams.subcategory;
-          }
+        if (queryParams.subcategory) {
+          this.subcategoryId = queryParams.subcategory;
+        }
 
-          if (this.categoryId) {
-            this.getCategory();
-          }
-        });
+        if (this.categoryId) {
+          this.getCategory();
+        }
+      });
   }
 
   getBannerImg() {
@@ -127,9 +127,6 @@ export class CategoriesComponent implements OnInit {
     }).subscribe((response: any) => {
       this.category = response.body[0];
 
-      const params = this.category && this.category.params ? this.category.params : {};
-      const alphabetic = params.sorting && params.sorting === 'alphabetic';
-
       if (this.category.code === 'ANLISISDECOMPAAS') {
         this.companyId = this.reportTypeId;
         this.reportTypeId = null;
@@ -148,31 +145,7 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        }).filter(e => {
-          const rsp = !!!e.parentId ||
-              (!!e.parentId && !this.category.childrenMainReportTypes.find(j => j.id === e.parentId));
-          return rsp;
-        }).sort((a, b) => {
-          if (alphabetic) {
-            const nameA = this.getReportTypeName(a).toLowerCase();
-            const nameB = this.getReportTypeName(b).toLowerCase();
-            if (nameA > nameB) {
-              return 1;
-            } else if (nameA < nameB) {
-              return -1;
-            } else {
-              return 0;
-            }
-          } else {
-            if (a.order > b.order) {
-              return 1;
-            } else if (a.order < b.order) {
-              return -1;
-            } else {
-              return 0;
-            }
-          }
-        });
+        }).filter(e => !!!e.parentId);
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
@@ -248,7 +221,7 @@ export class CategoriesComponent implements OnInit {
       const conds = [where];
 
       const start = this.idateStart ? moment(this.idateStart)
-          .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate() : '';
+        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate() : '';
       const end = this.idateEnd ? moment(this.idateEnd).set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate() : '';
 
       if (this.idateStart && this.idateEnd) {
@@ -276,6 +249,7 @@ export class CategoriesComponent implements OnInit {
       d = [];
     }
     const where = this.getWhere(d);
+
     this.http.get({
       path: `public/reports/count`,
       data: where,
@@ -290,7 +264,7 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  async getReports() {
+  getReports() {
     let d = this.category.childrenMainReportTypes.find((e: any) => e.id === this.reportTypeId);
     if(d !== undefined){
       d = d.children;
@@ -304,7 +278,7 @@ export class CategoriesComponent implements OnInit {
       path: `public/reports/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId', 'migrated', 'pdfFile', 'pdfFolder', 'publishedYear'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -412,11 +386,6 @@ export class CategoriesComponent implements OnInit {
     this.getReports();
   }
 
-  openPdf(report) {
-    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
-    window.open(url, '_blank');
-  }
-
   updateBreadcrumbItems() {
     this.breadcrumbItems = [{
       label: this.category.description,
@@ -481,17 +450,5 @@ export class CategoriesComponent implements OnInit {
     this.idateHighLimit = moment(this.idateEnd)
         .set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate();
     this.getReports();
-  }
-
-  tag(eventCategory, eventAction, eventLabel, getUrl) {
-    (getUrl) ? eventLabel = window.location.origin + eventLabel : '';
-    const gtmTag = {
-      eventCategory: eventCategory,
-      eventAction: eventAction,
-      eventLabel: eventLabel,
-      eventvalue: '',
-      event: 'eventClick'
-    };
-    this.gtmService.pushTag(gtmTag);
   }
 }
