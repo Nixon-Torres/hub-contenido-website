@@ -145,7 +145,7 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        }).filter(e => !!!e.parentId);
+        }).filter(e => this.category.childrenMainReportTypes.findIndex(x => x.id === e.parentId) === -1);
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
@@ -192,11 +192,19 @@ export class CategoriesComponent implements OnInit {
     return (item.id === this.reportTypeId) || (item.id === this.companyId);
   }
 
-  getWhere() {
+  getWhere(mirrorArray: [] = []) {
     let where: any = {};
 
     if (this.reportTypeId) {
       where.reportTypeId = this.reportTypeId;
+      if (mirrorArray.length > 0) {
+        const ids = [];
+        ids.push(this.reportTypeId);
+        mirrorArray.forEach((data: any) => {
+          ids.push(data.id);
+        });
+        where.reportTypeId = {inq: ids};
+      }
     } else {
       if (this.subcategoryId) {
         where.reportTypeId = {inq: this.category.childrenMainReportTypes.filter(e => e.subCategory.find(h => h.id === this.subcategoryId)).map(e => e.id)};
@@ -234,7 +242,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReportCount() {
-    const where = this.getWhere();
+    let d = this.category.childrenMainReportTypes.find((e: any) => e.id === this.reportTypeId);
+    if(d !== undefined){
+      d = d.children;
+    } else {
+      d = [];
+    }
+    const where = this.getWhere(d);
 
     this.http.get({
       path: `public/reports/count`,
@@ -251,7 +265,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReports() {
-    const where = this.getWhere();
+    let d = this.category.childrenMainReportTypes.find((e: any) => e.id === this.reportTypeId);
+    if(d !== undefined){
+      d = d.children;
+    } else {
+      d = [];
+    }
+    const where = this.getWhere(d);
     const skip = (this.currentPage - 1) * this.ITEMS_PER_PAGE;
 
     this.http.get({
