@@ -145,7 +145,7 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        }).filter(e => !!!e.parentId);
+        }).filter(e => this.category.childrenMainReportTypes.findIndex(x => x.id === e.parentId) === -1);
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {

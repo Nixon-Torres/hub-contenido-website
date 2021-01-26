@@ -88,7 +88,6 @@ export class TopMenuComponent implements OnInit {
   }
 
   go(eventName) {
-    console.log(eventName);
 
     const gtmTag = {
       event: eventName,
