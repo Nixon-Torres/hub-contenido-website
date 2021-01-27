@@ -32,11 +32,6 @@
                       {{getReportTypeName(item)}}
                     </li>
                   </a>
-                  <a *ngFor="let child of item.children" (click)="setReportType(child)">
-                    <li class="child" [ngClass]="{'active': isMenuActive(child)}">
-                      {{getReportTypeName(child)}}
-                    </li>
-                  </a>
                 </div>
               </ul>
             </div>
