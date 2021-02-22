@@ -138,8 +138,6 @@ export class CategoriesComponent implements OnInit {
 
       if (this.category.code !== 'ANLISISDECOMPAAS') {
         this.reportTypes = this.category.childrenMainReportTypes.map(e => {
-          console.log(e);
-          console.log(this.category.code);
           if(this.category.code === 'NUESTROSINDICADORES' && e.id === '5e7fc9a5dc4b4a6c662951a0'){
             return;
           }
