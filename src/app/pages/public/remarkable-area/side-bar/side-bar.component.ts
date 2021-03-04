@@ -73,7 +73,6 @@ export class SideBarComponent implements OnInit {
     }).subscribe((res) => {
       const data = res.body as any;
       if (data.length) {
-        console.log('dailyReport', data);
         this.dailyReport = data[0];
       }
     });
@@ -116,7 +115,6 @@ export class SideBarComponent implements OnInit {
             }
             return e;
           });
-      console.log(this.reports);
       this.loadMultimedia(idx);
     });
   }
