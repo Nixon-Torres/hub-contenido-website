@@ -28,10 +28,10 @@ export class SideBarComponent implements OnInit {
     this.getDailyType();
   }
 
-  getCategory(reportType) {
-    return reportType ? reportType.description : '';
-    /* return reportType && reportType.mainCategory && reportType.mainCategory.length ?
-      reportType.mainCategory[0].description : ''; */
+  getCategory(report) {
+    return report ? report.company ? report.company.name : report.reportType.description : '';
+    // return reportType && reportType.mainCategory && reportType.mainCategory.length ?
+    //   reportType.mainCategory[0].description : '';
   }
 
   getDailyType() {
@@ -73,6 +73,7 @@ export class SideBarComponent implements OnInit {
     }).subscribe((res) => {
       const data = res.body as any;
       if (data.length) {
+        console.log('dailyReport', data);
         this.dailyReport = data[0];
       }
     });
@@ -90,12 +91,12 @@ export class SideBarComponent implements OnInit {
           nin: idx === 1 ? this.discardedIds : []
         }
       },
-      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle', 'reads'],
-      include: ['files', 'section', {
+      fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle', 'reads', 'companyId'],
+      include: ['files', 'section', 'company', {
         relation: 'reportType',
         scope: {
           include: ['mainCategory', 'subCategory']
-        }
+        },
       }],
       order: idx === 1 ? 'publishedAt DESC' : 'reads DESC',
       limit: 6
@@ -106,7 +107,6 @@ export class SideBarComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       this.reports = res.body;
-
       this.reports = this.reports
           .map(e => {
             if (e.section && e.section.types && e.section.types.length) {
@@ -116,7 +116,7 @@ export class SideBarComponent implements OnInit {
             }
             return e;
           });
-
+      console.log(this.reports);
       this.loadMultimedia(idx);
     });
   }

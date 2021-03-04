@@ -32,7 +32,7 @@
 					<div class="information_sidebar_first_content latest-reports-container" *ngIf="dailyReport">
 						<div class="isfc_left">
 							<!-- <p>Acceda aqui al informe</p> -->
-							<h4>{{dailyReport?.reportType?.code === 'DIARIOACCIONES' ? 'Diario de acciones' : 'Así cierran los mercados'}}</h4>
+							<h4>{{dailyReport.reportTypeId !== '5e7fc9a5dc4b4a6c662951a6' ? 'Para empezar el día' : 'Así cierran los mercados'}}</h4>
 							<a class="latest-reports-desktop" [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
 						</div>
 						<div class="isfc_right">
@@ -42,7 +42,7 @@
 					</div>
 					<div class="last_container" *ngFor="let report of reports">
 						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]">
-							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
+							<a style="text-transform: uppercase">{{getCategory(report)}}</a>
 							<h4>{{report?.rTitle | striphtml}}</h4>
 							<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 						</div>
