@@ -138,6 +138,9 @@ export class CategoriesComponent implements OnInit {
 
       if (this.category.code !== 'ANLISISDECOMPAAS') {
         this.reportTypes = this.category.childrenMainReportTypes.map(e => {
+          if(this.category.code === 'NUESTROSINDICADORES' && e.id === '5e7fc9a5dc4b4a6c662951a0'){
+            return;
+          }
           const rsp = e;
           rsp.name = e.description;
           if (!rsp.subCategory) {
@@ -145,7 +148,9 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        }).filter(e => this.category.childrenMainReportTypes.findIndex(x => x.id === e.parentId) === -1);
+        })
+            .filter(e => e !== undefined)
+            .filter(e => this.category.childrenMainReportTypes.findIndex(x => x.id === e.parentId) === -1);
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
