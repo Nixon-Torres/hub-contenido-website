@@ -141,6 +141,9 @@ export class CategoriesComponent implements OnInit {
 
       if (this.category.code !== 'ANLISISDECOMPAAS') {
         this.reportTypes = this.category.childrenMainReportTypes.map(e => {
+          if(this.category.code === 'NUESTROSINDICADORES' && e.id === '5e7fc9a5dc4b4a6c662951a0'){
+            return;
+          }
           const rsp = e;
           rsp.name = e.description;
           if (!rsp.subCategory) {
@@ -148,31 +151,9 @@ export class CategoriesComponent implements OnInit {
           }
           rsp.subCategory = rsp.subCategory.filter(j => j.parentId === this.categoryId);
           return rsp;
-        }).filter(e => {
-          const rsp = !!!e.parentId ||
-            (!!e.parentId && !this.category.childrenMainReportTypes.find(j => j.id === e.parentId));
-          return rsp;
-        }).sort((a, b) => {
-            if (alphabetic) {
-              const nameA = this.getReportTypeName(a).toLowerCase();
-              const nameB = this.getReportTypeName(b).toLowerCase();
-              if (nameA > nameB) {
-                return 1;
-              } else if (nameA < nameB) {
-                return -1;
-              } else {
-                return 0;
-              }
-            } else {
-              if (a.order > b.order) {
-                return 1;
-              } else if (a.order < b.order) {
-                return -1;
-              } else {
-                return 0;
-              }
-            }
-          });
+        })
+            .filter(e => e !== undefined)
+            .filter(e => this.category.childrenMainReportTypes.findIndex(x => x.id === e.parentId) === -1);
 
         if (this.category.code === 'ENQUINVERTIR') {
           this.investmentGroups = this.investmentGroups.map(e => {
@@ -219,11 +200,19 @@ export class CategoriesComponent implements OnInit {
     return (item.id === this.reportTypeId) || (item.id === this.companyId);
   }
 
-  getWhere() {
+  getWhere(mirrorArray: [] = []) {
     let where: any = {};
 
     if (this.reportTypeId) {
       where.reportTypeId = this.reportTypeId;
+      if (mirrorArray.length > 0) {
+        const ids = [];
+        ids.push(this.reportTypeId);
+        mirrorArray.forEach((data: any) => {
+          ids.push(data.id);
+        });
+        where.reportTypeId = {inq: ids};
+      }
     } else {
       if (this.subcategoryId) {
         where.reportTypeId = {inq: this.category.childrenMainReportTypes.filter(e => e.subCategory.find(h => h.id === this.subcategoryId)).map(e => e.id)};
@@ -261,7 +250,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReportCount() {
-    const where = this.getWhere();
+    let d = this.category.childrenMainReportTypes.find((e: any) => e.id === this.reportTypeId);
+    if(d !== undefined){
+      d = d.children;
+    } else {
+      d = [];
+    }
+    const where = this.getWhere(d);
 
     this.http.get({
       path: `public/reports/count`,
@@ -278,7 +273,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   getReports() {
-    const where = this.getWhere();
+    let d = this.category.childrenMainReportTypes.find((e: any) => e.id === this.reportTypeId);
+    if(d !== undefined){
+      d = d.children;
+    } else {
+      d = [];
+    }
+    const where = this.getWhere(d);
     const skip = (this.currentPage - 1) * this.ITEMS_PER_PAGE;
 
     this.http.get({

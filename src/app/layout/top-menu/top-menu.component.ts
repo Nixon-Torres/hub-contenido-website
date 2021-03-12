@@ -351,6 +351,10 @@ export class TopMenuComponent implements OnInit {
       return null;
     }
 
+    if(id === '5e7fc9a5dc4b4a6c66295180' && report.id === '5e7fc9a5dc4b4a6c662951a0') {
+      return ['/categories', '5e7fc9a5dc4b4a6c66295182', 'type', report.id];
+    }
+
     const rsp = ['/categories', id, 'type', report.id];
     return rsp;
   }

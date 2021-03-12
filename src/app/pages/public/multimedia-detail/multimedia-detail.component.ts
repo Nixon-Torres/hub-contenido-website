@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class MultimediaDetailComponent implements OnInit {
 
-  public STORAGE_URL_BASE = environment.URL_API;
+  public STORAGE_URL_BASE = environment.STORAGE_URL;
 
   public content: any;
   public contentId: string;
@@ -155,9 +155,10 @@ export class MultimediaDetailComponent implements OnInit {
       {
         relation: 'files',
         scope: {
-          where: {key: 'thumbImage'}, 
+          where: {key: 'thumbImage'},
         }
-      }]
+      }
+    ]
     };
     this.http.get({
       path: `public/reports/`,
@@ -165,6 +166,7 @@ export class MultimediaDetailComponent implements OnInit {
       encode: true
     }).subscribe((res) => {
       this.relateds = res.body;
+      console.log(this.relateds);
     });
   }
 
