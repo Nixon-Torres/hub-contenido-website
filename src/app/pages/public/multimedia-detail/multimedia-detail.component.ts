@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class MultimediaDetailComponent implements OnInit {
 
-  public STORAGE_URL_BASE = environment.STORAGE_URL;
+  public STORAGE_URL_BASE = environment.STORAGE_FILES;
 
   public content: any;
   public contentId: string;
