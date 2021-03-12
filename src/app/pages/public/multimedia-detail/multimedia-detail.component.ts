@@ -3,6 +3,7 @@ import { HttpService } from '../../../services/http.service';
 import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -29,7 +30,7 @@ export class MultimediaDetailComponent implements OnInit {
 
   constructor(private http: HttpService,
     private activatedRoute: ActivatedRoute,
-    private router: Router, private sanitizer: DomSanitizer) {
+    private router: Router, private sanitizer: DomSanitizer, private gtmService: GoogleTagManagerService) {
   }
 
   ngOnInit() {
@@ -154,7 +155,7 @@ export class MultimediaDetailComponent implements OnInit {
       {
         relation: 'files',
         scope: {
-          where: {key: 'thumbImage'}, 
+          where: {key: 'thumbImage'},
         }
       }
     ]
@@ -213,5 +214,18 @@ export class MultimediaDetailComponent implements OnInit {
     return reportType && reportType.description ? reportType.description :
           reportType.mainCategory && reportType.mainCategory.length ?
           reportType.mainCategory[0].description : '';
+  }
+
+  tag(eventCategory, eventAction, eventLabel, getUrl, detail) {
+    (getUrl) ? (detail) ? eventLabel = 'Relacionado - ' + window.location.origin + eventLabel : eventLabel = window.location.origin + eventLabel : '';
+    eventAction = eventAction.replace('<h2>', '').replace('</h2>', '');
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

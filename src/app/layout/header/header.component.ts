@@ -134,7 +134,9 @@ export class HeaderComponent implements OnInit {
     const id = this.getCategoryId(menu.idx);
 
     if (report && report.code === 'ELLIBRO') {
-      return this.router.navigate(['/book']);
+      window.open('https://libro.daviviendacorredores.com/', '_blank');
+      return;
+      // return this.router.navigate(['/book']);
     } else {
       this.router.navigate(['/categories', id, 'type', report && report.id ? report.id : '']);
     }
@@ -409,5 +411,17 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/sub2factor_confirmation']);
       }
     });
+  }
+
+  tag(eventCategory, eventAction) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: window.location.href,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

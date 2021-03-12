@@ -65,6 +65,9 @@ export class IfxComponent implements OnInit {
           } else {
             e.type = null;
           }
+
+          e.files = e.files.filter(j => j.key.toLowerCase() === 'thumbimage');
+          e.image = e.files && e.files.length ? e.files[0] : null;
           return e;
         });
     });

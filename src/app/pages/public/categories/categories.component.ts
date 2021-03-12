@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import {environment} from '../../../../environments/environment';
 import {combineLatest} from 'rxjs';
 import { MatInput } from '@angular/material';
-
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
     selector: 'app-categories',
@@ -55,7 +55,7 @@ export class CategoriesComponent implements OnInit {
     id: null,
   }];
 
-  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router, private gtmService: GoogleTagManagerService) {
   }
 
   ngOnInit() {
@@ -126,6 +126,9 @@ export class CategoriesComponent implements OnInit {
       encode: true
     }).subscribe((response: any) => {
       this.category = response.body[0];
+
+      const params = this.category && this.category.params ? this.category.params : {};
+      const alphabetic = params.sorting && params.sorting === 'alphabetic';
 
       if (this.category.code === 'ANLISISDECOMPAAS') {
         this.companyId = this.reportTypeId;
@@ -283,7 +286,7 @@ export class CategoriesComponent implements OnInit {
       path: `public/reports/`,
       data: {
         where,
-        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId'],
+        fields: ['id', 'name', 'smartContent', 'rTitle', 'publishedAt', 'reportTypeId', 'migrated', 'pdfFile', 'pdfFolder', 'publishedYear'],
         include: [{
           relation: 'reportType',
           scope: {
@@ -391,6 +394,11 @@ export class CategoriesComponent implements OnInit {
     this.getReports();
   }
 
+  openPdf(report) {
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
+    window.open(url, '_blank');
+  }
+
   updateBreadcrumbItems() {
     this.breadcrumbItems = [{
       label: this.category.description,
@@ -455,5 +463,17 @@ export class CategoriesComponent implements OnInit {
     this.idateHighLimit = moment(this.idateEnd)
         .set({ hour: 23, minute: 59, second: 59, millisecond: 999 }).toDate();
     this.getReports();
+  }
+
+  tag(eventCategory, eventAction, eventLabel, getUrl) {
+    (getUrl) ? eventLabel = window.location.origin + eventLabel : '';
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

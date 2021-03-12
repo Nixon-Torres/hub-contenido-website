@@ -4,18 +4,18 @@
 			<div class="isfc_left">
 				<h4>{{banner1?.title}}</h4>
 				<p>{{banner1?.description | truncate: 140: true}}</p>
-				<a class="latest-reports-desktop" target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
+				<a class="latest-reports-desktop" target="_blank" href="{{banner1?.params?.link}}" (click)="tag('Home', 'Banner derecha -  Descargar', banner1?.params?.link)">{{banner1?.params?.cta}}</a>
 			</div>
 			<div class="isfc_right" *ngIf="banner1 && banner1.files && banner1.files.length">
 				<img src="{{STORAGE_URL}}{{banner1.files[0].clientPath}}" alt="">
 			</div>
-			<a class="latest-reports-mobile" target="_blank" href="{{banner1?.params?.link}}">{{banner1?.params?.cta}}</a>
+			<a class="latest-reports-mobile" target="_blank" href="{{banner1?.params?.link}}" (click)="tag('Home', 'Banner derecha -  Descargar',banner1?.params?.link)">{{banner1?.params?.cta}}</a>
 		</div>
 		<div class="information_sidebar_first_content">
 			<div class="isfc_left">
 				<h4>{{banner2?.title}}</h4>
 				<p>{{banner2?.description | truncate: 140: true}}</p>
-				<a class="latest-reports-desktop" target="_blank" href="{{banner2?.params?.link}}">{{banner2?.params?.cta}}</a>
+				<a class="latest-reports-desktop" target="_blank" href="{{banner2?.params?.link}}" (click)="tag('Home', 'Banner derecha -  Ver informe', banner2?.params?.link)">{{banner2?.params?.cta}}</a>
 			</div>
       <div class="isfc_right" *ngIf="banner2 && banner2.files && banner2.files.length">
         <img src="{{STORAGE_URL}}{{banner2.files[0].clientPath}}" alt="">
@@ -24,8 +24,8 @@
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li class="ult-li last_inf" [ngClass]="{'active' : selectedTab === 'tab1'}"><a (click)="changeTab(1)">&Uacute;ltimos</a></li>
-				<li class="ult-li" [ngClass]="{'active' : selectedTab === 'tab2'}"><a (click)="changeTab(2)">M&aacute;s le&iacute;dos</a></li>
+				<li class="ult-li last_inf" [ngClass]="{'active' : selectedTab === 'tab1'}"><a (click)="changeTab(1); tag('Home', 'Informes', 'Últmimos informes')">&Uacute;ltimos</a></li>
+				<li class="ult-li" [ngClass]="{'active' : selectedTab === 'tab2'}"><a (click)="changeTab(2); tag('Home', 'Informes', 'Más leídos')">M&aacute;s le&iacute;dos</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="tab-1" class="tab-pane active">
@@ -38,15 +38,22 @@
 						<div class="isfc_right">
 							<img src="assets/images/tablet.png" alt="">
 						</div>
-						<a class="latest-reports-mobile" [routerLink]="['/reports', dailyReport.id]">Ver ahora</a>
+						<a class="latest-reports-mobile" [routerLink]="['/reports', dailyReport.id]" >Ver ahora</a>
 					</div>
-					<div class="last_container" *ngFor="let report of reports">
-						<div *ngIf="!report.multimedia" class="information_tab_pen" [routerLink]="['/reports', report.id]">
-							<a style="text-transform: uppercase">{{getCategory(report)}}</a>
+					<div class="last_container"  *ngFor="let report of reports">
+						<div *ngIf="!report.multimedia && !report.migrated" class="information_tab_pen" [routerLink]="['/reports', report.id]"
+                 (click)="tag('Home', 'Más leidos', ('multimedia').concat('/',report.id), true)">
+							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
 							<h4>{{report?.rTitle | striphtml}}</h4>
 							<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 						</div>
-            <div *ngIf="report.multimedia" class="information_tab_pen multimedia-cont" (click)="go(report)">
+            <div *ngIf="!report.multimedia && report.migrated" class="information_tab_pen"
+                 (click)="tag('Home', 'Más leidos', ('multimedia').concat('/',report.id), true); openPdf(report)">
+              <a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
+              <h4>{{report?.rTitle | striphtml}}</h4>
+              <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+            </div>
+            <div *ngIf="report.multimedia" class="information_tab_pen multimedia-cont" (click)="go(report); tag('Home', 'ultimos informes', ('multimedia').concat('/',report.id), true)">
               <div class="left">
                 <a style="text-transform: uppercase">MULTIMEDIA</a>
                 <h4>{{report?.rTitle | striphtml}}</h4>

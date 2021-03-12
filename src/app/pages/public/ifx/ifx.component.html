@@ -73,11 +73,12 @@
     <div class="nir-inline-video">
       <div class="row">
         <div class="col-md-4 col-sm-12 right-border-ifx" *ngFor="let report of reports">
-          <img src="../../../../assets/images/single_blog_img.png" class="img-fluid">
+          <img src="../../../../assets/images/single_blog_img.png" class="img-fluid" *ngIf="!report.image">
+          <img [src]="STORAGE_URL + report?.image.clientPath" alt="" class="img-fluid" *ngIf="report.image">
           <div class="nir-inline-video-contant">
             <h5>{{getCategory(report?.reportType)}}</h5>
             <h3>{{report?.rTitle | striphtml}}</h3><br>
-            <p>{{report?.smartContent}}</p>
+            <p>{{report?.smartContent | striphtml}}</p>
             <button type="button" class="btn nir-inline-video-btn" [routerLink]="['/reports', report?.id]">Leer más</button>
           </div>
         </div>

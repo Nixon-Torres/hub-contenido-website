@@ -5,6 +5,7 @@ import {environment} from '../../../../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Location } from '@angular/common';
 import {DataService} from '../../../data.service';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-confirmation',
@@ -33,7 +34,7 @@ export class ConfirmationComponent implements OnInit {
   public subscriptionData: any;
 
   constructor(private http: HttpService, private location: Location, private router: Router,
-              private dataService: DataService, private activatedRoute: ActivatedRoute) {
+              private dataService: DataService, private activatedRoute: ActivatedRoute, private gtmService: GoogleTagManagerService) {
     this.subscriptionData = this.dataService.subscriptionData;
 
     router.events.subscribe(val => {
@@ -140,5 +141,17 @@ export class ConfirmationComponent implements OnInit {
     }).subscribe((res) => {
       this.router.navigate(['/unsubscribe_completed_confirmation']);
     });
+  }
+
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

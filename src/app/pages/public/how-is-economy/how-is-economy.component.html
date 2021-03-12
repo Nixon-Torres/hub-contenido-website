@@ -6,9 +6,9 @@
 		</div>
 		<div class="information_sidebar_tabs">
 			<ul class="nav nav-tabs">
-				<li [ngClass]="{activeone: tab === 'tab1'}" class="economy"><a (click)="tab = 'tab1'">Econom&iacute;a
+				<li [ngClass]="{activeone: tab === 'tab1'}" class="economy" (click)="tag('Home', 'Cómo va la economía', 'Economia colombiana');"><a (click)="tab = 'tab1'">Econom&iacute;a
 						Colombiana</a></li>
-				<li [ngClass]="{activeone: tab === 'tab2'}"><a (click)="tab = 'tab2'">Sectores</a></li>
+				<li [ngClass]="{activeone: tab === 'tab2'}" (click)="tag('Home', 'Cómo va la economía', 'Sectores');"><a (click)="tab = 'tab2'">Sectores</a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane activeone" *ngIf="tab === 'tab1'">
@@ -19,11 +19,11 @@
 									<h4>{{headerReport?.rTitle | striphtml}}</h4>
 									<p>{{headerReport?.publishedAt | date:'d MMMM y'}}</p>
 									<p class="para_desc">
-										{{headerReport?.smartContent}}
+										{{headerReport?.smartContent | striphtml}}
 									</p>
 									<p class="para_nuvo">NUEVO</p>
 									<div class="conocer_btn">
-										<a [routerLink]="['/reports', headerReport?.id]">Conocer a detalle el informe <i
+										<a [routerLink]="['/reports', headerReport?.id]" (click)="tag('Home', 'Cómo va la economía', '/reports'.concat('/', headerReport?.id), true, true)">Conocer a detalle el informe <i
 												class="fa fa-angle-right" aria-hidden="true"></i></a>
 									</div>
 								</div>
@@ -33,37 +33,37 @@
 							<div class="row">
 								<div class="col-sm-6 economy-mobile_hiden">
 									<div *ngIf="area1Report" class="tab_sub_division_part economy_background"
-										[routerLink]="['/reports', area1Report?.id]">
+										[routerLink]="['/reports', area1Report?.id]" (click)="tag('Home', 'Cómo va la economía', '/reports'.concat('/', area1Report?.id), true);">
 										<p class="red_text">{{getCategory(area1Report.reportType) | uppercase}}</p>
 										<h4>{{area1Report?.rTitle | striphtml}}</h4>
-										<p class="tab_sub_division_part_text">{{area1Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area1Report?.smartContent | striphtml}}</p>
 										<p>{{area1Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
 								<div class="col-sm-6 economy-mobile_hiden">
 									<div *ngIf="area2Report" class="tab_sub_division_part economy_background"
-										[routerLink]="['/reports', area2Report?.id]">
+										[routerLink]="['/reports', area2Report?.id]" (click)="tag('Home', 'Cómo va la economía', '/reports'.concat('/', area2Report?.id), true);">
 										<p class="red_text">{{getCategory(area2Report.reportType) | uppercase}}</p>
 										<h4>{{area2Report?.rTitle | striphtml}}</h4>
-										<p class="tab_sub_division_part_text">{{area2Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area2Report?.smartContent | striphtml}}</p>
 										<p>{{area2Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
 								<div class="col-sm-6 economy-mobile_hiden">
 									<div *ngIf="area3Report" class="tab_sub_division_part economy_background"
-										[routerLink]="['/reports', area3Report?.id]">
+										[routerLink]="['/reports', area3Report?.id]" (click)="tag('Home', 'Cómo va la economía', '/reports'.concat('/', area3Report?.id), true);">
 										<p class="red_text">{{getCategory(area3Report.reportType) | uppercase}}</p>
 										<h4>{{area3Report?.rTitle | striphtml}}</h4>
-										<p class="tab_sub_division_part_text">{{area3Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area3Report?.smartContent | striphtml}}</p>
 										<p>{{area3Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
 								<div class="col-sm-6 economy-mobile_hiden">
 									<div *ngIf="area4Report" class="tab_sub_division_part economy_background"
-										[routerLink]="['/reports', area4Report?.id]">
+										[routerLink]="['/reports', area4Report?.id]" (click)="tag('Home', 'Cómo va la economía', '/reports'.concat('/', area4Report?.id), true);">
 										<p class="red_text">{{getCategory(area4Report.reportType) | uppercase}}</p>
 										<h4>{{area4Report?.rTitle | striphtml}}</h4>
-										<p class="tab_sub_division_part_text">{{area4Report?.smartContent}}</p>
+										<p class="tab_sub_division_part_text">{{area4Report?.smartContent | striphtml}}</p>
 										<p>{{area4Report?.publishedAt | date:'d MMMM y'}}</p>
 									</div>
 								</div>
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 					<div class="para_bottom_btn">
-						<div class="button_inner">
+						<div class="button_inner" (click)="tag('Home', 'Cómo va la economía', 'Conocer mas sobre economia colombiana');">
 							<a href="/categories/5e7fc9a5dc4b4a6c6629517f" class="empresas">Conocer más sobre economía colombiana <i
 									class="fa fa-angle-right" aria-hidden="true"></i></a>
 						</div>
@@ -80,12 +80,19 @@
 				<div class="tab-pane activetwo" *ngIf="tab === 'tab2'">
 					<div class="row">
 						<div class="col-sm-3 economy-mobile_hiden second_tab" *ngFor="let report of randomReports">
-							<div class="tab_sub_division_part economy_background" [routerLink]="['/reports', report?.id]">
+							<div *ngIf="!report?.migrated" class="tab_sub_division_part economy_background" [routerLink]="['/reports', report?.id]">
 								<p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
 								<h4>{{report?.rTitle | striphtml}}</h4>
-								<p class="tab_sub_division_part_text">{{report?.smartContent}}</p>
+								<p class="tab_sub_division_part_text">{{report?.smartContent | striphtml}}</p>
 								<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 							</div>
+
+              <div *ngIf="report?.migrated" class="tab_sub_division_part economy_background" (click)="openPdf(report)">
+                <p class="red_text">{{getCategory(report.reportType) | uppercase}}</p>
+                <h4>{{report?.rTitle | striphtml}}</h4>
+                <p class="tab_sub_division_part_text">{{report?.smartContent | striphtml}}</p>
+                <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
+              </div>
 						</div>
 					</div>
 					<div class="para_bottom_btn">

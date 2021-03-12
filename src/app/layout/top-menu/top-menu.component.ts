@@ -318,6 +318,10 @@ export class TopMenuComponent implements OnInit {
     }
   }
 
+  openBook() {
+    window.open('https://libro.daviviendacorredores.com/', '_blank');
+  }
+
   getCategoryId(option?: number) {
     const idx = option ? option : this.currentMenuOption;
     if (!this.categories) {
@@ -344,7 +348,7 @@ export class TopMenuComponent implements OnInit {
     const id = this.getCategoryId();
 
     if (report && report.code === 'ELLIBRO') {
-      return ['/book'];
+      return null;
     }
 
     if(id === '5e7fc9a5dc4b4a6c66295180' && report.id === '5e7fc9a5dc4b4a6c662951a0') {
@@ -353,5 +357,17 @@ export class TopMenuComponent implements OnInit {
 
     const rsp = ['/categories', id, 'type', report.id];
     return rsp;
+  }
+
+  tag(eventCategory, eventAction, eventLabel, getUrl) {
+    (getUrl) ? eventLabel = window.location.origin + eventLabel : eventLabel = window.location.href;
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }

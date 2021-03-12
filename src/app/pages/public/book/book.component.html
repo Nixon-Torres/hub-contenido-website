@@ -167,7 +167,7 @@
 
               <div *ngIf="data?.second" [innerHtml]="sanitize(data.second)"></div>
               <div class="sec-2-colombia-botton">
-                <button type="button" class="btn sec-2-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i
+                <button type="button" class="btn sec-2-colombia-btn" routerLink="./" fragment="subscribe" (click)="tag('Landing Page','Descargar libro','Ancla 1');">Descargar El Libro<i
                   class="fas fa-chevron-right"></i></button>
               </div>
             </div>
@@ -224,9 +224,9 @@
           </div>
           <div class="sec-3-contant" *ngIf="data && data['link-text-fin'] && data['link-text-file'] && data['link-text-file'].assetUrl">
             <p>{{data['link-text-fin']}}
-              <a [href]="data['link-text-file'].assetUrl" class="sec-3-red" target="_blank">aquí.</a>
+              <a [href]="data['link-text-file'].assetUrl" class="sec-3-red" target="_blank" (click)="tag('Landing Page', 'Ver proyecciones', data['link-text-file'].assetUrl)">aquí.</a>
             </p>
-            <button type="button" class="btn sec-3-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
+            <button (click)="tag('Landing Page','Descargar libro','Ancla 2');" type="button" class="btn sec-3-colombia-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
             </button>
           </div>
         </div>
@@ -283,7 +283,7 @@
 <!--          </div>-->
 <!--        </div>-->
         <div class="calcap-graph-button">
-          <button type="button" class="btn calcap-graph-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
+          <button (click)="tag('Landing Page','Descargar libro','Ancla 3');" type="button" class="btn calcap-graph-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i>
           </button>
         </div>
       </div>
@@ -309,7 +309,7 @@
       </div>
     </div>
     <div class="sec-5-table-button">
-      <button type="button" class="btn sec-5-table-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
+      <button (click)="tag('Landing Page','Descargar libro','Ancla 4');" type="button" class="btn sec-5-table-btn" routerLink="./" fragment="subscribe">Descargar El Libro<i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </div>
@@ -329,14 +329,14 @@
                 <img class="bookThumb" src="../../../../assets/images/bookImagen1.png" alt="" *ngIf="!book?.thumbnail?.assetUrl">
                 <img class="bookThumb" [src]="book?.thumbnail?.assetUrl" alt="" *ngIf="book?.thumbnail?.assetUrl">
                 <p>{{book.title}} <br><strong>{{book.year}}</strong></p>
-                <a *ngIf="book?.pdf?.assetUrl" [href]="book.pdf.assetUrl" target="_blank">Descargar ahora <i class="fas fa-ch evron-right"></i></a>
+                <a (click)="tag('Landing Page', 'Ediciones anteriores', book.pdf.assetUrl)" *ngIf="book?.pdf?.assetUrl" [href]="book.pdf.assetUrl" target="_blank">Descargar ahora <i class="fas fa-ch evron-right"></i></a>
               </li>
             </ul>
           </div>
         </div>
 
         <div class="ediciones-btn" *ngIf="maxBooks === 3">
-          <button type="button" class="btn ediciones-red-btn" data-toggle="collapse" data-target="#collapsebooks"
+          <button (click)="tag('Landing Page', 'Ediciones anteriores', 'Ver ediciones');" type="button" class="btn ediciones-red-btn" data-toggle="collapse" data-target="#collapsebooks"
                   aria-expanded="true" aria-controls="collapseExample" (click)="maxBooks = 20"> Ver ediciones anteriores<i
             class="fas fa-chevron-down"></i></button>
         </div>

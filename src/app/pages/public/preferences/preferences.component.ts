@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../../../data.service';
 import {InvestPreferencesDialogComponent} from '../invest-preferences-dialog/invest-preferences-dialog.component';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-preferences',
@@ -38,9 +39,10 @@ export class PreferencesComponent implements OnInit {
   public form2: FormGroup;
 
   public subcategoryCbs = {};
+  public subsRequestError:boolean = false;
 
   constructor(private http: HttpService, private sanitizer: DomSanitizer, private fb: FormBuilder, private dialog: MatDialog,
-              private router: Router, private dataService: DataService, private activatedRoute: ActivatedRoute) {
+              private router: Router, private dataService: DataService, private activatedRoute: ActivatedRoute, private gtmService: GoogleTagManagerService) {
     this.form = this.fb.group({
       reportTypes: new FormArray([])
     });
@@ -239,7 +241,10 @@ export class PreferencesComponent implements OnInit {
         },
         encode: true
       }).subscribe((res) => {
+        this.subsRequestError = false;
         this.router.navigate(['sub2factor_confirmation']);
+      }, (error) => {
+        this.subsRequestError = true
       });
     });
   }
@@ -440,5 +445,17 @@ export class PreferencesComponent implements OnInit {
         this.accessToken = params.access_token;
       }
     });
+  }
+
+  tag(eventCategory, eventAction, eventLabel) {
+
+    const gtmTag = {
+      eventCategory: eventCategory,
+      eventAction: eventAction,
+      eventLabel: eventLabel,
+      eventvalue: '',
+      event: 'eventClick'
+    };
+    this.gtmService.pushTag(gtmTag);
   }
 }
