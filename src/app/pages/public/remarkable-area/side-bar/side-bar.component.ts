@@ -30,9 +30,7 @@ export class SideBarComponent implements OnInit {
   }
 
   getCategory(report) {
-    return report ? report.company ? report.company.name : report.reportType.description : '';
-    // return reportType && reportType.mainCategory && reportType.mainCategory.length ?
-    //   reportType.mainCategory[0].description : '';
+    return reportType ? reportType.description : '';
   }
 
   getDailyType() {
