@@ -29,7 +29,7 @@ export class SideBarComponent implements OnInit {
     this.getDailyType();
   }
 
-  getCategory(report) {
+  getCategory(reportType) {
     return reportType ? reportType.description : '';
   }
 
