@@ -43,13 +43,13 @@
 					<div class="last_container"  *ngFor="let report of reports">
 						<div *ngIf="!report.multimedia && !report.migrated" class="information_tab_pen" [routerLink]="['/reports', report.id]"
                  (click)="tag('Home', 'Más leidos', ('multimedia').concat('/',report.id), true)">
-							<a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
+							<a style="text-transform: uppercase">{{getCategory(report)}}</a>
 							<h4>{{report?.rTitle | striphtml}}</h4>
 							<p>{{report?.publishedAt | date:'d MMMM y'}}</p>
 						</div>
             <div *ngIf="!report.multimedia && report.migrated" class="information_tab_pen"
                  (click)="tag('Home', 'Más leidos', ('multimedia').concat('/',report.id), true); openPdf(report)">
-              <a style="text-transform: uppercase">{{getCategory(report?.reportType)}}</a>
+              <a style="text-transform: uppercase">{{getCategory(report)}}</a>
               <h4>{{report?.rTitle | striphtml}}</h4>
               <p>{{report?.publishedAt | date:'d MMMM y'}}</p>
             </div>
