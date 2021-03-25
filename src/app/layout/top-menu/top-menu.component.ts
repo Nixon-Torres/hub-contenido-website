@@ -19,7 +19,7 @@ export class TopMenuComponent implements OnInit {
   public currentReport: any;
   public ready = false;
 
-  private menuOptions = [{
+  public menuOptions = [{
     name: 'Estar actualizado',
     code: 'ESTARACTUALIZADO'
   }, {
@@ -274,7 +274,7 @@ export class TopMenuComponent implements OnInit {
     );
   }
 
-  private distributeItems(showAll: boolean) {
+  public distributeItems(showAll: boolean) {
     const items = this.getItems();
     this.total = items.length;
 

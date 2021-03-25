@@ -13,7 +13,7 @@ import {GoogleTagManagerService} from 'angular-google-tag-manager';
     styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  private categoryId: string;
+  public categoryId: string;
   private reportTypeId: string;
   private subcategoryId: string;
   private companyId: string;
@@ -55,7 +55,7 @@ export class CategoriesComponent implements OnInit {
     id: null,
   }];
 
-  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private router: Router, private gtmService: GoogleTagManagerService) {
+  constructor(private http: HttpService, private activatedRoute: ActivatedRoute, public router: Router, private gtmService: GoogleTagManagerService) {
   }
 
   ngOnInit() {

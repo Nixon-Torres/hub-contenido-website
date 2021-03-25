@@ -23,7 +23,7 @@ export class RemarkableAreaComponent implements OnInit {
     this.loadOutstanding();
   }
 
-  private getType(item: any) {
+  public getType(item: any) {
     return item && item.multimediaType ? item.multimediaType.name.toUpperCase() : 'none';
   }
 

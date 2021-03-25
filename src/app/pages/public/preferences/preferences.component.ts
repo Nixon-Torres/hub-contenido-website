@@ -22,7 +22,7 @@ export class PreferencesComponent implements OnInit {
     link: ['/preferences']
   }];
 
-  private accessToken: string;
+  public accessToken: string;
   public subscriptions: any;
 
   public STORAGE_URL = environment.URL_API;

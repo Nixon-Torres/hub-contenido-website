@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   public ready = false;
   public companies: any;
   public currentCategory: any;
-  private menuOptions: any = [{
+  public menuOptions: any = [{
     name: 'Estar actualizado',
     code: 'ESTARACTUALIZADO',
     idx: 1,
@@ -85,7 +85,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  private getItems(menu) {
+  public getItems(menu) {
     if (menu.code === 'ANLISISDECOMPAAS') {
       return this.companies;
     }
