@@ -155,7 +155,7 @@ export class ReportSummaryComponent implements OnInit {
     });
   }
 
-  tag(eventCategory, eventAction, eventLabel, getUrl, detail) {
+  tag(eventCategory, eventAction, eventLabel, getUrl=null, detail=null) {
     (getUrl) ? (detail) ? eventLabel = 'Detalles del informe - ' + window.location.origin + eventLabel : eventLabel = window.location.origin + eventLabel : '';
     const gtmTag = {
       eventCategory: eventCategory,
