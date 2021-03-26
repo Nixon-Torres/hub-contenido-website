@@ -39,7 +39,7 @@ pipelines:
             - pip install boto3 # required for codedeploy_deploy.py
             - npm install
             #- bower install --allow-root
-            - npm run build --prod
+            - npm run build -- --prod
             - grep -Rl '8.2.14' dist/hub-contenidos-front/ | xargs -I {} sed -i 's/8.2.14/Unknown/g' {}
             - cd dist/hub-contenidos-front/
             #- export DEPLOYMENT_GROUP_NAME=$PRO_DEPLOYMENT_GROUP_NAME
