@@ -407,7 +407,7 @@ export class CategoriesComponent implements OnInit {
 
     if (this.reportType) {
       this.breadcrumbItems.push({
-        label: this.reportType.description,
+        label: this.reportTypeId === '5e7fc9a5dc4b4a6c662951a0' ? 'Inmobiliario' : this.reportType.description,
         link: ['/categories', this.categoryId, 'type', this.reportTypeId]
       });
     }

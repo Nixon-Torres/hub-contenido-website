@@ -43,6 +43,7 @@ registerLocaleData(localeCo, 'es-CO');
     EditPreferencesDialogComponent,
     InvestPreferencesDialogComponent,
     RunScriptsDirective,
+    ThankyouComponent,
   ],
   imports: [
     BrowserModule,
