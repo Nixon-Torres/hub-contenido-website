@@ -18,6 +18,7 @@ export class SideBarComponent implements OnInit {
   public contents: any;
   public discardedIds: any;
   public selectedTab = 'tab1';
+  public assetBase: string = environment.URL_API;
 
   public banner1: any;
   public banner2: any;
@@ -202,7 +203,7 @@ export class SideBarComponent implements OnInit {
     });
   }
 
-  tag(eventCategory, eventAction, eventLabel, getUrl) {
+  tag(eventCategory, eventAction, eventLabel, getUrl=null) {
     (getUrl) ? eventLabel = window.location.origin + '/' + eventLabel : '';
     const gtmTag = {
       eventCategory: eventCategory,
@@ -212,5 +213,10 @@ export class SideBarComponent implements OnInit {
       event: 'eventClick'
     };
     this.gtmService.pushTag(gtmTag);
+  }
+
+  openPdf(report) {
+    const url = this.assetBase + `public/assets/reports-migrated/${report.pdfFolder}/${report.publishedYear}/${report.pdfFile}${!report.pdfFile.endsWith('.pdf') ? '.pdf' : ''}`;
+    window.open(url);
   }
 }

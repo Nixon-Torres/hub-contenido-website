@@ -79,7 +79,7 @@ export class MultimediaGalleryComponent implements OnInit {
     });
   }
 
-  tag(eventCategory, eventAction, eventLabel, getUrl) {
+  tag(eventCategory, eventAction, eventLabel, getUrl=null) {
     (getUrl) ? eventLabel = window.location.origin + '/' + eventLabel : '';
     const gtmTag = {
       eventCategory: eventCategory,

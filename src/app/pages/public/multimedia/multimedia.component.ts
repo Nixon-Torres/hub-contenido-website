@@ -32,7 +32,7 @@ export class MultimediaComponent implements OnInit {
     this.onLoadCategories();
   }
 
-  private getType(item: any) {
+  public getType(item: any) {
     return item && item.multimediaType ? item.multimediaType.name : 'none';
   }
 
@@ -40,7 +40,7 @@ export class MultimediaComponent implements OnInit {
     return this.currentTab === 1 ? 'Video' : this.currentTab === 2 ? 'Podcast' : 'Webinar';
   }
 
-  private setTab(idx) {
+  public setTab(idx) {
     this.contents = [];
     this.currentTab = idx;
     this.loadMultimedia();
@@ -150,7 +150,7 @@ export class MultimediaComponent implements OnInit {
       : 'Corredores Davivienda';
   }
 
-  tag(eventCategory, eventAction, eventLabel, getUrl) {
+  tag(eventCategory, eventAction, eventLabel, getUrl=null) {
     (getUrl) ? eventLabel = window.location.origin + eventLabel : '';
     const gtmTag = {
       eventCategory: eventCategory,

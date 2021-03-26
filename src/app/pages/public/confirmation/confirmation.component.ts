@@ -20,7 +20,7 @@ export class ConfirmationComponent implements OnInit {
   public data: any;
 
   public route: any;
-  private accessToken;
+  public accessToken;
   public subscriptions: any;
 
   public EDITCONFIRMED = '/edit_confirmation';

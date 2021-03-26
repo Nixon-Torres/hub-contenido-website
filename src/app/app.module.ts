@@ -39,7 +39,6 @@ registerLocaleData(localeCo, 'es-CO');
     HeaderComponent,
     FooterComponent,
     TopMenuComponent,
-    ThankyouComponent,
     SubscribeDialogComponent,
     EditPreferencesDialogComponent,
     InvestPreferencesDialogComponent,
