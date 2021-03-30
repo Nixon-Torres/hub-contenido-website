@@ -16,7 +16,7 @@ export class SideBarComponent implements OnInit {
   public dailyReport: any;
   public reports: any;
   public contents: any;
-  public discardedIds: any;
+  public discardedIds: any = [];
   public selectedTab = 'tab1';
   public assetBase: string = environment.URL_API;
 
@@ -87,7 +87,7 @@ export class SideBarComponent implements OnInit {
     const filter = {
       where: {
         reportTypeId: {
-          nin: idx === 1 ? this.discardedIds : []
+          nin: this.discardedIds || []
         }
       },
       fields: ['id', 'name', 'sectionId', 'reportTypeId', 'publishedAt', 'smartContent', 'rTitle', 'reads', 'companyId'],
