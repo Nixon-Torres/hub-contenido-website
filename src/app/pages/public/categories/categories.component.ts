@@ -204,10 +204,15 @@ export class CategoriesComponent implements OnInit {
     let where: any = {};
 
     if (this.reportTypeId) {
-      where.reportTypeId = this.reportTypeId;
+      where.reportTypeId = this.reportTypeId === '5e7fc9a5dc4b4a6c662951a0' ?
+        '5e7fc9a5dc4b4a6c662951b6' : this.reportTypeId;
       if (mirrorArray.length > 0) {
         const ids = [];
-        ids.push(this.reportTypeId);
+        if (this.reportTypeId === '5e7fc9a5dc4b4a6c662951a0')
+          ids.push('5e7fc9a5dc4b4a6c662951b6');
+        else
+          ids.push(this.reportTypeId);
+
         mirrorArray.forEach((data: any) => {
           ids.push(data.id);
         });
@@ -407,7 +412,7 @@ export class CategoriesComponent implements OnInit {
 
     if (this.reportType) {
       this.breadcrumbItems.push({
-        label: this.reportTypeId === '5e7fc9a5dc4b4a6c662951a0' ? 'Inmobiliario' : this.reportType.description,
+        label: this.getReportTypeName(this.reportType),
         link: ['/categories', this.categoryId, 'type', this.reportTypeId]
       });
     }
