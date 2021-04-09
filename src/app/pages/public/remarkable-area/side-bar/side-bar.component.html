@@ -3,7 +3,7 @@
 		<div class="information_sidebar_first_content">
 			<div class="isfc_left">
 				<h4>{{banner1?.title}}</h4>
-				<p>{{banner1?.description | truncate: 140: true}}</p>
+				<p>{{banner1?.description | truncate: 50}}</p>
 				<a class="latest-reports-desktop" target="_blank" href="{{banner1?.params?.link}}" (click)="tag('Home', 'Banner derecha -  Descargar', banner1?.params?.link)">{{banner1?.params?.cta}}</a>
 			</div>
 			<div class="isfc_right" *ngIf="banner1 && banner1.files && banner1.files.length">
@@ -14,7 +14,7 @@
 		<div class="information_sidebar_first_content">
 			<div class="isfc_left">
 				<h4>{{banner2?.title}}</h4>
-				<p>{{banner2?.description | truncate: 140: true}}</p>
+				<p>{{banner2?.description | truncate: 50}}</p>
 				<a class="latest-reports-desktop" target="_blank" href="{{banner2?.params?.link}}" (click)="tag('Home', 'Banner derecha -  Ver informe', banner2?.params?.link)">{{banner2?.params?.cta}}</a>
 			</div>
       <div class="isfc_right" *ngIf="banner2 && banner2.files && banner2.files.length">
