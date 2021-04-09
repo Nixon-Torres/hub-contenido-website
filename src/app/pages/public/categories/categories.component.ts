@@ -379,24 +379,28 @@ export class CategoriesComponent implements OnInit {
   }
 
   setReportType(reportType: any) {
-    this.currentPage = 1;
-    if (this.category.code === 'ANLISISDECOMPAAS') {
-      this.companyId = reportType.id;
+    if (reportType.description === "El Libro") {
+      location.href = "https://libro.daviviendacorredores.com/";
     } else {
-      this.reportType = reportType;
-      this.reportTypeId = reportType.id;
+      this.currentPage = 1;
+      if (this.category.code === 'ANLISISDECOMPAAS') {
+        this.companyId = reportType.id;
+      } else {
+        this.reportType = reportType;
+        this.reportTypeId = reportType.id;
+      }
+  
+      if (this.companyId) {
+        this.router.navigate(['categories', this.categoryId, 'type', this.companyId]);
+      } else if (!this.reportTypeId) {
+        this.router.navigate(['categories', this.categoryId]);
+      } else {
+        this.router.navigate(['categories', this.categoryId, 'type', this.reportTypeId]);
+      }
+  
+      this.updateBreadcrumbItems();
+      this.getReports();
     }
-
-    if (this.companyId) {
-      this.router.navigate(['categories', this.categoryId, 'type', this.companyId]);
-    } else if (!this.reportTypeId) {
-      this.router.navigate(['categories', this.categoryId]);
-    } else {
-      this.router.navigate(['categories', this.categoryId, 'type', this.reportTypeId]);
-    }
-
-    this.updateBreadcrumbItems();
-    this.getReports();
   }
 
   openPdf(report) {
