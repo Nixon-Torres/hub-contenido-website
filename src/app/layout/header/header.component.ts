@@ -138,6 +138,10 @@ export class HeaderComponent implements OnInit {
       return;
       // return this.router.navigate(['/book']);
     } else {
+      if (report && report.id === '5e7fc9a5dc4b4a6c662951b1') {
+        window.open('https://comunicaciones.daviviendacorredores.com/Vision2021?utm_medium=Email&utm_source=Eloqua&utm_campaign=035-210114-Vision&utm_content=210121-vision2021&utm_term=Eloqua&bkp=&elqTrackId=37a8cd43b1e344cf96e07bfe844fe78c&elq=eb8b66a5b97a467badf33d7be549c13a&elqaid=1543&elqat=1&elqCampaignId=3236', '_blank');
+        return;
+      }
       this.router.navigate(['/categories', id, 'type', report && report.id ? report.id : '']);
     }
     document.getElementById('mySidenav').style.width = '0';
