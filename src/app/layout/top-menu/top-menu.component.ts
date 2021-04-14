@@ -318,8 +318,14 @@ export class TopMenuComponent implements OnInit {
     }
   }
 
-  openBook() {
-    window.open('https://libro.daviviendacorredores.com/', '_blank');
+  openExternal(item) {
+    if (item && item.code === 'ELLIBRO') {
+      window.open('https://libro.daviviendacorredores.com/', '_blank');
+    }
+    if (item && item.id === '5e7fc9a5dc4b4a6c662951b1'){
+      window.open('https://comunicaciones.daviviendacorredores.com/Vision2021?utm_medium=Email&utm_source=Eloqua&utm_campaign=035-210114-Vision&utm_content=210121-vision2021&utm_term=Eloqua&bkp=&elqTrackId=37a8cd43b1e344cf96e07bfe844fe78c&elq=eb8b66a5b97a467badf33d7be549c13a&elqaid=1543&elqat=1&elqCampaignId=3236', '_blank');
+    }
+
   }
 
   getCategoryId(option?: number) {
@@ -346,8 +352,11 @@ export class TopMenuComponent implements OnInit {
 
   getCategoryReportTypeLink(report: any) {
     const id = this.getCategoryId();
-
     if (report && report.code === 'ELLIBRO') {
+      return null;
+    }
+
+    if (report && report.id === '5e7fc9a5dc4b4a6c662951b1'){
       return null;
     }
 
