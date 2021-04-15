@@ -700,3 +700,7 @@ section .pr-full-bg .container .brief-section,
     padding: 20px 0;
 }
 
+.modal-open .modal.show {
+    background-color: rgba(0,0,0,.5) !important;
+}
+
